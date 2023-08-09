@@ -1,0 +1,62 @@
+body {
+  overflow-x: hidden;
+}
+
+.login {
+  background-image: url("./assets/whitebg.webp");
+}
+.input {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+
+.input::placeholder {
+  color: #000000;
+}
+
+.input:focus {
+  border: 1px solid #00cc00;
+}
+@keyframes zoom-in-fade {
+  0% {
+    transform: scale(0.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.show {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+  transition: all 1s ease-in-out;
+  /* z-index: 200000000000000000000; */
+}
+.welcomeshow {
+  filter: blur(0);
+  transition: all 1s ease-in-out;
+}
+.welcome {
+  transition: all 1s;
+  filter: blur(5px);
+}
+.no {
+  opacity: 0;
+  transition: all 1s;
+  filter: blur(5px);
+  transform: translateY(100%);
+}
+.overlay-Dark {
+  background-color: #000009;
+  opacity: 0.5;
+}
+.navbar {
+  /* background-color: transparent; */
+  box-shadow: 0px 0px 7px black;
+}
+.nav {
+  z-index: 2;
+}
