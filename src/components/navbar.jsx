@@ -61,23 +61,21 @@ export default function Navbar() {
   }, [user]);
 
   return (
-    <div className="w-[100vw] flex flex-col md:items-center">
+    <div className="w-[100vw] flex flex-col md:items-center ">
       <div
-        className={`flex justify-between z-50 px-[1rem] fixed items-center w-[100vw] pt-[1vh] ${
-          scrolled ? "bg-[#ffffff] navbar mb-[2rem]" : "bg-transparent"
-        }`}
+        className={`flex justify-between z-50 px-[1rem] fixed items-center w-[100vw] pt-[1vh] "bg-transparent" `}
       >
         <img
           src={logo}
           alt="logo"
-          className="w-[20vw] lg:w-[7vw] md:w-[11vw] my-[-4vh] md:my-[-4vh]"
+          className="w-[20vw] lg:w-[7vw] md:w-[11vw] my-[-4vh] md:my-[-4vh] relative z-10"
         />
 
         <div
           onClick={() => {
             setshowMobile(true);
           }}
-          className="md:hidden mr-[1rem]"
+          className="lg:hidden mr-[1rem]"
         >
           <svg
             width="30"
@@ -126,58 +124,50 @@ export default function Navbar() {
           </svg>
         </div>
 
-        <div className="hidden md:flex md:items-center md:mr-[1rem]">
+        <div className="hidden lg:flex md:items-center md:mr-[1rem]">
           <Link to="/" className="nav">
-            <p
-              className={`lg:text-[1.2vw] font-bold ${
-                scrolled ? "text-[#000000]" : "text-[#ffffff]"
-              }`}
-            >
-              Home
+            <p className={`lg:text-[1.2vw] font-bold text-[#00cc00]`}>Home</p>
+          </Link>
+          <Link to={user ? "/SellProducts" : "/Login"}>
+            <p className={`lg:text-[1.2vw] mx-[1rem] font-bold text-[#00cc00]`}>
+              Sell Products
             </p>
           </Link>
-          <a href="#about" className="nav">
-            <p
-              className={`lg:text-[1.2vw] mx-[1rem] font-bold ${
-                scrolled ? "text-[#000000]" : "text-[#ffffff]"
-              }`}
-            >
-              Sell
+
+          <Link to={user ? "/SellServices" : "/Login"}>
+            <p className={`lg:text-[1.2vw] mx-[1rem] font-bold text-[#00cc00]`}>
+              Sell Services
             </p>
-          </a>
-          <a href="#clients" className="nav">
-            <p
-              className={`lg:text-[1.2vw] mx-[1rem] font-bold ${
-                scrolled ? "text-[#000000]" : "text-[#ffffff]"
-              }`}
-            >
+          </Link>
+          <Link to={user ? "/Events" : "/Login"}>
+            <p className={`lg:text-[1.2vw] mx-[1rem] font-bold text-[#00cc00]`}>
               Events
             </p>
-          </a>
-          {!user && (
+          </Link>
+
+          <Link to={user ? "/Shop" : "/Login"}>
+            <p className={`lg:text-[1.2vw] mx-[1rem] font-bold text-[#00cc00]`}>
+              Premium Shop
+            </p>
+          </Link>
+          {!userName && (
             <Link to="/Login">
               <p
-                className={`lg:text-[1.2vw] mx-[1rem] font-bold ${
-                  scrolled ? "text-[#000000]" : "text-[#ffffff]"
-                }`}
+                className={`lg:text-[1.2vw] mx-[1rem] font-bold text-[#00cc00]`}
               >
                 Login
               </p>
             </Link>
           )}
           <Link to="/SignUpOne" className="nav">
-            <p
-              className={`lg:text-[1.2vw] font-bold ${
-                scrolled ? "text-[#000000]" : "text-[#ffffff]"
-              }`}
-            >
+            <p className={`lg:text-[1.2vw] font-bold text-[#00cc00]`}>
               Sign Up
             </p>
           </Link>
 
-          {user && (
+          {userName && (
             <p className="bg-[#00cc00] text-white py-[4px] px-[8px] ml-[1rem] rounded-[20px]">
-              Hi {userName} 👋
+              Hi, {userName} 👋
             </p>
           )}
         </div>
@@ -201,7 +191,7 @@ export default function Navbar() {
             alt="logo"
             className="w-[30vw] absolute -top-3 left-0"
           />
-          {user && (
+          {userName && (
             <p className="bg-[#00cc00] text-white py-[4px] px-[16px] rounded-[20px] absolute top-[115vw] left-5 text-[4vw]">
               Hi, {userName}👋
             </p>
@@ -223,29 +213,52 @@ export default function Navbar() {
           >
             <p className="text-[5vw] text-white headingfont font-bold">Home</p>
           </Link>
-          <a
-            href="#about"
+          <Link
             className="nav"
             onClick={() => {
               setshowMobile(false);
             }}
+            to={user ? "/SellProducts" : "/Login"}
           >
             <p className="text-[5vw] text-white my-[1rem] headingfont font-bold">
-              Sell
+              Sell Products
             </p>
-          </a>
-          <a
-            href="#clients"
+          </Link>
+
+          <Link
             className="nav"
             onClick={() => {
               setshowMobile(false);
             }}
+            to={user ? "/SellServices" : "/Login"}
+          >
+            <p className="text-[5vw] text-white mb-[1rem] headingfont font-bold">
+              Sell Services
+            </p>
+          </Link>
+          <Link
+            className="nav"
+            onClick={() => {
+              setshowMobile(false);
+            }}
+            to={user ? "/Events" : "/Login"}
           >
             <p className="text-[5vw] text-white mb-[1rem] headingfont font-bold">
               Events
             </p>
-          </a>
-          {!user && (
+          </Link>
+          <Link
+            className="nav"
+            onClick={() => {
+              setshowMobile(false);
+            }}
+            to={user ? "/Shop" : "/Login"}
+          >
+            <p className="text-[5vw] text-white mb-[1rem] headingfont font-bold">
+              Premium Shop
+            </p>
+          </Link>
+          {!userName && (
             <Link
               className="nav"
               onClick={() => {

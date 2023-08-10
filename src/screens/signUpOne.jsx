@@ -122,16 +122,16 @@ function SignUpOne() {
     <div className="h-[100vh] bg-[#013a19] w-[100vw] flex flex-col items-center login justify-center">
       {/* <div className="absolute h-[100vh] w-[100vw] bg-black opacity-30 z-2"></div> */}
       <div className="relative z-10 flex flex-col items-center">
-        <h1 className="text-[4vw] font-semibold">Welcome to</h1>
-        <h2 className="text-[8vw] font-semibold">UniPlug</h2>
-        <p className="text-[3vw]">
+        <h1 className="text-[4vw] md:text-[2vw] font-semibold">Welcome to</h1>
+        <h2 className="text-[8vw] md:text-[4vw] font-semibold">UniPlug</h2>
+        <p className="text-[3vw] md:text-[1.5vw]">
           Lets get you started, input your details below.
         </p>
         <input
           onChange={(e) => setfirstName(e.target.value)}
           type="text"
           placeholder="Name"
-          className="input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00] w-[80vw]"
+          className="input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
         />
         {firstNameError && <p className="text-red-500">{firstNameError}</p>}
 
@@ -139,7 +139,7 @@ function SignUpOne() {
           onChange={(e) => setEmail(e.target.value)}
           type="text"
           placeholder="Email"
-          className="input bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[80vw]"
+          className="input bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
         />
         {emailError && <p className="text-red-500">{emailError}</p>}
 
@@ -147,7 +147,7 @@ function SignUpOne() {
           onChange={(e) => setconfirmEmail(e.target.value)}
           type="text"
           placeholder="Retype Email"
-          className="input bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[80vw]"
+          className="input bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
         />
         {confirmEmailError && (
           <p className="text-red-500">{confirmEmailError}</p>
@@ -157,7 +157,7 @@ function SignUpOne() {
           onChange={(e) => setPassword(e.target.value)}
           type="password"
           placeholder="Password"
-          className="input rounded-[10px] bg-transparent mb-[16px] text-black p-[8px] border-b border-[#00cc00] w-[80vw]"
+          className="input rounded-[10px] bg-transparent mb-[16px] text-black p-[8px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
         />
         {passwordError && <p className="text-red-500">{passwordError}</p>}
 
@@ -165,20 +165,20 @@ function SignUpOne() {
           onChange={(e) => setConfirmPassword(e.target.value)}
           type="password"
           placeholder="Confirm Password"
-          className="input rounded-[10px] bg-transparent text-black p-[8px] border-b border-[#00cc00] w-[80vw]"
+          className="input rounded-[10px] bg-transparent text-black p-[8px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
         />
         {confirmPasswordError && (
           <p className="text-red-500">{confirmPasswordError}</p>
         )}
         <button
             onClick={handleSignUp}
-          className="bg-[#013a19] text-white w-[33vw] mt-[32px] rounded-[20px] py-[8px]"
+          className="bg-[#013a19] text-white w-[33vw] md:w-[13vw] mt-[32px] rounded-[20px] py-[8px]"
         >
           Continue
         </button>
         {/* {errors && <p className="text-red-500">{errors}</p>} */}
 
-        <p className="text-[3vw] mt-[16px]">
+        <p className="text-[3vw] md:text-[1.5vw] mt-[16px]">
           Already have an account?{" "}
           <Link to="/Login" className="text-blue-500">
             Log in
