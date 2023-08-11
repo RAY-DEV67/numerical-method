@@ -5,6 +5,14 @@ body {
 .login {
   background-image: url("./assets/whitebg.webp");
 }
+.eventCard {
+  background-image: url("./assets/whitebg.webp");
+  background-size: contain;
+}
+.events{
+  background-image: url("https://res.cloudinary.com/dvl38skbc/image/upload/v1691741834/uniplug/danny-howe-bn-D2bCvpik-unsplash_an7sac.webp");
+background-size: contain;
+}
 .input {
   -webkit-transition: 0.5s;
   transition: 0.5s;

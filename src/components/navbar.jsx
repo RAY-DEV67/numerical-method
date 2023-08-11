@@ -5,8 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { getDocs, query, collection, where } from "firebase/firestore";
+import { SetState } from "../App";
 
 export default function Navbar() {
+const setState = useContext(SetState)
+
   const [showMobile, setshowMobile] = useState(false);
   const [scrolled, setscrolled] = useState();
   const [user, setUser] = useState(null); // Track the user object
@@ -48,8 +51,12 @@ export default function Navbar() {
       const UserName = querySnapshot.docs.map((cloths) => {
         return cloths.data().Name;
       });
+      const UserState = querySnapshot.docs.map((cloths) => {
+        return cloths.data().state;
+      });
 
       setuserName(UserName[0]);
+      setState(UserState[0])
     } catch (err) {
       console.log(err);
     }

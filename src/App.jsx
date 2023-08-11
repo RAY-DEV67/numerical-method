@@ -17,30 +17,39 @@ import { getDocs, query, collection, where } from "firebase/firestore";
 
 export const UserId = React.createContext();
 export const SetUserId = React.createContext();
+export const UserState = React.createContext();
+export const SetState = React.createContext();
 
 function App() {
   const [userId, setuserId] = useState("");
-  
+  const [userState, setuserState] = useState("");
 
   return (
     <div className="bg-[#013a19]">
       <UserId.Provider value={userId}>
         <SetUserId.Provider value={setuserId}>
-            <Router>
-              <ScrollToTop>
-                <Navbar />
-                <Routes>
-                  <Route path="/" element={<LandingPage />} />
-                  <Route path="/Login" element={<Login />} />
-                  <Route path="/SignUpOne" element={<SignUpOne />} />
-                  <Route path="/SignUpTwo/:userId" element={<SignUpTwo />} />
-                  <Route path="/SellProducts" element={<SellProducts />} />
-                  <Route path="/SellServices/:userId/:userName" element={<SellServices />} />
-                  <Route path="Events" element={<Events />} />
-                  <Route path="/Shop" element={<Shop />} />
-                </Routes>
-              </ScrollToTop>
-            </Router>
+          <UserState.Provider value={userState}>
+            <SetState.Provider value={setuserState}>
+              <Router>
+                <ScrollToTop>
+                  <Navbar />
+                  <Routes>
+                    <Route path="/" element={<LandingPage />} />
+                    <Route path="/Login" element={<Login />} />
+                    <Route path="/SignUpOne" element={<SignUpOne />} />
+                    <Route path="/SignUpTwo/:userId" element={<SignUpTwo />} />
+                    <Route path="/SellProducts" element={<SellProducts />} />
+                    <Route
+                      path="/SellServices/:userId/:userName"
+                      element={<SellServices />}
+                    />
+                    <Route path="Events" element={<Events />} />
+                    <Route path="/Shop" element={<Shop />} />
+                  </Routes>
+                </ScrollToTop>
+              </Router>
+            </SetState.Provider>
+          </UserState.Provider>
         </SetUserId.Provider>
       </UserId.Provider>
     </div>
