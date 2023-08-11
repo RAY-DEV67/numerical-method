@@ -12,6 +12,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { UserId } from "../App";
+import LoadingSpinner from "../components/spinner";
 
 const Categories = [
   "Clothes",
@@ -897,7 +898,7 @@ function SellProducts() {
     <div>
       <div className="flex flex-col items-center login">
         <h1 className="md:text-[2vw] fixed pt-[15vw] md:pt-[6vw] pb-[4vw] md:pb-[2vw] font-semibold bg-[#013a19] w-[100vw] text-center py-[4px] text-white rounded-b-[30px]">
-          Sell On UniPlug
+          Sell Products On UniPlug
         </h1>
         <form
           onSubmit={handleSubmit}
@@ -906,7 +907,7 @@ function SellProducts() {
           <select
             value={selectedCategory}
             onChange={handleCategoryChange}
-            className="input bg-transparent text-[3vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className="input bg-transparent text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
           >
             <option value="">Category</option>
             {Categories.map((categories) => (
@@ -1004,7 +1005,7 @@ function SellProducts() {
           <select
             value={selectedState}
             onChange={handleStateChange}
-            className="input bg-transparent text-[3vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className="input bg-transparent text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
           >
             <option value="">Select State</option>
             {nigerianStates.map((state) => (
@@ -1020,7 +1021,7 @@ function SellProducts() {
           <select
             value={selectedUniversity}
             onChange={handleUniversityChange}
-            className="input bg-transparent rounded-[10px] text-[3vw] md:text-[2vw] lg:text-[1.5vw] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className="input bg-transparent rounded-[10px] text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
           >
             <option value="">Select University</option>
             {nigerianUniversities.map((university) => (
@@ -1038,7 +1039,7 @@ function SellProducts() {
             onChange={(e) => settitle(e.target.value)}
             type="text"
             placeholder="Product Title"
-            className="input bg-transparent rounded-[10px] text-[3vw] md:text-[2vw] lg:text-[1.5vw] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className="input bg-transparent rounded-[10px] text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
           />
           {titleError && (
             <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">{titleError}</p>
@@ -1047,19 +1048,19 @@ function SellProducts() {
             onChange={(e) => setbrand(e.target.value)}
             type="text"
             placeholder="Name Of Brand (Optional)"
-            className="input bg-transparent rounded-[10px] text-[3vw] md:text-[2vw] lg:text-[1.5vw] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className="input bg-transparent rounded-[10px] text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
           />
           <input
             onChange={(e) => setcolor(e.target.value)}
             type="text"
             placeholder="Color Of Product (Optional)"
-            className="input bg-transparent rounded-[10px] text-[3vw] md:text-[2vw] lg:text-[1.5vw] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className="input bg-transparent rounded-[10px] text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
           />
 
           <select
             value={selectedCondition}
             onChange={handleConditionChange}
-            className="input bg-transparent rounded-[10px] text-[3vw] md:text-[2vw] lg:text-[1.5vw] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className="input bg-transparent rounded-[10px] text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
           >
             <option value="">Select Condition</option>
             {Condition.map((condition) => (
@@ -1072,7 +1073,7 @@ function SellProducts() {
           <select
             value={selectedGender}
             onChange={handleGenderChange}
-            className="input bg-transparent text-[3vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className="input bg-transparent text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
           >
             <option value="">Which Gender Is This Product For</option>
             {Gender.map((gender) => (
@@ -1088,19 +1089,19 @@ function SellProducts() {
             onChange={(e) => setsize(e.target.value)}
             type="text"
             placeholder="Size"
-            className="input bg-transparent text-[3vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className="input bg-transparent text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
           />
           <input
             onChange={(e) => setavailableQuantity(e.target.value)}
             type="text"
             placeholder="Available Quantity (Leave Blank If Unlimited)"
-            className="input bg-transparent text-[3vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className="input bg-transparent text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
           />
           <input
             onChange={(e) => setvendorName(e.target.value)}
             type="text"
             placeholder="Name Of Vendor"
-            className="input bg-transparent text-[3vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className="input bg-transparent text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
           />
           {vendorNameError && (
             <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
@@ -1165,13 +1166,13 @@ function SellProducts() {
             onChange={(e) => setdescription(e.target.value)}
             type="text"
             placeholder="Description"
-            className="input bg-transparent text-[3vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className="input bg-transparent text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
           />
           <input
             onChange={(e) => setprice(e.target.value)}
             type="text"
             placeholder="Price"
-            className="input bg-transparent text-[3vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[8px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className="input bg-transparent text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[8px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
           />
           {priceError && (
             <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">{priceError}</p>
@@ -1186,7 +1187,7 @@ function SellProducts() {
             onChange={(e) => setdeliveryOnCampus(e.target.value)}
             type="text"
             placeholder="On Campus Delivery Fee (Leave Blank For Free Delivery)"
-            className="input bg-transparent text-[3vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className="input bg-transparent text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
           />
           {deliveryOnCampusError && (
             <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
@@ -1197,7 +1198,7 @@ function SellProducts() {
             onChange={(e) => setdeliveryOffCampus(e.target.value)}
             type="text"
             placeholder="Off Campus Delivery Fee (Leave Blank For Free Delivery)"
-            className="input bg-transparent text-[3vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className="input bg-transparent text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
           />
           {deliveryOffCampusError && (
             <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
@@ -1217,7 +1218,7 @@ function SellProducts() {
             onChange={(e) => setaccountNumber(e.target.value)}
             type="text"
             placeholder="Account Number"
-            className="input text-[3vw] md:text-[2vw] lg:text-[1.5vw] bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className="input text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
           />
           {accountNumberError && (
             <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
@@ -1228,7 +1229,7 @@ function SellProducts() {
             onChange={(e) => setbankName(e.target.value)}
             type="text"
             placeholder="Bank Name"
-            className="input text-[3vw] md:text-[2vw] lg:text-[1.5vw] bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className="input text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
           />
           {bankNameError && (
             <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">{bankNameError}</p>
@@ -1237,7 +1238,7 @@ function SellProducts() {
             onChange={(e) => setaccountHolderName(e.target.value)}
             type="text"
             placeholder="Account Name"
-            className="input text-[3vw] md:text-[2vw] lg:text-[1.5vw] bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className="input text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
           />
           {accountHolderNameError && (
             <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
@@ -1251,7 +1252,7 @@ function SellProducts() {
             onChange={(e) => setphoneNumber(e.target.value)}
             type="tel"
             placeholder="Phone Number"
-            className="input text-[3vw] md:text-[2vw] lg:text-[1.5vw] bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className="input text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
           />
           {phoneNumberError && (
             <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
@@ -1262,13 +1263,13 @@ function SellProducts() {
             onChange={(e) => setinstagram(e.target.value)}
             type="text"
             placeholder="Instagram Handle"
-            className="input text-[3vw] md:text-[2vw] lg:text-[1.5vw] bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className="input text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
           />
           <input
             onChange={(e) => settwitter(e.target.value)}
             type="text"
             placeholder="Twitter Handle"
-            className="input text-[3vw] md:text-[2vw] lg:text-[1.5vw] bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className="input text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
           />
 
           <button
@@ -1276,9 +1277,9 @@ function SellProducts() {
               handleSubmit(e);
               updateUserInfo();
             }}
-            className="bg-[#013a19] text-white w-[50vw] md:w-[13vw] mt-[16px] rounded-[20px] py-[8px]"
+            className="bg-[#013a19] flex flex-col items-center justify-center text-white w-[50vw] md:w-[13vw] mt-[16px] rounded-[20px] py-[8px]"
           >
-            Post Ad
+            {loadingSubmit ? <LoadingSpinner/> : "Post Ad"}
           </button>
           {submitError && (
             <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">{submitError}</p>

@@ -14,7 +14,6 @@ export default function Navbar() {
   const [userName, setuserName] = useState("");
   const navigate = useNavigate();
 
-  console.log(userName);
 
   useEffect(() => {
     const auth = getAuth();
@@ -134,7 +133,7 @@ export default function Navbar() {
             </p>
           </Link>
 
-          <Link to={user ? "/SellServices" : "/Login"}>
+          <Link to={user ? `/SellServices/${user.uid}/${userName}` : "/Login"}>
             <p className={`lg:text-[1.2vw] mx-[1rem] font-bold text-[#00cc00]`}>
               Sell Services
             </p>
@@ -230,7 +229,7 @@ export default function Navbar() {
             onClick={() => {
               setshowMobile(false);
             }}
-            to={user ? "/SellServices" : "/Login"}
+            to={user ? `/SellServices/${user.uid}/${userName}` : "/Login"}
           >
             <p className="text-[5vw] text-white mb-[1rem] headingfont font-bold">
               Sell Services
