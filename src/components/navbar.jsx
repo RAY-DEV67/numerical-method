@@ -5,10 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { getDocs, query, collection, where } from "firebase/firestore";
-import { SetState } from "../App";
+import { SetState, SetUserId, SetUserName } from "../App";
 
 export default function Navbar() {
-const setState = useContext(SetState)
+  const setState = useContext(SetState);
+  const setName = useContext(SetUserName);
+  const setUserId = useContext(SetUserId)
 
   const [showMobile, setshowMobile] = useState(false);
   const [scrolled, setscrolled] = useState();
@@ -17,7 +19,6 @@ const setState = useContext(SetState)
   const [userName, setuserName] = useState("");
   const navigate = useNavigate();
 
-
   useEffect(() => {
     const auth = getAuth();
 
@@ -25,6 +26,7 @@ const setState = useContext(SetState)
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
       setuserId(user.uid);
+      setUserId(user.uid);
     });
 
     const handleScroll = () => {
@@ -56,7 +58,8 @@ const setState = useContext(SetState)
       });
 
       setuserName(UserName[0]);
-      setState(UserState[0])
+      setName(UserName[0]);
+      setState(UserState[0]);
     } catch (err) {
       console.log(err);
     }
@@ -151,7 +154,7 @@ const setState = useContext(SetState)
             </p>
           </Link>
 
-          <Link to={user ? "/Shop" : "/Login"}>
+          <Link to={user ? `/Shop/${userId}` : "/Login"}>
             <p className={`lg:text-[1.2vw] mx-[1rem] font-bold text-[#00cc00]`}>
               Premium Shop
             </p>
@@ -192,18 +195,13 @@ const setState = useContext(SetState)
                 : "bg-[#323b0a] h-[100vh] no top-0 w-[100vw] flex flex-col items-center justify-center fixed"
             }
           ></div>
-          <img
-            src={logo}
-            alt="logo"
-            className="w-[30vw] absolute -top-3 left-0"
-          />
           {userName && (
-            <p className="bg-[#00cc00] text-white py-[4px] px-[16px] rounded-[20px] absolute top-[115vw] left-5 text-[4vw]">
+            <p className="bg-[#00cc00] text-white md:text-[2vw] py-[4px] px-[16px] rounded-[20px] absolute top-[90vh] left-5 text-[4vw]">
               Hi, {userName}👋
             </p>
           )}
           <p
-            className="absolute headingfont text-white top-7 nav text-[5vw] left-[85%]"
+            className="absolute md:text-[2vw] headingfont text-white top-3 nav text-[4vw] left-[85%]"
             onClick={() => {
               setshowMobile(false);
             }}
@@ -217,7 +215,7 @@ const setState = useContext(SetState)
               setshowMobile(false);
             }}
           >
-            <p className="text-[5vw] text-white headingfont font-bold">Home</p>
+            <p className="text-[4vw] md:text-[2vw] text-white headingfont font-bold">Home</p>
           </Link>
           <Link
             className="nav"
@@ -226,7 +224,7 @@ const setState = useContext(SetState)
             }}
             to={user ? "/SellProducts" : "/Login"}
           >
-            <p className="text-[5vw] text-white my-[1rem] headingfont font-bold">
+            <p className="text-[4vw] md:text-[2vw] text-white my-[1rem] headingfont font-bold">
               Sell Products
             </p>
           </Link>
@@ -238,7 +236,7 @@ const setState = useContext(SetState)
             }}
             to={user ? `/SellServices/${user.uid}/${userName}` : "/Login"}
           >
-            <p className="text-[5vw] text-white mb-[1rem] headingfont font-bold">
+            <p className="text-[4vw] md:text-[2vw] text-white mb-[1rem] headingfont font-bold">
               Sell Services
             </p>
           </Link>
@@ -249,7 +247,7 @@ const setState = useContext(SetState)
             }}
             to={user ? "/Events" : "/Login"}
           >
-            <p className="text-[5vw] text-white mb-[1rem] headingfont font-bold">
+            <p className="text-[4vw] md:text-[2vw] text-white mb-[1rem] headingfont font-bold">
               Events
             </p>
           </Link>
@@ -258,9 +256,9 @@ const setState = useContext(SetState)
             onClick={() => {
               setshowMobile(false);
             }}
-            to={user ? "/Shop" : "/Login"}
+            to={user ? `/Shop/${userId}` : "/Login"}
           >
-            <p className="text-[5vw] text-white mb-[1rem] headingfont font-bold">
+            <p className="text-[4vw] md:text-[2vw] text-white mb-[1rem] headingfont font-bold">
               Premium Shop
             </p>
           </Link>
@@ -272,7 +270,7 @@ const setState = useContext(SetState)
               }}
               to="/Login"
             >
-              <p className="text-[5vw] text-white mb-[1rem] headingfont font-bold">
+              <p className="text-[4vw] md:text-[2vw] text-white mb-[1rem] headingfont font-bold">
                 Login
               </p>
             </Link>
@@ -285,7 +283,7 @@ const setState = useContext(SetState)
               setshowMobile(false);
             }}
           >
-            <p className="text-[5vw] text-white headingfont font-bold">
+            <p className="text-[4vw] md:text-[2vw] text-white headingfont font-bold">
               Sign Up
             </p>
           </Link>

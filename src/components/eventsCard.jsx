@@ -1,4 +1,11 @@
-export default function EventsCard({ product, navigation, user }) {
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserId } from "../App";
+
+export default function EventsCard({ product }) {
+  const navigate = useNavigate();
+  const userId = useContext(UserId)
+
   const limitedTitle =
     product.eventName.length > 20
       ? product.eventName.substring(0, 20) + "..."
@@ -40,7 +47,10 @@ export default function EventsCard({ product, navigation, user }) {
   console.log(product.eventName);
 
   return (
-    <div className="flex flex-col items-center justify-center mb-[16px] ">
+    <div
+      onClick={() => navigate(`/EventsDetails/${product.eventId}`)}
+      className="flex flex-col items-center justify-center mb-[16px] "
+    >
       <div className="bg-white border border-[#00cc00] eventCard shadow-lg w-[85vw] md:w-[60vw] rounded-[10px] flex flex-row justify-center items-center">
         <img
           src={product.image1}
@@ -57,7 +67,9 @@ export default function EventsCard({ product, navigation, user }) {
             {limitedTitle}
           </p>
           <div className="flex flex-row items-center mb-[8px] ">
-            <p className=" text-[4vw] md:text-[2vw] w-[58vw]">📍 {limitedVenue}</p>
+            <p className=" text-[4vw] md:text-[2vw] w-[58vw]">
+              📍 {limitedVenue}
+            </p>
           </div>
         </div>
       </div>

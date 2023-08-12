@@ -14,15 +14,20 @@ import Events from "./screens/events";
 import Shop from "./screens/shop";
 import db from "../firebase";
 import { getDocs, query, collection, where } from "firebase/firestore";
+import EventsDetails from "./screens/eventsDetails";
+import BuyTickets from "./screens/buyTickets";
 
 export const UserId = React.createContext();
 export const SetUserId = React.createContext();
 export const UserState = React.createContext();
 export const SetState = React.createContext();
+export const UserName = React.createContext();
+export const SetUserName = React.createContext();
 
 function App() {
   const [userId, setuserId] = useState("");
   const [userState, setuserState] = useState("");
+  const [userName, setuserName] = useState("");
 
   return (
     <div className="bg-[#013a19]">
@@ -30,24 +35,40 @@ function App() {
         <SetUserId.Provider value={setuserId}>
           <UserState.Provider value={userState}>
             <SetState.Provider value={setuserState}>
-              <Router>
-                <ScrollToTop>
-                  <Navbar />
-                  <Routes>
-                    <Route path="/" element={<LandingPage />} />
-                    <Route path="/Login" element={<Login />} />
-                    <Route path="/SignUpOne" element={<SignUpOne />} />
-                    <Route path="/SignUpTwo/:userId" element={<SignUpTwo />} />
-                    <Route path="/SellProducts" element={<SellProducts />} />
-                    <Route
-                      path="/SellServices/:userId/:userName"
-                      element={<SellServices />}
-                    />
-                    <Route path="Events" element={<Events />} />
-                    <Route path="/Shop" element={<Shop />} />
-                  </Routes>
-                </ScrollToTop>
-              </Router>
+              <UserName.Provider value={userName}>
+                <SetUserName.Provider value={setuserName}>
+                  <Router>
+                    <ScrollToTop>
+                      <Navbar />
+                      <Routes>
+                        <Route path="/" element={<LandingPage />} />
+                        <Route path="/Login" element={<Login />} />
+                        <Route path="/SignUpOne" element={<SignUpOne />} />
+                        <Route
+                          path="/SignUpTwo/:userId"
+                          element={<SignUpTwo />}
+                        />
+                        <Route
+                          path="/SellProducts"
+                          element={<SellProducts />}
+                        />
+                        <Route
+                          path="/SellServices/:userId/:userName"
+                          element={<SellServices />}
+                        />
+                        <Route path="Events" element={<Events />} />
+                        <Route path="/Shop/:userId" element={<Shop />} />
+
+                        <Route
+                          path="/EventsDetails/:eventId"
+                          element={<EventsDetails />}
+                        />
+                        <Route path="/BuyTickets/:userId" element={<BuyTickets />} />
+                      </Routes>
+                    </ScrollToTop>
+                  </Router>
+                </SetUserName.Provider>
+              </UserName.Provider>
             </SetState.Provider>
           </UserState.Provider>
         </SetUserId.Provider>
