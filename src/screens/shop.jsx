@@ -2,9 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import db from "../../firebase";
 import LoadingSpinner from "../components/spinner";
-import EventsCard from "../components/eventsCard";
-// import ProductsCard, { EcommerceCard } from "../components/productsCard";
-import TopCard from "../components/productsCard";
+import ProductsCard from "../components/productsCard";
 
 function Shop() {
   const { userId } = useParams();
@@ -31,8 +29,22 @@ function Shop() {
       <h1 className="md:text-[2vw] fixed pt-[15vw] md:pt-[6vw] pb-[4vw] md:pb-[2vw] font-semibold bg-[#013a19] w-[100vw] text-center py-[4px] text-white rounded-b-[30px]">
         UniPlug Shop
       </h1>
-      <div className="pt-[25vw] flex flex-col items-center">
-        <h2>Boost Your Ads</h2>
+
+      <div className="pt-[25vw] mb-[16px] mx-[16px]">
+        <h2 className="text-[4vw] font-semibold">Buy Plugs:</h2>
+        <div className="bg-[#013a19] py-[32px] mt-[16px] rounded-[20px]">
+          <p className="text-center text-white">Buy 15 Plugs for #300.00 </p>
+        </div>
+        <div className="bg-[#013a19] py-[32px] mt-[16px] rounded-[20px]">
+          <p className="text-center text-white">Buy 30 Plugs for #500.00 </p>
+        </div>
+        <div className="bg-[#013a19] py-[32px] mt-[16px] rounded-[20px]">
+          <p className="text-center text-white">Buy 50 Plugs for #700.00 </p>
+        </div>
+      </div>
+
+      <div className="mb-[16px] mx-[16px]">
+        <h2 className="text-[4vw] font-semibold">Boost Your Ads</h2>
       </div>
 
       {loading ? (
@@ -41,21 +53,14 @@ function Shop() {
         </div>
       ) : null}
 
-      {/* {products.map((post, index) => (
-        <div key={index} className="w-[100vw] bg-red-300 flex flex-row  items-center">
-          <ProductsCard product={post} userId={userId}/>
+      {products.map((post, index) => (
+        <div
+          key={index}
+          className="w-[100vw] flex flex-row  items-center"
+        >
+          <ProductsCard product={post} userId={userId} />
         </div>
-      ))} */}
-
-      {products.map((post, index) => {
-        return (
-          <div key={index} className="flex flex-row bg-blue-200">
-            <div className="bg-red-300 my-[16px]">
-                <p>{post.title}</p>
-            </div>
-          </div>
-        );
-      })}
+      ))}
     </div>
   );
 }

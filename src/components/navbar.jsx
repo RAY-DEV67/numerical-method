@@ -72,7 +72,7 @@ export default function Navbar() {
   return (
     <div className="w-[100vw] flex flex-col md:items-center ">
       <div
-        className={`flex justify-between z-50 px-[1rem] fixed items-center w-[100vw] pt-[1vh] "bg-transparent" `}
+        className={`flex justify-between z-50 px-[1rem] fixed items-center w-[100vw] pt-[3vh] "bg-transparent" `}
       >
         <img
           src={logo}
@@ -196,12 +196,12 @@ export default function Navbar() {
             }
           ></div>
           {userName && (
-            <p className="bg-[#00cc00] text-white md:text-[2vw] py-[4px] px-[16px] rounded-[20px] absolute top-[90vh] left-5 text-[4vw]">
+            <p className="bg-[#00cc00] text-white md:text-[2vw] py-[4px] px-[16px] rounded-[20px] absolute top-[85vh] left-5 text-[4vw]">
               Hi, {userName}👋
             </p>
           )}
           <p
-            className="absolute md:text-[2vw] headingfont text-white top-3 nav text-[4vw] left-[85%]"
+            className="absolute md:text-[2vw] headingfont text-white top-6 nav text-[4vw] left-[85%]"
             onClick={() => {
               setshowMobile(false);
             }}
