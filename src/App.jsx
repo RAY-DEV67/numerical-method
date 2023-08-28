@@ -30,7 +30,7 @@ function App() {
   const [userName, setuserName] = useState("");
 
   return (
-    <div className="bg-[#013a19]">
+    <div className="">
       <UserId.Provider value={userId}>
         <SetUserId.Provider value={setuserId}>
           <UserState.Provider value={userState}>
@@ -57,13 +57,19 @@ function App() {
                           element={<SellServices />}
                         />
                         <Route path="Events" element={<Events />} />
-                        <Route path="/Shop/:userId" element={<Shop />} />
+                        <Route
+                          path="/Shop/:userId/:userName/:email"
+                          element={<Shop />}
+                        />
 
                         <Route
                           path="/EventsDetails/:eventId"
                           element={<EventsDetails />}
                         />
-                        <Route path="/BuyTickets/:userId" element={<BuyTickets />} />
+                        <Route
+                          path="/BuyTickets/:userId"
+                          element={<BuyTickets />}
+                        />
                       </Routes>
                     </ScrollToTop>
                   </Router>

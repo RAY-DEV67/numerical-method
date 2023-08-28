@@ -119,8 +119,7 @@ function SignUpOne() {
   };
 
   return (
-    <div className="h-[100vh] bg-[#013a19] w-[100vw] flex flex-col items-center login justify-center">
-      {/* <div className="absolute h-[100vh] w-[100vw] bg-black opacity-30 z-2"></div> */}
+    <div className="h-[100vh] bg-[#013a19] w-[100vw] textFont flex flex-col items-center login justify-center">
       <div className="relative z-10 flex flex-col items-center">
         <h1 className="text-[4vw] md:text-[2vw] font-semibold">Welcome to</h1>
         <h2 className="text-[8vw] md:text-[4vw] font-semibold">UniPlug</h2>

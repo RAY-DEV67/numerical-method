@@ -1,7 +1,12 @@
 body {
   overflow-x: hidden;
 }
-
+.textFont{
+  font-family: 'Manrope', sans-serif;
+}
+.headingFont{
+  font-family: 'Teko', sans-serif;
+}
 .login {
   background-image: url("./assets/whitebg.webp");
 }

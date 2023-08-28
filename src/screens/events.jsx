@@ -23,7 +23,7 @@ function Events() {
   useEffect(() => {
     setloading(true);
     db.collection("Events")
-      .where("state", "==", state)
+      .where("status", "==", "Active")
       .get()
       .then((collections) => {
         const events = collections.docs.map((cloths) => {
@@ -35,16 +35,16 @@ function Events() {
   }, [state]);
 
   return (
-    <div className="bg-white">
+    <div className="bg-white textFont">
       <div className="events w-[100vw] h-[50vh] rounded-b-[30px] flex flex-col justify-end ">
         <div className="bg-black opacity-60 rounded-b-[30px] w-[100vw] h-[100%] -z-2 absolute"></div>
-        <p className="text-white mb-[32px] relative mx-[16px] text-[5.5vw] md:text-[3vw] lg:text-[2.5vw] font-semibold w-[60%] md:w-[40%] ">
+        <p className="text-white mb-[32px] leading-[6vw] md:leading-[4vw] headingFont relative mx-[16px] text-[6vw] md:text-[4vw] lg:text-[3.5vw] font-semibold w-[60%] md:w-[40%]">
           Discover Amazing Events Around You!!!🎉
         </p>
       </div>
 
       <div className="m-[16px]">
-        <p className="text-[4vw] text-black lg:text-[2vw] md:text-[3vw]">Upcoming Events:</p>
+        <p className="text-[4vw] text-black lg:text-[2vw] md:text-[3vw] headingFont">Upcoming Events:</p>
       </div>
 
       {loading ? <div className="flex flex-col items-center">

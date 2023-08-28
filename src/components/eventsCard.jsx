@@ -49,25 +49,25 @@ export default function EventsCard({ product }) {
   return (
     <div
       onClick={() => navigate(`/EventsDetails/${product.eventId}`)}
-      className="flex flex-col items-center justify-center mb-[16px] "
+      className="flex flex-col textFont items-center justify-center mb-[16px] "
     >
-      <div className="bg-white border border-[#00cc00] eventCard shadow-lg w-[85vw] md:w-[60vw] rounded-[10px] flex flex-row justify-center items-center">
+      <div className="bg-white border border-[#00cc00] eventCard px-[8px] shadow-lg w-[85vw] md:w-[60vw] rounded-[10px] flex flex-row justify-center items-center">
         <img
           src={product.image1}
-          className=" rounded-[10px] object-contain h-[15vh] w-[30vw] md:w-[15vw]"
+          className=" rounded-[10px] object-contain w-[20vw] h-[100px] md:w-[10vw]"
         />
-        <div className="p-[8px] w-[75vw] md:w-[45vw]">
+        <div className="p-[8px] w-[50vw] ml-[16px] md:w-[45vw]">
           <div className="flex-row flex justify-between items-center w-[58vw]">
-            <p className="mb-[8px] text-[3vw] md:text-[1.5vw]">
+            <p className="mb-[8px] text-[3vw] md:text-[1.5vw] lg:text-[16px]">
               {formattedDate} {timePart}
             </p>
           </div>
 
-          <p className="mb-[8px] text-[4vw] md:text-[2vw] font-semibold w-[58vw]">
+          <p className="mb-[8px] text-[4vw] md:text-[2vw] lg:text-[1.5vw] font-semibold w-[58vw]">
             {limitedTitle}
           </p>
           <div className="flex flex-row items-center mb-[8px] ">
-            <p className=" text-[4vw] md:text-[2vw] w-[58vw]">
+            <p className=" text-[4vw] md:text-[2vw] lg:text-[1.5vw] w-[58vw]">
               📍 {limitedVenue}
             </p>
           </div>

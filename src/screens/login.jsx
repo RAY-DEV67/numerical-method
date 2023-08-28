@@ -59,8 +59,7 @@ function Login() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-[100vh] login">
-      <div className="absolute h-[100vh] w-[100vw] bg-black opacity-30 z-2"></div>
+    <div className="flex flex-col items-center justify-center h-[100vh] login textFont">
       <div className="relative z-10 flex flex-col items-center">
         <h1 className="text-[5vw] md:text-[2.5vw] font-semibold">Welcome to</h1>
         <h2 className="text-[10vw] md:text-[5vw] font-semibold">UniPlug</h2>

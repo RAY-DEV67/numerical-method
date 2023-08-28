@@ -10,10 +10,10 @@ import Footer from "../components/footer";
 function LandingPage() {
   return (
     <>
-      <div className="px-[16px] pt-[56px] bg-[#013a19]">
+      <div className="px-[16px] pt-[56px] bg-[#013a19] textFont">
         <div className="md:flex md:flex-row md:justify-center md:items-center mt-[50px]">
           <div className="md:w-[40vw] md:mr-[16px]">
-            <h2 className="text-[7vw] md:text-[3vw] leading-[7vw] md:leading-[4vw] font-bold w-[80vw] md:w-[50vw] mt-[16px] text-[#00cc00]">
+            <h2 className="text-[7vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw] mt-[16px] text-[#00cc00]">
               Nigeria's Ultimate Student Marketplace
             </h2>
             <p className="text-white mt-[24px] w-[90vw] md:w-[40vw] font-semibold">
@@ -27,7 +27,7 @@ function LandingPage() {
 
         <div className="md:flex md:flex-row-reverse md:justify-center md:items-center mt-[50px]">
           <div className="md:w-[40vw] md:ml-[16px]">
-            <h2 className="text-[7vw] md:text-[3vw] leading-[7vw] md:leading-[4vw] font-bold w-[80vw] md:w-[50vw] mt-[16px] text-[#00cc00]">
+            <h2 className="text-[7vw] md:text-[3vw] headingFont leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw] mt-[16px] text-[#00cc00]">
               Never Miss a Beat with Uniplug Events!
             </h2>
             <p className="text-white mt-[24px] w-[90vw] md:w-[40vw] font-semibold">
@@ -40,7 +40,7 @@ function LandingPage() {
 
         <div className="md:flex md:flex-row md:justify-center md:items-center mt-[50px]">
           <div className="md:w-[40vw] md:mr-[16px]">
-            <h2 className="text-[7vw] md:text-[3vw] leading-[7vw] md:leading-[4vw] font-bold w-[90vw] md:w-[50vw] mt-[16px] text-[#00cc00]">
+            <h2 className="text-[7vw] md:text-[3vw] headingFont leading-[7vw] md:leading-[3vw] font-bold w-[90vw] md:w-[40vw] mt-[16px] text-[#00cc00]">
               Your Gateway to Meaningful Connections!
             </h2>
             <p className="text-white mt-[24px] w-[90vw] md:w-[40vw] font-semibold">
@@ -53,7 +53,7 @@ function LandingPage() {
 
         <div className="md:flex md:flex-row-reverse md:justify-center md:items-center mt-[50px]">
           <div className="md:w-[40vw] md:ml-[16px]">
-            <h2 className="text-[7vw] md:text-[3vw] leading-[7vw] md:leading-[4vw] font-bold w-[80vw] md:w-[50vw] mt-[16px] text-[#00cc00]">
+            <h2 className="text-[7vw] md:text-[3vw] headingFont leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw] mt-[16px] text-[#00cc00]">
               Chat Communicate with fellow students.
             </h2>
             <p className="text-white mt-[24px] w-[90vw] md:w-[40vw] font-semibold">
@@ -67,7 +67,7 @@ function LandingPage() {
 
         <div className="hidden md:flex md:flex-row md:justify-center md:items-center mt-[50px]">
           <div className="md:w-[40vw]">
-            <h2 className="text-[7vw] md:text-[3vw] leading-9 md:leading-[4vw] font-bold w-[80vw] md:w-[50vw] mt-[16px] text-white">
+            <h2 className="text-[7vw] headingFont md:text-[3vw] leading-9 md:leading-[4vw] font-bold w-[80vw] md:w-[50vw] mt-[16px] text-white">
               Download The App Now
             </h2>
             <img
@@ -86,7 +86,7 @@ function LandingPage() {
 
         <div className="flex flex-col md:hidden">
           <img src={phone} alt="Uniplug" className="mt-[16px]" />
-          <h2 className="text-white text-[5vw] font-semibold mt-[16px]">
+          <h2 className="text-white text-[6vw] headingFont font-semibold mt-[16px]">
             Download The App Now
           </h2>
           <div>

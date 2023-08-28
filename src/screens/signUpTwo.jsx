@@ -559,7 +559,7 @@ function SignUpTwo() {
 
   return (
     <div>
-      <div className="h-[100vh] bg-[#013a19] w-[100vw] flex flex-col items-center login justify-center">
+      <div className="h-[100vh] textFont bg-[#013a19] w-[100vw] flex flex-col items-center login justify-center">
         {/* <div className="absolute h-[100vh] w-[100vw] bg-black opacity-30 z-2"></div> */}
         <div className="relative z-10 flex flex-col items-center">
           <h2 className="text-[6vw] font-semibold md:text-[3vw]">You're Almost There!!</h2>

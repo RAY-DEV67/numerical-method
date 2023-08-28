@@ -832,13 +832,13 @@ function SellServices() {
 
   return (
     <div>
-      <div className="flex flex-col items-center login">
-        <h1 className="md:text-[2vw] fixed pt-[15vw] md:pt-[6vw] pb-[4vw] md:pb-[2vw] font-semibold bg-[#013a19] w-[100vw] text-center py-[4px] text-white rounded-b-[30px]">
-          Sell Services On UniPlug
-        </h1>
+      <div className="flex flex-col items-center login textFont">
+        <div className="md:text-[2vw]  fixed pt-[15vw] md:pt-[6vw] pb-[4vw] md:pb-[2vw] lg:pb-[0px] font-semibold bg-[#013a19] w-[100vw] text-center py-[4px] text-white rounded-b-[30px]">
+          <h2 className="lg:hidden headingFont text-[4vw]"> Sell Services On UniPlug</h2>
+        </div>
         <div
           //   onSubmit={handleSubmit}
-          className="w-[90vw] items-center justify-center flex flex-col px-[1rem] pb-[2.5rem] mt-[25vw] md:mt-[15vw]"
+          className="w-[90vw] items-center justify-center flex flex-col px-[1rem] pb-[2.5rem] mt-[25vw] md:mt-[15vw] lg:mt-[10vw]"
         >
           <input
             onChange={(e) => setname(e.target.value)}

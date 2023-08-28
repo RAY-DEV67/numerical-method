@@ -2,7 +2,7 @@ import logo from "../assets/uniPlugLogo.png";
 
 function Footer() {
   return (
-    <div className=" mt-[44px] px-[16px] flex flex-col items-center justify-center  rounded-t-[30px]">
+    <div className="textFont bg-[#013a19] px-[16px] flex flex-col items-center justify-center">
          <img src={logo} alt="logo" className="w-[30vw] md:w-[10vw] md:h-[10vw] h-[30vw]" />
       <div className="flex">
         <div className="flex mt-[16px]">

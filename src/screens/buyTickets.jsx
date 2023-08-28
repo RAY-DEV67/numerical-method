@@ -1,17 +1,14 @@
 import { PaystackButton } from "react-paystack";
 import { useState, useEffect, useContext } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import { UserName } from "../App";
 import {
   getDoc,
   query,
   collection,
-  deleteDoc,
   where,
   addDoc,
   doc,
   updateDoc,
-  serverTimestamp,
   getDocs,
 } from "firebase/firestore";
 
@@ -242,15 +239,17 @@ function BuyTickets() {
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-white textFont">
       <div>
-        <h1 className="md:text-[2vw] fixed pt-[15vw] md:pt-[6vw] pb-[4vw] md:pb-[2vw] font-semibold bg-[#013a19] w-[100vw] text-center py-[4px] text-white rounded-b-[30px]">
-          Choose Your Ticket
-        </h1>
+        <div className="md:text-[2vw]  fixed pt-[15vw] md:pt-[6vw] pb-[4vw] md:pb-[2vw] lg:pb-[0px] font-semibold bg-[#013a19] w-[100vw] text-center py-[4px] text-white rounded-b-[30px]">
+          <h2 className="lg:hidden headingFont text-[4vw]"> Choose Your Ticket</h2>
+        </div>
 
-        <div className="pt-[25vw] md:pt-[13vw] lg:pt-[12vw] flex flex-col items-center">
-          <div className="eventCard p-[16px] mt-[16px] rounded-[10px] w-[80vw] md:w-[70vw] lg:w-[60vw] shadow-lg">
-            <p className="text-[5vw] md:text-[3vw] lg:text-[2vw] font-semibold">{ticketProps.eventName}</p>
+        <div className="pt-[25vw] md:pt-[13vw] lg:pt-[8vw] flex flex-col items-center">
+          <div className="eventCard p-[16px] mt-[16px] rounded-[10px] w-[80vw] md:w-[70vw] lg:w-[40vw] shadow-lg">
+            <p className="text-[5vw] md:text-[3vw] lg:text-[2vw] font-semibold">
+              {ticketProps.eventName}
+            </p>
             <p>{ticketProps.startDate}</p>
           </div>
         </div>
@@ -265,39 +264,39 @@ function BuyTickets() {
           return (
             <div className="flex flex-col items-center">
               <div
-              key={index}
-              className="flex-row w-[80vw] md:w-[70vw] lg:w-[60vw] flex justify-between items-center p-[16px] border border-green-800 rounded-[20px] m-[16px]"
-            >
-              <div className="">
-                <p className="text-[3vw] md:text-[2.5vw] lg:text-[2vw] xl:text-[1.5vw] mb-[0.5vh]">
-                  Ticket Name: {ticket.name}
-                </p>
-                <p className="text-[3vw] lg:text-[2vw] xl:text-[1.5vw] md:text-[2.5vw] mb-[0.5vh]">
-                  Price per ticket: {formatCur(ticket.price, "en-NG", "NGN")}
-                </p>
-                <p className="text-[3vw] lg:text-[2vw] xl:text-[1.5vw] md:text-[2.5vw] mb-[0.5vh]">
-                  Purchase Limit: {ticket.purchaseLimit}
-                </p>
-                <p className="text-[3vw] lg:text-[2vw] xl:text-[1.5vw] md:text-[2.5vw] mb-[0.5vh]">
-                  Tickets Available: {ticket.quantity}
-                </p>
-                <p className="text-[3vw] xl:text-[1.5vw] lg:text-[2vw] md:text-[2.5vw] mb-[0.5vh]">
-                  Quantity Ordered: {ticketQuantity}
-                </p>
-                <p className="text-[3vw] xl:text-[1.5vw] lg:text-[2vw] md:text-[2.5vw] mb-[0.5vh]">
-                  Total Price: {formatCur(ticketTotalPrice, "en-NG", "NGN")}
-                </p>
+                key={index}
+                className="flex-row w-[80vw] md:w-[70vw] lg:w-[60vw] flex justify-between items-center p-[16px] border border-green-800 rounded-[20px] m-[16px]"
+              >
+                <div className="">
+                  <p className="text-[3vw] md:text-[2.5vw] lg:text-[2vw] xl:text-[1.5vw] mb-[0.5vh]">
+                    Ticket Name: {ticket.name}
+                  </p>
+                  <p className="text-[3vw] lg:text-[2vw] xl:text-[1.5vw] md:text-[2.5vw] mb-[0.5vh]">
+                    Price per ticket: {formatCur(ticket.price, "en-NG", "NGN")}
+                  </p>
+                  <p className="text-[3vw] lg:text-[2vw] xl:text-[1.5vw] md:text-[2.5vw] mb-[0.5vh]">
+                    Purchase Limit: {ticket.purchaseLimit}
+                  </p>
+                  <p className="text-[3vw] lg:text-[2vw] xl:text-[1.5vw] md:text-[2.5vw] mb-[0.5vh]">
+                    Tickets Available: {ticket.quantity}
+                  </p>
+                  <p className="text-[3vw] xl:text-[1.5vw] lg:text-[2vw] md:text-[2.5vw] mb-[0.5vh]">
+                    Quantity Ordered: {ticketQuantity}
+                  </p>
+                  <p className="text-[3vw] xl:text-[1.5vw] lg:text-[2vw] md:text-[2.5vw] mb-[0.5vh]">
+                    Total Price: {formatCur(ticketTotalPrice, "en-NG", "NGN")}
+                  </p>
+                </div>
+                <input
+                  className={`w-[30vw] pr-[16px] pl-[8px] py-[16px] border rounded border-[#00cc00] mb-[8px]`}
+                  placeholder={`Quantity, max-${ticket.purchaseLimit}`}
+                  onChange={(text) =>
+                    updateTicketQuantity(index, text.target.value)
+                  }
+                  keyboardType="numeric"
+                  // value={ticketQuantity}
+                />
               </div>
-              <input
-                className={`w-[30vw] pr-[16px] pl-[8px] py-[16px] border rounded border-[#00cc00] mb-[8px]`}
-                placeholder={`Quantity, max-${ticket.purchaseLimit}`}
-                onChange={(text) =>
-                  updateTicketQuantity(index, text.target.value)
-                }
-                keyboardType="numeric"
-                // value={ticketQuantity}
-              />
-            </div>
             </div>
           );
         })}
@@ -324,7 +323,7 @@ function BuyTickets() {
               {emailError}
             </p>
           )}
-           <input
+          <input
             onChange={(e) => setphoneNumber(e.target.value)}
             type="text"
             placeholder="Your Phone Number"
@@ -332,12 +331,12 @@ function BuyTickets() {
           />
         </div>
 
-       <div className="flex flex-col items-center">
-       <div className="flex flex-row w-[80vw] md:w-[70vw] justify-between items-center p-[16px] border-y border-green-800 m-[16px]">
-          <p>SubTotal</p>
-          <p> {formatCur(totalPrice, "en-NG", "NGN")}</p>
+        <div className="flex flex-col items-center">
+          <div className="flex flex-row w-[80vw] md:w-[70vw] justify-between items-center p-[16px] border-y border-green-800 m-[16px]">
+            <p>SubTotal</p>
+            <p> {formatCur(totalPrice, "en-NG", "NGN")}</p>
+          </div>
         </div>
-       </div>
 
         <div className="flex-col items-center flex">
           {!purchaseError ? (

@@ -44,9 +44,16 @@ function EventsDetails() {
       navigate("/Login");
     }
   };
+  if (!event.image1) {
+    return (
+      <div className="flex flex-col items-center bg-transparent">
+        <LoadingSpinner />
+      </div>
+    );
+  }
 
   return (
-    <div className="bg-white">
+    <div className="bg-white textFont">
       <div>
         <img src={event.image1} className="rounded-b-[30px] sm:hidden" />
         <div className="w-[100vw] h-[65vh] md:h-[80vh] eventCard hidden sm:flex flex-col items-center justify-center">
@@ -56,7 +63,7 @@ function EventsDetails() {
           />
         </div>
         <div className="mx-[16px] pb-[32px] mt-[16px]">
-          <h2 className="text-[6vw] font-semibold md:text-[3vw] sm:text-[4vw]">
+          <h2 className="text-[6vw] font-semibold md:text-[3vw] lg:text-[2vw] sm:text-[4vw]">
             {event.eventName}
           </h2>
           <p className="flex flex-row items-center font-semibold">
@@ -67,17 +74,17 @@ function EventsDetails() {
             Event Ends By :{" "}
             <p className="ml-[4px] font-normal">{event.endDate}</p>
           </p>
-          <p className=" text-[4vw] md:text-[1.5vw] sm:text-[2.5vw] w-[58vw]">
+          <p className=" text-[4vw] md:text-[1.5vw] lg:text-[16px] sm:text-[2.5vw] w-[58vw]">
             📍 {event.eventVenue}
           </p>
-          <h3 className="mt-[16px] text-[5vw] font-semibold md:text-[3vw] sm:text-[4vw]">
+          <h3 className="mt-[16px] text-[5vw] font-semibold md:text-[3vw] lg:text-[2vw] sm:text-[4vw]">
             Description:
           </h3>
           <p>{event.eventDescription}</p>
 
           <button
             onClick={handleBuyTicketClick}
-            className="bg-[#013a19] flex flex-col items-center justify-center text-white w-[50vw] md:w-[30vw] mt-[16px] rounded-[20px] py-[8px]"
+            className="bg-[#013a19] flex flex-col items-center justify-center text-white w-[50vw] md:w-[30vw] lg:w-[20vw] mt-[16px] rounded-[20px] py-[8px]"
           >
             Buy Ticket
           </button>

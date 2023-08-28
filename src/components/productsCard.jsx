@@ -18,11 +18,11 @@ export default function ProductsCard({ product, userId }) {
   };
 
   return (
-    <div className="flex flex-row items-center justify-center w-[100vw] mb-[16px] ">
+    <div className="flex flex-row items-center justify-center w-[100vw] mb-[16px] textFont">
       <div className="bg-white flex flex-row w-[85vw] py-[8px] border border-[#00cc00] eventCard shadow-lg md:w-[70vw] lg:w-[60vw] rounded-[10px] justify-center items-center">
         <img
           src={product.image1}
-          className=" rounded-[10px] object-contain w-[20vw] h-[100px] md:w-[15vw]"
+          className=" rounded-[10px] object-contain w-[20vw] h-[100px] md:w-[15vw] lg:w-[10vw]"
         />
         <div className="p-[8px] w-[50vw] ml-[16px] md:w-[45vw]">
           <div className="flex-row flex justify-between items-center w-[58vw]">

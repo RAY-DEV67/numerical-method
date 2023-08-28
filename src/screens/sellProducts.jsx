@@ -728,106 +728,106 @@ function SellProducts() {
     setloadingSubmit(false);
 
     if (isfile == null) return;
-        seturl("getting link");
+    seturl("getting link");
+    storage
+      .ref("/images/" + isfile.name)
+      .put(isfile)
+      .on("state_changed", alert("success"), alert, () => {
         storage
-          .ref("/images/" + isfile.name)
-          .put(isfile)
-          .on("state_changed", alert("success"), alert, () => {
-            storage
-              .ref("images")
-              .child(isfile.name)
-              .getDownloadURL()
-              .then((imgUrl) => {
-                updateDoc(docRef, {
-                  image1: imgUrl,
-                });
-              });
+          .ref("images")
+          .child(isfile.name)
+          .getDownloadURL()
+          .then((imgUrl) => {
+            updateDoc(docRef, {
+              image1: imgUrl,
+            });
           });
+      });
 
-        if (file2 == null) return;
-        seturl("getting link");
+    if (file2 == null) return;
+    seturl("getting link");
+    storage
+      .ref("/images/" + file2.name)
+      .put(file2)
+      .on("state_changed", () => {
         storage
-          .ref("/images/" + file2.name)
-          .put(file2)
-          .on("state_changed", () => {
-            storage
-              .ref("images")
-              .child(file2.name)
-              .getDownloadURL()
-              .then((imgUrl) => {
-                updateDoc(docRef, {
-                  image2: imgUrl,
-                });
-              });
+          .ref("images")
+          .child(file2.name)
+          .getDownloadURL()
+          .then((imgUrl) => {
+            updateDoc(docRef, {
+              image2: imgUrl,
+            });
           });
+      });
 
-        if (file3 == null) return;
-        seturl("getting link");
+    if (file3 == null) return;
+    seturl("getting link");
+    storage
+      .ref("/images/" + file3.name)
+      .put(file3)
+      .on("state_changed", () => {
         storage
-          .ref("/images/" + file3.name)
-          .put(file3)
-          .on("state_changed", () => {
-            storage
-              .ref("images")
-              .child(file3.name)
-              .getDownloadURL()
-              .then((imgUrl) => {
-                updateDoc(docRef, {
-                  image3: imgUrl,
-                });
-              });
+          .ref("images")
+          .child(file3.name)
+          .getDownloadURL()
+          .then((imgUrl) => {
+            updateDoc(docRef, {
+              image3: imgUrl,
+            });
           });
+      });
 
-        if (file4 == null) return;
-        seturl("getting link");
+    if (file4 == null) return;
+    seturl("getting link");
+    storage
+      .ref("/images/" + file4.name)
+      .put(file4)
+      .on("state_changed", () => {
         storage
-          .ref("/images/" + file4.name)
-          .put(file4)
-          .on("state_changed", () => {
-            storage
-              .ref("images")
-              .child(file4.name)
-              .getDownloadURL()
-              .then((imgUrl) => {
-                updateDoc(docRef, {
-                  image4: imgUrl,
-                });
-              });
+          .ref("images")
+          .child(file4.name)
+          .getDownloadURL()
+          .then((imgUrl) => {
+            updateDoc(docRef, {
+              image4: imgUrl,
+            });
           });
+      });
 
-        if (file5 == null) return;
-        seturl("getting link");
+    if (file5 == null) return;
+    seturl("getting link");
+    storage
+      .ref("/images/" + file5.name)
+      .put(file5)
+      .on("state_changed", () => {
         storage
-          .ref("/images/" + file5.name)
-          .put(file5)
-          .on("state_changed", () => {
-            storage
-              .ref("images")
-              .child(file5.name)
-              .getDownloadURL()
-              .then((imgUrl) => {
-                updateDoc(docRef, {
-                  image5: imgUrl,
-                });
-              });
+          .ref("images")
+          .child(file5.name)
+          .getDownloadURL()
+          .then((imgUrl) => {
+            updateDoc(docRef, {
+              image5: imgUrl,
+            });
           });
+      });
 
-        if (vendorLogo == null) return;
-        seturl("getting link");
+    if (vendorLogo == null) return;
+    seturl("getting link");
+    storage
+      .ref("/images/" + vendorLogo.name)
+      .put(vendorLogo)
+      .on("state_changed", () => {
         storage
-          .ref("/images/" + vendorLogo.name)
-          .put(vendorLogo)
-          .on("state_changed", () => {
-            storage
-              .ref("images")
-              .child(vendorLogo.name)
-              .getDownloadURL()
-              .then((imgUrl) => {
-                updateDoc(docRef, {
-                  vendorLogo: imgUrl,
-                });
-              });
+          .ref("images")
+          .child(vendorLogo.name)
+          .getDownloadURL()
+          .then((imgUrl) => {
+            updateDoc(docRef, {
+              vendorLogo: imgUrl,
+            });
           });
+      });
   };
 
   const updateUserInfo = async () => {
@@ -850,7 +850,7 @@ function SellProducts() {
           bankName: bankName,
           accountName: accountHolderName,
         });
-        
+
         console.log("Document updated successfully");
         setloadingSubmit(false);
       } else {
@@ -896,13 +896,13 @@ function SellProducts() {
 
   return (
     <div>
-      <div className="flex flex-col items-center login">
-        <h1 className="md:text-[2vw] fixed pt-[15vw] md:pt-[6vw] pb-[4vw] md:pb-[2vw] font-semibold bg-[#013a19] w-[100vw] text-center py-[4px] text-white rounded-b-[30px]">
-          Sell Products On UniPlug
-        </h1>
+      <div className="flex flex-col items-center login textFont">
+        <div className="md:text-[2vw]  fixed pt-[15vw] md:pt-[6vw] pb-[4vw] md:pb-[2vw] lg:pb-[0px] font-semibold bg-[#013a19] w-[100vw] text-center py-[4px] text-white rounded-b-[30px]">
+          <h2 className="lg:hidden headingFont text-[4vw]"> Sell Products On UniPlug</h2>
+        </div>
         <form
           onSubmit={handleSubmit}
-          className="w-[90vw] items-center justify-center flex flex-col px-[1rem] pb-[2.5rem] mt-[25vw] md:mt-[15vw]"
+          className="w-[90vw] items-center justify-center flex flex-col px-[1rem] pb-[2.5rem] mt-[25vw] md:mt-[15vw] lg:mt-[10vw]"
         >
           <select
             value={selectedCategory}
@@ -917,12 +917,18 @@ function SellProducts() {
             ))}
           </select>
           {categoryError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">{categoryError}</p>
+            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+              {categoryError}
+            </p>
           )}
 
           <div className="w-[80vw] md:w-[40vw] ">
-            <h2 className="font-bold text-[3vw] md:text-[2vw] lg:text-[1.5vw]">Add Photo</h2>
-            <p className="text-[2.5vw] md:text-[1.5vw] lg:text-[1vw]">First picture is the title picture</p>
+            <h2 className="font-bold text-[3vw] md:text-[2vw] lg:text-[1.5vw]">
+              Add Photo
+            </h2>
+            <p className="text-[2.5vw] md:text-[1.5vw] lg:text-[1vw]">
+              First picture is the title picture
+            </p>
             <div className="flex flex-col">
               <div>
                 <input
@@ -1015,7 +1021,9 @@ function SellProducts() {
             ))}
           </select>
           {stateError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">{stateError}</p>
+            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+              {stateError}
+            </p>
           )}
 
           <select
@@ -1042,7 +1050,9 @@ function SellProducts() {
             className="input bg-transparent rounded-[10px] text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
           />
           {titleError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">{titleError}</p>
+            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+              {titleError}
+            </p>
           )}
           <input
             onChange={(e) => setbrand(e.target.value)}
@@ -1083,7 +1093,9 @@ function SellProducts() {
             ))}
           </select>
           {genderError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">{genderError}</p>
+            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+              {genderError}
+            </p>
           )}
           <input
             onChange={(e) => setsize(e.target.value)}
@@ -1108,7 +1120,9 @@ function SellProducts() {
               {vendorNameError}
             </p>
           )}
-          <p className="w-[80vw] md:w-[40vw] text-[3vw] md:text-[2vw] lg:text-[1.5vw] font-bold">Add Vendor Logo</p>
+          <p className="w-[80vw] md:w-[40vw] text-[3vw] md:text-[2vw] lg:text-[1.5vw] font-bold">
+            Add Vendor Logo
+          </p>
           <input
             className="my-[16px] text-[3vw] md:text-[2vw] lg:text-[1.5vw] md:w-[40vw]"
             type="file"
@@ -1129,7 +1143,10 @@ function SellProducts() {
                 setmadeInNigeria(!madeInNigeria);
               }}
             />
-            <label for="MIN" className="text-[3vw] md:text-[2vw] lg:text-[1.5vw]">
+            <label
+              for="MIN"
+              className="text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+            >
               Made In Nigeria
             </label>
           </div>
@@ -1143,7 +1160,10 @@ function SellProducts() {
                 sethandmade(!handmade);
               }}
             />
-            <label for="MIN" className="text-[3vw] md:text-[2vw] lg:text-[1.5vw]">
+            <label
+              for="MIN"
+              className="text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+            >
               Handmade
             </label>
           </div>
@@ -1157,7 +1177,10 @@ function SellProducts() {
                 setwarranty(!warranty);
               }}
             />
-            <label for="MIN" className="text-[3vw] md:text-[2vw] lg:text-[1.5vw]">
+            <label
+              for="MIN"
+              className="text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+            >
               Waranty
             </label>
           </div>
@@ -1175,7 +1198,9 @@ function SellProducts() {
             className="input bg-transparent text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[8px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
           />
           {priceError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">{priceError}</p>
+            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+              {priceError}
+            </p>
           )}
           {calculatedPrice ? (
             <p className="italic text-[#d3d3d3] text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
@@ -1232,7 +1257,9 @@ function SellProducts() {
             className="input text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
           />
           {bankNameError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">{bankNameError}</p>
+            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+              {bankNameError}
+            </p>
           )}
           <input
             onChange={(e) => setaccountHolderName(e.target.value)}
@@ -1279,10 +1306,12 @@ function SellProducts() {
             }}
             className="bg-[#013a19] flex flex-col items-center justify-center text-white w-[50vw] md:w-[13vw] mt-[16px] rounded-[20px] py-[8px]"
           >
-            {loadingSubmit ? <LoadingSpinner/> : "Post Ad"}
+            {loadingSubmit ? <LoadingSpinner /> : "Post Ad"}
           </button>
           {submitError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">{submitError}</p>
+            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+              {submitError}
+            </p>
           )}
           <p className="md:w-[40vw] text-[2.5vw] md:text-[1.5vw] lg:text-[1vw] mt-[0.5rem] mb-[2rem] text-red-600">
             By Clicking on Post Ad, you accept the Terms of Use, Confirm that

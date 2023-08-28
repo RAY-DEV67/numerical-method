@@ -10,13 +10,14 @@ import { SetState, SetUserId, SetUserName } from "../App";
 export default function Navbar() {
   const setState = useContext(SetState);
   const setName = useContext(SetUserName);
-  const setUserId = useContext(SetUserId)
+  const setUserId = useContext(SetUserId);
 
   const [showMobile, setshowMobile] = useState(false);
   const [scrolled, setscrolled] = useState();
   const [user, setUser] = useState(null); // Track the user object
   const [userId, setuserId] = useState();
   const [userName, setuserName] = useState("");
+  const [email, setemail] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -56,10 +57,14 @@ export default function Navbar() {
       const UserState = querySnapshot.docs.map((cloths) => {
         return cloths.data().state;
       });
+      const UserEmail = querySnapshot.docs.map((cloths) => {
+        return cloths.data().email;
+      });
 
       setuserName(UserName[0]);
       setName(UserName[0]);
       setState(UserState[0]);
+      setemail(UserEmail[0]);
     } catch (err) {
       console.log(err);
     }
@@ -70,7 +75,7 @@ export default function Navbar() {
   }, [user]);
 
   return (
-    <div className="w-[100vw] flex flex-col md:items-center ">
+    <div className="w-[100vw] flex flex-col md:items-center textFont">
       <div
         className={`flex justify-between z-50 px-[1rem] fixed items-center w-[100vw] pt-[3vh] "bg-transparent" `}
       >
@@ -154,7 +159,7 @@ export default function Navbar() {
             </p>
           </Link>
 
-          <Link to={user ? `/Shop/${userId}` : "/Login"}>
+          <Link to={user ? `/Shop/${userId}/${userName}/${email}` : "/Login"}>
             <p className={`lg:text-[1.2vw] mx-[1rem] font-bold text-[#00cc00]`}>
               Premium Shop
             </p>
@@ -215,7 +220,9 @@ export default function Navbar() {
               setshowMobile(false);
             }}
           >
-            <p className="text-[4vw] md:text-[2vw] text-white headingfont font-bold">Home</p>
+            <p className="text-[4vw] md:text-[2vw] text-white headingfont font-bold">
+              Home
+            </p>
           </Link>
           <Link
             className="nav"
@@ -256,7 +263,7 @@ export default function Navbar() {
             onClick={() => {
               setshowMobile(false);
             }}
-            to={user ? `/Shop/${userId}` : "/Login"}
+            to={user ? `/Shop/${userId}/${userName}/${email}` : "/Login"}
           >
             <p className="text-[4vw] md:text-[2vw] text-white mb-[1rem] headingfont font-bold">
               Premium Shop
