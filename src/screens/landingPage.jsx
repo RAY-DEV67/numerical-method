@@ -1,4 +1,5 @@
 import phone from "../assets/mockUp.png";
+import phone2 from "../assets/newMockUp3.png";
 import apple from "../assets/apple.png";
 import google from "../assets/google.png";
 import Footer from "../components/footer";
@@ -212,14 +213,20 @@ function LandingPage() {
             </AnimatedDiv>
           </div>
           <AnimatedDiv type="head" showType="showhead">
-            <img src={phone} alt="uniplug" className="mt-[16px] md:w-[345w]" />
-          </AnimatedDiv>
+              <div className="flex flex-row items-center justify-center">
+                <img src={phone} alt="Uniplug" className="" />
+                <img src={phone2} alt="Uniplug" className="ml-[-125%] lg:ml-[-600px] mt-[48px]" />
+              </div>
+            </AnimatedDiv>
         </div>
 
         <div className="flex flex-col md:hidden">
           <div className="flex flex-col items-center">
             <AnimatedDiv type="head" showType="showhead">
-              <img src={phone} alt="Uniplug" className="mt-[16px]" />
+              <div className="flex flex-row items-center justify-center">
+                <img src={phone} alt="Uniplug" className="" />
+                <img src={phone2} alt="Uniplug" className="ml-[-125%] sm:ml-[-110%] sm:mt-[0px] mt-[48px]" />
+              </div>
             </AnimatedDiv>
           </div>
           <AnimatedDiv type="text" showType="showtext">
