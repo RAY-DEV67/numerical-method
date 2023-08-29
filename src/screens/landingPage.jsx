@@ -7,7 +7,7 @@ import AnimatedDiv from "../components/Animation";
 function LandingPage() {
   return (
     <>
-      <div className="px-[16px] pt-[56px] bg-[#013a19] textFont">
+      <div className="px-[16px] pt-[56px] bg-[#013a19] font-[Inter]">
         <div className="md:flex md:flex-row md:justify-center md:items-center mt-[50px]">
           <div className="md:w-[40vw] md:mr-[16px]">
             <h2 className="text-[7vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw] mt-[16px] text-[#00cc00]">
