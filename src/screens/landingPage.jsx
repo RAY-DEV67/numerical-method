@@ -1,4 +1,4 @@
-import phone from "../assets/h9.png";
+import phone from "../assets/mockUp.png";
 import apple from "../assets/apple.png";
 import google from "../assets/google.png";
 import Footer from "../components/footer";
@@ -32,7 +32,7 @@ function LandingPage() {
       <div className="px-[16px] pt-[56px] bg-[#ffffff] font-[Inter]">
         <div className="md:flex md:flex-row md:justify-center md:items-center mt-[50px]">
           <div className="md:w-[40vw] md:mr-[16px]">
-            <h1 className="text-[7vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw] mt-[16px] text-[#00cc00]">
+            <h1 className="text-[8vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw] mt-[16px] text-[#00cc00]">
               <span class="magic">
                 <span class="magic-star">
                   <svg viewBox="0 0 512 512">
@@ -42,7 +42,7 @@ function LandingPage() {
                 <span class="magic-text">Nigeria's Ultimate Student</span>
               </span>
             </h1>
-            <h1 className="text-[7vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw text-[#00cc00]">
+            <h1 className="text-[8vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw text-[#00cc00]">
               <span class="magic">
                 <span class="magic-star">
                   <svg viewBox="0 0 512 512">
@@ -70,7 +70,7 @@ function LandingPage() {
 
         <div className="md:flex md:flex-row-reverse md:justify-center md:items-center mt-[50px]">
           <div className="md:w-[40vw] md:ml-[16px]">
-            <h1 className="text-[7vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw] mt-[16px] text-[#00cc00]">
+            <h1 className="text-[8vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw] mt-[16px] text-[#00cc00]">
               <span class="magic">
                 <span class="magic-star">
                   <svg viewBox="0 0 512 512">
@@ -80,7 +80,7 @@ function LandingPage() {
                 <span class="magic-text">Never Miss a Beat with</span>
               </span>
             </h1>
-            <h1 className="text-[7vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw text-[#00cc00]">
+            <h1 className="text-[8vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw text-[#00cc00]">
               <span class="magic">
                 <span class="magic-star">
                   <svg viewBox="0 0 512 512">
@@ -107,7 +107,7 @@ function LandingPage() {
 
         <div className="md:flex md:flex-row md:justify-center md:items-center mt-[50px]">
           <div className="md:w-[40vw] md:mr-[16px]">
-            <h1 className="text-[7vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw] mt-[16px] text-[#00cc00]">
+            <h1 className="text-[8vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw] mt-[16px] text-[#00cc00]">
               <span class="magic">
                 <span class="magic-star">
                   <svg viewBox="0 0 512 512">
@@ -118,7 +118,7 @@ function LandingPage() {
                 <span class="magic-text"> Your Gateway to Meaningful </span>
               </span>
             </h1>
-            <h1 className="text-[7vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw text-[#00cc00]">
+            <h1 className="text-[8vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw text-[#00cc00]">
               <span class="magic">
                 <span class="magic-star">
                   <svg viewBox="0 0 512 512">
@@ -146,7 +146,7 @@ function LandingPage() {
 
         <div className="md:flex md:flex-row-reverse md:justify-center md:items-center mt-[50px]">
           <div className="md:w-[40vw] md:ml-[16px]">
-            <h1 className="text-[7vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw] mt-[16px] text-[#00cc00]">
+            <h1 className="text-[8vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw] mt-[16px] text-[#00cc00]">
               <span class="magic">
                 <span class="magic-star">
                   <svg viewBox="0 0 512 512">
@@ -157,7 +157,7 @@ function LandingPage() {
                 <span class="magic-text"> Chat Communicate with fellow</span>
               </span>
             </h1>
-            <h1 className="text-[7vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw text-[#00cc00]">
+            <h1 className="text-[8vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw text-[#00cc00]">
               <span class="magic">
                 <span class="magic-star">
                   <svg viewBox="0 0 512 512">
