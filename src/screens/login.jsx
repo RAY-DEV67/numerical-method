@@ -62,19 +62,23 @@ function Login() {
     <div className="flex flex-col items-center justify-center h-[100vh] login textFont">
       <div className="relative z-10 flex flex-col items-center">
         <h1 className="text-[5vw] md:text-[2.5vw] font-semibold">Welcome to</h1>
-        <h2 className="text-[10vw] md:text-[5vw] font-semibold">UniPlug</h2>
-        <p className="text-[4vw] md:text-[2vw]">Please Log In To Continue</p>
+        <h1 className="text-[10vw] md:text-[5vw] font-semibold headingFont">
+          <span class="magic">
+            <span class="magic-text">UniPlug</span>
+          </span>
+        </h1>
+        <p className="text-[3vw] md:text-[1.5vw]">Please Log In To Continue</p>
         <input
           onChange={(e) => setEmail(e.target.value)}
           type="text"
           placeholder="Email"
-          className="input bg-transparent rounded-[10px] text-black p-[16px] my-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+          className="input bg-transparent rounded-[10px] text-black p-[16px] my-[16px] border border-[#00cc00] w-[80vw] md:w-[40vw] lg:w-[30vw]"
         />
         <input
           onChange={(e) => setPassword(e.target.value)}
           type="password"
           placeholder="Password"
-          className="input rounded-[10px] bg-transparent text-black p-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+          className="input rounded-[10px] bg-transparent text-black p-[16px] border border-[#00cc00] w-[80vw] md:w-[40vw] lg:w-[30vw]"
         />
         <button
           onClick={handleLogin}

@@ -138,36 +138,36 @@ export default function Navbar() {
           </svg>
         </div>
 
-        <div className="hidden lg:flex md:items-center md:mr-[1rem]">
+        <div className="hidden lg:flex justify-between md:items-center md:mr-[1rem] w-[55vw]">
           <Link to="/" className="nav">
             <p className={`lg:text-[1.2vw] font-bold text-[#00cc00]`}>Home</p>
           </Link>
           <Link to={user ? "/SellProducts" : "/Login"}>
-            <p className={`lg:text-[1.2vw] mx-[1rem] font-bold text-[#00cc00]`}>
+            <p className={`lg:text-[1.2vw] font-bold text-[#00cc00]`}>
               Sell Products
             </p>
           </Link>
 
           <Link to={user ? `/SellServices/${user.uid}/${userName}` : "/Login"}>
-            <p className={`lg:text-[1.2vw] mx-[1rem] font-bold text-[#00cc00]`}>
+            <p className={`lg:text-[1.2vw] font-bold text-[#00cc00]`}>
               Sell Services
             </p>
           </Link>
           <Link to={user ? "/Events" : "/Login"}>
-            <p className={`lg:text-[1.2vw] mx-[1rem] font-bold text-[#00cc00]`}>
+            <p className={`lg:text-[1.2vw] font-bold text-[#00cc00]`}>
               Events
             </p>
           </Link>
 
           <Link to={user ? `/Shop/${userId}/${userName}/${email}` : "/Login"}>
-            <p className={`lg:text-[1.2vw] mx-[1rem] font-bold text-[#00cc00]`}>
+            <p className={`lg:text-[1.2vw] font-bold text-[#00cc00]`}>
               Premium Shop
             </p>
           </Link>
           {!userName && (
             <Link to="/Login">
               <p
-                className={`lg:text-[1.2vw] mx-[1rem] font-bold text-[#00cc00]`}
+                className={`lg:text-[1.2vw] font-bold text-[#00cc00]`}
               >
                 Login
               </p>
@@ -180,7 +180,7 @@ export default function Navbar() {
           </Link>
 
           {userName && (
-            <p className="bg-[#00cc00] text-white py-[4px] px-[8px] ml-[1rem] rounded-[20px]">
+            <p className="bg-[#00cc00] text-white py-[4px] px-[8px] rounded-[20px]">
               Hi, {userName} 👋
             </p>
           )}

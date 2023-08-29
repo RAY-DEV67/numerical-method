@@ -112,7 +112,11 @@ function Shop() {
   return (
     <div className="bg-white textFont">
       <div className="md:text-[2vw]  fixed pt-[15vw] md:pt-[6vw] pb-[4vw] md:pb-[2vw] lg:pb-[0px] font-semibold bg-[#013a19] w-[100vw] text-center py-[4px] text-white rounded-b-[30px]">
-        <h2 className="lg:hidden headingFont text-[4vw]"> UniPlug Shop</h2>
+      <h1 className="lg:hidden headingFont text-[4vw]">
+            <span class="magic">
+              <span class="magic-text">UniPlug Shop</span>
+            </span>
+          </h1>
       </div>
       <h2 className="pt-[28vw] md:pt-[15vw] mx-[16px] lg:mx-[40px] lg:pt-[8vw] text-[4vw] md:text-[3vw] lg:text-[2vw] font-semibold">
         Buy Plugs:
@@ -145,6 +149,8 @@ function Shop() {
           <LoadingSpinner />
         </div>
       ) : null}
+
+      {products.length == 0 && <p className="text-center my-[16px] font-medium">You have not uploaded any product on uniplug😢</p>}
 
       {products.map((post, index) => (
         <div key={index} className="w-[100vw] flex flex-row  items-center">

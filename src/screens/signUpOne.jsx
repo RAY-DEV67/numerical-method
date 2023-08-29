@@ -119,18 +119,22 @@ function SignUpOne() {
   };
 
   return (
-    <div className="h-[100vh] bg-[#013a19] w-[100vw] textFont flex flex-col items-center login justify-center">
-      <div className="relative z-10 flex flex-col items-center">
+    <div className="h-[100vh] w-[100vw] textFont flex flex-col items-center justify-center">
+      <div className="relative z-10 flex flex-col items-center mt-[32px]">
         <h1 className="text-[4vw] md:text-[2vw] font-semibold">Welcome to</h1>
-        <h2 className="text-[8vw] md:text-[4vw] font-semibold">UniPlug</h2>
-        <p className="text-[3vw] md:text-[1.5vw]">
+        <h1 className="text-[8vw] md:text-[4vw] font-semibold headingFont">
+            <span class="magic">
+              <span class="magic-text">UniPlug</span>
+            </span>
+          </h1>
+        <p className="text-[3vw] md:text-[1.5vw] lg:text-[1.2vw]">
           Lets get you started, input your details below.
         </p>
         <input
           onChange={(e) => setfirstName(e.target.value)}
           type="text"
           placeholder="Name"
-          className="input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+          className="input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border border-[#00cc00] w-[80vw] md:w-[40vw] lg:w-[30vw]"
         />
         {firstNameError && <p className="text-red-500">{firstNameError}</p>}
 
@@ -138,7 +142,7 @@ function SignUpOne() {
           onChange={(e) => setEmail(e.target.value)}
           type="text"
           placeholder="Email"
-          className="input bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+          className="input bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border border-[#00cc00] w-[80vw] md:w-[40vw] lg:w-[30vw]"
         />
         {emailError && <p className="text-red-500">{emailError}</p>}
 
@@ -146,7 +150,7 @@ function SignUpOne() {
           onChange={(e) => setconfirmEmail(e.target.value)}
           type="text"
           placeholder="Retype Email"
-          className="input bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+          className="input bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border border-[#00cc00] w-[80vw] md:w-[40vw] lg:w-[30vw]"
         />
         {confirmEmailError && (
           <p className="text-red-500">{confirmEmailError}</p>
@@ -156,7 +160,7 @@ function SignUpOne() {
           onChange={(e) => setPassword(e.target.value)}
           type="password"
           placeholder="Password"
-          className="input rounded-[10px] bg-transparent mb-[16px] text-black p-[8px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+          className="input rounded-[10px] bg-transparent mb-[16px] text-black p-[8px] border border-[#00cc00] w-[80vw] md:w-[40vw] lg:w-[30vw]"
         />
         {passwordError && <p className="text-red-500">{passwordError}</p>}
 
@@ -164,7 +168,7 @@ function SignUpOne() {
           onChange={(e) => setConfirmPassword(e.target.value)}
           type="password"
           placeholder="Confirm Password"
-          className="input rounded-[10px] bg-transparent text-black p-[8px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+          className="input rounded-[10px] bg-transparent text-black p-[8px] border border-[#00cc00] w-[80vw] md:w-[40vw] lg:w-[30vw]"
         />
         {confirmPasswordError && (
           <p className="text-red-500">{confirmPasswordError}</p>
@@ -175,9 +179,8 @@ function SignUpOne() {
         >
           Continue
         </button>
-        {/* {errors && <p className="text-red-500">{errors}</p>} */}
 
-        <p className="text-[3vw] md:text-[1.5vw] mt-[16px]">
+        <p className="text-[3vw] md:text-[1.5vw] lg:text-[1.2vw] mt-[8px]">
           Already have an account?{" "}
           <Link to="/Login" className="text-blue-500">
             Log in

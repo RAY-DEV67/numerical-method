@@ -834,7 +834,11 @@ function SellServices() {
     <div>
       <div className="flex flex-col items-center login textFont">
         <div className="md:text-[2vw]  fixed pt-[15vw] md:pt-[6vw] pb-[4vw] md:pb-[2vw] lg:pb-[0px] font-semibold bg-[#013a19] w-[100vw] text-center py-[4px] text-white rounded-b-[30px]">
-          <h2 className="lg:hidden headingFont text-[4vw]"> Sell Services On UniPlug</h2>
+          <h1 className="lg:hidden headingFont text-[4vw]">
+            <span class="magic">
+              <span class="magic-text">Sell Services On UniPlug</span>
+            </span>
+          </h1>
         </div>
         <div
           //   onSubmit={handleSubmit}

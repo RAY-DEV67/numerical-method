@@ -81,7 +81,7 @@ body {
   overflow-x: hidden;
 }
 .textFont {
-  font-family: "Poppins";
+  font-family: 'Space Grotesk', sans-serif;
 }
 .headingFont {
   font-family: "Teko", sans-serif;

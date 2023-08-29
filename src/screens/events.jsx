@@ -44,19 +44,20 @@ function Events() {
       </div>
 
       <div className="m-[16px]">
-        <p className="text-[4vw] text-black lg:text-[2vw] md:text-[3vw] headingFont">Upcoming Events:</p>
+        <p className="text-[4vw] text-black lg:text-[2vw] md:text-[3vw] headingFont">
+          Upcoming Events:
+        </p>
       </div>
 
-      {loading ? <div className="flex flex-col items-center">
-        <LoadingSpinner />
-      </div> : null}
+      {loading ? (
+        <div className="flex flex-col items-center">
+          <LoadingSpinner />
+        </div>
+      ) : null}
 
       {events.map((post, index) => {
         return (
-          <div
-            key={index}
-            className="w-[100vw] flex flex-col items-center"
-          >
+          <div key={index} className="w-[100vw] flex flex-col items-center">
             <EventsCard product={post} />
           </div>
         );

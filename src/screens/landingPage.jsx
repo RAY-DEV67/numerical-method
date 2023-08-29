@@ -55,7 +55,7 @@ function LandingPage() {
             </h1>
 
             <AnimatedDiv type="text" showType="showtext">
-              <p className="text-[#292929] mt-[24px] w-[90vw] md:w-[40vw] font-semibold">
+              <p className="text-[#292929] bg-green-50 p-[16px] rounded-[20px] mt-[16px] w-[90vw] md:w-[40vw] font-semibold">
                 Discover a seamless way to buy and sell within your campus
                 community. 🎓Buy textbooks, electronics, fashion, and more,
                 hassle-free!
@@ -93,7 +93,7 @@ function LandingPage() {
             </h1>
 
             <AnimatedDiv type="text" showType="showtext">
-              <p className="text-[#292929] mt-[24px] w-[90vw] md:w-[40vw] font-semibold">
+              <p className="text-[#292929] bg-green-50 p-[16px] rounded-[20px] mt-[16px] w-[90vw] md:w-[40vw] font-semibold">
                 Discover the hottest events happening around your university
                 campus.
               </p>
@@ -132,7 +132,7 @@ function LandingPage() {
             </h1>
 
             <AnimatedDiv type="text" showType="showtext">
-              <p className="text-[#292929] mt-[24px] w-[90vw] md:w-[40vw] font-semibold">
+              <p className="text-[#292929] bg-green-50 p-[16px] rounded-[20px] mt-[16px] w-[90vw] md:w-[40vw] font-semibold">
                 Expand your social circle and make unforgettable memories at
                 your university. 🎓✨
               </p>
@@ -171,7 +171,7 @@ function LandingPage() {
             </h1>
 
             <AnimatedDiv type="text" showType="showtext">
-              <p className="text-[#292929] mt-[24px] w-[90vw] md:w-[40vw] font-semibold">
+              <p className="text-[#292929] bg-green-50 p-[16px] rounded-[20px] mt-[16px] w-[90vw] md:w-[40vw] font-semibold">
                 Share photos, videos, voice messages, or links in a secure way,
                 break the language barrier with auto-translation to your
                 preferred language.
@@ -188,6 +188,7 @@ function LandingPage() {
         <div className="hidden md:flex md:flex-row md:justify-center md:items-center mt-[50px]">
           <div className="md:w-[40vw]">
             <AnimatedDiv type="text" showType="showtext">
+              <div className="bg-green-50 p-[16px] w-[35vw] rounded-[20px]">
               <h1 className="text-[7vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw text-[#00cc00]">
                 <span class="magic">
                   <span class="magic-star">
@@ -210,6 +211,7 @@ function LandingPage() {
                 alt="Download On Google"
                 className="mt-[16px] w-[20vw]"
               />
+              </div>
             </AnimatedDiv>
           </div>
           <AnimatedDiv type="head" showType="showhead">
@@ -230,6 +232,7 @@ function LandingPage() {
             </AnimatedDiv>
           </div>
           <AnimatedDiv type="text" showType="showtext">
+            <div className="bg-green-50 p-[16px] w-[70vw] rounded-[20px]">
             <h1 className="text-[7vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw text-[#00cc00]">
               <span class="magic">
                 <span class="magic-star">
@@ -252,6 +255,7 @@ function LandingPage() {
                 alt="Download On Google"
                 className="mt-[16px] w-[40vw]"
               />
+            </div>
             </div>
           </AnimatedDiv>
         </div>

@@ -1,7 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import { collection,getDocs, query, where, doc, updateDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  query,
+  where,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 import db from "../../firebase";
 
 const nigerianStates = [
@@ -468,82 +475,81 @@ const nigerianUniversities = [
   "Zamfara State University",
 ];
 
-const Gender = ["Male", "Female"]
+const Gender = ["Male", "Female"];
 
 function SignUpTwo() {
-    const { userId } = useParams();
+  const { userId } = useParams();
 
-    const [selectedState, setSelectedState] = useState("");
-    const [selectedUniversity, setSelectedUniversity] = useState("");
-    const [selectedGender, setSelectedGender] = useState("");
-    const [loading, setloading] = useState();
-    const [genderError, setgenderError] = useState("");
-    const [universityError, setuniversityError] = useState("");
-    const [stateError, setstateError] = useState("");
-    const [onCampus, setonCampus] = useState(false);
-    const [offCampus, setoffCampus] = useState(false);
-    const [campusError, setcampusError] = useState("");
-  
-    const navigate = useNavigate()
+  const [selectedState, setSelectedState] = useState("");
+  const [selectedUniversity, setSelectedUniversity] = useState("");
+  const [selectedGender, setSelectedGender] = useState("");
+  const [loading, setloading] = useState();
+  const [genderError, setgenderError] = useState("");
+  const [universityError, setuniversityError] = useState("");
+  const [stateError, setstateError] = useState("");
+  const [onCampus, setonCampus] = useState(false);
+  const [offCampus, setoffCampus] = useState(false);
+  const [campusError, setcampusError] = useState("");
 
-    const updateAddress = async () => {
-      if (selectedState === "") {
-        setstateError("State is required");
-        return;
-      } else {
-        setstateError("");
-      }
-      if (onCampus === false && offCampus === false) {
-        setcampusError("Location is required");
-        return;
-      } else {
-        setcampusError("");
-      }
-      if (onCampus === true && offCampus === true) {
-        setcampusError("Select just one location");
-        return;
-      } else {
-        setcampusError("");
-      }
-      if (selectedGender === "") {
-        setgenderError("Gender is required");
-        return;
-      } else {
-        setgenderError("");
-      }
-      if (selectedUniversity === "") {
-        setuniversityError("University is required");
-        return;
-      } else {
-        setuniversityError("");
-      }
-  
-      setloading(true);
-  
-      try {
-        const querySnapshot = await getDocs(
-          query(collection(db, "Users"), where("userId", "==", userId))
-        );
-        if (!querySnapshot.empty) {
-          const userDoc = querySnapshot.docs[0];
-          const userRef = doc(db, "Users", userDoc.id);
-          await updateDoc(userRef, {
-            state: selectedState,
-            university: selectedUniversity,
-            gender: selectedGender,
-            onCampus: onCampus,
-            offCampus: offCampus,
-          });
-          setloading(false);
-          navigate("/Login");
-        } else {
-          console.log("No matching document found");
-        }
-      } catch (err) {
-        console.error("Error updating document:", err);
-      }
-    };
+  const navigate = useNavigate();
 
+  const updateAddress = async () => {
+    if (selectedState === "") {
+      setstateError("State is required");
+      return;
+    } else {
+      setstateError("");
+    }
+    if (onCampus === false && offCampus === false) {
+      setcampusError("Location is required");
+      return;
+    } else {
+      setcampusError("");
+    }
+    if (onCampus === true && offCampus === true) {
+      setcampusError("Select just one location");
+      return;
+    } else {
+      setcampusError("");
+    }
+    if (selectedGender === "") {
+      setgenderError("Gender is required");
+      return;
+    } else {
+      setgenderError("");
+    }
+    if (selectedUniversity === "") {
+      setuniversityError("University is required");
+      return;
+    } else {
+      setuniversityError("");
+    }
+
+    setloading(true);
+
+    try {
+      const querySnapshot = await getDocs(
+        query(collection(db, "Users"), where("userId", "==", userId))
+      );
+      if (!querySnapshot.empty) {
+        const userDoc = querySnapshot.docs[0];
+        const userRef = doc(db, "Users", userDoc.id);
+        await updateDoc(userRef, {
+          state: selectedState,
+          university: selectedUniversity,
+          gender: selectedGender,
+          onCampus: onCampus,
+          offCampus: offCampus,
+        });
+        setloading(false);
+        navigate("/Login");
+      } else {
+        console.log("No matching document found");
+      }
+    } catch (err) {
+      console.error("Error updating document:", err);
+    }
+  };
 
   const handleStateChange = (e) => {
     setSelectedState(e.target.value);
@@ -559,16 +565,21 @@ function SignUpTwo() {
 
   return (
     <div>
-      <div className="h-[100vh] textFont bg-[#013a19] w-[100vw] flex flex-col items-center login justify-center">
-        {/* <div className="absolute h-[100vh] w-[100vw] bg-black opacity-30 z-2"></div> */}
+      <div className="h-[100vh] textFont w-[100vw] flex flex-col items-center justify-center">
         <div className="relative z-10 flex flex-col items-center">
-          <h2 className="text-[6vw] font-semibold md:text-[3vw]">You're Almost There!!</h2>
-          <p className="text-[3vw] md:text-[1.5vw]">input your Contact Details below.</p>
+          <h1 className="text-[6vw] lg:mt-[32px] font-semibold sm:text-[4vw] md:text-[3vw] headingFont">
+            <span class="magic">
+              <span class="magic-text">You're Almost There!!</span>
+            </span>
+          </h1>
+          <p className="text-[3vw] sm:text-[2vw] md:text-[1.5vw]">
+            input your Contact Details below.
+          </p>
 
           <select
             value={selectedState}
             onChange={handleStateChange}
-            className="input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className="input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border border-[#00cc00] w-[80vw] sm:w-[60vw] md:w-[40vw]"
           >
             <option value="">Select State</option>
             {nigerianStates.map((state) => (
@@ -582,7 +593,7 @@ function SignUpTwo() {
           <select
             value={selectedUniversity}
             onChange={handleUniversityChange}
-            className="input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className="input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border border-[#00cc00] w-[80vw] sm:w-[60vw] md:w-[40vw]"
           >
             <option value="">Select University</option>
             {nigerianUniversities.map((university) => (
@@ -594,44 +605,45 @@ function SignUpTwo() {
           {universityError && <p className="text-red-500">{universityError}</p>}
 
           <div className="my-[16px] ml-[30px]">
-            <p className="w-[80vw] md:w-[40vw] text-[3vw] mb-[8px] md:text-[1.5vw]">Where Do You Stay</p>
-            <div className="w-[80vw] md:w-[40vw]">
+            <p className="w-[80vw] md:w-[40vw] text-[3vw] sm:text-[2vw] mb-[8px] md:text-[1.5vw]">
+              Where Do You Stay
+            </p>
+            <div className="w-[80vw] sm:w-[60vw] md:w-[40vw]">
               <input
                 type="checkbox"
                 id="Top"
                 name="Top"
                 className="mr-[0.5rem]"
                 onChange={() => {
-                    setoffCampus(!offCampus)
-                  }}
+                  setoffCampus(!offCampus);
+                }}
               />
-              <label for="MIN" className="text-[3vw] md:text-[1.5vw]">
+              <label for="MIN" className="text-[3vw] sm:text-[2vw] md:text-[1.5vw]">
                 Off Campus
               </label>
             </div>
-            <div className="w-[80vw] md:w-[40vw]">
+            <div className="w-[80vw] sm:w-[60vw] md:w-[40vw]">
               <input
                 type="checkbox"
                 id="Top"
                 name="Top"
                 className="mr-[0.5rem]"
-                  onChange={() => {
-                    setonCampus(!onCampus)
-                    console.log(onCampus)
-                  }}
+                onChange={() => {
+                  setonCampus(!onCampus);
+                  console.log(onCampus);
+                }}
               />
-              <label for="MIN" className="text-[3vw] md:text-[1.5vw]">
+              <label for="MIN" className="text-[3vw] sm:text-[2vw] md:text-[1.5vw]">
                 On Campus
               </label>
             </div>
             {campusError && <p className="text-red-500">{campusError}</p>}
-
           </div>
 
           <select
             value={selectedGender}
             onChange={handleGenderChange}
-            className="input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className="input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border border-[#00cc00] w-[80vw] sm:w-[60vw] md:w-[40vw]"
           >
             <option value="">Select Gender</option>
             {Gender.map((gender) => (
@@ -642,7 +654,6 @@ function SignUpTwo() {
           </select>
           {genderError && <p className="text-red-500">{genderError}</p>}
 
-         
           <button
             onClick={updateAddress}
             className="bg-[#013a19] text-white w-[33vw] md:w-[13vw] mt-[32px] rounded-[20px] py-[8px]"
