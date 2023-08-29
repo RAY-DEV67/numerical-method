@@ -22,17 +22,11 @@ function LandingPage() {
             </AnimatedDiv>
           </div>
           <img
-              src="https://res.cloudinary.com/dvl38skbc/image/upload/v1693249134/uniplug/marketPlace_na5asq.webp"
+              src="https://res.cloudinary.com/dvl38skbc/image/upload/v1693252512/uniplug/marketPlace_1_uikr6w.webp"
               alt="image1"
               className="mt-[16px] md:w-[40vw] rounded-[20px]"
             />
-          {/* <LazyLoad height={200} offset={10}>
-            <img
-              src="https://res.cloudinary.com/dvl38skbc/image/upload/v1693249134/uniplug/marketPlace_na5asq.webp"
-              alt="image1"
-              className="mt-[16px] md:w-[40vw] rounded-[20px]"
-            />
-          </LazyLoad> */}
+
         </div>
 
         <div className="md:flex md:flex-row-reverse md:justify-center md:items-center mt-[50px]">
@@ -48,7 +42,7 @@ function LandingPage() {
             </AnimatedDiv>
           </div>
           <img
-              src="https://res.cloudinary.com/dvl38skbc/image/upload/v1693249132/uniplug/events_oywoec.webp"
+              src="https://res.cloudinary.com/dvl38skbc/image/upload/v1693252484/uniplug/events_1_kjj5bt.webp"
               alt="image2"
               className="mt-[16px] md:w-[40vw] rounded-[20px]"
             />
@@ -67,7 +61,7 @@ function LandingPage() {
             </AnimatedDiv>
           </div>
           <img
-              src="https://res.cloudinary.com/dvl38skbc/image/upload/v1693249133/uniplug/connections_rzuryi.webp"
+              src="https://res.cloudinary.com/dvl38skbc/image/upload/v1693252463/uniplug/connections_1_mk9amn.webp"
               alt="image3"
               className="mt-[16px] md:w-[40vw] rounded-[20px]"
             />
@@ -87,7 +81,7 @@ function LandingPage() {
             </AnimatedDiv>
           </div>
           <img
-              src="https://res.cloudinary.com/dvl38skbc/image/upload/v1693249133/uniplug/chatting_kbix4i.webp"
+              src="https://res.cloudinary.com/dvl38skbc/image/upload/v1693252451/uniplug/chatting_1_i59cez.webp"
               alt="image2"
               className="mt-[16px] md:w-[40vw] rounded-[20px]"
             />
