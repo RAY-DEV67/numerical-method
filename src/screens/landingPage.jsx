@@ -3,8 +3,6 @@ import apple from "../assets/apple.png";
 import google from "../assets/google.png";
 import Footer from "../components/footer";
 import AnimatedDiv from "../components/Animation";
-import LazyLoad from 'react-lazyload';
-{/* <LazyLoad height={200} offset={100}></LazyLoad> */}
 
 function LandingPage() {
   return (
