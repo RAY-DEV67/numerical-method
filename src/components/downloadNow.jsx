@@ -6,22 +6,26 @@ import google from "../assets/google.png";
 
 function DownloadNow() {
   return (
-    <div>
-      <div className="hidden mx-[16px] md:flex md:flex-row md:justify-center md:items-center mt-[50px]">
+    <div className="noOverflow">
+      <div className="hidden noOverflow mx-[16px] md:flex md:flex-row md:justify-center md:items-center mt-[50px]">
         <div
           className={`${
             window.innerWidth < 1780 ? "md:w-[40vw]" : "w-[700px]"
           } mt-[16px] rounded-[20px]`}
         >
           <AnimatedDiv type="text" showType="showtext">
-            <div className={`${
-            window.innerWidth < 1780 ? "w-[35vw]" : "w-[600px]"
-          } bg-green-50 py-[16px] px-[32px] rounded-[20px]`}>
-              <h1 className={`${
-                window.innerWidth < 1780
-                  ? "md:text-[3vw] md:w-[40vw]"
-                  : "text-[60px] w-[700px]"
-              } headingFont font-bold mt-[16px] text-[#00cc00]`}>
+            <div
+              className={`${
+                window.innerWidth < 1780 ? "w-[35vw]" : "w-[600px]"
+              } bg-green-50 py-[16px] px-[32px] rounded-[20px]`}
+            >
+              <h1
+                className={`${
+                  window.innerWidth < 1780
+                    ? "md:text-[3vw] md:w-[40vw]"
+                    : "text-[60px] w-[700px]"
+                } headingFont font-bold mt-[16px] text-[#00cc00]`}
+              >
                 <span class="magic">
                   <span class="magic-star">
                     <svg viewBox="0 0 512 512">
@@ -37,19 +41,15 @@ function DownloadNow() {
                 src={apple}
                 alt="Download On Apple"
                 className={`mt-[16px] ${
-                    window.innerWidth < 1780
-                      ? "w-[20vw] "
-                      : "w-[400px]"
-                  }`}
+                  window.innerWidth < 1780 ? "w-[20vw] " : "w-[400px]"
+                }`}
               />
               <img
                 src={google}
                 alt="Download On Google"
                 className={`mt-[16px] ${
-                    window.innerWidth < 1780
-                      ? "w-[20vw] "
-                      : "w-[400px]"
-                  }`}
+                  window.innerWidth < 1780 ? "w-[20vw] " : "w-[400px]"
+                }`}
               />
             </div>
           </AnimatedDiv>

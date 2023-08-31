@@ -128,7 +128,7 @@ function SignUpOne() {
         <h1
           className={`${
             window.innerWidth < 1780
-              ? "text-[4vw] md:text-[2vw]"
+              ? "text-[6vw] md:text-[2vw]"
               : "text-[50px]"
           } font-semibold`}
         >
@@ -137,7 +137,7 @@ function SignUpOne() {
         <h1
           className={`${
             window.innerWidth < 1780
-              ? "text-[8vw] md:text-[4vw]"
+              ? "text-[10vw] md:text-[4vw]"
               : "text-[70px]"
           } font-semibold headingFont`}
         >

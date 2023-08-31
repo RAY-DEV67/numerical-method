@@ -64,7 +64,7 @@ function Login() {
         <h1
           className={`${
             window.innerWidth < 1780
-              ? "text-[5vw] md:text-[2.5vw]"
+              ? "text-[7vw] md:text-[2.5vw]"
               : "text-[40px]"
           } font-semibold`}
         >
@@ -73,7 +73,7 @@ function Login() {
         <h1
           className={`${
             window.innerWidth < 1780
-              ? "text-[10vw] md:text-[5vw]"
+              ? "text-[12vw] md:text-[5vw]"
               : "text-[80px]"
           } font-semibold headingFont`}
         >
@@ -84,7 +84,7 @@ function Login() {
         <p
           className={`${
             window.innerWidth < 1780
-              ? "text-[3vw] md:text-[1.5vw]"
+              ? "text-[3.5vw] md:text-[1.5vw]"
               : "text-[30px]"
           }`}
         >

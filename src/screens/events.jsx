@@ -57,11 +57,11 @@ function Events() {
         </p>
       </div>
 
-      <div className="m-[64px]">
+      <div className="m-[16px]">
         <p
           className={`${
             window.innerWidth < 1780
-              ? "text-[4vw] lg:text-[2vw] md:text-[3vw]"
+              ? "text-[6vw] lg:text-[2vw] md:text-[3vw]"
               : "text-[50px]"
           } text-black headingFont`}
         >

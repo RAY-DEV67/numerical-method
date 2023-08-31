@@ -574,7 +574,7 @@ function SignUpTwo() {
           <h1
             className={`${
               window.innerWidth < 1780
-                ? "text-[6vw]  sm:text-[4vw] md:text-[3vw]"
+                ? "text-[8vw]  sm:text-[4vw] md:text-[3vw]"
                 : "text-[70px]"
             } lg:mt-[32px] font-semibold headingFont`}
           >

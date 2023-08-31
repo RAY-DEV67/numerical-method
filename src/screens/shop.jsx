@@ -118,7 +118,7 @@ function Shop() {
             : "pt-[0px] w-[1780px]"
         } fixed  lg:pb-[0px] font-semibold text-center py-[4px] text-white rounded-b-[30px]`}
       >
-        <h1 className="lg:hidden headingFont text-[4vw]">
+        <h1 className="lg:hidden headingFont text-[8vw]">
           <span class="magic">
             <span class="magic-text">UniPlug Shop</span>
           </span>
