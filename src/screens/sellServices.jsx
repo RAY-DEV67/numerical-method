@@ -832,26 +832,39 @@ function SellServices() {
 
   return (
     <div>
-      <div className="flex flex-col items-center login textFont">
-        <div className="md:text-[2vw]  fixed pt-[15vw] md:pt-[6vw] pb-[4vw] md:pb-[2vw] lg:pb-[0px] font-semibold bg-[#013a19] w-[100vw] text-center py-[4px] text-white rounded-b-[30px]">
-          <h1 className="lg:hidden headingFont text-[4vw]">
-            <span class="magic">
-              <span class="magic-text">Sell Services On UniPlug</span>
+      <div className="flex flex-col items-center textFont">
+        <h1 className="lg:hidden headingFont text-[4vw] mt-[20vw] md:mt-[10vw]">
+          <span class="magic">
+            <span class="magic-text z-1 relative">
+              Sell Services On UniPlug
             </span>
-          </h1>
-        </div>
+          </span>
+        </h1>
         <div
-          //   onSubmit={handleSubmit}
-          className="w-[90vw] items-center justify-center flex flex-col px-[1rem] pb-[2.5rem] mt-[25vw] md:mt-[15vw] lg:mt-[10vw]"
+          className={`${
+            window.innerWidth < 1780
+              ? "w-[90vw] lg:mt-[10vw] mt-[24px]"
+              : "w-[1500px] mt-[150px]"
+          } items-center justify-center flex flex-col px-[1rem] pb-[2.5rem]`}
         >
           <input
             onChange={(e) => setname(e.target.value)}
             type="text"
             placeholder="Your Name"
-            className="input text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] bg-transparent rounded-[10px] text-black p-[8px] mt-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
           {nameError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } text-red-500 mb-[16px]`}
+            >
               {nameError}
             </p>
           )}
@@ -859,10 +872,20 @@ function SellServices() {
             onChange={(e) => setemail(e.target.value)}
             type="text"
             placeholder="Your Email"
-            className="input text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] bg-transparent rounded-[10px] text-black p-[8px] mt-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
           {emailError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } text-red-500 mb-[16px]`}
+            >
               {emailError}
             </p>
           )}
@@ -870,7 +893,11 @@ function SellServices() {
           <select
             value={selectedCategory}
             onChange={handleCategoryChange}
-            className="input bg-transparent text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           >
             <option value="">Category</option>
             {Categories.map((categories) => (
@@ -880,22 +907,48 @@ function SellServices() {
             ))}
           </select>
           {categoryError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } text-red-500 mb-[16px]`}
+            >
               {categoryError}
             </p>
           )}
 
-          <div className="w-[80vw] md:w-[40vw] ">
-            <h2 className="font-bold text-[3vw] md:text-[2vw] lg:text-[1.5vw]">
+          <div
+            className={`${
+              window.innerWidth < 1780 ? "w-[80vw] md:w-[40vw] " : "w-[1000px]"
+            }`}
+          >
+            <h2
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[40px]"
+              } font-bold`}
+            >
               Add Photo
             </h2>
-            <p className="text-[2.5vw] md:text-[1.5vw] lg:text-[1vw]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[2.5vw] md:text-[1.5vw] lg:text-[1vw]"
+                  : "text-[30px]"
+              }`}
+            >
               First picture is the title picture
             </p>
             <div className="flex flex-col">
               <div>
                 <input
-                  className="mt-[1rem] text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  className={`${
+                    window.innerWidth < 1780
+                      ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                      : "text-[40px]"
+                  } mt-[1rem]`}
                   type="file"
                   accept="image/png , image/jpg"
                   name="photos"
@@ -904,7 +957,13 @@ function SellServices() {
                   }}
                 />
                 {image1Error && (
-                  <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+                  <p
+                    className={`${
+                      window.innerWidth < 1780
+                        ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                        : "text-[30px]"
+                    } text-red-500 mb-[16px]`}
+                  >
                     {image1Error}
                   </p>
                 )}
@@ -912,7 +971,11 @@ function SellServices() {
 
               <div>
                 <input
-                  className="mt-[1rem] text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  className={`${
+                    window.innerWidth < 1780
+                      ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                      : "text-[40px]"
+                  } mt-[1rem]`}
                   type="file"
                   accept="image/png , image/jpg"
                   name="photos2"
@@ -922,7 +985,13 @@ function SellServices() {
                   }}
                 />
                 {image2Error && (
-                  <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+                  <p
+                    className={`${
+                      window.innerWidth < 1780
+                        ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                        : "text-[30px]"
+                    } text-red-500 mb-[16px]`}
+                  >
                     {image2Error}
                   </p>
                 )}
@@ -930,7 +999,11 @@ function SellServices() {
 
               <div>
                 <input
-                  className="mt-[1rem] text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  className={`${
+                    window.innerWidth < 1780
+                      ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                      : "text-[40px]"
+                  } mt-[1rem]`}
                   type="file"
                   accept="image/png , image/jpg"
                   name="photos3"
@@ -942,7 +1015,11 @@ function SellServices() {
 
               <div>
                 <input
-                  className="mt-[1rem] text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  className={`${
+                    window.innerWidth < 1780
+                      ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                      : "text-[40px]"
+                  } mt-[1rem]`}
                   type="file"
                   accept="image/png , image/jpg"
                   name="photos4"
@@ -954,7 +1031,11 @@ function SellServices() {
 
               <div>
                 <input
-                  className="mt-[1rem] text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  className={`${
+                    window.innerWidth < 1780
+                      ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                      : "text-[40px]"
+                  } mt-[1rem]`}
                   type="file"
                   accept="image/png , image/jpg"
                   name="photos5"
@@ -964,17 +1045,33 @@ function SellServices() {
                 />
               </div>
             </div>
-            <p className="text-[2.5vw] md:text-[1.5vw] lg:text-[1vw] mt-[1rem] text-red-600">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[2.5vw] md:text-[1.5vw] lg:text-[1vw]"
+                  : "text-[30px]"
+              } mt-[1rem] text-red-600`}
+            >
               Each picture must not exceed 5MB
             </p>
-            <p className="text-[2.5vw] md:text-[1.5vw] lg:text-[1vw] text-red-600">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[2.5vw] md:text-[1.5vw] lg:text-[1vw]"
+                  : "text-[30px]"
+              } text-red-600`}
+            >
               Supported formats are *.jpg and *jpeg
             </p>
           </div>
           <select
             value={selectedState}
             onChange={handleStateChange}
-            className="input bg-transparent text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           >
             <option value="">Select State</option>
             {nigerianStates.map((state) => (
@@ -984,7 +1081,13 @@ function SellServices() {
             ))}
           </select>
           {stateError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } text-red-500 mb-[16px]`}
+            >
               {stateError}
             </p>
           )}
@@ -992,7 +1095,11 @@ function SellServices() {
           <select
             value={selectedUniversity}
             onChange={handleUniversityChange}
-            className="input bg-transparent rounded-[10px] text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           >
             <option value="">Select University</option>
             {nigerianUniversities.map((university) => (
@@ -1002,7 +1109,13 @@ function SellServices() {
             ))}
           </select>
           {universityError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } text-red-500 mb-[16px]`}
+            >
               {universityError}
             </p>
           )}
@@ -1011,24 +1124,50 @@ function SellServices() {
             onChange={(e) => setdescription(e.target.value)}
             type="text"
             placeholder="Description"
-            className="input bg-transparent text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
           {descriptionError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } text-red-500 mb-[16px]`}
+            >
               {descriptionError}
             </p>
           )}
-          <h2 className="text-[3vw] md:text-[2vw] lg:text-[1.5vw] font-bold mb-[8px]">
+          <h2
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                : "text-[40px]"
+            } font-bold mb-[8px]`}
+          >
             YOUR CONTACT DETAILS
           </h2>
           <input
             onChange={(e) => setphoneNumber(e.target.value)}
             type="tel"
             placeholder="Phone Number"
-            className="input text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
           {phoneNumberError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } text-red-500 mb-[16px]`}
+            >
               {phoneNumberError}
             </p>
           )}
@@ -1036,13 +1175,21 @@ function SellServices() {
             onChange={(e) => setinstagram(e.target.value)}
             type="text"
             placeholder="Instagram Handle"
-            className="input text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
           <input
             onChange={(e) => settwitter(e.target.value)}
             type="text"
             placeholder="Twitter Handle"
-            className="input text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
 
           {selectedCategory == "" ||
@@ -1058,7 +1205,9 @@ function SellServices() {
                 handleSubmit(e);
                 updateUserInfo();
               }}
-              className="bg-[#013a19] flex flex-col items-center justify-center text-white w-[50vw] md:w-[13vw] mt-[16px] rounded-[20px] py-[8px]"
+              className={`${
+                window.innerWidth < 1780 ? "w-[50vw] md:w-[13vw]" : "w-[500px]"
+              } bg-[#013a19] flex flex-col items-center justify-center text-white  mt-[16px] rounded-[20px] py-[8px]`}
             >
               {loadingSubmit ? <LoadingSpinner /> : "Plug Me"}
             </button>
@@ -1071,24 +1220,40 @@ function SellServices() {
           (selectedCategory == "Photography & Video Services" &&
             !submitError) ? (
             <PaystackButton
-              className="bg-[#013a19] flex flex-col items-center justify-center text-white w-[50vw] md:w-[13vw] mt-[16px] rounded-[20px] py-[8px]"
+              className={`${
+                window.innerWidth < 1780 ? "w-[50vw] md:w-[13vw]" : "w-[500px]"
+              } bg-[#013a19] flex flex-col items-center justify-center text-white  mt-[16px] rounded-[20px] py-[8px]`}
               {...fivecomponentProps}
             />
           ) : null}
 
           {selectedCategory == "Car Rentals" && !submitError ? (
             <PaystackButton
-              className="bg-[#013a19] flex flex-col items-center justify-center text-white w-[50vw] md:w-[13vw] mt-[16px] rounded-[20px] py-[8px]"
+              className={`${
+                window.innerWidth < 1780 ? "w-[50vw] md:w-[13vw]" : "w-[500px]"
+              } bg-[#013a19] flex flex-col items-center justify-center text-white  mt-[16px] rounded-[20px] py-[8px]`}
               {...OnecomponentProps}
             />
           ) : null}
 
           {submitError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } text-red-500 mb-[16px]`}
+            >
               {submitError}
             </p>
           )}
-          <p className="md:w-[40vw] text-[2.5vw] md:text-[1.5vw] lg:text-[1vw] mt-[0.5rem] mb-[2rem] text-red-600">
+          <p
+            className={`${
+              window.innerWidth < 1780
+                ? "md:w-[40vw] text-[2.5vw] md:text-[1.5vw] lg:text-[1vw]"
+                : "text-[30px] w-[800px]"
+            } mt-[0.5rem] mb-[2rem] text-red-600`}
+          >
             By Clicking on Post Ad, you accept the Terms of Use, Confirm that
             you will abide by the safety tips, and declare that this poisting
             does not include any prohibited items{" "}

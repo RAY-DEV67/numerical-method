@@ -75,21 +75,31 @@ export default function Navbar() {
   }, [user]);
 
   return (
-    <div className="w-[100vw] flex flex-col md:items-center textFont">
+    <div
+      className={`flex flex-col md:items-center textFont ${
+        window.innerWidth < 1780 ? "w-[100vw]" : "w-[1780px]"
+      }`}
+    >
       <div
-        className={`flex justify-between z-50 px-[1rem] fixed items-center w-[100vw] pt-[3vh] "bg-transparent" `}
+        className={`flex justify-between px-[1rem]  nav glass-background fixed items-center w-[100vw] pt-[3vh] ${
+          window.innerWidth < 1780 ? "w-[100vw]" : "w-[1780px]"
+        } `}
       >
         <img
           src={logo}
           alt="logo"
-          className="w-[20vw] lg:w-[7vw] md:w-[11vw] my-[-4vh] md:my-[-4vh] relative z-10"
+          className={`${
+            window.innerWidth < 1780
+              ? "w-[20vw] lg:w-[7vw] md:w-[11vw] "
+              : "w-[100px]"
+          }   my-[-4vh] md:my-[-4vh] relative z-10`}
         />
 
         <div
           onClick={() => {
             setshowMobile(true);
           }}
-          className="lg:hidden mr-[1rem]"
+          className="lg:hidden mr-[1rem] relative"
         >
           <svg
             width="30"
@@ -138,49 +148,83 @@ export default function Navbar() {
           </svg>
         </div>
 
-        <div className="hidden lg:flex justify-between md:items-center md:mr-[1rem] w-[55vw]">
+        <div
+          className={`hidden lg:flex justify-between md:items-center md:mr-[1rem] ${
+            window.innerWidth < 1780 ? "w-[55vw]" : "w-[1000px]"
+          }`}
+        >
           <Link to="/" className="nav">
-            <p className={`lg:text-[1.2vw] font-bold text-[#00cc00]`}>Home</p>
+            <p
+              className={`${
+                window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
+              } font-bold text-[#00cc00]`}
+            >
+              Home
+            </p>
           </Link>
-          <Link to={user ? "/SellProducts" : "/Login"}>
-            <p className={`lg:text-[1.2vw] font-bold text-[#00cc00]`}>
+          <Link className="nav" to={user ? "/SellProducts" : "/Login"}>
+            <p
+              className={`${
+                window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
+              } font-bold text-[#00cc00]`}
+            >
               Sell Products
             </p>
           </Link>
 
-          <Link to={user ? `/SellServices/${user.uid}/${userName}` : "/Login"}>
-            <p className={`lg:text-[1.2vw] font-bold text-[#00cc00]`}>
+          <Link className="nav" to={user ? `/SellServices/${user.uid}/${userName}` : "/Login"}>
+            <p
+              className={`${
+                window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
+              } font-bold text-[#00cc00]`}
+            >
               Sell Services
             </p>
           </Link>
-          <Link to={user ? "/Events" : "/Login"}>
-            <p className={`lg:text-[1.2vw] font-bold text-[#00cc00]`}>
+          <Link className="nav" to={user ? "/Events" : "/Login"}>
+            <p
+              className={`${
+                window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
+              } font-bold text-[#00cc00]`}
+            >
               Events
             </p>
           </Link>
 
-          <Link to={user ? `/Shop/${userId}/${userName}/${email}` : "/Login"}>
-            <p className={`lg:text-[1.2vw] font-bold text-[#00cc00]`}>
+          <Link className="nav" to={user ? `/Shop/${userId}/${userName}/${email}` : "/Login"}>
+            <p
+              className={`${
+                window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
+              } font-bold text-[#00cc00]`}
+            >
               Premium Shop
             </p>
           </Link>
           {!userName && (
-            <Link to="/Login">
+            <Link className="nav" to="/Login">
               <p
-                className={`lg:text-[1.2vw] font-bold text-[#00cc00]`}
+                className={`${
+                  window.innerWidth < 1780
+                    ? "lg:text-[1.2vw]"
+                    : "lg:text-[20px]"
+                } font-bold text-[#00cc00]`}
               >
                 Login
               </p>
             </Link>
           )}
-          <Link to="/SignUpOne" className="nav">
-            <p className={`lg:text-[1.2vw] font-bold text-[#00cc00]`}>
+          <Link className="nav" to="/SignUpOne" >
+            <p
+              className={`${
+                window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
+              } font-bold text-[#00cc00]`}
+            >
               Sign Up
             </p>
           </Link>
 
           {userName && (
-            <p className="bg-[#00cc00] text-white py-[4px] px-[8px] rounded-[20px]">
+            <p className="bg-[#00cc00] nav text-white py-[4px] px-[8px] rounded-[20px]">
               Hi, {userName} 👋
             </p>
           )}
@@ -189,7 +233,7 @@ export default function Navbar() {
         <div
           className={
             showMobile
-              ? `bg-[#013a19] landing2 h-[100vh] top-0 w-[100vw] flex flex-col items-center justify-center ml-[-1rem] fixed show`
+              ? `bg-[#013a19] nav landing2 h-[100vh] top-0 w-[100vw] flex flex-col items-center justify-center ml-[-1rem] fixed show`
               : "bg-[#000009] h-[100vh] no top-0 w-[100vw] flex flex-col items-center justify-center fixed"
           }
         >

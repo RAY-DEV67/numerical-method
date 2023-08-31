@@ -17,7 +17,7 @@ export default function AnimatedDiv({ children, type, showType }) {
       {
         root: null,
         rootMargin: "0px",
-        threshold: 1, // Change this to change when the animation fires
+        threshold: 0.7, // Change this to change when the animation fires
       }
     );
 

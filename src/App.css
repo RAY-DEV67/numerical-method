@@ -80,8 +80,18 @@ h1 > .magic > .magic-text {
 body {
   overflow-x: hidden;
 }
+
+@media screen and (min-width: 1700px) {
+  body {
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 .textFont {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk", sans-serif;
 }
 .headingFont {
   font-family: "Teko", sans-serif;
@@ -192,4 +202,22 @@ body {
   filter: blur(0);
   transform: translateY(0);
   transition: all 1s ease-in-out;
+}
+.glass-background {
+  position: relative;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.15)
+  );
+}
+
+.glass-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  backdrop-filter: blur(10px); /* Adjust the blur as needed */
 }

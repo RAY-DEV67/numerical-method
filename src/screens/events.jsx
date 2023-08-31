@@ -36,15 +36,35 @@ function Events() {
 
   return (
     <div className="bg-white textFont">
-      <div className="events w-[100vw] h-[50vh] rounded-b-[30px] flex flex-col justify-end ">
-        <div className="bg-black opacity-60 rounded-b-[30px] w-[100vw] h-[100%] -z-2 absolute"></div>
-        <p className="text-white mb-[32px] leading-[6vw] md:leading-[4vw] headingFont relative mx-[16px] text-[6vw] md:text-[4vw] lg:text-[3.5vw] font-semibold w-[60%] md:w-[40%]">
+      <div
+        className={`${
+          window.innerWidth < 1780 ? "w-[100vw]" : "w-[1780px]"
+        } events h-[50vh] rounded-b-[30px] flex flex-col justify-end`}
+      >
+        <div
+          className={`${
+            window.innerWidth < 1780 ? "w-[100vw]" : "w-[1780px]"
+          } bg-black opacity-60 rounded-b-[30px]  h-[100%] -z-2 absolute`}
+        ></div>
+        <p
+          className={`${
+            window.innerWidth < 1780
+              ? "leading-[6vw] md:leading-[4vw] text-[6vw] md:text-[4vw] lg:text-[3.5vw]"
+              : "text-[70px] leading-[70px]"
+          } text-white mb-[32px] headingFont relative mx-[16px]  font-semibold w-[60%] md:w-[40%]`}
+        >
           Discover Amazing Events Around You!!!🎉
         </p>
       </div>
 
-      <div className="m-[16px]">
-        <p className="text-[4vw] text-black lg:text-[2vw] md:text-[3vw] headingFont">
+      <div className="m-[64px]">
+        <p
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[4vw] lg:text-[2vw] md:text-[3vw]"
+              : "text-[50px]"
+          } text-black headingFont`}
+        >
           Upcoming Events:
         </p>
       </div>
@@ -57,7 +77,12 @@ function Events() {
 
       {events.map((post, index) => {
         return (
-          <div key={index} className="w-[100vw] flex flex-col items-center">
+          <div
+            key={index}
+            className={`${
+              window.innerWidth < 1780 ? "w-[100vw]" : "w-[1780px]"
+            } flex flex-col items-center`}
+          >
             <EventsCard product={post} />
           </div>
         );

@@ -897,21 +897,27 @@ function SellProducts() {
   return (
     <div>
       <div className="flex flex-col items-center textFont">
-        <div className="md:text-[2vw]  fixed pt-[15vw] md:pt-[6vw] pb-[4vw] md:pb-[2vw] lg:pb-[0px] font-semibold bg-[#013a19] w-[100vw] text-center py-[4px] text-white rounded-b-[30px]">
-          <h1 className="lg:hidden headingFont text-[4vw]">
-            <span class="magic">
-              <span class="magic-text">Sell Products On UniPlug</span>
-            </span>
-          </h1>
-        </div>
+        <h1 className="lg:hidden headingFont text-[4vw] mt-[20vw] md:mt-[10vw]">
+          <span class="magic">
+            <span class="magic-text z-1 relative">Sell Products On UniPlug</span>
+          </span>
+        </h1>
         <form
           onSubmit={handleSubmit}
-          className="w-[90vw] items-center justify-center flex flex-col px-[1rem] pb-[2.5rem] mt-[25vw] md:mt-[15vw] lg:mt-[10vw]"
+          className={`${
+            window.innerWidth < 1780
+              ? "w-[90vw] lg:mt-[10vw] mt-[24px]"
+              : "w-[1500px] mt-[150px]"
+          } items-center justify-center flex flex-col px-[1rem] pb-[2.5rem]`}
         >
           <select
             value={selectedCategory}
             onChange={handleCategoryChange}
-            className="input bg-transparent text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           >
             <option value="">Category</option>
             {Categories.map((categories) => (
@@ -921,22 +927,48 @@ function SellProducts() {
             ))}
           </select>
           {categoryError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } text-red-500 mb-[16px]`}
+            >
               {categoryError}
             </p>
           )}
 
-          <div className="w-[80vw] md:w-[40vw] ">
-            <h2 className="font-bold text-[3vw] md:text-[2vw] lg:text-[1.5vw]">
+          <div
+            className={`${
+              window.innerWidth < 1780 ? "w-[80vw] md:w-[40vw] " : "w-[1000px]"
+            }`}
+          >
+            <h2
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[40px]"
+              } font-bold`}
+            >
               Add Photo
             </h2>
-            <p className="text-[2.5vw] md:text-[1.5vw] lg:text-[1vw]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[2.5vw] md:text-[1.5vw] lg:text-[1vw]"
+                  : "text-[30px]"
+              }`}
+            >
               First picture is the title picture
             </p>
             <div className="flex flex-col">
               <div>
                 <input
-                  className="mt-[1rem] text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  className={`${
+                    window.innerWidth < 1780
+                      ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                      : "text-[40px]"
+                  } mt-[1rem]`}
                   type="file"
                   accept="image/png , image/jpg"
                   name="photos"
@@ -945,7 +977,13 @@ function SellProducts() {
                   }}
                 />
                 {image1Error && (
-                  <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+                  <p
+                    className={`${
+                      window.innerWidth < 1780
+                        ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                        : "text-[40px]"
+                    } mt-[1rem] text-red-500 mb-[16px]`}
+                  >
                     {image1Error}
                   </p>
                 )}
@@ -953,7 +991,11 @@ function SellProducts() {
 
               <div>
                 <input
-                  className="mt-[1rem] text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  className={`${
+                    window.innerWidth < 1780
+                      ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                      : "text-[40px]"
+                  } mt-[1rem]`}
                   type="file"
                   accept="image/png , image/jpg"
                   name="photos2"
@@ -963,7 +1005,13 @@ function SellProducts() {
                   }}
                 />
                 {image2Error && (
-                  <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+                  <p
+                    className={`${
+                      window.innerWidth < 1780
+                        ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                        : "text-[40px]"
+                    } text-red-500 mb-[16px]`}
+                  >
                     {image2Error}
                   </p>
                 )}
@@ -971,7 +1019,11 @@ function SellProducts() {
 
               <div>
                 <input
-                  className="mt-[1rem] text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  className={`${
+                    window.innerWidth < 1780
+                      ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                      : "text-[40px]"
+                  } mt-[1rem]`}
                   type="file"
                   accept="image/png , image/jpg"
                   name="photos3"
@@ -983,7 +1035,11 @@ function SellProducts() {
 
               <div>
                 <input
-                  className="mt-[1rem] text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  className={`${
+                    window.innerWidth < 1780
+                      ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                      : "text-[40px]"
+                  } mt-[1rem]`}
                   type="file"
                   accept="image/png , image/jpg"
                   name="photos4"
@@ -995,7 +1051,11 @@ function SellProducts() {
 
               <div>
                 <input
-                  className="mt-[1rem] text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  className={`${
+                    window.innerWidth < 1780
+                      ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                      : "text-[40px]"
+                  } mt-[1rem]`}
                   type="file"
                   accept="image/png , image/jpg"
                   name="photos5"
@@ -1005,17 +1065,33 @@ function SellProducts() {
                 />
               </div>
             </div>
-            <p className="text-[2.5vw] md:text-[1.5vw] lg:text-[1vw] mt-[1rem] text-red-600">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[2.5vw] md:text-[1.5vw] lg:text-[1vw]"
+                  : "text-[30px]"
+              } mt-[1rem] text-red-600`}
+            >
               Each picture must not exceed 5MB
             </p>
-            <p className="text-[2.5vw] md:text-[1.5vw] lg:text-[1vw] text-red-600">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[2.5vw] md:text-[1.5vw] lg:text-[1vw]"
+                  : "text-[30px]"
+              } text-red-600`}
+            >
               Supported formats are *.jpg and *jpeg
             </p>
           </div>
           <select
             value={selectedState}
             onChange={handleStateChange}
-            className="input bg-transparent text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           >
             <option value="">Select State</option>
             {nigerianStates.map((state) => (
@@ -1025,7 +1101,13 @@ function SellProducts() {
             ))}
           </select>
           {stateError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } text-red-500  mb-[16px]`}
+            >
               {stateError}
             </p>
           )}
@@ -1033,7 +1115,11 @@ function SellProducts() {
           <select
             value={selectedUniversity}
             onChange={handleUniversityChange}
-            className="input bg-transparent rounded-[10px] text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           >
             <option value="">Select University</option>
             {nigerianUniversities.map((university) => (
@@ -1043,7 +1129,13 @@ function SellProducts() {
             ))}
           </select>
           {universityError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } text-red-500  mb-[16px]`}
+            >
               {universityError}
             </p>
           )}
@@ -1051,10 +1143,20 @@ function SellProducts() {
             onChange={(e) => settitle(e.target.value)}
             type="text"
             placeholder="Product Title"
-            className="input bg-transparent rounded-[10px] text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
           {titleError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } text-red-500  mb-[16px]`}
+            >
               {titleError}
             </p>
           )}
@@ -1062,19 +1164,31 @@ function SellProducts() {
             onChange={(e) => setbrand(e.target.value)}
             type="text"
             placeholder="Name Of Brand (Optional)"
-            className="input bg-transparent rounded-[10px] text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
           <input
             onChange={(e) => setcolor(e.target.value)}
             type="text"
             placeholder="Color Of Product (Optional)"
-            className="input bg-transparent rounded-[10px] text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
 
           <select
             value={selectedCondition}
             onChange={handleConditionChange}
-            className="input bg-transparent rounded-[10px] text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           >
             <option value="">Select Condition</option>
             {Condition.map((condition) => (
@@ -1087,7 +1201,11 @@ function SellProducts() {
           <select
             value={selectedGender}
             onChange={handleGenderChange}
-            className="input bg-transparent text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           >
             <option value="">Which Gender Is This Product For</option>
             {Gender.map((gender) => (
@@ -1097,7 +1215,13 @@ function SellProducts() {
             ))}
           </select>
           {genderError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } text-red-500  mb-[16px]`}
+            >
               {genderError}
             </p>
           )}
@@ -1105,30 +1229,58 @@ function SellProducts() {
             onChange={(e) => setsize(e.target.value)}
             type="text"
             placeholder="Size"
-            className="input bg-transparent text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
           <input
             onChange={(e) => setavailableQuantity(e.target.value)}
             type="text"
             placeholder="Available Quantity (Leave Blank If Unlimited)"
-            className="input bg-transparent text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
           <input
             onChange={(e) => setvendorName(e.target.value)}
             type="text"
             placeholder="Name Of Vendor"
-            className="input bg-transparent text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
           {vendorNameError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } text-red-500  mb-[16px]`}
+            >
               {vendorNameError}
             </p>
           )}
-          <p className="w-[80vw] md:w-[40vw] text-[3vw] md:text-[2vw] lg:text-[1.5vw] font-bold">
+          <p
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                : "text-[40px]"
+            } font-bold`}
+          >
             Add Vendor Logo
           </p>
           <input
-            className="my-[16px] text-[3vw] md:text-[2vw] lg:text-[1.5vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw] md:w-[40vw]"
+                : "text-[40px] w-[1000px]"
+            } my-[16px]`}
             type="file"
             accept="image/png , image/jpg"
             name="photos"
@@ -1137,7 +1289,11 @@ function SellProducts() {
             }}
           />
 
-          <div className="w-[80vw] md:w-[40vw] mb-[4px]">
+          <div
+            className={`${
+              window.innerWidth < 1780 ? "w-[80vw] md:w-[40vw]" : "w-[1000px]"
+            }  mb-[4px]`}
+          >
             <input
               type="checkbox"
               id="Top"
@@ -1149,12 +1305,20 @@ function SellProducts() {
             />
             <label
               for="MIN"
-              className="text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[40px]"
+              }  mb-[4px]`}
             >
               Made In Nigeria
             </label>
           </div>
-          <div className="w-[80vw] md:w-[40vw] mb-[4px]">
+          <div
+            className={`${
+              window.innerWidth < 1780 ? "w-[80vw] md:w-[40vw]" : "w-[1000px]"
+            }  mb-[4px]`}
+          >
             <input
               type="checkbox"
               id="Top"
@@ -1166,12 +1330,20 @@ function SellProducts() {
             />
             <label
               for="MIN"
-              className="text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[40px]"
+              }  mb-[4px]`}
             >
               Handmade
             </label>
           </div>
-          <div className="w-[80vw] md:w-[40vw] mb-[12px]">
+          <div
+            className={`${
+              window.innerWidth < 1780 ? "w-[80vw] md:w-[40vw]" : "w-[1000px]"
+            }  mb-[12px]`}
+          >
             <input
               type="checkbox"
               id="Top"
@@ -1183,7 +1355,11 @@ function SellProducts() {
             />
             <label
               for="MIN"
-              className="text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[40px]"
+              }  mb-[4px]`}
             >
               Waranty
             </label>
@@ -1193,21 +1369,41 @@ function SellProducts() {
             onChange={(e) => setdescription(e.target.value)}
             type="text"
             placeholder="Description"
-            className="input bg-transparent text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
           <input
             onChange={(e) => setprice(e.target.value)}
             type="text"
             placeholder="Price"
-            className="input bg-transparent text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[8px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
           {priceError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } text-red-500  mb-[16px]`}
+            >
               {priceError}
             </p>
           )}
           {calculatedPrice ? (
-            <p className="italic text-[#d3d3d3] text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } italic text-[#d3d3d3] mb-[16px]`}
+            >
               {formatCur(calculatedPrice, "en-NG", "NGN")} (5% Processing fees &
               VAT)
             </p>
@@ -1216,10 +1412,20 @@ function SellProducts() {
             onChange={(e) => setdeliveryOnCampus(e.target.value)}
             type="text"
             placeholder="On Campus Delivery Fee (Leave Blank For Free Delivery)"
-            className="input bg-transparent text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
           {deliveryOnCampusError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } text-red-500  mb-[16px]`}
+            >
               {deliveryOnCampusError}
             </p>
           )}
@@ -1227,30 +1433,62 @@ function SellProducts() {
             onChange={(e) => setdeliveryOffCampus(e.target.value)}
             type="text"
             placeholder="Off Campus Delivery Fee (Leave Blank For Free Delivery)"
-            className="input bg-transparent text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
           {deliveryOffCampusError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } text-red-500  mb-[16px]`}
+            >
               {deliveryOffCampusError}
             </p>
           )}
-          <p className="text-[2.5vw] md:text-[1.5vw] lg:text-[1vw] mb-[16px] text-red-600 md:w-[40vw]">
+          <p
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[2.5vw] md:text-[1.5vw] lg:text-[1vw] md:w-[40vw]"
+                : "text-[20px] w-[700px]"
+            } mb-[16px] text-red-600`}
+          >
             Note: Delivery fees plays a big impact in getting customers, make
             your delivery fee as affordable as possible to attract more
             customers.
           </p>
 
-          <h2 className="text-[3vw] md:text-[2vw] lg:text-[1.5vw] font-bold mb-[8px]">
+          <h2
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                : "text-[40px]"
+            } font-bold mb-[8px]`}
+          >
             YOUR ACCOUNT DETAILS
           </h2>
           <input
             onChange={(e) => setaccountNumber(e.target.value)}
             type="text"
             placeholder="Account Number"
-            className="input text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
           {accountNumberError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } text-red-500  mb-[16px]`}
+            >
               {accountNumberError}
             </p>
           )}
@@ -1258,10 +1496,20 @@ function SellProducts() {
             onChange={(e) => setbankName(e.target.value)}
             type="text"
             placeholder="Bank Name"
-            className="input text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
           {bankNameError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } text-red-500  mb-[16px]`}
+            >
               {bankNameError}
             </p>
           )}
@@ -1269,24 +1517,50 @@ function SellProducts() {
             onChange={(e) => setaccountHolderName(e.target.value)}
             type="text"
             placeholder="Account Name"
-            className="input text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
           {accountHolderNameError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } text-red-500  mb-[16px]`}
+            >
               {accountHolderNameError}
             </p>
           )}
-          <h2 className="text-[3vw] md:text-[2vw] lg:text-[1.5vw] font-bold mb-[8px]">
+          <h2
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                : "text-[40px]"
+            } font-bold mb-[8px]`}
+          >
             YOUR CONTACT DETAILS
           </h2>
           <input
             onChange={(e) => setphoneNumber(e.target.value)}
             type="tel"
             placeholder="Phone Number"
-            className="input text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
           {phoneNumberError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } text-red-500  mb-[16px]`}
+            >
               {phoneNumberError}
             </p>
           )}
@@ -1294,13 +1568,21 @@ function SellProducts() {
             onChange={(e) => setinstagram(e.target.value)}
             type="text"
             placeholder="Instagram Handle"
-            className="input text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
           <input
             onChange={(e) => settwitter(e.target.value)}
             type="text"
             placeholder="Twitter Handle"
-            className="input text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border-b border-[#00cc00] w-[85vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
 
           <button
@@ -1308,19 +1590,33 @@ function SellProducts() {
               handleSubmit(e);
               updateUserInfo();
             }}
-            className="bg-[#013a19] flex flex-col items-center justify-center text-white w-[50vw] md:w-[13vw] mt-[16px] rounded-[20px] py-[8px]"
+            className={`${
+              window.innerWidth < 1780 ? "w-[50vw] md:w-[13vw]" : "w-[500px]"
+            } bg-[#013a19] flex flex-col items-center justify-center text-white  mt-[16px] rounded-[20px] py-[8px]`}
           >
             {loadingSubmit ? <LoadingSpinner /> : "Post Ad"}
           </button>
           {submitError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } text-red-500  mb-[16px]`}
+            >
               {submitError}
             </p>
           )}
-          <p className="md:w-[40vw] text-[2.5vw] md:text-[1.5vw] lg:text-[1vw] mt-[0.5rem] mb-[2rem] text-red-600">
+          <p
+            className={`${
+              window.innerWidth < 1780
+                ? "md:w-[40vw] text-[2.5vw] md:text-[1.5vw] lg:text-[1vw]"
+                : "text-[30px] w-[800px]"
+            } mt-[0.5rem] mb-[2rem] text-red-600`}
+          >
             By Clicking on Post Ad, you accept the Terms of Use, Confirm that
             you will abide by the safety tips, and declare that this poisting
-            does not include any prohibited items{" "}
+            does not include any prohibited items.
           </p>
         </form>
       </div>

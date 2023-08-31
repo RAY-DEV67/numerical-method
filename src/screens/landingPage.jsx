@@ -1,9 +1,6 @@
-import phone from "../assets/mockUp.png";
-import phone2 from "../assets/newMockUp3.png";
-import apple from "../assets/apple.png";
-import google from "../assets/google.png";
 import Footer from "../components/footer";
 import AnimatedDiv from "../components/Animation";
+import DownloadNow from "../components/downloadNow";
 
 function LandingPage() {
   let index = 0,
@@ -30,10 +27,20 @@ function LandingPage() {
 
   return (
     <>
-      <div className="px-[16px] pt-[56px] bg-[#ffffff] font-[Inter]">
+      <div className="px-[16px] pt-[56px]">
         <div className="md:flex md:flex-row md:justify-center md:items-center mt-[50px]">
-          <div className="md:w-[40vw] md:mr-[16px]">
-            <h1 className="text-[8vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw] mt-[16px] text-[#00cc00]">
+          <div
+            className={`${
+              window.innerWidth < 1780 ? "md:w-[40vw]" : "w-[700px]"
+            } md:mr-[16px]`}
+          >
+            <h1
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[8vw] md:text-[3vw] w-[80vw] md:w-[40vw]"
+                  : "text-[60px] w-[700px]"
+              } headingFont font-bold mt-[16px] text-[#00cc00]`}
+            >
               <span class="magic">
                 <span class="magic-star">
                   <svg viewBox="0 0 512 512">
@@ -43,7 +50,13 @@ function LandingPage() {
                 <span class="magic-text">Nigeria's Ultimate Student</span>
               </span>
             </h1>
-            <h1 className="text-[8vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw text-[#00cc00]">
+            <h1
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[8vw] md:text-[3vw] w-[80vw] md:w-[40vw]"
+                  : "text-[60px] w-[700px]"
+              } headingFont font-bold mt-[-16px] text-[#00cc00]`}
+            >
               <span class="magic">
                 <span class="magic-star">
                   <svg viewBox="0 0 512 512">
@@ -55,7 +68,13 @@ function LandingPage() {
             </h1>
 
             <AnimatedDiv type="text" showType="showtext">
-              <p className="text-[#292929] bg-green-50 p-[16px] rounded-[20px] mt-[16px] w-[90vw] md:w-[40vw] font-semibold">
+              <p
+                className={`${
+                  window.innerWidth < 1780
+                    ? "w-[90vw] md:w-[40vw]"
+                    : "w-[700px]"
+                } text-[#292929] bg-green-50 p-[16px] rounded-[20px] mt-[16px] font-semibold`}
+              >
                 Discover a seamless way to buy and sell within your campus
                 community. 🎓Buy textbooks, electronics, fashion, and more,
                 hassle-free!
@@ -65,13 +84,25 @@ function LandingPage() {
           <img
             src="https://res.cloudinary.com/dvl38skbc/image/upload/v1693252512/uniplug/marketPlace_1_uikr6w.webp"
             alt="image1"
-            className="mt-[16px] md:w-[40vw] rounded-[20px]"
+            className={`${
+              window.innerWidth < 1780 ? "md:w-[40vw]" : "w-[700px]"
+            } mt-[16px] rounded-[20px]`}
           />
         </div>
 
         <div className="md:flex md:flex-row-reverse md:justify-center md:items-center mt-[50px]">
-          <div className="md:w-[40vw] md:ml-[16px]">
-            <h1 className="text-[8vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw] mt-[16px] text-[#00cc00]">
+          <div
+            className={`${
+              window.innerWidth < 1780 ? "md:w-[40vw]" : "w-[700px]"
+            }  md:ml-[16px]`}
+          >
+            <h1
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[8vw] md:text-[3vw] w-[80vw] md:w-[40vw]"
+                  : "text-[60px] w-[700px]"
+              } headingFont font-bold mt-[16px] text-[#00cc00]`}
+            >
               <span class="magic">
                 <span class="magic-star">
                   <svg viewBox="0 0 512 512">
@@ -81,7 +112,13 @@ function LandingPage() {
                 <span class="magic-text">Never Miss a Beat with</span>
               </span>
             </h1>
-            <h1 className="text-[8vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw text-[#00cc00]">
+            <h1
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[8vw] md:text-[3vw] w-[80vw] md:w-[40vw]"
+                  : "text-[60px] w-[700px]"
+              } headingFont font-bold mt-[-16px] text-[#00cc00]`}
+            >
               <span class="magic">
                 <span class="magic-star">
                   <svg viewBox="0 0 512 512">
@@ -93,7 +130,13 @@ function LandingPage() {
             </h1>
 
             <AnimatedDiv type="text" showType="showtext">
-              <p className="text-[#292929] bg-green-50 p-[16px] rounded-[20px] mt-[16px] w-[90vw] md:w-[40vw] font-semibold">
+              <p
+                className={`${
+                  window.innerWidth < 1780
+                    ? "w-[90vw] md:w-[40vw]"
+                    : "w-[700px]"
+                } text-[#292929] bg-green-50 p-[16px] rounded-[20px] mt-[16px] font-semibold`}
+              >
                 Discover the hottest events happening around your university
                 campus.
               </p>
@@ -102,13 +145,25 @@ function LandingPage() {
           <img
             src="https://res.cloudinary.com/dvl38skbc/image/upload/v1693252484/uniplug/events_1_kjj5bt.webp"
             alt="image2"
-            className="mt-[16px] md:w-[40vw] rounded-[20px]"
+            className={`${
+              window.innerWidth < 1780 ? "md:w-[40vw]" : "w-[700px]"
+            } mt-[16px] rounded-[20px]`}
           />
         </div>
 
         <div className="md:flex md:flex-row md:justify-center md:items-center mt-[50px]">
-          <div className="md:w-[40vw] md:mr-[16px]">
-            <h1 className="text-[8vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw] mt-[16px] text-[#00cc00]">
+          <div
+            className={`${
+              window.innerWidth < 1780 ? "md:w-[40vw]" : "w-[700px]"
+            }  md:ml-[16px]`}
+          >
+            <h1
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[8vw] md:text-[3vw] w-[80vw] md:w-[40vw]"
+                  : "text-[60px] w-[700px]"
+              } headingFont font-bold mt-[16px] text-[#00cc00]`}
+            >
               <span class="magic">
                 <span class="magic-star">
                   <svg viewBox="0 0 512 512">
@@ -119,7 +174,13 @@ function LandingPage() {
                 <span class="magic-text"> Your Gateway to Meaningful </span>
               </span>
             </h1>
-            <h1 className="text-[8vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw text-[#00cc00]">
+            <h1
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[8vw] md:text-[3vw] w-[80vw] md:w-[40vw]"
+                  : "text-[60px] w-[700px]"
+              } headingFont font-bold mt-[-16px] text-[#00cc00]`}
+            >
               <span class="magic">
                 <span class="magic-star">
                   <svg viewBox="0 0 512 512">
@@ -132,7 +193,13 @@ function LandingPage() {
             </h1>
 
             <AnimatedDiv type="text" showType="showtext">
-              <p className="text-[#292929] bg-green-50 p-[16px] rounded-[20px] mt-[16px] w-[90vw] md:w-[40vw] font-semibold">
+              <p
+                className={`${
+                  window.innerWidth < 1780
+                    ? "w-[90vw] md:w-[40vw]"
+                    : "w-[700px]"
+                } text-[#292929] bg-green-50 p-[16px] rounded-[20px] mt-[16px] font-semibold`}
+              >
                 Expand your social circle and make unforgettable memories at
                 your university. 🎓✨
               </p>
@@ -141,13 +208,25 @@ function LandingPage() {
           <img
             src="https://res.cloudinary.com/dvl38skbc/image/upload/v1693252463/uniplug/connections_1_mk9amn.webp"
             alt="image3"
-            className="mt-[16px] md:w-[40vw] rounded-[20px]"
+            className={`${
+              window.innerWidth < 1780 ? "md:w-[40vw]" : "w-[700px]"
+            } mt-[16px] rounded-[20px]`}
           />
         </div>
 
         <div className="md:flex md:flex-row-reverse md:justify-center md:items-center mt-[50px]">
-          <div className="md:w-[40vw] md:ml-[16px]">
-            <h1 className="text-[8vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw] mt-[16px] text-[#00cc00]">
+          <div
+            className={`${
+              window.innerWidth < 1780 ? "md:w-[40vw]" : "w-[700px]"
+            }  md:ml-[16px]`}
+          >
+            <h1
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[8vw] md:text-[3vw] w-[80vw] md:w-[40vw]"
+                  : "text-[60px] w-[700px]"
+              } headingFont font-bold mt-[16px] text-[#00cc00]`}
+            >
               <span class="magic">
                 <span class="magic-star">
                   <svg viewBox="0 0 512 512">
@@ -158,7 +237,13 @@ function LandingPage() {
                 <span class="magic-text"> Chat Communicate with fellow</span>
               </span>
             </h1>
-            <h1 className="text-[8vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw text-[#00cc00]">
+            <h1
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[8vw] md:text-[3vw] w-[80vw] md:w-[40vw]"
+                  : "text-[60px] w-[700px]"
+              } headingFont font-bold mt-[-16px] text-[#00cc00]`}
+            >
               <span class="magic">
                 <span class="magic-star">
                   <svg viewBox="0 0 512 512">
@@ -171,7 +256,13 @@ function LandingPage() {
             </h1>
 
             <AnimatedDiv type="text" showType="showtext">
-              <p className="text-[#292929] bg-green-50 p-[16px] rounded-[20px] mt-[16px] w-[90vw] md:w-[40vw] font-semibold">
+              <p
+                className={`${
+                  window.innerWidth < 1780
+                    ? "w-[90vw] md:w-[40vw]"
+                    : "w-[700px]"
+                } text-[#292929] bg-green-50 p-[16px] rounded-[20px] mt-[16px] font-semibold`}
+              >
                 Share photos, videos, voice messages, or links in a secure way,
                 break the language barrier with auto-translation to your
                 preferred language.
@@ -181,86 +272,16 @@ function LandingPage() {
           <img
             src="https://res.cloudinary.com/dvl38skbc/image/upload/v1693252451/uniplug/chatting_1_i59cez.webp"
             alt="image2"
-            className="mt-[16px] md:w-[40vw] rounded-[20px]"
+            className={`${
+              window.innerWidth < 1780 ? "md:w-[40vw]" : "w-[700px]"
+            } mt-[16px] rounded-[20px]`}
           />
         </div>
-
-        <div className="hidden md:flex md:flex-row md:justify-center md:items-center mt-[50px]">
-          <div className="md:w-[40vw]">
-            <AnimatedDiv type="text" showType="showtext">
-              <div className="bg-green-50 p-[16px] w-[35vw] rounded-[20px]">
-              <h1 className="text-[7vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw text-[#00cc00]">
-                <span class="magic">
-                  <span class="magic-star">
-                    <svg viewBox="0 0 512 512">
-                      <path d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z" />
-                    </svg>
-                  </span>
-
-                  <span class="magic-text"> Download The App Now</span>
-                </span>
-              </h1>
-
-              <img
-                src={apple}
-                alt="Download On Apple"
-                className="mt-[16px] w-[20vw]"
-              />
-              <img
-                src={google}
-                alt="Download On Google"
-                className="mt-[16px] w-[20vw]"
-              />
-              </div>
-            </AnimatedDiv>
-          </div>
-          <AnimatedDiv type="head" showType="showhead">
-              <div className="flex flex-row items-center justify-center">
-                <img src={phone} alt="Uniplug" className="" />
-                <img src={phone2} alt="Uniplug" className="ml-[-125%] lg:ml-[-600px] mt-[48px]" />
-              </div>
-            </AnimatedDiv>
-        </div>
-
-        <div className="flex flex-col md:hidden">
-          <div className="flex flex-col items-center">
-            <AnimatedDiv type="head" showType="showhead">
-              <div className="flex flex-row items-center justify-center">
-                <img src={phone} alt="Uniplug" className="" />
-                <img src={phone2} alt="Uniplug" className="ml-[-125%] sm:ml-[-110%] sm:mt-[0px] mt-[48px]" />
-              </div>
-            </AnimatedDiv>
-          </div>
-          <AnimatedDiv type="text" showType="showtext">
-            <div className="bg-green-50 p-[16px] w-[70vw] rounded-[20px]">
-            <h1 className="text-[7vw] headingFont md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw text-[#00cc00]">
-              <span class="magic">
-                <span class="magic-star">
-                  <svg viewBox="0 0 512 512">
-                    <path d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z" />
-                  </svg>
-                </span>
-
-                <span class="magic-text"> Download The App Now</span>
-              </span>
-            </h1>
-            <div>
-              <img
-                src={apple}
-                alt="Download On Apple"
-                className="mt-[16px] w-[40vw]"
-              />
-              <img
-                src={google}
-                alt="Download On Google"
-                className="mt-[16px] w-[40vw]"
-              />
-            </div>
-            </div>
-          </AnimatedDiv>
-        </div>
+        <DownloadNow />
       </div>
-      <Footer />
+      <div className="mx-[16px]">
+        <Footer />
+      </div>
     </>
   );
 }

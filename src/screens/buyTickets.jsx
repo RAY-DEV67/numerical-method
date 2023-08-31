@@ -239,22 +239,40 @@ function BuyTickets() {
   };
 
   return (
-    <div className="bg-white textFont">
+    <div className="textFont">
       <div>
-        <div className="md:text-[2vw]  fixed pt-[15vw] md:pt-[6vw] pb-[4vw] md:pb-[2vw] lg:pb-[0px] font-semibold bg-[#013a19] w-[100vw] text-center py-[4px] text-white rounded-b-[30px]">
-        <h1 className="lg:hidden headingFont text-[4vw]">
-            <span class="magic">
-              <span class="magic-text">Choose Your Ticket</span>
-            </span>
-          </h1>
-        </div>
+        <h1 className="lg:hidden headingFont text-[4vw] mx-[16px] mt-[20vw] md:mt-[10vw]">
+          <span class="magic">
+            <span class="magic-text text-center">Choose Your Ticket</span>
+          </span>
+        </h1>
 
-        <div className="pt-[25vw] md:pt-[13vw] lg:pt-[8vw] flex flex-col items-center">
-          <div className="eventCard p-[16px] mt-[16px] rounded-[10px] w-[80vw] md:w-[70vw] lg:w-[40vw] shadow-lg">
-            <p className="text-[5vw] md:text-[3vw] lg:text-[2vw] font-semibold">
+        <div
+          className={`${
+            window.innerWidth < 1780
+              ? "w-[90vw] lg:mt-[10vw] mt-[24px]"
+              : "w-[1780px] mt-[150px]"
+          } items-center justify-center flex flex-col px-[1rem] pb-[2.5rem]`}
+        >
+          <div
+            className={`${
+              window.innerWidth < 1780
+                ? "w-[80vw] md:w-[70vw] lg:w-[40vw]"
+                : "w-[700px]"
+            } eventCard p-[16px] mt-[16px] rounded-[10px] shadow-lg `}
+          >
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[5vw] md:text-[3vw] lg:text-[2vw] "
+                  : "text-[50px]"
+              } font-semibold`}
+            >
               {ticketProps.eventName}
             </p>
-            <p>{ticketProps.startDate}</p>
+            <p className={`${window.innerWidth > 1780 && "text-[40px]"}`}>
+              {ticketProps.startDate}
+            </p>
           </div>
         </div>
 
@@ -269,30 +287,72 @@ function BuyTickets() {
             <div className="flex flex-col items-center">
               <div
                 key={index}
-                className="flex-row w-[80vw] md:w-[70vw] lg:w-[60vw] flex justify-between items-center p-[16px] border border-green-800 rounded-[20px] m-[16px]"
+                className={`${
+                  window.innerWidth < 1780
+                    ? "w-[80vw] md:w-[70vw] lg:w-[60vw] "
+                    : "width-[1300px]"
+                } flex-row  flex justify-between items-center p-[16px] border border-green-800 rounded-[20px] m-[16px]`}
               >
                 <div className="">
-                  <p className="text-[3vw] md:text-[2.5vw] lg:text-[2vw] xl:text-[1.5vw] mb-[0.5vh]">
+                  <p
+                    className={`${
+                      window.innerWidth < 1780
+                        ? "text-[3vw] md:text-[2.5vw] lg:text-[2vw] xl:text-[1.5vw]"
+                        : "text-[35px]"
+                    } mb-[0.5vh]`}
+                  >
                     Ticket Name: {ticket.name}
                   </p>
-                  <p className="text-[3vw] lg:text-[2vw] xl:text-[1.5vw] md:text-[2.5vw] mb-[0.5vh]">
+                  <p
+                    className={`${
+                      window.innerWidth < 1780
+                        ? "text-[3vw] md:text-[2.5vw] lg:text-[2vw] xl:text-[1.5vw]"
+                        : "text-[35px]"
+                    } mb-[0.5vh]`}
+                  >
                     Price per ticket: {formatCur(ticket.price, "en-NG", "NGN")}
                   </p>
-                  <p className="text-[3vw] lg:text-[2vw] xl:text-[1.5vw] md:text-[2.5vw] mb-[0.5vh]">
+                  <p
+                    className={`${
+                      window.innerWidth < 1780
+                        ? "text-[3vw] md:text-[2.5vw] lg:text-[2vw] xl:text-[1.5vw]"
+                        : "text-[35px]"
+                    } mb-[0.5vh]`}
+                  >
                     Purchase Limit: {ticket.purchaseLimit}
                   </p>
-                  <p className="text-[3vw] lg:text-[2vw] xl:text-[1.5vw] md:text-[2.5vw] mb-[0.5vh]">
+                  <p
+                    className={`${
+                      window.innerWidth < 1780
+                        ? "text-[3vw] md:text-[2.5vw] lg:text-[2vw] xl:text-[1.5vw]"
+                        : "text-[35px]"
+                    } mb-[0.5vh]`}
+                  >
                     Tickets Available: {ticket.quantity}
                   </p>
-                  <p className="text-[3vw] xl:text-[1.5vw] lg:text-[2vw] md:text-[2.5vw] mb-[0.5vh]">
+                  <p
+                    className={`${
+                      window.innerWidth < 1780
+                        ? "text-[3vw] md:text-[2.5vw] lg:text-[2vw] xl:text-[1.5vw]"
+                        : "text-[35px]"
+                    } mb-[0.5vh]`}
+                  >
                     Quantity Ordered: {ticketQuantity}
                   </p>
-                  <p className="text-[3vw] xl:text-[1.5vw] lg:text-[2vw] md:text-[2.5vw] mb-[0.5vh]">
+                  <p
+                    className={`${
+                      window.innerWidth < 1780
+                        ? "text-[3vw] md:text-[2.5vw] lg:text-[2vw] xl:text-[1.5vw]"
+                        : "text-[35px]"
+                    } mb-[0.5vh]`}
+                  >
                     Total Price: {formatCur(ticketTotalPrice, "en-NG", "NGN")}
                   </p>
                 </div>
                 <input
-                  className={`w-[30vw] pr-[16px] pl-[8px] py-[16px] border rounded border-[#00cc00] mb-[8px]`}
+                  className={`${
+                    window.innerWidth < 1780 ? "w-[30vw] " : "w-[300px]"
+                  } pr-[16px] pl-[8px] py-[16px] border rounded border-[#00cc00] mb-[8px]`}
                   placeholder={`Quantity, max-${ticket.purchaseLimit}`}
                   onChange={(text) =>
                     updateTicketQuantity(index, text.target.value)
@@ -309,10 +369,20 @@ function BuyTickets() {
             onChange={(e) => setname(e.target.value)}
             type="text"
             placeholder="Your Name"
-            className="input text-[3vw] lg:text-[1.5vw] md:text-[2vw] bg-transparent rounded-[10px] text-black p-[8px] mt-[16px] border border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3vw] lg:text-[1.5vw] md:text-[2vw] w-[80vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] mt-[16px] border border-[#00cc00] `}
           />
           {nameError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } text-red-500  mb-[16px]`}
+            >
               {nameError}
             </p>
           )}
@@ -320,10 +390,20 @@ function BuyTickets() {
             onChange={(e) => setemail(e.target.value)}
             type="text"
             placeholder="Your Email"
-            className="input text-[3vw]  lg:text-[1.5vw] md:text-[2vw] bg-transparent rounded-[10px] text-black p-[8px] mt-[16px] border border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3vw] lg:text-[1.5vw] md:text-[2vw] w-[80vw] mt-[16px] md:w-[40vw]"
+                : "w-[1000px] text-[40px] my-[32px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] border border-[#00cc00] `}
           />
           {emailError && (
-            <p className="text-red-500 text-[3vw] md:text-[2vw] lg:text-[1.5vw] mb-[16px]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  : "text-[30px]"
+              } text-red-500  mb-[16px]`}
+            >
               {emailError}
             </p>
           )}
@@ -331,12 +411,22 @@ function BuyTickets() {
             onChange={(e) => setphoneNumber(e.target.value)}
             type="text"
             placeholder="Your Phone Number"
-            className="input text-[3vw]  lg:text-[1.5vw] md:text-[2vw] bg-transparent rounded-[10px] text-black p-[8px] mt-[16px] border border-[#00cc00] w-[80vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3vw] lg:text-[1.5vw] md:text-[2vw] w-[80vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] mt-[16px] border border-[#00cc00] `}
           />
         </div>
 
         <div className="flex flex-col items-center">
-          <div className="flex flex-row w-[80vw] md:w-[70vw] justify-between items-center p-[16px] border-y border-green-800 m-[16px]">
+          <div
+            className={`${
+              window.innerWidth < 1780
+                ? "w-[80vw] md:w-[70vw] m-[16px]"
+                : "w-[1000px] text-[40px] mt-[64px]"
+            } flex flex-row justify-between items-center p-[16px] border-y border-green-800`}
+          >
             <p>SubTotal</p>
             <p> {formatCur(totalPrice, "en-NG", "NGN")}</p>
           </div>
@@ -345,7 +435,11 @@ function BuyTickets() {
         <div className="flex-col items-center flex">
           {!purchaseError ? (
             <PaystackButton
-              className="bg-[#013a19] mb-[32px] flex flex-col items-center justify-center text-white w-[50vw] md:w-[35vw] lg:w-[25vw] mt-[16px] rounded-[20px] py-[8px]"
+              className={`${
+                window.innerWidth < 1780
+                  ? "w-[50vw] md:w-[35vw] lg:w-[25vw]"
+                  : "w-[400px] h-[50px]"
+              } bg-[#013a19] mt-[16px] rounded-[20px] py-[8px] mb-[32px] flex flex-col items-center justify-center text-white `}
               {...componentProps}
             />
           ) : null}

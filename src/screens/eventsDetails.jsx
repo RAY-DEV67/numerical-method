@@ -56,35 +56,79 @@ function EventsDetails() {
     <div className="bg-white textFont">
       <div>
         <img src={event.image1} className="rounded-b-[30px] sm:hidden" />
-        <div className="w-[100vw] h-[65vh] md:h-[80vh] eventCard hidden sm:flex flex-col items-center justify-center">
+        <div
+          className={`${
+            window.innerWidth < 1780 ? "w-[100vw]" : "w-[1780px]"
+          } h-[65vh] md:h-[80vh] eventCard hidden sm:flex flex-col items-center justify-center`}
+        >
           <img
             src={event.image1}
-            className="rounded-[30px] sm:w-[60vw] sm:h-[60vw] md:w-[50vw] md:h-[50vw] lg:w-[40vw] lg:h-[40vw] mt-[-20px]"
+            className={`${
+              window.innerWidth < 1780
+                ? " sm:w-[60vw] sm:h-[60vw] md:w-[50vw] md:h-[50vw] lg:w-[40vw] lg:h-[40vw]"
+                : "h-[800px] w-[800px]"
+            } rounded-[30px]   mt-[-20px]`}
           />
         </div>
         <div className="mx-[16px] pb-[32px] mt-[16px]">
-          <h2 className="text-[6vw] font-semibold md:text-[3vw] lg:text-[2vw] sm:text-[4vw]">
+          <h2
+            className={`${
+              window.innerWidth < 1780
+                ? " text-[6vw] md:text-[3vw] lg:text-[2vw] sm:text-[4vw]"
+                : "text-[60px]"
+            }  font-semibold`}
+          >
             {event.eventName}
           </h2>
-          <p className="flex flex-row items-center font-semibold">
+          <p
+            className={`${
+              window.innerWidth > 1780 && "text-[40px]"
+            }  flex flex-row items-center font-semibold`}
+          >
             Event Starts By :{" "}
             <p className="ml-[4px] font-normal">{event.startDate}</p>
           </p>
-          <p className="flex flex-row items-center font-semibold">
+          <p
+            className={`${
+              window.innerWidth > 1780 && "text-[40px]"
+            }  flex flex-row items-center font-semibold`}
+          >
             Event Ends By :{" "}
             <p className="ml-[4px] font-normal">{event.endDate}</p>
           </p>
-          <p className=" text-[4vw] md:text-[1.5vw] lg:text-[16px] sm:text-[2.5vw] w-[58vw]">
+          <p
+            className={`${
+              window.innerWidth < 1780
+                ? " text-[4vw] md:text-[1.5vw] sm:text-[2.5vw] w-[58vw]"
+                : "text-[40px] w-[800px]"
+            } `}
+          >
             📍 {event.eventVenue}
           </p>
-          <h3 className="mt-[16px] text-[5vw] font-semibold md:text-[3vw] lg:text-[2vw] sm:text-[4vw]">
+          <h3
+            className={`${
+              window.innerWidth < 1780
+                ? " md:text-[3vw] lg:text-[2vw] sm:text-[4vw] text-[5vw] "
+                : "text-[50px]"
+            } mt-[16px] font-semibold `}
+          >
             Description:
           </h3>
-          <p>{event.eventDescription}</p>
+          <p
+           className={`${
+            window.innerWidth > 1780 && "text-[40px]"
+          } `}
+          >{event.eventDescription}</p>
 
           <button
             onClick={handleBuyTicketClick}
-            className="bg-[#013a19] flex flex-col items-center justify-center text-white w-[50vw] md:w-[30vw] lg:w-[20vw] mt-[16px] rounded-[20px] py-[8px]"
+            
+            className={`${
+              window.innerWidth < 1780
+                ? " w-[50vw] md:w-[30vw] lg:w-[20vw] "
+                : "w-[400px] h-[50px]"
+            } bg-[#013a19] mt-[16px] rounded-[20px] py-[8px] flex flex-col items-center justify-center text-white `}
+
           >
             Buy Ticket
           </button>

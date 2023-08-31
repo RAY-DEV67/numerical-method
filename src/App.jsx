@@ -16,6 +16,8 @@ import db from "../firebase";
 import { getDocs, query, collection, where } from "firebase/firestore";
 import EventsDetails from "./screens/eventsDetails";
 import BuyTickets from "./screens/buyTickets";
+import Contact from "./screens/contact";
+import TermsAndConditions from "./screens/terms&conditions";
 
 export const UserId = React.createContext();
 export const SetUserId = React.createContext();
@@ -30,7 +32,7 @@ function App() {
   const [userName, setuserName] = useState("");
 
   return (
-    <div className="">
+    <div className="textFont max-w-[1780px]">
       <UserId.Provider value={userId}>
         <SetUserId.Provider value={setuserId}>
           <UserState.Provider value={userState}>
@@ -69,6 +71,14 @@ function App() {
                         <Route
                           path="/BuyTickets/:userId"
                           element={<BuyTickets />}
+                        />
+                         <Route
+                          path="/Contact"
+                          element={<Contact />}
+                        />
+                        <Route
+                          path="/TermsAndConditions"
+                          element={<TermsAndConditions />}
                         />
                       </Routes>
                     </ScrollToTop>
