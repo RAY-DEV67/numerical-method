@@ -60,35 +60,73 @@ function Login() {
 
   return (
     <div className="flex flex-col items-center justify-center h-[100vh] login textFont">
-      <div className="relative z-10 flex flex-col items-center">
-        <h1 className="text-[5vw] md:text-[2.5vw] font-semibold">Welcome to</h1>
-        <h1 className="text-[10vw] md:text-[5vw] font-semibold headingFont">
+      <div className="relative flex flex-col items-center">
+        <h1
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[5vw] md:text-[2.5vw]"
+              : "text-[40px]"
+          } font-semibold`}
+        >
+          Welcome to
+        </h1>
+        <h1
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[10vw] md:text-[5vw]"
+              : "text-[80px]"
+          } font-semibold headingFont`}
+        >
           <span class="magic">
             <span class="magic-text">UniPlug</span>
           </span>
         </h1>
-        <p className="text-[3vw] md:text-[1.5vw]">Please Log In To Continue</p>
+        <p
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[3vw] md:text-[1.5vw]"
+              : "text-[30px]"
+          }`}
+        >
+          Please Log In To Continue
+        </p>
         <input
           onChange={(e) => setEmail(e.target.value)}
           type="text"
           placeholder="Email"
-          className="input bg-transparent rounded-[10px] text-black p-[16px] my-[16px] border border-[#00cc00] w-[80vw] md:w-[40vw] lg:w-[30vw]"
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+              : "w-[1000px] text-[40px]"
+          } input bg-transparent rounded-[10px] text-black p-[8px] mt-[24px] mb-[8px] border border-[#00cc00]`}
         />
         <input
           onChange={(e) => setPassword(e.target.value)}
           type="password"
           placeholder="Password"
-          className="input rounded-[10px] bg-transparent text-black p-[16px] border border-[#00cc00] w-[80vw] md:w-[40vw] lg:w-[30vw]"
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+              : "w-[1000px] text-[40px]"
+          } input bg-transparent rounded-[10px] text-black p-[8px] my-[8px] border border-[#00cc00]`}
         />
         <button
           onClick={handleLogin}
-          className="bg-[#013a19] text-white w-[33vw] md:w-[13vw] mt-[32px] rounded-[20px] py-[8px]"
+          className={`${
+            window.innerWidth < 1780 ? "w-[33vw] md:w-[13vw]" : "w-[200px]"
+          } bg-[#013a19] text-white  mt-[32px] rounded-[20px] py-[8px]`}
         >
           Log In
         </button>
         {errors && <p className="text-red-500">{errors}</p>}
 
-        <p className="text-[3vw] md:text-[1.5vw] mt-[16px]">
+        <p
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[3vw] md:text-[1.5vw]"
+              : "text-[30px]"
+          } mt-[16px]`}
+        >
           Don't have an account?{" "}
           <Link to="/SignUpOne" className="text-blue-500">
             Sign Up

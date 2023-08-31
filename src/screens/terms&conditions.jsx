@@ -2,9 +2,15 @@ import Footer from "../components/footer";
 
 function TermsAndConditions() {
   return (
-    <div className="mt-[100px] mx-[16px]">
+    <div className="pt-[100px] mx-[16px]">
       <div>
-        <h1 className="text-[10vw] my-[32px] headingFont md:text-[7vw] lg:text-[5vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw text-[#00cc00]">
+        <h1
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[10vw] md:text-[7vw] lg:text-[5vw] leading-[7vw] md:leading-[3vw]  w-[80vw] md:w-[40vw"
+              : "text-[70px] w-[1500px]"
+          } text-[#00cc00] font-bold headingFont my-[32px]`}
+        >
           <span class="magic">
             <span class="magic-star">
               <svg viewBox="0 0 512 512">
@@ -51,7 +57,13 @@ function TermsAndConditions() {
       </div>
 
       <div>
-        <h1 className="text-[10vw] my-[32px] headingFont md:text-[7vw] lg:text-[5vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw text-[#00cc00]">
+        <h1
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[10vw] md:text-[7vw] lg:text-[5vw] leading-[7vw] md:leading-[3vw]  w-[80vw] md:w-[40vw"
+              : "text-[70px] w-[1500px]"
+          } text-[#00cc00] font-bold headingFont my-[32px]`}
+        >
           <span class="magic">
             <span class="magic-star">
               <svg viewBox="0 0 512 512">
@@ -118,7 +130,13 @@ function TermsAndConditions() {
       </div>
 
       <div>
-        <h1 className="text-[10vw] my-[32px] headingFont md:text-[7vw] lg:text-[5vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw text-[#00cc00]">
+        <h1
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[10vw] md:text-[7vw] lg:text-[5vw] leading-[7vw] md:leading-[3vw]  w-[80vw] md:w-[40vw"
+              : "text-[70px] w-[1500px]"
+          } text-[#00cc00] font-bold headingFont my-[32px]`}
+        >
           <span class="magic">
             <span class="magic-star">
               <svg viewBox="0 0 512 512">
@@ -140,7 +158,13 @@ function TermsAndConditions() {
       </div>
 
       <div>
-        <h1 className="text-[10vw] my-[32px] headingFont md:text-[7vw] lg:text-[5vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw text-[#00cc00]">
+        <h1
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[10vw] md:text-[7vw] lg:text-[5vw] leading-[7vw] md:leading-[3vw]  w-[80vw] md:w-[40vw"
+              : "text-[70px] w-[1500px]"
+          } text-[#00cc00] font-bold headingFont my-[32px]`}
+        >
           <span class="magic">
             <span class="magic-star">
               <svg viewBox="0 0 512 512">
@@ -190,7 +214,13 @@ function TermsAndConditions() {
       </div>
 
       <div>
-        <h1 className="text-[10vw] my-[32px] headingFont md:text-[7vw] lg:text-[5vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw text-[#00cc00]">
+        <h1
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[10vw] md:text-[7vw] lg:text-[5vw] leading-[7vw] md:leading-[3vw]  w-[80vw] md:w-[40vw"
+              : "text-[70px] w-[1500px]"
+          } text-[#00cc00] font-bold headingFont my-[32px]`}
+        >
           <span class="magic">
             <span class="magic-star">
               <svg viewBox="0 0 512 512">
@@ -212,7 +242,13 @@ function TermsAndConditions() {
       </div>
 
       <div>
-        <h1 className="text-[10vw] my-[32px] headingFont md:text-[7vw] lg:text-[5vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw text-[#00cc00]">
+        <h1
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[10vw] md:text-[7vw] lg:text-[5vw] leading-[7vw] md:leading-[3vw]  w-[80vw] md:w-[40vw"
+              : "text-[70px] w-[1500px]"
+          } text-[#00cc00] font-bold headingFont my-[32px]`}
+        >
           <span class="magic">
             <span class="magic-star">
               <svg viewBox="0 0 512 512">
@@ -232,7 +268,13 @@ function TermsAndConditions() {
       </div>
 
       <div>
-        <h1 className="text-[10vw] my-[32px] headingFont md:text-[7vw] lg:text-[5vw] leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw text-[#00cc00]">
+        <h1
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[10vw] md:text-[7vw] lg:text-[5vw] leading-[7vw] md:leading-[3vw]  w-[80vw] md:w-[40vw"
+              : "text-[70px] w-[1500px]"
+          } text-[#00cc00] font-bold headingFont my-[32px]`}
+        >
           <span class="magic">
             <span class="magic-star">
               <svg viewBox="0 0 512 512">

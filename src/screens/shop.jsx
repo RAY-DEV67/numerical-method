@@ -68,7 +68,7 @@ function Shop() {
     email,
     amount: 30000,
     metadata: {
-    userName,
+      userName,
     },
     publicKey,
     text: <p className="text-center text-white">Buy 15 Plugs for #300.00 </p>,
@@ -111,35 +111,70 @@ function Shop() {
 
   return (
     <div className="bg-white textFont">
-      <div className="md:text-[2vw]  fixed pt-[15vw] md:pt-[6vw] pb-[4vw] md:pb-[2vw] lg:pb-[0px] font-semibold bg-[#013a19] w-[100vw] text-center py-[4px] text-white rounded-b-[30px]">
-      <h1 className="lg:hidden headingFont text-[4vw]">
-            <span class="magic">
-              <span class="magic-text">UniPlug Shop</span>
-            </span>
-          </h1>
+      <div
+        className={`${
+          window.innerWidth < 1780
+            ? "pt-[18vw] md:pt-[10vw] pb-[4vw] md:pb-[2vw] md:text-[2vw]   w-[100vw] "
+            : "pt-[0px] w-[1780px]"
+        } fixed  lg:pb-[0px] font-semibold text-center py-[4px] text-white rounded-b-[30px]`}
+      >
+        <h1 className="lg:hidden headingFont text-[4vw]">
+          <span class="magic">
+            <span class="magic-text">UniPlug Shop</span>
+          </span>
+        </h1>
       </div>
-      <h2 className="pt-[28vw] md:pt-[15vw] mx-[16px] lg:mx-[40px] lg:pt-[8vw] text-[4vw] md:text-[3vw] lg:text-[2vw] font-semibold">
+      <h2
+        className={`${
+          window.innerWidth < 1780
+            ? "pt-[28vw] md:pt-[18vw] lg:pt-[8vw] text-[4vw] md:text-[3vw] lg:text-[2vw] "
+            : "pt-[150px] text-[50px]"
+        } mx-[16px] lg:mx-[40px] font-semibold`}
+      >
         Buy Plugs:
       </h2>
-      <div className="mb-[16px] flex flex-col items-center w-[100vw]">
+      <div
+        className={`${
+          window.innerWidth < 1780 ? "w-[100vw]" : "w-[1780px]"
+        } mb-[16px] flex flex-col items-center `}
+      >
         <PaystackButton
-          className="bg-[#013a19] cursor-pointer w-[90vw] md:w-[80vw] lg:w-[60vw] lg:py-[60px] md:py-[48px] py-[40px] mt-[16px] rounded-[20px]"
+          className={`${
+            window.innerWidth < 1780
+              ? "w-[90vw] md:w-[80vw] lg:w-[60vw]"
+              : "w-[1000px]"
+          } bg-[#013a19] cursor-pointer lg:py-[60px] md:py-[48px] py-[40px] mt-[16px] rounded-[20px]`}
           {...component15Props}
         />
 
         <PaystackButton
-          className="bg-[#013a19] cursor-pointer w-[90vw] md:w-[80vw] lg:w-[60vw] lg:py-[60px] md:py-[48px] py-[40px] mt-[16px] rounded-[20px]"
+          className={`${
+            window.innerWidth < 1780
+              ? "w-[90vw] md:w-[80vw] lg:w-[60vw]"
+              : "w-[1000px]"
+          } bg-[#013a19] cursor-pointer lg:py-[60px] md:py-[48px] py-[40px] mt-[16px] rounded-[20px]`}
           {...component30Props}
         />
 
         <PaystackButton
-          className="bg-[#013a19] cursor-pointer w-[90vw] md:w-[80vw] lg:w-[60vw] lg:py-[60px] md:py-[48px] py-[40px] mt-[16px] rounded-[20px]"
+          className={`${
+            window.innerWidth < 1780
+              ? "w-[90vw] md:w-[80vw] lg:w-[60vw]"
+              : "w-[1000px]"
+          } bg-[#013a19] cursor-pointer lg:py-[60px] md:py-[48px] py-[40px] mt-[16px] rounded-[20px]`}
           {...component50Props}
         />
       </div>
 
       <div className="mb-[16px] mt-[40px] mx-[16px]">
-        <h2 className="text-[4vw] font-semibold md:text-[3vw] lg:mx-[40px] lg:text-[2vw]">
+        <h2
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[4vw] md:text-[3vw] lg:text-[2vw]"
+              : "text-[50px]"
+          } mx-[16px] lg:mx-[40px] font-semibold`}
+
+        >
           Boost Your Ads:
         </h2>
       </div>
@@ -150,7 +185,11 @@ function Shop() {
         </div>
       ) : null}
 
-      {products.length == 0 && <p className="text-center my-[16px] font-medium">You have not uploaded any product on uniplug😢</p>}
+      {products.length == 0 && (
+        <p className="text-center my-[16px] font-medium">
+          You have not uploaded any product on uniplug😢
+        </p>
+      )}
 
       {products.map((post, index) => (
         <div key={index} className="w-[100vw] flex flex-row  items-center">

@@ -5,7 +5,7 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import db from "../../firebase";
 
 function SignUpOne() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   const [userId, setuserId] = useState("");
@@ -119,22 +119,50 @@ function SignUpOne() {
   };
 
   return (
-    <div className="h-[100vh] w-[100vw] textFont flex flex-col items-center justify-center">
-      <div className="relative z-10 flex flex-col items-center mt-[32px]">
-        <h1 className="text-[4vw] md:text-[2vw] font-semibold">Welcome to</h1>
-        <h1 className="text-[8vw] md:text-[4vw] font-semibold headingFont">
-            <span class="magic">
-              <span class="magic-text">UniPlug</span>
-            </span>
-          </h1>
-        <p className="text-[3vw] md:text-[1.5vw] lg:text-[1.2vw]">
+    <div
+      className={`${
+        window.innerWidth < 1780 ? "w-[100vw]" : "w-[1780px]"
+      } textFont flex flex-col items-center justify-center h-[100vh] `}
+    >
+      <div className="relative flex flex-col items-center mt-[32px]">
+        <h1
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[4vw] md:text-[2vw]"
+              : "text-[50px]"
+          } font-semibold`}
+        >
+          Welcome to
+        </h1>
+        <h1
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[8vw] md:text-[4vw]"
+              : "text-[70px]"
+          } font-semibold headingFont`}
+        >
+          <span class="magic">
+            <span class="magic-text">UniPlug</span>
+          </span>
+        </h1>
+        <p
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[3vw] md:text-[1.5vw] lg:text-[1.2vw]"
+              : "text-[30px]"
+          }`}
+        >
           Lets get you started, input your details below.
         </p>
         <input
           onChange={(e) => setfirstName(e.target.value)}
           type="text"
           placeholder="Name"
-          className="input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border border-[#00cc00] w-[80vw] md:w-[40vw] lg:w-[30vw]"
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+              : "w-[1000px] text-[40px]"
+          } input bg-transparent rounded-[10px] text-black p-[8px] my-[8px] border border-[#00cc00]`}
         />
         {firstNameError && <p className="text-red-500">{firstNameError}</p>}
 
@@ -142,7 +170,11 @@ function SignUpOne() {
           onChange={(e) => setEmail(e.target.value)}
           type="text"
           placeholder="Email"
-          className="input bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border border-[#00cc00] w-[80vw] md:w-[40vw] lg:w-[30vw]"
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+              : "w-[1000px] text-[40px]"
+          } input bg-transparent rounded-[10px] text-black p-[8px] my-[8px] border border-[#00cc00]`}
         />
         {emailError && <p className="text-red-500">{emailError}</p>}
 
@@ -150,7 +182,11 @@ function SignUpOne() {
           onChange={(e) => setconfirmEmail(e.target.value)}
           type="text"
           placeholder="Retype Email"
-          className="input bg-transparent rounded-[10px] text-black p-[8px] mb-[16px] border border-[#00cc00] w-[80vw] md:w-[40vw] lg:w-[30vw]"
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+              : "w-[1000px] text-[40px]"
+          } input bg-transparent rounded-[10px] text-black p-[8px] my-[8px] border border-[#00cc00]`}
         />
         {confirmEmailError && (
           <p className="text-red-500">{confirmEmailError}</p>
@@ -160,7 +196,11 @@ function SignUpOne() {
           onChange={(e) => setPassword(e.target.value)}
           type="password"
           placeholder="Password"
-          className="input rounded-[10px] bg-transparent mb-[16px] text-black p-[8px] border border-[#00cc00] w-[80vw] md:w-[40vw] lg:w-[30vw]"
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+              : "w-[1000px] text-[40px]"
+          } input bg-transparent rounded-[10px] text-black p-[8px] my-[8px] border border-[#00cc00]`}
         />
         {passwordError && <p className="text-red-500">{passwordError}</p>}
 
@@ -168,19 +208,31 @@ function SignUpOne() {
           onChange={(e) => setConfirmPassword(e.target.value)}
           type="password"
           placeholder="Confirm Password"
-          className="input rounded-[10px] bg-transparent text-black p-[8px] border border-[#00cc00] w-[80vw] md:w-[40vw] lg:w-[30vw]"
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+              : "w-[1000px] text-[40px]"
+          } input bg-transparent rounded-[10px] text-black p-[8px] my-[8px] border border-[#00cc00]`}
         />
         {confirmPasswordError && (
           <p className="text-red-500">{confirmPasswordError}</p>
         )}
         <button
-            onClick={handleSignUp}
-          className="bg-[#013a19] text-white w-[33vw] md:w-[13vw] mt-[32px] rounded-[20px] py-[8px]"
+          onClick={handleSignUp}
+          className={`${
+            window.innerWidth < 1780 ? "w-[33vw] md:w-[13vw]" : "w-[200px]"
+          } bg-[#013a19] text-white mt-[16px] rounded-[20px] py-[8px]`}
         >
           Continue
         </button>
 
-        <p className="text-[3vw] md:text-[1.5vw] lg:text-[1.2vw] mt-[8px]">
+        <p
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[3vw] md:text-[1.5vw] lg:text-[1.2vw]"
+              : "text-[30px]"
+          }  mt-[8px]`}
+        >
           Already have an account?{" "}
           <Link to="/Login" className="text-blue-500">
             Log in

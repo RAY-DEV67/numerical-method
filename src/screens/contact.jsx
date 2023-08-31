@@ -22,8 +22,14 @@ function Contact() {
 
   return (
     <div>
-      <div className="flex flex-col items-center mt-[100px] md:mt-[150px] mx-[32px]">
-        <h1 className="text-[10vw] mb-[16px] headingFont md:text-[7vw] lg:text-[5vw] text-center leading-[7vw] md:leading-[3vw] font-bold w-[80vw] md:w-[40vw text-[#00cc00]">
+      <div className="flex flex-col items-center pt-[100px] md:pt-[150px] mx-[32px]">
+        <h1
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[10vw] w-[80vw] md:w-[40vw]  md:text-[7vw] lg:text-[5vw] leading-[7vw] md:leading-[3vw]"
+              : "w-[750px] text-[80px]"
+          } mb-[16px] headingFont font-bold  text-center`}
+        >
           <span class="magic">
             <span class="magic-star">
               <svg viewBox="0 0 512 512">
@@ -34,47 +40,72 @@ function Contact() {
             <span class="magic-text">Get in touch</span>
           </span>
         </h1>
-        <p className="text-center lg:w-[30vw]">
+        <p
+          className={`${
+            window.innerWidth < 1780 ? "lg:w-[30vw]" : "w-[650px]"
+          } text-center`}
+        >
           We are happy to help. Please contact us if you need help or have any
           questions.
         </p>
       </div>
 
       <div className="md:flex md:flex-row justify-center items-center mt-[40px]">
-        
-      <AnimatedDiv type="text" showType="showtext">
-      <div className="bg-green-50 m-[16px] p-[16px] rounded-[20px] md:w-[45vw]">
-          <h2 className="text-[6vw] md:text-[4vw] headingFont font-semibold my-[16px]">
-            Chat with us
-          </h2>
-          <p className="">
-            Have a quick question that needs to be answered? Chat with a member
-            of the team on whatsapp.
-          </p>
-          <p
-            onClick={handleWhatsAppClick}
-            className="bg-[#013a19] cursor-pointer text-white w-[150px] text-center py-[8px] my-[16px] rounded-[20px]"
-          >
-            Send Text
-          </p>
-        </div>
-      </AnimatedDiv>
-       
         <AnimatedDiv type="text" showType="showtext">
-        <div className="bg-green-50 m-[16px] p-[16px] rounded-[20px] md:w-[45vw]">
-          <h2 className="text-[6vw] font-semibold my-[16px] md:text-[4vw] headingFont">
-            Send us a mail
-          </h2>
-          <p className="">
-            Do you have general questions or need assistance? Please send us a
-            quick email and get a response from our team.
-          </p>
-          <p onClick={handleMailClick} className="bg-[#013a19] cursor-pointer text-white w-[150px] text-center py-[8px] my-[16px] rounded-[20px]">
-            Send Mail
-          </p>
-        </div>
+          <div
+            className={`${
+              window.innerWidth < 1780 ? "md:w-[45vw]" : "w-[700px]"
+            } bg-green-50 m-[16px] p-[16px] rounded-[20px]`}
+          >
+            <h2
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[6vw] md:text-[4vw]"
+                  : "text-[50px]"
+              } headingFont font-semibold my-[16px]`}
+            >
+              Chat with us
+            </h2>
+            <p className="">
+              Have a quick question that needs to be answered? Chat with a
+              member of the team on whatsapp.
+            </p>
+            <p
+              onClick={handleWhatsAppClick}
+              className="bg-[#013a19] cursor-pointer text-white w-[150px] text-center py-[8px] my-[16px] rounded-[20px]"
+            >
+              Send Text
+            </p>
+          </div>
         </AnimatedDiv>
-       
+
+        <AnimatedDiv type="text" showType="showtext">
+          <div
+            className={`${
+              window.innerWidth < 1780 ? "md:w-[45vw]" : "w-[700px]"
+            } bg-green-50 m-[16px] p-[16px] rounded-[20px]`}
+          >
+            <h2
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[6vw] md:text-[4vw]"
+                  : "text-[50px]"
+              } headingFont font-semibold my-[16px]`}
+            >
+              Send us a mail
+            </h2>
+            <p className="">
+              Do you have general questions or need assistance? Please send us a
+              quick email and get a response from our team.
+            </p>
+            <p
+              onClick={handleMailClick}
+              className="bg-[#013a19] cursor-pointer text-white w-[150px] text-center py-[8px] my-[16px] rounded-[20px]"
+            >
+              Send Mail
+            </p>
+          </div>
+        </AnimatedDiv>
       </div>
 
       <DownloadNow />

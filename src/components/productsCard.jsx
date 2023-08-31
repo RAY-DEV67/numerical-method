@@ -18,20 +18,54 @@ export default function ProductsCard({ product, userId }) {
   };
 
   return (
-    <div className="flex flex-row items-center justify-center w-[100vw] mb-[16px] textFont">
-      <div className="bg-white flex flex-row w-[85vw] py-[8px] border border-[#00cc00] eventCard shadow-lg md:w-[70vw] lg:w-[60vw] rounded-[10px] justify-center items-center">
+    <div
+      className={`${
+        window.innerWidth < 1780 ? " w-[100vw]" : "w-[1780px]"
+      } flex flex-row items-center justify-center mb-[16px] textFont`}
+    >
+      <div
+        className={`${
+          window.innerWidth < 1780
+            ? "w-[85vw]  md:w-[70vw] lg:w-[60vw]"
+            : "w-[1000px]"
+        } bg-white flex flex-row  py-[8px] border border-[#00cc00] eventCard shadow-lg  rounded-[10px] justify-center items-center`}
+      >
         <img
           src={product.image1}
-          className=" rounded-[10px] object-contain w-[20vw] h-[100px] md:w-[15vw] lg:w-[10vw]"
+          className={`${
+            window.innerWidth < 1780
+              ? "md:w-[15vw] lg:w-[10vw]  w-[20vw] "
+              : "w-[300px]"
+          }  rounded-[10px] object-contain`}
         />
-        <div className="p-[8px] w-[50vw] ml-[16px] md:w-[45vw]">
-          <div className="flex-row flex justify-between items-center w-[58vw]">
-            <p className="mb-[8px] text-[3vw] md:text-[1.5vw]">
+        <div
+          className={`${
+            window.innerWidth < 1780 ? "md:w-[45vw] w-[50vw]" : "w-[750px]"
+          } p-[8px] ml-[16px] `}
+        >
+          <div
+            className={`${
+              window.innerWidth < 1780 ? "w-[58vw]" : "w-[950px]"
+            } flex-row flex justify-between items-center `}
+          >
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[3vw] md:text-[1.5vw]"
+                  : "text-[30px]"
+              } mb-[8px] `}
+            >
               {formatCur(product.price, "en-NG", "NGN")}
             </p>
           </div>
 
-          <p className="mb-[8px] text-[3vw] md:text-[2vw] font-semibold w-[58vw]">
+          <p
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3vw] md:text-[2vw] w-[58vw]"
+                : "text-[40px] w-[950px]"
+            } mb-[8px] font-semibold`}
+          >
             {limitedTitle}
           </p>
 

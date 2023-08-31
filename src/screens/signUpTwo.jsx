@@ -565,21 +565,41 @@ function SignUpTwo() {
 
   return (
     <div>
-      <div className="h-[100vh] textFont w-[100vw] flex flex-col items-center justify-center">
-        <div className="relative z-10 flex flex-col items-center">
-          <h1 className="text-[6vw] lg:mt-[32px] font-semibold sm:text-[4vw] md:text-[3vw] headingFont">
+      <div
+        className={`${
+          window.innerWidth < 1780 ? "w-[100vw]" : "w-[1780px]"
+        } textFont flex flex-col items-center justify-center h-[100vh] `}
+      >
+        <div className="relative flex flex-col items-center">
+          <h1
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[6vw]  sm:text-[4vw] md:text-[3vw]"
+                : "text-[70px]"
+            } lg:mt-[32px] font-semibold headingFont`}
+          >
             <span class="magic">
               <span class="magic-text">You're Almost There!!</span>
             </span>
           </h1>
-          <p className="text-[3vw] sm:text-[2vw] md:text-[1.5vw]">
+          <p
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3vw] sm:text-[2vw] md:text-[1.5vw]"
+                : "text-[35px]"
+            }`}
+          >
             input your Contact Details below.
           </p>
 
           <select
             value={selectedState}
             onChange={handleStateChange}
-            className="input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border border-[#00cc00] w-[80vw] sm:w-[60vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] mt-[24px] mb-[8px] border border-[#00cc00]`}
           >
             <option value="">Select State</option>
             {nigerianStates.map((state) => (
@@ -593,7 +613,11 @@ function SignUpTwo() {
           <select
             value={selectedUniversity}
             onChange={handleUniversityChange}
-            className="input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border border-[#00cc00] w-[80vw] sm:w-[60vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[8px] border border-[#00cc00]`}
           >
             <option value="">Select University</option>
             {nigerianUniversities.map((university) => (
@@ -605,10 +629,22 @@ function SignUpTwo() {
           {universityError && <p className="text-red-500">{universityError}</p>}
 
           <div className="my-[16px] ml-[30px]">
-            <p className="w-[80vw] md:w-[40vw] text-[3vw] sm:text-[2vw] mb-[8px] md:text-[1.5vw]">
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "w-[80vw] md:w-[40vw] text-[3vw] md:text-[1.5vw] sm:text-[2vw]"
+                  : "w-[1000px] text-[40px]"
+              }  mb-[8px]`}
+            >
               Where Do You Stay
             </p>
-            <div className="w-[80vw] sm:w-[60vw] md:w-[40vw]">
+            <div
+              className={`${
+                window.innerWidth < 1780
+                  ? "w-[80vw] sm:w-[60vw] md:w-[40vw]"
+                  : "w-[1000px]"
+              }  mb-[8px]`}
+            >
               <input
                 type="checkbox"
                 id="Top"
@@ -618,11 +654,24 @@ function SignUpTwo() {
                   setoffCampus(!offCampus);
                 }}
               />
-              <label for="MIN" className="text-[3vw] sm:text-[2vw] md:text-[1.5vw]">
+              <label
+                for="MIN"
+                className={`${
+                  window.innerWidth < 1780
+                    ? "text-[3vw] sm:text-[2vw] md:text-[1.5vw]"
+                    : "text-[40px]"
+                }  mb-[8px]`}
+              >
                 Off Campus
               </label>
             </div>
-            <div className="w-[80vw] sm:w-[60vw] md:w-[40vw]">
+            <div
+              className={`${
+                window.innerWidth < 1780
+                  ? "w-[80vw] sm:w-[60vw] md:w-[40vw]"
+                  : "w-[1000px]"
+              }  mb-[8px]`}
+            >
               <input
                 type="checkbox"
                 id="Top"
@@ -633,7 +682,14 @@ function SignUpTwo() {
                   console.log(onCampus);
                 }}
               />
-              <label for="MIN" className="text-[3vw] sm:text-[2vw] md:text-[1.5vw]">
+              <label
+                for="MIN"
+                className={`${
+                  window.innerWidth < 1780
+                    ? "text-[3vw] sm:text-[2vw] md:text-[1.5vw]"
+                    : "text-[40px]"
+                }  mb-[8px]`}
+              >
                 On Campus
               </label>
             </div>
@@ -643,7 +699,11 @@ function SignUpTwo() {
           <select
             value={selectedGender}
             onChange={handleGenderChange}
-            className="input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border border-[#00cc00] w-[80vw] sm:w-[60vw] md:w-[40vw]"
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                : "w-[1000px] text-[40px]"
+            } input bg-transparent rounded-[10px] text-black p-[8px] my-[8px] border border-[#00cc00]`}
           >
             <option value="">Select Gender</option>
             {Gender.map((gender) => (
@@ -656,11 +716,12 @@ function SignUpTwo() {
 
           <button
             onClick={updateAddress}
-            className="bg-[#013a19] text-white w-[33vw] md:w-[13vw] mt-[32px] rounded-[20px] py-[8px]"
+            className={`${
+              window.innerWidth < 1780 ? "w-[33vw] md:w-[13vw]" : "w-[200px]"
+            } bg-[#013a19] text-white  mt-[32px] rounded-[20px] py-[8px]`}
           >
             Sign Up
           </button>
-          {/* {errors && <p className="text-red-500">{errors}</p>} */}
         </div>
       </div>
     </div>
