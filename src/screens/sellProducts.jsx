@@ -897,9 +897,11 @@ function SellProducts() {
   return (
     <div>
       <div className="flex flex-col items-center textFont">
-        <h1 className="lg:hidden headingFont text-[8vw] mt-[20vw] md:mt-[10vw]">
+        <h1 className="lg:hidden headingFont text-[6.5vw] mt-[20vw] md:mt-[10vw]">
           <span class="magic">
-            <span class="magic-text z-1 relative">Sell Products On UniPlug</span>
+            <span class="magic-text z-1 relative">
+              Sell Products On UniPlug
+            </span>
           </span>
         </h1>
         <form

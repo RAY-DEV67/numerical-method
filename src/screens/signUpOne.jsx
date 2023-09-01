@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import db from "../../firebase";
+import LoadingSpinner from "../components/spinner";
 
 function SignUpOne() {
   const navigate = useNavigate();
@@ -95,8 +96,6 @@ function SignUpOne() {
         password
       );
       const user = userCredential.user;
-      console.log("User registered:", user.email);
-      console.log("User registered:", user.uid);
       addNewUser(user.uid, user.email);
       navigate(`/SignUpTwo/${user.uid}`);
       setuserId(user.uid);
@@ -221,9 +220,9 @@ function SignUpOne() {
           onClick={handleSignUp}
           className={`${
             window.innerWidth < 1780 ? "w-[33vw] md:w-[13vw]" : "w-[200px]"
-          } bg-[#013a19] text-white mt-[16px] rounded-[20px] py-[8px]`}
+          } bg-[#013a19] text-white mt-[16px] rounded-[20px] py-[8px] flex-col items-center justify-center`}
         >
-          Continue
+          {loading ? <LoadingSpinner /> : "          Continue"}
         </button>
 
         <p

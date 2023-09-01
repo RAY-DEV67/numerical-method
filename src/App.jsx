@@ -18,6 +18,7 @@ import EventsDetails from "./screens/eventsDetails";
 import BuyTickets from "./screens/buyTickets";
 import Contact from "./screens/contact";
 import TermsAndConditions from "./screens/terms&conditions";
+import { ToastContainer } from "react-toastify";
 
 export const UserId = React.createContext();
 export const SetUserId = React.createContext();
@@ -33,6 +34,17 @@ function App() {
 
   return (
     <div className="textFont max-w-[1780px]">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+        progress={undefined}
+        theme="light"
+      />
+
       <UserId.Provider value={userId}>
         <SetUserId.Provider value={setuserId}>
           <UserState.Provider value={userState}>
@@ -72,10 +84,7 @@ function App() {
                           path="/BuyTickets/:userId"
                           element={<BuyTickets />}
                         />
-                         <Route
-                          path="/Contact"
-                          element={<Contact />}
-                        />
+                        <Route path="/Contact" element={<Contact />} />
                         <Route
                           path="/TermsAndConditions"
                           element={<TermsAndConditions />}

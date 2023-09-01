@@ -10,6 +10,9 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import db from "../../firebase";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import LoadingSpinner from "../components/spinner";
 
 const nigerianStates = [
   "Abia",
@@ -542,6 +545,16 @@ function SignUpTwo() {
           offCampus: offCampus,
         });
         setloading(false);
+        toast("Sign Up Successfull🙌🙌", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
         navigate("/Login");
       } else {
         console.log("No matching document found");
@@ -718,9 +731,9 @@ function SignUpTwo() {
             onClick={updateAddress}
             className={`${
               window.innerWidth < 1780 ? "w-[33vw] md:w-[13vw]" : "w-[200px]"
-            } bg-[#013a19] text-white  mt-[32px] rounded-[20px] py-[8px]`}
+            } bg-[#013a19] text-white  mt-[32px] rounded-[20px] py-[8px] flex-col items-center justify-center`}
           >
-            Sign Up
+            {loading ? <LoadingSpinner/> : "Sign Up"}
           </button>
         </div>
       </div>

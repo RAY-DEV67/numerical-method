@@ -2,6 +2,9 @@ import { Link, useNavigate } from "react-router-dom";
 import React, { useContext, useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { SetUserId } from "../App";
+import LoadingSpinner from "../components/spinner";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
   const setuserId = useContext(SetUserId);
@@ -38,6 +41,16 @@ function Login() {
         })
       );
 
+      toast("Welcome Back Odogwu🙌🙌", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       navigate("/");
     } catch (error) {
       const errorCode = error.code;
@@ -114,9 +127,9 @@ function Login() {
           onClick={handleLogin}
           className={`${
             window.innerWidth < 1780 ? "w-[33vw] md:w-[13vw]" : "w-[200px]"
-          } bg-[#013a19] text-white  mt-[32px] rounded-[20px] py-[8px]`}
+          } bg-[#013a19] text-white  mt-[32px] rounded-[20px] py-[8px] flex-col items-center justify-center`}
         >
-          Log In
+          {loading ? <LoadingSpinner /> : "Log In"}
         </button>
         {errors && <p className="text-red-500">{errors}</p>}
 
