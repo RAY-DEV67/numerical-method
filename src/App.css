@@ -85,7 +85,6 @@ body {
   overflow-x: hidden;
 }
 
-
 @media screen and (min-width: 1700px) {
   body {
     overflow-x: hidden;
@@ -94,6 +93,8 @@ body {
     align-items: center;
   }
 }
+
+
 
 .textFont {
   font-family: "Space Grotesk", sans-serif;

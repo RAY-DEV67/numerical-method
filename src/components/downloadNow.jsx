@@ -6,8 +6,8 @@ import google from "../assets/google.png";
 
 function DownloadNow() {
   return (
-    <div className="noOverflow">
-      <div className="hidden noOverflow mx-[16px] md:flex md:flex-row md:justify-center md:items-center mt-[50px]">
+    <div className="">
+      <div className="hidden mx-[16px] md:flex md:flex-row md:justify-center md:items-center mt-[50px]">
         <div
           className={`${
             window.innerWidth < 1780 ? "md:w-[40vw]" : "w-[700px]"
