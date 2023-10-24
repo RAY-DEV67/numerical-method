@@ -38,7 +38,7 @@ function LandingPage() {
           <h1
             className={`${
               window.innerWidth < 1780
-                ? "text-[8vw] md:text-[3vw] w-[80vw] md:w-[40vw]"
+                ? "text-[6vw] md:text-[3vw] w-[80vw] md:w-[40vw]"
                 : "text-[60px] w-[700px]"
             } headingFont font-bold mt-[16px] text-white`}
           >
@@ -47,7 +47,7 @@ function LandingPage() {
           <h1
             className={`${
               window.innerWidth < 1780
-                ? "text-[8vw] md:text-[3vw] w-[80vw] md:w-[40vw]"
+                ? "text-[6vw] md:text-[3vw] w-[80vw] md:w-[40vw]"
                 : "text-[60px] w-[700px]"
             } headingFont font-bold mt-[-16px] h-[10vh] text-white`}
           >
@@ -64,8 +64,8 @@ function LandingPage() {
             </p>
             <p
               className={`${
-                window.innerWidth < 1780 ? "w-[40vw] md:w-[20vw]" : "w-[700px]"
-              } text-white rounded-[20px] text-center font-semibold`}
+                window.innerWidth < 1780 ? "w-[90vw] md:w-[20vw]" : "w-[700px]"
+              } text-white rounded-[20px] font-semibold`}
             >
               One Student at a Time
             </p>
@@ -112,8 +112,8 @@ function LandingPage() {
         />
 
         <Sections
-          heading1="Chat and Communicate with fellow"
-          heading2="students."
+          heading1="Chat and Communicate with"
+          heading2="fellow students."
           text=" Share photos, videos, voice messages, or links in a secure way,
           break the language barrier with auto-translation to your
           preferred language."
