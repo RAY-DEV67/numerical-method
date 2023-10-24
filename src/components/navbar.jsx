@@ -171,7 +171,9 @@ export default function Navbar() {
               className={`${
                 window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
               } font-bold ${
-                isScrolled || location.pathname !== "/" ? "#00cc00" : "#ffffff"
+                isScrolled || location.pathname !== "/"
+                  ? "text-[#00cc00]"
+                  : "text-[#ffffff]"
               }`}
             >
               Home
@@ -182,7 +184,9 @@ export default function Navbar() {
               className={`${
                 window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
               } font-bold ${
-                isScrolled || location.pathname !== "/" ? "#00cc00" : "#ffffff"
+                isScrolled || location.pathname !== "/"
+                  ? "text-[#00cc00]"
+                  : "text-[#ffffff]"
               }`}
             >
               Sell Products
@@ -197,7 +201,9 @@ export default function Navbar() {
               className={`${
                 window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
               } font-bold ${
-                isScrolled || location.pathname !== "/" ? "#00cc00" : "#ffffff"
+                isScrolled || location.pathname !== "/"
+                  ? "text-[#00cc00]"
+                  : "text-[#ffffff]"
               }`}
             >
               Sell Services
@@ -208,7 +214,9 @@ export default function Navbar() {
               className={`${
                 window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
               } font-bold ${
-                isScrolled || location.pathname !== "/" ? "#00cc00" : "#ffffff"
+                isScrolled || location.pathname !== "/"
+                  ? "text-[#00cc00]"
+                  : "text-[#ffffff]"
               }`}
             >
               Events
@@ -223,7 +231,9 @@ export default function Navbar() {
               className={`${
                 window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
               } font-bold ${
-                isScrolled || location.pathname !== "/" ? "#00cc00" : "#ffffff"
+                isScrolled || location.pathname !== "/"
+                  ? "text-[#00cc00]"
+                  : "text-[#ffffff]"
               }`}
             >
               Premium Shop
@@ -238,8 +248,8 @@ export default function Navbar() {
                     : "lg:text-[20px]"
                 } font-bold ${
                   isScrolled || location.pathname !== "/"
-                    ? "#00cc00"
-                    : "#ffffff"
+                    ? "text-[#00cc00]"
+                    : "text-[#ffffff]"
                 }`}
               >
                 Login
@@ -251,7 +261,9 @@ export default function Navbar() {
               className={`${
                 window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
               } font-bold ${
-                isScrolled || location.pathname !== "/" ? "#00cc00" : "#ffffff"
+                isScrolled || location.pathname !== "/"
+                  ? "text-[#00cc00]"
+                  : "text-[#ffffff]"
               }`}
             >
               Sign Up
