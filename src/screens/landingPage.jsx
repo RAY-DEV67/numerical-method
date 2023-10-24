@@ -57,10 +57,17 @@ function LandingPage() {
           <AnimatedDiv type="text" showType="showtext">
             <p
               className={`${
-                window.innerWidth < 1780 ? "w-[90vw] md:w-[40vw]" : "w-[700px]"
-              } text-white rounded-[20px]  font-semibold`}
+                window.innerWidth < 1780 ? "w-[90vw] md:w-[20vw]" : "w-[700px]"
+              } text-white rounded-[20px] font-semibold`}
             >
-              Connecting Naija Campuses, One Student at a Time
+              Connecting Naija Campuses,
+            </p>
+            <p
+              className={`${
+                window.innerWidth < 1780 ? "w-[40vw] md:w-[20vw]" : "w-[700px]"
+              } text-white rounded-[20px] text-center font-semibold`}
+            >
+              One Student at a Time
             </p>
           </AnimatedDiv>
 

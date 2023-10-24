@@ -11,7 +11,7 @@ function Sections({ heading1, heading2, text, img, className }) {
         <h1
           className={`${
             window.innerWidth < 1780
-              ? "text-[6vw] md:text-[3vw] w-[80vw] md:w-[40vw]"
+              ? "text-[7vw] md:text-[3vw] w-[80vw] md:w-[40vw]"
               : "text-[60px] w-[700px]"
           } headingFont font-bold mt-[16px] text-[#00cc00]`}
         >
@@ -27,7 +27,7 @@ function Sections({ heading1, heading2, text, img, className }) {
         <h1
           className={`${
             window.innerWidth < 1780
-              ? "text-[6vw] md:text-[3vw] w-[80vw] md:w-[40vw]"
+              ? "text-[7vw] md:text-[3vw] w-[80vw] md:w-[40vw]"
               : "text-[60px] w-[700px]"
           } headingFont font-bold mt-[-16px] text-[#00cc00]`}
         >
@@ -47,7 +47,7 @@ function Sections({ heading1, heading2, text, img, className }) {
               window.innerWidth < 1780
                 ? "w-[90vw] md:w-[40vw]"
                 : "w-[700px]"
-            } text-[3vw] md:text-[12px] lg:text-[16px] bg-gradient-to-r from-green-500 to-green-900 p-[16px] rounded-[20px] mt-[16px] font-semibold text-white`}
+            } bg-gradient-to-r from-green-500 to-green-900 p-[16px] rounded-[20px] mt-[16px] font-semibold text-white`}
           >
             {text}
           </p>
