@@ -1,7 +1,7 @@
 import db from "../../firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import logo from "../assets/uniPlugLogo.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { getDocs, query, collection, where } from "firebase/firestore";
@@ -11,6 +11,9 @@ export default function Navbar() {
   const setState = useContext(SetState);
   const setName = useContext(SetUserName);
   const setUserId = useContext(SetUserId);
+  const location = useLocation();
+
+  console.log(location.pathname);
 
   const [showMobile, setshowMobile] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -114,7 +117,9 @@ export default function Navbar() {
             xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink"
             xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
-            fill={isScrolled ? "#00cc00" : "#ffffff"}
+            fill={
+              isScrolled || location.pathname !== "/" ? "#00cc00" : "#ffffff"
+            }
           >
             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
             <g
@@ -134,12 +139,15 @@ export default function Navbar() {
                 fill-rule="evenodd"
                 sketch:type="MSPage"
               >
-                {" "}
                 <g
                   id="Icon-Set-Filled"
                   sketch:type="MSLayerGroup"
                   transform="translate(-310.000000, -1039.000000)"
-                  fill={isScrolled ? "#00cc00" : "#ffffff"}
+                  fill={
+                    isScrolled || location.pathname !== "/"
+                      ? "#00cc00"
+                      : "#ffffff"
+                  }
                 >
                   {" "}
                   <path
@@ -162,7 +170,9 @@ export default function Navbar() {
             <p
               className={`${
                 window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
-              } font-bold ${isScrolled ? "text-[#00cc00]" : "text-[#ffffff]"}`}
+              } font-bold ${
+                isScrolled || location.pathname !== "/" ? "#00cc00" : "#ffffff"
+              }`}
             >
               Home
             </p>
@@ -171,7 +181,9 @@ export default function Navbar() {
             <p
               className={`${
                 window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
-              } font-bold ${isScrolled ? "text-[#00cc00]" : "text-[#ffffff]"}`}
+              } font-bold ${
+                isScrolled || location.pathname !== "/" ? "#00cc00" : "#ffffff"
+              }`}
             >
               Sell Products
             </p>
@@ -184,7 +196,9 @@ export default function Navbar() {
             <p
               className={`${
                 window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
-              } font-bold ${isScrolled ? "text-[#00cc00]" : "text-[#ffffff]"}`}
+              } font-bold ${
+                isScrolled || location.pathname !== "/" ? "#00cc00" : "#ffffff"
+              }`}
             >
               Sell Services
             </p>
@@ -193,7 +207,9 @@ export default function Navbar() {
             <p
               className={`${
                 window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
-              } font-bold ${isScrolled ? "text-[#00cc00]" : "text-[#ffffff]"}`}
+              } font-bold ${
+                isScrolled || location.pathname !== "/" ? "#00cc00" : "#ffffff"
+              }`}
             >
               Events
             </p>
@@ -206,7 +222,9 @@ export default function Navbar() {
             <p
               className={`${
                 window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
-              } font-bold ${isScrolled ? "text-[#00cc00]" : "text-[#ffffff]"}`}
+              } font-bold ${
+                isScrolled || location.pathname !== "/" ? "#00cc00" : "#ffffff"
+              }`}
             >
               Premium Shop
             </p>
@@ -219,7 +237,9 @@ export default function Navbar() {
                     ? "lg:text-[1.2vw]"
                     : "lg:text-[20px]"
                 } font-bold ${
-                  isScrolled ? "text-[#00cc00]" : "text-[#ffffff]"
+                  isScrolled || location.pathname !== "/"
+                    ? "#00cc00"
+                    : "#ffffff"
                 }`}
               >
                 Login
@@ -230,7 +250,9 @@ export default function Navbar() {
             <p
               className={`${
                 window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
-              } font-bold ${isScrolled ? "text-[#00cc00]" : "text-[#ffffff]"}`}
+              } font-bold ${
+                isScrolled || location.pathname !== "/" ? "#00cc00" : "#ffffff"
+              }`}
             >
               Sign Up
             </p>
