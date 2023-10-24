@@ -72,12 +72,12 @@ function Login() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-[100vh] login textFont">
+    <div className="flex flex-col items-center justify-center h-[100vh] textFont">
       <div className="relative flex flex-col items-center">
         <h1
           className={`${
             window.innerWidth < 1780
-              ? "text-[7vw] md:text-[2.5vw]"
+              ? "text-[6vw] md:text-[2vw]"
               : "text-[40px]"
           } font-semibold`}
         >
@@ -86,7 +86,7 @@ function Login() {
         <h1
           className={`${
             window.innerWidth < 1780
-              ? "text-[12vw] md:text-[5vw]"
+              ? "text-[10vw] md:text-[4vw]"
               : "text-[80px]"
           } font-semibold headingFont`}
         >
@@ -97,7 +97,7 @@ function Login() {
         <p
           className={`${
             window.innerWidth < 1780
-              ? "text-[3.5vw] md:text-[1.5vw]"
+              ? "text-[4vw] md:text-[1.5vw]"
               : "text-[30px]"
           }`}
         >

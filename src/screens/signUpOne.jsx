@@ -193,7 +193,7 @@ function SignUpOne() {
         <p
           className={`${
             window.innerWidth < 1780
-              ? "text-[3vw] md:text-[1.5vw] lg:text-[1.2vw]"
+              ? "text-[4vw] md:text-[1.5vw] lg:text-[1.2vw]"
               : "text-[30px]"
           }`}
         >

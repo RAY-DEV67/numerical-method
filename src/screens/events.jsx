@@ -49,7 +49,7 @@ function Events() {
         <p
           className={`${
             window.innerWidth < 1780
-              ? "leading-[6vw] md:leading-[4vw] text-[6vw] md:text-[4vw] lg:text-[3.5vw]"
+              ? "leading-[6vw] md:leading-[4vw] text-[5vw] md:text-[4vw] lg:text-[3.5vw]"
               : "text-[70px] leading-[70px]"
           } text-white mb-[32px] headingFont relative mx-[16px]  font-semibold w-[60%] md:w-[40%]`}
         >
@@ -61,9 +61,9 @@ function Events() {
         <p
           className={`${
             window.innerWidth < 1780
-              ? "text-[6vw] lg:text-[2vw] md:text-[3vw]"
+              ? "text-[5vw] lg:text-[2vw] md:text-[3vw]"
               : "text-[50px]"
-          } text-black headingFont`}
+          } text-[#013a19] headingFont`}
         >
           Upcoming Events:
         </p>

@@ -116,9 +116,9 @@ function Shop() {
           window.innerWidth < 1780
             ? "pt-[18vw] md:pt-[10vw] pb-[4vw] md:pb-[2vw] md:text-[2vw]   w-[100vw] "
             : "pt-[0px] w-[1780px]"
-        } fixed  lg:pb-[0px] font-semibold text-center py-[4px] text-white rounded-b-[30px]`}
+        } lg:pb-[0px] font-semibold text-center py-[4px] text-white rounded-b-[30px]`}
       >
-        <h1 className="lg:hidden headingFont text-[8vw]">
+        <h1 className="lg:hidden headingFont text-[5vw]">
           <span class="magic">
             <span class="magic-text">UniPlug Shop</span>
           </span>
@@ -127,8 +127,8 @@ function Shop() {
       <h2
         className={`${
           window.innerWidth < 1780
-            ? "pt-[28vw] md:pt-[18vw] lg:pt-[8vw] text-[4vw] md:text-[3vw] lg:text-[2vw] "
-            : "pt-[150px] text-[50px]"
+            ? "text-[4vw] md:text-[3vw] lg:text-[2vw] "
+            : "text-[50px]"
         } mx-[16px] lg:mx-[40px] font-semibold`}
       >
         Buy Plugs:
@@ -173,7 +173,6 @@ function Shop() {
               ? "text-[4vw] md:text-[3vw] lg:text-[2vw]"
               : "text-[50px]"
           } mx-[16px] lg:mx-[40px] font-semibold`}
-
         >
           Boost Your Ads:
         </h2>

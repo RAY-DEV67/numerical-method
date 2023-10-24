@@ -10,7 +10,7 @@ const Input = ({ onChangeText, placeholder, error, type }) => {
           type={type}
           className={`${
             window.innerWidth < 1780
-              ? "text-[2.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+              ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
               : "w-[1000px] text-[40px]"
           } input bg-transparent textFont rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
         />

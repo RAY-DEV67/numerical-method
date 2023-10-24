@@ -381,10 +381,10 @@ function SellServices() {
   return (
     <div>
       <div className="flex flex-col items-center textFont">
-        <h1 className="lg:hidden headingFont text-[6.5vw] mt-[20vw] md:mt-[10vw]">
+        <h1 className="lg:hidden headingFont text-[5vw] mt-[18vw] md:mt-[10vw]">
           <span class="magic">
             <span class="magic-text z-1 relative">
-              Sell Services On UniPlug
+              Upload Services
             </span>
           </span>
         </h1>
@@ -414,7 +414,7 @@ function SellServices() {
             onChange={handleCategoryChange}
             className={`${
               window.innerWidth < 1780
-                ? "text-[2.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
                 : "w-[1000px] text-[40px]"
             } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           >
@@ -577,7 +577,7 @@ function SellServices() {
             onChange={handleStateChange}
             className={`${
               window.innerWidth < 1780
-                ? "text-[2.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
                 : "w-[1000px] text-[40px]"
             } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           >
@@ -605,7 +605,7 @@ function SellServices() {
             onChange={handleUniversityChange}
             className={`${
               window.innerWidth < 1780
-                ? "text-[2.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
                 : "w-[1000px] text-[40px]"
             } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           >
