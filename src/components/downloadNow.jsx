@@ -15,7 +15,7 @@ function DownloadNow() {
         <AnimatedDiv type="text" showType="showtext">
           <div className="bg-gradient-to-r from-green-500 to-green-900 flex flex-col lg:flex-row items-center p-[16px] w-[80vw] lg:w-[70vw] rounded-[20px]">
             <div className="flex flex-col items-center">
-              <h1 className="text-[7vw] headingFont text-center w-[80%] mb-[32px] text-white md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold md:w-[40vw text-[#00cc00]">
+              <h1 className="text-[6vw] headingFont text-center w-[80%] mb-[32px] text-white md:text-[2vw] leading-[7vw] md:leading-[3vw] font-bold md:w-[40vw text-[#00cc00]">
                 Where Campus Dreams Comes True
               </h1>
               <h1 className="text-[5vw] caligraphy text-white md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold md:w-[40vw text-[#00cc00]">

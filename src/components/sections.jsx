@@ -11,7 +11,7 @@ function Sections({ heading1, heading2, text, img, className }) {
         <h1
           className={`${
             window.innerWidth < 1780
-              ? "text-[6vw] md:text-[3vw] w-[80vw] md:w-[40vw]"
+              ? "text-[6vw] md:text-[2vw] w-[80vw] md:w-[40vw]"
               : "text-[60px] w-[700px]"
           } headingFont font-bold mt-[16px] text-[#00cc00]`}
         >
@@ -27,9 +27,9 @@ function Sections({ heading1, heading2, text, img, className }) {
         <h1
           className={`${
             window.innerWidth < 1780
-              ? "text-[6vw] md:text-[3vw] w-[80vw] md:w-[40vw]"
+              ? "text-[6vw] md:text-[2vw] w-[80vw] md:w-[40vw]"
               : "text-[60px] w-[700px]"
-          } headingFont font-bold mt-[-16px] text-[#00cc00]`}
+          } headingFont font-bold mt-[-8px] text-[#00cc00]`}
         >
           <span class="magic">
             <span class="magic-star">

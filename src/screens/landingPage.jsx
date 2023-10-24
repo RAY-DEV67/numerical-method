@@ -49,7 +49,7 @@ function LandingPage() {
               window.innerWidth < 1780
                 ? "text-[6vw] md:text-[3vw] w-[80vw] md:w-[40vw]"
                 : "text-[60px] w-[700px]"
-            } headingFont font-bold mt-[-16px] h-[10vh] text-white`}
+            } headingFont font-bold mt-[-8px] h-[10vh] text-white`}
           >
             <Tick />
           </h1>
@@ -104,7 +104,7 @@ function LandingPage() {
         />
 
         <Sections
-          heading1="Your Gateway to Meaningful"
+          heading1="Your Gateway To Meaningful"
           heading2="Connections!"
           text="Expand your social circle and make unforgettable memories at your university. 🎓✨"
           img="https://res.cloudinary.com/dvl38skbc/image/upload/v1693252463/uniplug/connections_1_mk9amn.webp"
@@ -112,8 +112,8 @@ function LandingPage() {
         />
 
         <Sections
-          heading1="Chat and Communicate with"
-          heading2="fellow students."
+          heading1="Chat And Communicate With"
+          heading2="Fellow Students."
           text=" Share photos, videos, voice messages, or links in a secure way,
           break the language barrier with auto-translation to your
           preferred language."
