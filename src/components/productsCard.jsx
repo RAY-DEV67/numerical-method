@@ -1,9 +1,32 @@
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { UserId } from "../App";
+import db from "../../firebase";
 
 export default function ProductsCard({ product, userId }) {
-  const navigate = useNavigate();
+  const updateSubscriptionEndDate = () => {
+    // Get the current date
+    const currentDate = new Date();
+
+    // Calculate the new subscription end date by adding 1 month
+    const newDate = new Date(currentDate);
+    newDate.setMonth(currentDate.getMonth() + 1);
+
+    // Handle cases where the new date doesn't exist (e.g., February 30th)
+    if (currentDate.getDate() !== newDate.getDate()) {
+      // Adjust to the last day of the previous month
+      newDate.setDate(0);
+    }
+
+    console.log(newDate);
+
+    db.collection("Products")
+      .doc(product.id) // Use the appropriate document ID
+      .update({ subscriptionEndDate: newDate, notTop: false })
+      .then(() => {
+        console.log("Subscription end date updated successfully");
+      })
+      .catch((error) => {
+        console.error("Error updating subscription end date:", error);
+      });
+  };
 
   const limitedTitle =
     product.title.length > 50
@@ -69,7 +92,10 @@ export default function ProductsCard({ product, userId }) {
             {limitedTitle}
           </p>
 
-          <div className="bg-[#013a19] w-[150px] py-[4px] rounded-[20px]">
+          <div
+            onClick={updateSubscriptionEndDate}
+            className="bg-[#013a19] w-[150px] py-[4px] rounded-[20px]"
+          >
             <p className="text-center text-white">Boost Ad ⚡</p>
           </div>
         </div>

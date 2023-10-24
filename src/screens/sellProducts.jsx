@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import db from "../../firebase";
 import { storage } from "../../firebase";
 import {
@@ -8,11 +8,15 @@ import {
   collection,
   where,
   doc,
-  serverTimestamp,
   updateDoc,
+  serverTimestamp,
 } from "firebase/firestore";
 import { UserId } from "../App";
 import LoadingSpinner from "../components/spinner";
+import Input from "../components/input";
+import { nigerianUniversities } from "../json/nigerianUniversities";
+import { nigerianStates } from "../json/nigerianStates";
+import { generateRandomString } from "../helper/generateRandomString";
 
 const Categories = [
   "Clothes",
@@ -25,538 +29,54 @@ const Categories = [
   "Gadgets",
   "Others",
 ];
-const nigerianStates = [
-  "Abia",
-  "Adamawa",
-  "Akwa Ibom",
-  "Anambra",
-  "Bauchi",
-  "Bayelsa",
-  "Benue",
-  "Borno",
-  "Cross River",
-  "Delta",
-  "Ebonyi",
-  "Edo",
-  "Ekiti",
-  "Enugu",
-  "Federal Capital Territory",
-  "Gombe",
-  "Imo",
-  "Jigawa",
-  "Kaduna",
-  "Kano",
-  "Kastina",
-  "Kebbi",
-  "Kogi",
-  "Kwara",
-  "Lagos",
-  "Nasarawa",
-  "Niger",
-  "Ogun",
-  "Ondo",
-  "Osun",
-  "Oyo",
-  "Plateau",
-  "Rivers",
-  "Sokoto",
-  "Taraba",
-  "Yobe",
-  "Zamfara",
-];
-
-const nigerianUniversities = [
-  "Abia State University, Uturu",
-  "Abia State Polytechnic",
-  "Abia State College of Education",
-  "Anambra State Polytechnic",
-  "Adamawa State University, Mubi",
-  "Adamawa State Polytechnic",
-  "Adamawa State College of Education",
-  "Adekunle Ajasin University, Akungba",
-  "Akwa Ibom State University",
-  "Akwa Ibom State Polytechnic",
-  "Akwa Ibom State College of Education",
-  "Ambrose Alli University, Ekpoma",
-  "Achievers University, Owo",
-  "Adeleke University, Ede",
-  "Afe Babalola University, Ado-Ekiti",
-  "African University Of Science And Technology, Abuja",
-  "Abubakar Tafari Ali Polytechnic",
-  "Akanu Ibiam Federal Polytechnic",
-  "Auchi Polytechnic",
-  "Abraham Adesanya Polytechnic",
-  "Allover Central Polytechnic",
-  "Abdul Gusau Polytechnic",
-  "Ajayi Crowther University, Ibadan",
-  "Al-Hikmah University, Ilorin",
-  "Al-Qalam University, Kastina",
-  "American University Of Nigeria, Yola",
-  "Augustine University",
-  "Anchor University, Ayobo",
-  "Arthur Javis University, Akpoyubo",
-  "Admiralty University, Ibusa",
-  "Atiba University, Oyo",
-  "Ave Maria University, Piyanko",
-  "Al-Istiqama University, Sumaila",
-  "Ahman Pategi University",
-  "Anan University, Kwall",
-  "Al-Ansar University, Maiduguri",
-  "Aletheia University, Ago-Iwoye",
-  "Amadeus University, Amizi",
-  "Azman University",
-  "Amaj University, Kwali",
-  "Al-Muhibbah Open University, Abuja",
-  "Al-Bayan University, Ankpa",
-  "Abubakar Tafawa Balewa University",
-  "Ahmadu Bello University, Zaria",
-  "Alex Ekwueme University, Ndufu-Alike",
-  "Air Force Institute of Technology",
-  "Adeyemi College of Education",
-  "Alvan Ikoku College of Education",
-  "Ansar-Ud-Deen College of Education",
-  "African Thinkers Community of Inquiry College of Education",
-  "Adamu Augie College of Education",
-  "Adamu Tafawa Balewa College of Education",
-  "Adeniran Ogunsanya College of Education",
-  "Aminu Saleh College of Education",
-  "Bauchi State University, Gadau",
-  "Benue State University, Makurdi",
-  "Benue State Polytechnic",
-  "Borno State University, Maiduguri",
-  "Bayelsa Medical University",
-  "Bayelsa State College of Arts and Science",
-  "Bamidele Olumilua University of Science and Technology, Ikere",
-  "Babcock University",
-  "Baze University",
-  "Bells University of Technology, Otta",
-  "Benson Idahosa University, Benin",
-  "Bingham University, New Karu",
-  "Bowen University, Iwo",
-  "British Canadian University, Obufu",
-  "Bayero University",
-  "Bilyaminu Othman College of Education",
-  "Chukwuemeka Odumegwu Ojukwu University, Uli",
-  "Cross River State University of Technology",
-  "Confluence University of Science and Technology, Osara",
-  "Caleb University",
-  "Caritas University",
-  "Chrisland University",
-  "Convenant University",
-  "Crawford University",
-  "Cresent University",
-  "Christopher University",
-  "Crown Hill University",
-  "Coal City University",
-  "Clifford University",
-  "Claretian University of Nigeria",
-  "Capital City University",
-  "Canadian University of Nigeria, Abuja",
-  "Cosmopolitan University Abuja",
-  "College of Petroleum and Energy Studies",
-  "Citi Polytechnic",
-  "College of Agriculture and Animal Science",
-  "College of Agriculture, Zuru",
-  "College of Agriculture, Kabba",
-  "Coastal Polytechnic",
-  "College of Agriculture, Lafia",
-  "College of Agriculture, Jalingo",
-  "College of Education and Legal Studies, Nguru",
-  "College of Education, Akamkpa",
-  "College of Education, Akwanga",
-  "College of Education, Billiri",
-  "College of Education, Ekiadolor",
-  "College of Education, Gindiri",
-  "College of Education, Katsina-Ala",
-  "College of Education, Lanlate",
-  "College of Education, Oju",
-  "College of Education, Waka-Biu",
-  "College of Education, Warri",
-  "Delta State University, Abraka",
-  "Delta State Polytechnic",
-  "Delta University of Science and Technology, Ozoro",
-  "Dennis Osadebe University, Asaba",
-  "Dominican University",
-  "Dominion University",
-  "Dorben Polytechnic",
-  "Divine Polytechnic",
-  "Ebonyi State University, Abakaliki",
-  "Ebonyi State College of Education",
-  "Ekiti State University",
-  "Enugu State University of Science and Technology",
-  "Enugu State Polytechnic",
-  "Enugu State College of Education",
-  "Edo State University",
-  "Edo State Polytechnic",
-  "Edo State College of Education",
-  "Enugu State University of Medical and Applied Sciences, Igbo-Eno",
-  "Emmanuel Alayande University of Education",
-  "Edwin Clark University",
-  "Elizade University",
-  "Evangel University",
-  "Eko University of Medical and Health Sciences Ijaniki",
-  "Edusoko University, Bida",
-  "European University of Nigeria, Duboyi",
-  "Elrazi Medical University",
-  "El-Amin University, Minna",
-  "Eastern Polytechnic",
-  "Ekwenugo Okeke Polytechnic",
-  "Federal University of Health Sciences, Ila Orangun",
-  "Federal University of Health Sciences, Azare",
-  "Federal University of Technology, Ikot abasi",
-  "Federal University of Technology, Babura",
-  "Federal University of Agriculture, Zuru",
-  "Federal University of Agriculture, Abeokuta",
-  "Federal University of Health Technology, Otukpo",
-  "Federal University, Gasau Zamfara",
-  "Federal University, Birnin Kebbi",
-  "Federal University, Wukari Taraba",
-  "Federal University, Oye-Ekiti",
-  "Federal University, Otuoke Bayelsa",
-  "Federal University, Lokoja",
-  "Federal University, Lafia",
-  "Federal University, Kashere",
-  "Federal University, Dutsin-Ma",
-  "Federal University, Dutse",
-  "Federal University of Technology, Owerri",
-  "Federal University of Technology, Minna",
-  "Federal University of Technology, Akure",
-  "Federal University of Petroleum Resources, Effurun",
-  "Federal University Gashua, Yobe",
-  "Franco British International University",
-  "Fountain University, Oshogbo",
-  "Federal Polytechnic, Mubi",
-  "Foundation College of Technology",
-  "Federal Polytechnic, Oko",
-  "Federal Polytechnic, Bauchi",
-  "Federal Polytechnic, Ekowe Bayelsa",
-  "Federal College of Agriculture, Ishiagu",
-  "Federal Polytechnic, Ado-Ekiti",
-  "Federal School of Dental Technology & Therapy",
-  "Federal College of Land Resources Technology, Owerri",
-  "Federal Polytechnic, Nekede",
-  "Federal College of Forestry Mechanisation",
-  "Federal School of Statistics, Manchok",
-  "Federal Polytechnic, Bernin-Kebbi",
-  "Federal Polytechnic, Idah",
-  "Federal Polytechnic, Offa",
-  "Federal College of Fisheries and Marine Technology",
-  "Federal Polytechnic, Nasarawa",
-  "Federal College of Fresh Water Fisheries Technology",
-  "Federal College of Wildlife Management",
-  "Federal Polytechnic, Bida",
-  "Federal Polytechnic, Ilaro",
-  "Federal Polytechnic, Ede",
-  "Federal College of Animal Health & Production Technology",
-  "Federal College of Forestry, Ibadan",
-  "Federal Polytechnic, Ayede",
-  "Federal College of Forestry, Jos",
-  "Federal College of Land Resources Technology, Kuru",
-  "Federal Polytechnic, Damaturu",
-  "Federal Polytechnic, Namoda",
-  "Federal College of Education, Oyo",
-  "Federal College of Education, Iwo",
-  "Federal College of Education, Asaba",
-  "Federal College of Education, Abeokuta",
-  "Federal College of Education, Kano",
-  "Federal College of Education, Eha-Amufu",
-  "Federal College of Education, Okene",
-  "Federal College of Education, Gombe",
-  "Federal College of Education, Omoku",
-  "Federal College of Education, Kontagora",
-  "Federal College of Education, Zaria",
-  "Federal College of Education, Pankshin",
-  "Federal College of Education, Yola",
-  "Federal College of Education, Potiskum",
-  "Federal College of Education, Akoka",
-  "Federal College of Education, Katsina",
-  "Federal College of Education, Bichi",
-  "Federal College of Education, Obudu",
-  "Federal College of Education, Umunze",
-  "FCT College of Education",
-  "Gombe State University",
-  "Gombe State University of Science and Technology",
-  "Godfrey Okoye University",
-  "Gregory University",
-  "Greenfield University",
-  "Gerar University of Medical Science",
-  "Gateway Polytechnic",
-  "Grace Polytechnic",
-  "Hillside University of Science and Technology, Okemisi",
-  "Hensard University, Toru-Orua",
-  "Huda University, Gusau",
-  "Havilla University, Nde-Ikom",
-  "Hezekiah University",
-  "Hallmark University",
-  "Heritage Polytechnic",
-  "Hussaini Adamu Federal Polytechnic",
-  "Hassan Usman Kastina Polytechnic",
-  "Havard Wilson College of Education",
-  "Ibrahim Badamasi Babangida University",
-  "Ignatius Ajuru University of Education",
-  "Imo State University",
-  "Igbinedion University Okada",
-  "Iconic Open University",
-  "Interlink Polytechnic",
-  "Iwo City Polytechnic",
-  "Igbajo Polytechnic",
-  "Imo State Technological Skills Acquisition Center",
-  "Imo State Polytechnic",
-  "Institute of Management Technology",
-  "Ibrahim Babangida College of Agriculture",
-  "Imo State College of Education",
-  "Isa Kaita College of Education",
-  "Isaac Jasper Boro College of Education",
-  "Institute of Ecumenical Education",
-  "Joseph Ayo Babalola University",
-  "Jewel University",
-  "Jigawa State College of Education",
-  "Jigawa State College of Education and Legal Studies",
-  "King David Umahi University of Medical Sciences",
-  "Khalifa Isiyaku Rabiu University",
-  "Khadija University",
-  "Karl-Kumm University",
-  "Kola Daisi University",
-  "Kwararafa University",
-  "Kings University, Ode Omu",
-  "Kingsley Ozumba Mbadiwe University",
-  "Kwara State University",
-  "Kebbi State University of Science and Technology",
-  "Kano University of Science and Technology",
-  "Kaduna State University",
-  "Kwara State Polytechnic",
-  "Kogi State Polytechnic",
-  "Kebbi State Polytechnic",
-  "Kano State Polytechnic",
-  "Kaduna Polytechnic",
-  "Kings Polytechnic",
-  "Kano State College of Education and Preliminary Studies",
-  "Kaduna State College of Education",
-  "Kashim Ibrahim College of Education",
-  "Kogi State College of Education",
-  "Kwara State College of Education",
-  "Ladoke Akintola University of Technology",
-  "Lagos State University, Ojo",
-  "Lagos State University of Education, ijanikin",
-  "Lagos State University of Science and Technology, ikorodu",
-  "Landmark University",
-  "Lead City University",
-  "Legacy University",
-  "Lux Mundi University",
-  "Lagos City Polytechnic",
-  "Modibbo Adama University of Technology",
-  "Michael Okpara University of Agriculture",
-  "Miva Open University",
-  "Mercy Medical University",
-  "Maduka University",
-  "Muhammad Kamalud University",
-  "Margaret Lawrence University",
-  "Mewar International University",
-  "Maryam Abacha American University of Nigeria",
-  "Mudiame University",
-  "Maranathan University",
-  "Mountain Top University",
-  "Micheal & Cecilia Ibru University",
-  "Mcpherson University",
-  "Madonna University",
-  "Moshood Abiola University of Science and Technology",
-  "Mai Idris Alooma Polytechnic",
-  "Moshood Abiola Polytechnic",
-  "Maurid Institute of Management & Technology",
-  "Mohammed Abdullahi Wase Polytechnic",
-  "Maritime Academy of Nigeria",
-  "Micheal Otedola College of Primary Education",
-  "Mohammed Goni College of Legal and Islamic Studies",
-  "Moje College of Education",
-  "Muftau Olanihun College of Education",
-  "Niger Delta University",
-  "Nasarawa State University",
-  "Nile University of Nigeria",
-  "Novena University",
-  "NOK University",
-  "Nigerian British University",
-  "Newgate University",
-  "NorthWest University",
-  "Nigerian University of Technology and Management",
-  "National Open University of Nigeria",
-  "Nigerian Police Academy, Wudil",
-  "Nigerian Defence Academy",
-  "Nnamdi Azikiwe University",
-  "Nigerian Maritime University, Okerenkoko",
-  "Nigerian Army University, Biu",
-  "Nigerian Institute of Leather and Science Technology",
-  "Nigerian College of Aviation Technology",
-  "Nuhu Bamalli Polytechnic",
-  "Nasarawa State Polytechnic",
-  "Niger State College of Agriculture",
-  "Niger State Polytechnic",
-  "Novelty Polytechnic",
-  "Nigerian Army School of Education",
-  "Nana Aisahat Momorial College of Education",
-  "Niger State College of Education",
-  "Nwafor Orizu College of Education",
-  "Obafemi Awolowo University",
-  "Oduduwa University",
-  "Obong University",
-  "Ondo State University of Medical Sciences",
-  "Oyo State Technical University",
-  "Osun State University",
-  "Olabisi Onabanjo University",
-  "Ondo State University of Science and Technology",
-  "Offer Center Institute of Agriculture",
-  "Osun State Polytechnic",
-  "Osun State College of Technology",
-  "Ogun State College Of Health Technology",
-  "Ogun State Institute Of Technology",
-  "Our Saviour Institute Of Science and Technology",
-  "Prince Abubakar Audu University",
-  "Plateau State University",
-  "Pan-Atlantic University",
-  "Paul University",
-  "Precious Cornerstone University",
-  "PAMO University of Medical Sciences",
-  "Philomath University",
-  "PEN Resource University",
-  "Peter University",
-  "PeaceLand University",
-  "Phoenix University",
-  "Prime University",
-  "Petroleum Training Institute",
-  "Plateau State College of Agriculture",
-  "Plateau State Polytechnic",
-  "Port Harcourt Polytechnic",
-  "Piaget College of Education",
-  "Rivers State University",
-  "Redeemer's University",
-  "Renaissance University",
-  "Rhema University",
-  "Ritman University",
-  "Rayhaan University",
-  "Shanahan University",
-  "Sam Maris University",
-  "Saisa University of Medical Sciences and Technology",
-  "Sports University",
-  "Skyline University",
-  "Spiritan University",
-  "Summit University",
-  "Southwestern University",
-  "Samuel Adegboyega University",
-  "Salem University",
-  "Sa'adatu Rimi University",
-  "Shehu Shagari University of Education",
-  "Sokoto State University",
-  "Sule Lamido University",
-  "Tai Solarin University of Education",
-  "Taraba State University",
-  "Tansian University",
-  "Trinity University",
-  "TopFaith University",
-  "Thomas Adewumi University",
-  "The Duke Medical University",
-  "Usumanu Danfodiyo University",
-  "University of Uyo",
-  "University of Port-Harcourt",
-  "University of Nigeria, Nsukka",
-  "University of Maiduguri",
-  "University of Lagos",
-  "University of Jos",
-  "University of Ilorin",
-  "University of Ibadan",
-  "University of Calabar",
-  "University of Benin",
-  "University of Agriculture, Makurdi",
-  "University of Abuja",
-  "University of the Niger",
-  "University of Offa",
-  "University of Mkar",
-  "University of Ilesa",
-  "University of Delta",
-  "University of Agriculture and Environmental Sciences",
-  "University of Africa, Toru Orua",
-  "Umar Musa Yar'Adua University",
-  "Veritas University",
-  "Vision University",
-  "Venite University",
-  "Wellspring University",
-  "Wesley University",
-  "Wigwe University",
-  "Western Delta University",
-  "West Midlands Open University",
-  "Westland Delta University",
-  "Yaba College Of Technology",
-  "Yobe State University",
-  "Yusuf Maitama Sule University",
-  "Zamfara State University",
-];
 
 const Gender = ["Male", "Female"];
 const Condition = ["Brand New", "Used"];
+const HairOrigin = ["Any", "Human Hair", "Synthetic"];
 
 function SellProducts() {
   const userUid = useContext(UserId);
-  console.log(userUid);
 
   const [selectedCategory, setselectedCategory] = useState("");
   const [selectedState, setSelectedState] = useState("");
   const [selectedUniversity, setSelectedUniversity] = useState("");
   const [selectedGender, setSelectedGender] = useState("");
   const [selectedCondition, setSelectedCondition] = useState("");
-
-  const [firstLoading, setfirstLoading] = useState(false);
   const [loadingSubmit, setloadingSubmit] = useState(false);
   const [submitError, setsubmitError] = useState("");
-
-  const [madeInNigeria, setmadeInNigeria] = useState(false);
-  const [handmade, sethandmade] = useState(false);
-  const [warranty, setwarranty] = useState(false);
   const [availableQuantity, setavailableQuantity] = useState(100000);
-
   const [stateError, setstateError] = useState("");
-
   const [price, setprice] = useState();
   const [priceError, setpriceError] = useState("");
-
   const [deliveryOnCampus, setdeliveryOnCampus] = useState(0);
   const [deliveryOnCampusError, setdeliveryOnCampusError] = useState("");
-
   const [deliveryOffCampus, setdeliveryOffCampus] = useState(0);
   const [deliveryOffCampusError, setdeliveryOffCampusError] = useState("");
-
   const [title, settitle] = useState("");
   const [titleError, settitleError] = useState("");
-
   const [brand, setbrand] = useState("");
   const [color, setcolor] = useState("");
   const [description, setdescription] = useState("");
-
   const [phoneNumber, setphoneNumber] = useState("");
   const [phoneNumberError, setphoneNumberError] = useState("");
-
   const [accountNumber, setaccountNumber] = useState("");
   const [accountNumberError, setaccountNumberError] = useState("");
-
   const [bankName, setbankName] = useState("");
   const [bankNameError, setbankNameError] = useState("");
-
   const [accountHolderName, setaccountHolderName] = useState("");
   const [accountHolderNameError, setaccountHolderNameError] = useState("");
-
   const [instagram, setinstagram] = useState("");
   const [twitter, settwitter] = useState("");
   const [size, setsize] = useState("");
-
   const [vendorName, setvendorName] = useState("");
   const [vendorLogo, setvendorLogo] = useState("");
   const [vendorNameError, setvendorNameError] = useState("");
-
+  const [deliveryTime, setdeliveryTime] = useState("");
+  const [deliveryTimeError, setdeliveryTimeError] = useState("");
   const [genderError, setgenderError] = useState("");
-
   const [categoryError, setcategoryError] = useState("");
-
   const [universityError, setuniversityError] = useState("");
-
   const [image1Error, setimage1Error] = useState("");
-
   const [image2Error, setimage2Error] = useState("");
   const [isfile, setfile1] = useState("");
   const [file2, setfile2] = useState("");
@@ -564,23 +84,17 @@ function SellProducts() {
   const [file4, setfile4] = useState("");
   const [file5, setfile5] = useState("");
   const [url, seturl] = useState("");
+  const [hairLength, sethairLength] = useState("");
+  const [selectedHairOrigin, setselectedHairOrigin] = useState("");
 
   const originalPrice = Number(price);
   const calculatedPrice = originalPrice + originalPrice * 0.05; // Calculate 5% of the original price
 
-  const generateRandomString = (length) => {
-    const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let randomString = "";
-    for (let i = 0; i < length; i++) {
-      const randomIndex = Math.floor(Math.random() * characters.length);
-      randomString += characters.charAt(randomIndex);
-    }
-    return randomString;
-  };
+  console.log("Size", color);
 
   const upload = async () => {
     setcategoryError("");
+    setdeliveryTimeError("");
     setimage1Error("");
     setimage2Error("");
     setstateError("");
@@ -596,6 +110,12 @@ function SellProducts() {
     setaccountNumberError("");
     setdeliveryOffCampusError("");
     setdeliveryOnCampusError("");
+
+    if (title === "") {
+      settitleError("Please Enter Product Title");
+      setsubmitError("Unsuccessful!! Check form for errors!");
+      return;
+    }
 
     if (selectedCategory === "") {
       setcategoryError("Please Select A Category");
@@ -638,11 +158,6 @@ function SellProducts() {
       setsubmitError("Unsuccessful!! Check form for errors!");
       return;
     }
-    if (title === "") {
-      settitleError("Please Enter Product Title");
-      setsubmitError("Unsuccessful!! Check form for errors!");
-      return;
-    }
     if (selectedGender === "") {
       setgenderError("Please Select A Gender");
       setsubmitError("Unsuccessful!! Check form for errors!");
@@ -677,6 +192,11 @@ function SellProducts() {
       setsubmitError("Unsuccessful!! Check form for errors!");
       return;
     }
+    if (deliveryTime == "") {
+      setdeliveryTimeError("Please enter a delivery time");
+      setsubmitError("Unsuccessful!! Check form for errors!");
+      return;
+    }
     if (phoneNumber === "") {
       setphoneNumberError("Please Enter Your Phone Number");
       setsubmitError("Unsuccessful!! Check form for errors!");
@@ -691,29 +211,35 @@ function SellProducts() {
       title: title,
       description: description,
       nameOfBrand: brand,
-      color: color,
+      color: color.split(","),
       condition: selectedCondition,
       gender: selectedGender,
-      size: size,
+      size: size.split(","),
       vendor: vendorName,
-      madeInNigeria: madeInNigeria,
-      warranty: warranty,
-      handmade: handmade,
       phoneNumber: phoneNumber,
       instagram: instagram,
       twitter: twitter,
       price: calculatedPrice,
       notTop: true,
+      image1: "",
+      image2: "",
+      image3: "",
+      image4: "",
+      image5: "",
+      vendorLogo: "",
       userId: userUid,
       availableQuantity: Number(availableQuantity),
       productId: generateRandomString(20),
-      timestamp: new Date(),
+      timestamp: serverTimestamp(),
       blocked: false,
       vendorAccountNumber: accountNumber,
       vendorAccountName: accountHolderName,
       vendorBankName: bankName,
       deliveryOffCampus: Number(deliveryOffCampus),
       deliveryOnCampus: Number(deliveryOnCampus),
+      deliveryTime: deliveryTime,
+      hairOrigin: selectedHairOrigin,
+      hairLength: hairLength.split(","),
       searchKeywords: `${title.toLowerCase()} ${selectedGender.toLowerCase()} ${
         selectedGender === "Male"
           ? "Men"
@@ -724,7 +250,9 @@ function SellProducts() {
         " "
       ),
     });
+
     console.log("Uploaded Successfully");
+    updateUserInfo();
     setloadingSubmit(false);
 
     if (isfile == null) return;
@@ -863,7 +391,6 @@ function SellProducts() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     upload();
   };
 
@@ -894,6 +421,10 @@ function SellProducts() {
     setSelectedCondition(e.target.value);
   };
 
+  const handleHairOriginChange = (e) => {
+    setselectedHairOrigin(e.target.value);
+  };
+
   return (
     <div>
       <div className="flex flex-col items-center textFont">
@@ -917,7 +448,7 @@ function SellProducts() {
             onChange={handleCategoryChange}
             className={`${
               window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                ? "text-[2.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
                 : "w-[1000px] text-[40px]"
             } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           >
@@ -1091,7 +622,7 @@ function SellProducts() {
             onChange={handleStateChange}
             className={`${
               window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                ? "text-[2.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
                 : "w-[1000px] text-[40px]"
             } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           >
@@ -1119,7 +650,7 @@ function SellProducts() {
             onChange={handleUniversityChange}
             className={`${
               window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                ? "text-[2.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
                 : "w-[1000px] text-[40px]"
             } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           >
@@ -1141,81 +672,78 @@ function SellProducts() {
               {universityError}
             </p>
           )}
-          <input
-            onChange={(e) => settitle(e.target.value)}
+
+          <Input
+            onChangeText={(e) => settitle(e.target.value)}
             type="text"
+            error={titleError}
             placeholder="Product Title"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
-          {titleError && (
-            <p
-              className={`${
-                window.innerWidth < 1780
-                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
-                  : "text-[30px]"
-              } text-red-500  mb-[16px]`}
-            >
-              {titleError}
-            </p>
-          )}
-          <input
-            onChange={(e) => setbrand(e.target.value)}
+
+          <Input
+            onChangeText={(e) => setbrand(e.target.value)}
             type="text"
             placeholder="Name Of Brand (Optional)"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
-          />
-          <input
-            onChange={(e) => setcolor(e.target.value)}
-            type="text"
-            placeholder="Color Of Product (Optional)"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
 
-          <select
-            value={selectedCondition}
-            onChange={handleConditionChange}
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
-          >
-            <option value="">Select Condition</option>
-            {Condition.map((condition) => (
-              <option key={condition} value={condition}>
-                {condition}
-              </option>
-            ))}
-          </select>
+          {selectedCategory !== "Skin Care" &&
+            selectedCategory !== "Fragrances" && (
+              <div>
+                <Input
+                  onChangeText={(e) => {
+                    setcolor(e.target.value);
+                  }}
+                  type="text"
+                  placeholder="Color Of Product (Optional)"
+                />
 
-          <select
-            value={selectedGender}
-            onChange={handleGenderChange}
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
-          >
-            <option value="">Which Gender Is This Product For</option>
-            {Gender.map((gender) => (
-              <option key={gender} value={gender}>
-                {gender}
-              </option>
-            ))}
-          </select>
+                <p className="text-red-700 mx-[8px] mt-[4px] textFont mb-[16px] text-[12px]">
+                  Note: If more than one color is available, seperate the
+                  various colors available using a comma ","
+                </p>
+              </div>
+            )}
+
+          {selectedCategory !== "Hair" &&
+            selectedCategory !== "Skin Care" &&
+            selectedCategory !== "Fragrances" && (
+              <select
+                value={selectedCondition}
+                onChangeText={handleConditionChange}
+                className={`${
+                  window.innerWidth < 1780
+                    ? "text-[2.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                    : "w-[1000px] text-[40px]"
+                } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
+              >
+                <option value="">Select Condition</option>
+                {Condition.map((condition) => (
+                  <option key={condition} value={condition}>
+                    {condition}
+                  </option>
+                ))}
+              </select>
+            )}
+
+          {selectedCategory !== "Hair" && selectedCategory !== "Gadgets" && (
+            <select
+              value={selectedGender}
+              onChange={handleGenderChange}
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[2.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                  : "w-[1000px] text-[40px]"
+              } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
+            >
+              <option value="">Which Gender Is This Product For</option>
+              {Gender.map((gender) => (
+                <option key={gender} value={gender}>
+                  {gender}
+                </option>
+              ))}
+            </select>
+          )}
+
           {genderError && (
             <p
               className={`${
@@ -1227,47 +755,74 @@ function SellProducts() {
               {genderError}
             </p>
           )}
-          <input
-            onChange={(e) => setsize(e.target.value)}
-            type="text"
-            placeholder="Size"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
-          />
-          <input
-            onChange={(e) => setavailableQuantity(e.target.value)}
+
+          {selectedCategory == "" ||
+          selectedCategory == "Clothes" ||
+          selectedCategory == "Shoes" ||
+          selectedCategory == "Bags" ? (
+            <div>
+              <Input
+                onChangeText={(e) => {
+                  setsize(e.target.value);
+                }}
+                type="text"
+                placeholder="Size eg: M, L, XL"
+              />
+              <p className="text-red-700 mb-[16px] font-[body] px-[14px] text-[12px]">
+                Note: If more than one size is available, seperate the various
+                sizes available using a comma ","
+              </p>
+            </div>
+          ) : null}
+
+          {selectedCategory == "Hair" && (
+            <div>
+              <div className="items-center">
+                <Input
+                  onChangeText={(e) => {
+                    sethairLength(e.target.value);
+                  }}
+                  type="text"
+                  placeholder="Wig or Hair Length Eg: 20 inches"
+                />
+                <p className="text-red-700 m-[4px] font-[body] text-[12px]">
+                  Note: If more than one length is available, seperate the
+                  various lengths available using a comma ","
+                </p>
+              </div>
+
+              <select
+                value={selectedHairOrigin}
+                onChangeText={handleHairOriginChange}
+                className={`${
+                  window.innerWidth < 1780
+                    ? "text-[2.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                    : "w-[1000px] text-[40px]"
+                } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
+              >
+                <option value="">Hair Origin</option>
+                {HairOrigin.map((gender) => (
+                  <option key={gender} value={gender}>
+                    {gender}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          <Input
+            onChangeText={(e) => setavailableQuantity(e.target.value)}
             type="text"
             placeholder="Available Quantity (Leave Blank If Unlimited)"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
-          <input
-            onChange={(e) => setvendorName(e.target.value)}
+
+          <Input
+            onChangeText={(e) => setvendorName(e.target.value)}
             type="text"
             placeholder="Name Of Vendor"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
+            error={vendorNameError}
           />
-          {vendorNameError && (
-            <p
-              className={`${
-                window.innerWidth < 1780
-                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
-                  : "text-[30px]"
-              } text-red-500  mb-[16px]`}
-            >
-              {vendorNameError}
-            </p>
-          )}
+
           <p
             className={`${
               window.innerWidth < 1780
@@ -1291,113 +846,18 @@ function SellProducts() {
             }}
           />
 
-          <div
-            className={`${
-              window.innerWidth < 1780 ? "w-[80vw] md:w-[40vw]" : "w-[1000px]"
-            }  mb-[4px]`}
-          >
-            <input
-              type="checkbox"
-              id="Top"
-              name="Top"
-              className="mr-[0.5rem]"
-              onChange={() => {
-                setmadeInNigeria(!madeInNigeria);
-              }}
-            />
-            <label
-              for="MIN"
-              className={`${
-                window.innerWidth < 1780
-                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
-                  : "text-[40px]"
-              }  mb-[4px]`}
-            >
-              Made In Nigeria
-            </label>
-          </div>
-          <div
-            className={`${
-              window.innerWidth < 1780 ? "w-[80vw] md:w-[40vw]" : "w-[1000px]"
-            }  mb-[4px]`}
-          >
-            <input
-              type="checkbox"
-              id="Top"
-              name="Top"
-              className="mr-[0.5rem]"
-              onChange={() => {
-                sethandmade(!handmade);
-              }}
-            />
-            <label
-              for="MIN"
-              className={`${
-                window.innerWidth < 1780
-                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
-                  : "text-[40px]"
-              }  mb-[4px]`}
-            >
-              Handmade
-            </label>
-          </div>
-          <div
-            className={`${
-              window.innerWidth < 1780 ? "w-[80vw] md:w-[40vw]" : "w-[1000px]"
-            }  mb-[12px]`}
-          >
-            <input
-              type="checkbox"
-              id="Top"
-              name="Top"
-              className="mr-[0.5rem]"
-              onChange={() => {
-                setwarranty(!warranty);
-              }}
-            />
-            <label
-              for="MIN"
-              className={`${
-                window.innerWidth < 1780
-                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
-                  : "text-[40px]"
-              }  mb-[4px]`}
-            >
-              Waranty
-            </label>
-          </div>
-
-          <input
-            onChange={(e) => setdescription(e.target.value)}
+          <Input
+            onChangeText={(e) => setdescription(e.target.value)}
             type="text"
             placeholder="Description"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
-          <input
-            onChange={(e) => setprice(e.target.value)}
+
+          <Input
+            onChangeText={(e) => setprice(e.target.value)}
             type="text"
             placeholder="Price"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
+            error={priceError}
           />
-          {priceError && (
-            <p
-              className={`${
-                window.innerWidth < 1780
-                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
-                  : "text-[30px]"
-              } text-red-500  mb-[16px]`}
-            >
-              {priceError}
-            </p>
-          )}
           {calculatedPrice ? (
             <p
               className={`${
@@ -1410,48 +870,28 @@ function SellProducts() {
               VAT)
             </p>
           ) : null}
-          <input
-            onChange={(e) => setdeliveryOnCampus(e.target.value)}
+
+          <Input
+            onChangeText={(e) => setdeliveryOnCampus(e.target.value)}
             type="text"
             placeholder="On Campus Delivery Fee (Leave Blank For Free Delivery)"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
+            error={deliveryOnCampusError}
           />
-          {deliveryOnCampusError && (
-            <p
-              className={`${
-                window.innerWidth < 1780
-                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
-                  : "text-[30px]"
-              } text-red-500  mb-[16px]`}
-            >
-              {deliveryOnCampusError}
-            </p>
-          )}
-          <input
-            onChange={(e) => setdeliveryOffCampus(e.target.value)}
+
+          <Input
+            onChangeText={(e) => setdeliveryOffCampus(e.target.value)}
             type="text"
             placeholder="Off Campus Delivery Fee (Leave Blank For Free Delivery)"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
+            error={deliveryOffCampusError}
           />
-          {deliveryOffCampusError && (
-            <p
-              className={`${
-                window.innerWidth < 1780
-                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
-                  : "text-[30px]"
-              } text-red-500  mb-[16px]`}
-            >
-              {deliveryOffCampusError}
-            </p>
-          )}
+
+          <Input
+            onChangeText={(e) => setdeliveryTime(e.target.value)}
+            type="text"
+            placeholder="Delivery Time, Eg; 2 Days 0r 1 Day"
+            error={deliveryTimeError}
+          />
+
           <p
             className={`${
               window.innerWidth < 1780
@@ -1473,69 +913,29 @@ function SellProducts() {
           >
             YOUR ACCOUNT DETAILS
           </h2>
-          <input
-            onChange={(e) => setaccountNumber(e.target.value)}
+          <Input
+            onChangeText={(e) => setaccountNumber(e.target.value)}
             type="text"
             placeholder="Account Number"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
+            error={accountNumberError}
           />
-          {accountNumberError && (
-            <p
-              className={`${
-                window.innerWidth < 1780
-                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
-                  : "text-[30px]"
-              } text-red-500  mb-[16px]`}
-            >
-              {accountNumberError}
-            </p>
-          )}
-          <input
-            onChange={(e) => setbankName(e.target.value)}
+
+          <Input
+            onChangeText={(e) => {
+              setbankName(e.target.value);
+            }}
             type="text"
             placeholder="Bank Name"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
+            error={bankNameError}
           />
-          {bankNameError && (
-            <p
-              className={`${
-                window.innerWidth < 1780
-                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
-                  : "text-[30px]"
-              } text-red-500  mb-[16px]`}
-            >
-              {bankNameError}
-            </p>
-          )}
-          <input
-            onChange={(e) => setaccountHolderName(e.target.value)}
+
+          <Input
+            onChangeText={(e) => setaccountHolderName(e.target.value)}
             type="text"
             placeholder="Account Name"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
+            error={accountHolderNameError}
           />
-          {accountHolderNameError && (
-            <p
-              className={`${
-                window.innerWidth < 1780
-                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
-                  : "text-[30px]"
-              } text-red-500  mb-[16px]`}
-            >
-              {accountHolderNameError}
-            </p>
-          )}
+
           <h2
             className={`${
               window.innerWidth < 1780
@@ -1545,52 +945,29 @@ function SellProducts() {
           >
             YOUR CONTACT DETAILS
           </h2>
-          <input
-            onChange={(e) => setphoneNumber(e.target.value)}
-            type="tel"
+
+          <Input
+            onChangeText={(e) => setphoneNumber(e.target.value)}
+            type="text"
             placeholder="Phone Number"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
+            error={phoneNumberError}
           />
-          {phoneNumberError && (
-            <p
-              className={`${
-                window.innerWidth < 1780
-                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
-                  : "text-[30px]"
-              } text-red-500  mb-[16px]`}
-            >
-              {phoneNumberError}
-            </p>
-          )}
-          <input
-            onChange={(e) => setinstagram(e.target.value)}
+
+          <Input
+            onChangeText={(e) => setinstagram(e.target.value)}
             type="text"
             placeholder="Instagram Handle"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
-          <input
-            onChange={(e) => settwitter(e.target.value)}
+
+          <Input
+            onChangeText={(e) => settwitter(e.target.value)}
             type="text"
             placeholder="Twitter Handle"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
 
           <button
             onClick={(e) => {
               handleSubmit(e);
-              updateUserInfo();
             }}
             className={`${
               window.innerWidth < 1780 ? "w-[50vw] md:w-[13vw]" : "w-[500px]"

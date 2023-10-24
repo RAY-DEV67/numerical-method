@@ -94,13 +94,14 @@ body {
   }
 }
 
-
-
 .textFont {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 .headingFont {
   font-family: "Teko", sans-serif;
+}
+.caligraphy {
+  font-family: "Great Vibes", cursive;
 }
 .login {
   background-image: url("./assets/whitebg.webp");

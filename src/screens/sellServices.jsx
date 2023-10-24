@@ -1,6 +1,6 @@
 import { PaystackButton } from "react-paystack";
 import { useParams } from "react-router-dom";
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import db from "../../firebase";
 import { storage } from "../../firebase";
 import {
@@ -14,6 +14,9 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import LoadingSpinner from "../components/spinner";
+import { nigerianStates } from "../json/nigerianStates";
+import { nigerianUniversities } from "../json/nigerianUniversities";
+import Input from "../components/input";
 
 const Categories = [
   "Assignment & Note Copying",
@@ -22,476 +25,13 @@ const Categories = [
   "Computer & I.T Services",
   "Dj & Entertainment",
   "Fashion & MakeUp",
-  "Hostel Agent",
+  "Housing Agents",
   "Logistics & Delivery Services",
   "Party, Catering & Event Services",
   "Personal Shopper",
   "Photography & Video Services",
   "Printing",
   "Project Assistance",
-];
-const nigerianStates = [
-  "Abia",
-  "Adamawa",
-  "Akwa Ibom",
-  "Anambra",
-  "Bauchi",
-  "Bayelsa",
-  "Benue",
-  "Borno",
-  "Cross River",
-  "Delta",
-  "Ebonyi",
-  "Edo",
-  "Ekiti",
-  "Enugu",
-  "Federal Capital Territory",
-  "Gombe",
-  "Imo",
-  "Jigawa",
-  "Kaduna",
-  "Kano",
-  "Kastina",
-  "Kebbi",
-  "Kogi",
-  "Kwara",
-  "Lagos",
-  "Nasarawa",
-  "Niger",
-  "Ogun",
-  "Ondo",
-  "Osun",
-  "Oyo",
-  "Plateau",
-  "Rivers",
-  "Sokoto",
-  "Taraba",
-  "Yobe",
-  "Zamfara",
-];
-
-const nigerianUniversities = [
-  "Abia State University, Uturu",
-  "Abia State Polytechnic",
-  "Abia State College of Education",
-  "Anambra State Polytechnic",
-  "Adamawa State University, Mubi",
-  "Adamawa State Polytechnic",
-  "Adamawa State College of Education",
-  "Adekunle Ajasin University, Akungba",
-  "Akwa Ibom State University",
-  "Akwa Ibom State Polytechnic",
-  "Akwa Ibom State College of Education",
-  "Ambrose Alli University, Ekpoma",
-  "Achievers University, Owo",
-  "Adeleke University, Ede",
-  "Afe Babalola University, Ado-Ekiti",
-  "African University Of Science And Technology, Abuja",
-  "Abubakar Tafari Ali Polytechnic",
-  "Akanu Ibiam Federal Polytechnic",
-  "Auchi Polytechnic",
-  "Abraham Adesanya Polytechnic",
-  "Allover Central Polytechnic",
-  "Abdul Gusau Polytechnic",
-  "Ajayi Crowther University, Ibadan",
-  "Al-Hikmah University, Ilorin",
-  "Al-Qalam University, Kastina",
-  "American University Of Nigeria, Yola",
-  "Augustine University",
-  "Anchor University, Ayobo",
-  "Arthur Javis University, Akpoyubo",
-  "Admiralty University, Ibusa",
-  "Atiba University, Oyo",
-  "Ave Maria University, Piyanko",
-  "Al-Istiqama University, Sumaila",
-  "Ahman Pategi University",
-  "Anan University, Kwall",
-  "Al-Ansar University, Maiduguri",
-  "Aletheia University, Ago-Iwoye",
-  "Amadeus University, Amizi",
-  "Azman University",
-  "Amaj University, Kwali",
-  "Al-Muhibbah Open University, Abuja",
-  "Al-Bayan University, Ankpa",
-  "Abubakar Tafawa Balewa University",
-  "Ahmadu Bello University, Zaria",
-  "Alex Ekwueme University, Ndufu-Alike",
-  "Air Force Institute of Technology",
-  "Adeyemi College of Education",
-  "Alvan Ikoku College of Education",
-  "Ansar-Ud-Deen College of Education",
-  "African Thinkers Community of Inquiry College of Education",
-  "Adamu Augie College of Education",
-  "Adamu Tafawa Balewa College of Education",
-  "Adeniran Ogunsanya College of Education",
-  "Aminu Saleh College of Education",
-  "Bauchi State University, Gadau",
-  "Benue State University, Makurdi",
-  "Benue State Polytechnic",
-  "Borno State University, Maiduguri",
-  "Bayelsa Medical University",
-  "Bayelsa State College of Arts and Science",
-  "Bamidele Olumilua University of Science and Technology, Ikere",
-  "Babcock University",
-  "Baze University",
-  "Bells University of Technology, Otta",
-  "Benson Idahosa University, Benin",
-  "Bingham University, New Karu",
-  "Bowen University, Iwo",
-  "British Canadian University, Obufu",
-  "Bayero University",
-  "Bilyaminu Othman College of Education",
-  "Chukwuemeka Odumegwu Ojukwu University, Uli",
-  "Cross River State University of Technology",
-  "Confluence University of Science and Technology, Osara",
-  "Caleb University",
-  "Caritas University",
-  "Chrisland University",
-  "Convenant University",
-  "Crawford University",
-  "Cresent University",
-  "Christopher University",
-  "Crown Hill University",
-  "Coal City University",
-  "Clifford University",
-  "Claretian University of Nigeria",
-  "Capital City University",
-  "Canadian University of Nigeria, Abuja",
-  "Cosmopolitan University Abuja",
-  "College of Petroleum and Energy Studies",
-  "Citi Polytechnic",
-  "College of Agriculture and Animal Science",
-  "College of Agriculture, Zuru",
-  "College of Agriculture, Kabba",
-  "Coastal Polytechnic",
-  "College of Agriculture, Lafia",
-  "College of Agriculture, Jalingo",
-  "College of Education and Legal Studies, Nguru",
-  "College of Education, Akamkpa",
-  "College of Education, Akwanga",
-  "College of Education, Billiri",
-  "College of Education, Ekiadolor",
-  "College of Education, Gindiri",
-  "College of Education, Katsina-Ala",
-  "College of Education, Lanlate",
-  "College of Education, Oju",
-  "College of Education, Waka-Biu",
-  "College of Education, Warri",
-  "Delta State University, Abraka",
-  "Delta State Polytechnic",
-  "Delta University of Science and Technology, Ozoro",
-  "Dennis Osadebe University, Asaba",
-  "Dominican University",
-  "Dominion University",
-  "Dorben Polytechnic",
-  "Divine Polytechnic",
-  "Ebonyi State University, Abakaliki",
-  "Ebonyi State College of Education",
-  "Ekiti State University",
-  "Enugu State University of Science and Technology",
-  "Enugu State Polytechnic",
-  "Enugu State College of Education",
-  "Edo State University",
-  "Edo State Polytechnic",
-  "Edo State College of Education",
-  "Enugu State University of Medical and Applied Sciences, Igbo-Eno",
-  "Emmanuel Alayande University of Education",
-  "Edwin Clark University",
-  "Elizade University",
-  "Evangel University",
-  "Eko University of Medical and Health Sciences Ijaniki",
-  "Edusoko University, Bida",
-  "European University of Nigeria, Duboyi",
-  "Elrazi Medical University",
-  "El-Amin University, Minna",
-  "Eastern Polytechnic",
-  "Ekwenugo Okeke Polytechnic",
-  "Federal University of Health Sciences, Ila Orangun",
-  "Federal University of Health Sciences, Azare",
-  "Federal University of Technology, Ikot abasi",
-  "Federal University of Technology, Babura",
-  "Federal University of Agriculture, Zuru",
-  "Federal University of Agriculture, Abeokuta",
-  "Federal University of Health Technology, Otukpo",
-  "Federal University, Gasau Zamfara",
-  "Federal University, Birnin Kebbi",
-  "Federal University, Wukari Taraba",
-  "Federal University, Oye-Ekiti",
-  "Federal University, Otuoke Bayelsa",
-  "Federal University, Lokoja",
-  "Federal University, Lafia",
-  "Federal University, Kashere",
-  "Federal University, Dutsin-Ma",
-  "Federal University, Dutse",
-  "Federal University of Technology, Owerri",
-  "Federal University of Technology, Minna",
-  "Federal University of Technology, Akure",
-  "Federal University of Petroleum Resources, Effurun",
-  "Federal University Gashua, Yobe",
-  "Franco British International University",
-  "Fountain University, Oshogbo",
-  "Federal Polytechnic, Mubi",
-  "Foundation College of Technology",
-  "Federal Polytechnic, Oko",
-  "Federal Polytechnic, Bauchi",
-  "Federal Polytechnic, Ekowe Bayelsa",
-  "Federal College of Agriculture, Ishiagu",
-  "Federal Polytechnic, Ado-Ekiti",
-  "Federal School of Dental Technology & Therapy",
-  "Federal College of Land Resources Technology, Owerri",
-  "Federal Polytechnic, Nekede",
-  "Federal College of Forestry Mechanisation",
-  "Federal School of Statistics, Manchok",
-  "Federal Polytechnic, Bernin-Kebbi",
-  "Federal Polytechnic, Idah",
-  "Federal Polytechnic, Offa",
-  "Federal College of Fisheries and Marine Technology",
-  "Federal Polytechnic, Nasarawa",
-  "Federal College of Fresh Water Fisheries Technology",
-  "Federal College of Wildlife Management",
-  "Federal Polytechnic, Bida",
-  "Federal Polytechnic, Ilaro",
-  "Federal Polytechnic, Ede",
-  "Federal College of Animal Health & Production Technology",
-  "Federal College of Forestry, Ibadan",
-  "Federal Polytechnic, Ayede",
-  "Federal College of Forestry, Jos",
-  "Federal College of Land Resources Technology, Kuru",
-  "Federal Polytechnic, Damaturu",
-  "Federal Polytechnic, Namoda",
-  "Federal College of Education, Oyo",
-  "Federal College of Education, Iwo",
-  "Federal College of Education, Asaba",
-  "Federal College of Education, Abeokuta",
-  "Federal College of Education, Kano",
-  "Federal College of Education, Eha-Amufu",
-  "Federal College of Education, Okene",
-  "Federal College of Education, Gombe",
-  "Federal College of Education, Omoku",
-  "Federal College of Education, Kontagora",
-  "Federal College of Education, Zaria",
-  "Federal College of Education, Pankshin",
-  "Federal College of Education, Yola",
-  "Federal College of Education, Potiskum",
-  "Federal College of Education, Akoka",
-  "Federal College of Education, Katsina",
-  "Federal College of Education, Bichi",
-  "Federal College of Education, Obudu",
-  "Federal College of Education, Umunze",
-  "FCT College of Education",
-  "Gombe State University",
-  "Gombe State University of Science and Technology",
-  "Godfrey Okoye University",
-  "Gregory University",
-  "Greenfield University",
-  "Gerar University of Medical Science",
-  "Gateway Polytechnic",
-  "Grace Polytechnic",
-  "Hillside University of Science and Technology, Okemisi",
-  "Hensard University, Toru-Orua",
-  "Huda University, Gusau",
-  "Havilla University, Nde-Ikom",
-  "Hezekiah University",
-  "Hallmark University",
-  "Heritage Polytechnic",
-  "Hussaini Adamu Federal Polytechnic",
-  "Hassan Usman Kastina Polytechnic",
-  "Havard Wilson College of Education",
-  "Ibrahim Badamasi Babangida University",
-  "Ignatius Ajuru University of Education",
-  "Imo State University",
-  "Igbinedion University Okada",
-  "Iconic Open University",
-  "Interlink Polytechnic",
-  "Iwo City Polytechnic",
-  "Igbajo Polytechnic",
-  "Imo State Technological Skills Acquisition Center",
-  "Imo State Polytechnic",
-  "Institute of Management Technology",
-  "Ibrahim Babangida College of Agriculture",
-  "Imo State College of Education",
-  "Isa Kaita College of Education",
-  "Isaac Jasper Boro College of Education",
-  "Institute of Ecumenical Education",
-  "Joseph Ayo Babalola University",
-  "Jewel University",
-  "Jigawa State College of Education",
-  "Jigawa State College of Education and Legal Studies",
-  "King David Umahi University of Medical Sciences",
-  "Khalifa Isiyaku Rabiu University",
-  "Khadija University",
-  "Karl-Kumm University",
-  "Kola Daisi University",
-  "Kwararafa University",
-  "Kings University, Ode Omu",
-  "Kingsley Ozumba Mbadiwe University",
-  "Kwara State University",
-  "Kebbi State University of Science and Technology",
-  "Kano University of Science and Technology",
-  "Kaduna State University",
-  "Kwara State Polytechnic",
-  "Kogi State Polytechnic",
-  "Kebbi State Polytechnic",
-  "Kano State Polytechnic",
-  "Kaduna Polytechnic",
-  "Kings Polytechnic",
-  "Kano State College of Education and Preliminary Studies",
-  "Kaduna State College of Education",
-  "Kashim Ibrahim College of Education",
-  "Kogi State College of Education",
-  "Kwara State College of Education",
-  "Ladoke Akintola University of Technology",
-  "Lagos State University, Ojo",
-  "Lagos State University of Education, ijanikin",
-  "Lagos State University of Science and Technology, ikorodu",
-  "Landmark University",
-  "Lead City University",
-  "Legacy University",
-  "Lux Mundi University",
-  "Lagos City Polytechnic",
-  "Modibbo Adama University of Technology",
-  "Michael Okpara University of Agriculture",
-  "Miva Open University",
-  "Mercy Medical University",
-  "Maduka University",
-  "Muhammad Kamalud University",
-  "Margaret Lawrence University",
-  "Mewar International University",
-  "Maryam Abacha American University of Nigeria",
-  "Mudiame University",
-  "Maranathan University",
-  "Mountain Top University",
-  "Micheal & Cecilia Ibru University",
-  "Mcpherson University",
-  "Madonna University",
-  "Moshood Abiola University of Science and Technology",
-  "Mai Idris Alooma Polytechnic",
-  "Moshood Abiola Polytechnic",
-  "Maurid Institute of Management & Technology",
-  "Mohammed Abdullahi Wase Polytechnic",
-  "Maritime Academy of Nigeria",
-  "Micheal Otedola College of Primary Education",
-  "Mohammed Goni College of Legal and Islamic Studies",
-  "Moje College of Education",
-  "Muftau Olanihun College of Education",
-  "Niger Delta University",
-  "Nasarawa State University",
-  "Nile University of Nigeria",
-  "Novena University",
-  "NOK University",
-  "Nigerian British University",
-  "Newgate University",
-  "NorthWest University",
-  "Nigerian University of Technology and Management",
-  "National Open University of Nigeria",
-  "Nigerian Police Academy, Wudil",
-  "Nigerian Defence Academy",
-  "Nnamdi Azikiwe University",
-  "Nigerian Maritime University, Okerenkoko",
-  "Nigerian Army University, Biu",
-  "Nigerian Institute of Leather and Science Technology",
-  "Nigerian College of Aviation Technology",
-  "Nuhu Bamalli Polytechnic",
-  "Nasarawa State Polytechnic",
-  "Niger State College of Agriculture",
-  "Niger State Polytechnic",
-  "Novelty Polytechnic",
-  "Nigerian Army School of Education",
-  "Nana Aisahat Momorial College of Education",
-  "Niger State College of Education",
-  "Nwafor Orizu College of Education",
-  "Obafemi Awolowo University",
-  "Oduduwa University",
-  "Obong University",
-  "Ondo State University of Medical Sciences",
-  "Oyo State Technical University",
-  "Osun State University",
-  "Olabisi Onabanjo University",
-  "Ondo State University of Science and Technology",
-  "Offer Center Institute of Agriculture",
-  "Osun State Polytechnic",
-  "Osun State College of Technology",
-  "Ogun State College Of Health Technology",
-  "Ogun State Institute Of Technology",
-  "Our Saviour Institute Of Science and Technology",
-  "Prince Abubakar Audu University",
-  "Plateau State University",
-  "Pan-Atlantic University",
-  "Paul University",
-  "Precious Cornerstone University",
-  "PAMO University of Medical Sciences",
-  "Philomath University",
-  "PEN Resource University",
-  "Peter University",
-  "PeaceLand University",
-  "Phoenix University",
-  "Prime University",
-  "Petroleum Training Institute",
-  "Plateau State College of Agriculture",
-  "Plateau State Polytechnic",
-  "Port Harcourt Polytechnic",
-  "Piaget College of Education",
-  "Rivers State University",
-  "Redeemer's University",
-  "Renaissance University",
-  "Rhema University",
-  "Ritman University",
-  "Rayhaan University",
-  "Shanahan University",
-  "Sam Maris University",
-  "Saisa University of Medical Sciences and Technology",
-  "Sports University",
-  "Skyline University",
-  "Spiritan University",
-  "Summit University",
-  "Southwestern University",
-  "Samuel Adegboyega University",
-  "Salem University",
-  "Sa'adatu Rimi University",
-  "Shehu Shagari University of Education",
-  "Sokoto State University",
-  "Sule Lamido University",
-  "Tai Solarin University of Education",
-  "Taraba State University",
-  "Tansian University",
-  "Trinity University",
-  "TopFaith University",
-  "Thomas Adewumi University",
-  "The Duke Medical University",
-  "Usumanu Danfodiyo University",
-  "University of Uyo",
-  "University of Port-Harcourt",
-  "University of Nigeria, Nsukka",
-  "University of Maiduguri",
-  "University of Lagos",
-  "University of Jos",
-  "University of Ilorin",
-  "University of Ibadan",
-  "University of Calabar",
-  "University of Benin",
-  "University of Agriculture, Makurdi",
-  "University of Abuja",
-  "University of the Niger",
-  "University of Offa",
-  "University of Mkar",
-  "University of Ilesa",
-  "University of Delta",
-  "University of Agriculture and Environmental Sciences",
-  "University of Africa, Toru Orua",
-  "Umar Musa Yar'Adua University",
-  "Veritas University",
-  "Vision University",
-  "Venite University",
-  "Wellspring University",
-  "Wesley University",
-  "Wigwe University",
-  "Western Delta University",
-  "West Midlands Open University",
-  "Westland Delta University",
-  "Yaba College Of Technology",
-  "Yobe State University",
-  "Yusuf Maitama Sule University",
-  "Zamfara State University",
 ];
 
 function SellServices() {
@@ -501,33 +41,22 @@ function SellServices() {
   const [selectedCategory, setselectedCategory] = useState("");
   const [selectedState, setSelectedState] = useState("");
   const [selectedUniversity, setSelectedUniversity] = useState("");
-
   const [loadingSubmit, setloadingSubmit] = useState(false);
   const [submitError, setsubmitError] = useState("");
-
   const [stateError, setstateError] = useState("");
   const [name, setname] = useState("");
   const [email, setemail] = useState("");
   const [emailError, setemailError] = useState();
   const [nameError, setnameError] = useState("");
-  const [formIsValid, setformIsValid] = useState(false);
-
   const [description, setdescription] = useState("");
   const [descriptionError, setdescriptionError] = useState("");
-
   const [phoneNumber, setphoneNumber] = useState("");
   const [phoneNumberError, setphoneNumberError] = useState("");
-
   const [instagram, setinstagram] = useState("");
   const [twitter, settwitter] = useState("");
-
   const [categoryError, setcategoryError] = useState("");
-
   const [universityError, setuniversityError] = useState("");
-
   const [image1Error, setimage1Error] = useState("");
-
-  const [image2Error, setimage2Error] = useState("");
   const [isfile, setfile1] = useState("");
   const [file2, setfile2] = useState("");
   const [file3, setfile3] = useState("");
@@ -614,8 +143,26 @@ function SellServices() {
       setsubmitError("Unsuccessful!! Check form for errors!");
       return;
     }
+    if (selectedUniversity === "") {
+      setuniversityError("Please Select A University");
+      setsubmitError("Unsuccessful!! Check form for errors!");
+      return;
+    }
 
     setloadingSubmit(true);
+
+    // Get the current date
+    const currentDate = new Date();
+
+    // Calculate the new subscription end date by adding 1 month
+    const newDate = new Date(currentDate);
+    newDate.setMonth(currentDate.getMonth() + 1);
+
+    // Handle cases where the new date doesn't exist (e.g., February 30th)
+    if (currentDate.getDate() !== newDate.getDate()) {
+      // Adjust to the last day of the previous month
+      newDate.setDate(0);
+    }
 
     const docRef = await addDoc(collection(db, "Services"), {
       category: selectedCategory,
@@ -629,7 +176,8 @@ function SellServices() {
       price: "Contact for price",
       notTop: true,
       userId: userId,
-      timestamp: new Date(),
+      timestamp: serverTimestamp(),
+      expiryDate: newDate,
       searchKeywords:
         `${description.toLowerCase()} ${userName?.toLowerCase()} ${selectedCategory?.toLowerCase()}`.split(
           " "
@@ -847,55 +395,26 @@ function SellServices() {
               : "w-[1500px] mt-[150px]"
           } items-center justify-center flex flex-col px-[1rem] pb-[2.5rem]`}
         >
-          <input
-            onChange={(e) => setname(e.target.value)}
+          <Input
+            onChangeText={(e) => setname(e.target.value)}
             type="text"
+            error={nameError}
             placeholder="Your Name"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
-          {nameError && (
-            <p
-              className={`${
-                window.innerWidth < 1780
-                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
-                  : "text-[30px]"
-              } text-red-500 mb-[16px]`}
-            >
-              {nameError}
-            </p>
-          )}
-          <input
-            onChange={(e) => setemail(e.target.value)}
+
+          <Input
+            onChangeText={(e) => setemail(e.target.value)}
             type="text"
+            error={emailError}
             placeholder="Your Email"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
-          {emailError && (
-            <p
-              className={`${
-                window.innerWidth < 1780
-                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
-                  : "text-[30px]"
-              } text-red-500 mb-[16px]`}
-            >
-              {emailError}
-            </p>
-          )}
 
           <select
             value={selectedCategory}
             onChange={handleCategoryChange}
             className={`${
               window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                ? "text-[2.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
                 : "w-[1000px] text-[40px]"
             } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           >
@@ -910,7 +429,7 @@ function SellServices() {
             <p
               className={`${
                 window.innerWidth < 1780
-                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  ? "text-[2vw] md:text-[2vw] lg:text-[1.5vw]"
                   : "text-[30px]"
               } text-red-500 mb-[16px]`}
             >
@@ -984,17 +503,6 @@ function SellServices() {
                     console.log(event.target.files[0]);
                   }}
                 />
-                {image2Error && (
-                  <p
-                    className={`${
-                      window.innerWidth < 1780
-                        ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
-                        : "text-[30px]"
-                    } text-red-500 mb-[16px]`}
-                  >
-                    {image2Error}
-                  </p>
-                )}
               </div>
 
               <div>
@@ -1069,7 +577,7 @@ function SellServices() {
             onChange={handleStateChange}
             className={`${
               window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                ? "text-[2.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
                 : "w-[1000px] text-[40px]"
             } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           >
@@ -1084,7 +592,7 @@ function SellServices() {
             <p
               className={`${
                 window.innerWidth < 1780
-                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  ? "text-[2vw] md:text-[2vw] lg:text-[1.5vw]"
                   : "text-[30px]"
               } text-red-500 mb-[16px]`}
             >
@@ -1097,7 +605,7 @@ function SellServices() {
             onChange={handleUniversityChange}
             className={`${
               window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                ? "text-[2.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
                 : "w-[1000px] text-[40px]"
             } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           >
@@ -1112,7 +620,7 @@ function SellServices() {
             <p
               className={`${
                 window.innerWidth < 1780
-                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  ? "text-[2vw] md:text-[2vw] lg:text-[1.5vw]"
                   : "text-[30px]"
               } text-red-500 mb-[16px]`}
             >
@@ -1120,27 +628,13 @@ function SellServices() {
             </p>
           )}
 
-          <input
-            onChange={(e) => setdescription(e.target.value)}
+          <Input
+            onChangeText={(e) => setdescription(e.target.value)}
             type="text"
+            error={descriptionError}
             placeholder="Description"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
-          {descriptionError && (
-            <p
-              className={`${
-                window.innerWidth < 1780
-                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
-                  : "text-[30px]"
-              } text-red-500 mb-[16px]`}
-            >
-              {descriptionError}
-            </p>
-          )}
+
           <h2
             className={`${
               window.innerWidth < 1780
@@ -1150,54 +644,28 @@ function SellServices() {
           >
             YOUR CONTACT DETAILS
           </h2>
-          <input
-            onChange={(e) => setphoneNumber(e.target.value)}
-            type="tel"
+
+          <Input
+            onChangeText={(e) => setphoneNumber(e.target.value)}
+            type="text"
+            error={phoneNumberError}
             placeholder="Phone Number"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
-          {phoneNumberError && (
-            <p
-              className={`${
-                window.innerWidth < 1780
-                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
-                  : "text-[30px]"
-              } text-red-500 mb-[16px]`}
-            >
-              {phoneNumberError}
-            </p>
-          )}
-          <input
-            onChange={(e) => setinstagram(e.target.value)}
+
+          <Input
+            onChangeText={(e) => setinstagram(e.target.value)}
             type="text"
             placeholder="Instagram Handle"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
-          <input
-            onChange={(e) => settwitter(e.target.value)}
+
+          <Input
+            onChangeText={(e) => settwitter(e.target.value)}
             type="text"
             placeholder="Twitter Handle"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
           />
 
           {selectedCategory == "" ||
-          selectedCategory == "Project Assistance" ||
           selectedCategory == "Cleaning & Household Services" ||
-          selectedCategory == "Computer & I.T Services" ||
-          selectedCategory == "Logistics & Delivery Services" ||
-          selectedCategory == "Printing" ||
           selectedCategory == "Assignment & Note Copying" ||
           selectedCategory == "Personal Shopper" ? (
             <button
@@ -1213,7 +681,10 @@ function SellServices() {
             </button>
           ) : null}
 
-          {selectedCategory == "Hostel Agent" ||
+          {selectedCategory == "Project Assistance" ||
+          selectedCategory == "Computer & I.T Services" ||
+          selectedCategory == "Logistics & Delivery Services" ||
+          selectedCategory == "Printing" ||
           selectedCategory == "Dj & Entertainment" ||
           selectedCategory == "Fashion & MakeUp" ||
           selectedCategory == "Party, Catering & Event Services" ||
@@ -1227,7 +698,8 @@ function SellServices() {
             />
           ) : null}
 
-          {selectedCategory == "Car Rentals" && !submitError ? (
+          {selectedCategory == "Car Rentals" ||
+          (selectedCategory == "Housing Agents" && !submitError) ? (
             <PaystackButton
               className={`${
                 window.innerWidth < 1780 ? "w-[50vw] md:w-[13vw]" : "w-[500px]"

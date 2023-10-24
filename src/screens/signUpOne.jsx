@@ -1,32 +1,41 @@
+import { storage } from "../../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { addDoc, collection, updateDoc } from "firebase/firestore";
 import db from "../../firebase";
 import LoadingSpinner from "../components/spinner";
+import Input from "../components/input";
 
 function SignUpOne() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   const [userId, setuserId] = useState("");
-
   const [email, setEmail] = useState("");
   const [emailError, setemailError] = useState("");
-
   const [confirmEmail, setconfirmEmail] = useState("");
   const [confirmEmailError, setconfirmEmailError] = useState("");
-
   const [password, setPassword] = useState("");
   const [passwordError, setpasswordError] = useState("");
-
   const [confirmPassword, setConfirmPassword] = useState("");
   const [confirmPasswordError, setconfirmPasswordError] = useState("");
-
   const [firstName, setfirstName] = useState("");
   const [firstNameError, setfirstNameError] = useState("");
+  const [uniTag, setuniTag] = useState("");
+  const [uniTagError, setuniTagError] = useState("");
+  const [image1, setimage1] = useState("");
 
   const docRef = collection(db, "Users");
+
+  const checkUniTagExists = async (tag) => {
+    const usersRef = db.collection("Users");
+
+    // Query the database to check if the tag already exists
+    const querySnapshot = await usersRef.where("uniTag", "==", tag).get();
+
+    return !querySnapshot.empty; // Return true if the tag exists, otherwise false
+  };
 
   const addNewUser = async (user, email) => {
     setLoading(true);
@@ -43,7 +52,7 @@ function SignUpOne() {
         twitter: "",
         TypeOfAccount: "",
         address: "",
-        availablePlugs: 10,
+        availablePlugs: 5,
         credit: 0,
         hasgottencredit: false,
         accountNumber: "",
@@ -60,7 +69,16 @@ function SignUpOne() {
         eventsScreenOnboarded: false,
         plugmeScreenOnboarded: false,
         vendorOnboarded: false,
+        profilePicture: "",
+        uniTag: uniTag.toLowerCase(),
+        payForFriend: 0,
+        plugMates: [],
+        verified: false,
+        vendorName: "",
+        referredBy: "",
+        searchKeywords: `${firstName.toLowerCase()}`.split(" "),
       });
+
       console.log("Added new User");
       setLoading(false);
     } catch (err) {
@@ -69,6 +87,33 @@ function SignUpOne() {
   };
 
   const handleSignUp = async () => {
+    setconfirmPasswordError("");
+    setemailError("");
+    setpasswordError("");
+    setfirstNameError("");
+    setconfirmEmailError("");
+    setuniTagError("");
+
+    if (firstName === "") {
+      setfirstNameError("Please Enter Your Name");
+      return;
+    }
+    if (email === "") {
+      setemailError("Please Enter Your Email");
+      return;
+    }
+    if (confirmEmail === "") {
+      setconfirmEmailError("Please Retype Your Email");
+      return;
+    }
+    if (uniTag === "") {
+      setuniTagError("Please Enter A UserName");
+      return;
+    }
+    if (password === "") {
+      setpasswordError("Please Enter Your Password");
+      return;
+    }
     if (password !== confirmPassword) {
       setconfirmPasswordError("Passwords do not match");
       return;
@@ -77,16 +122,17 @@ function SignUpOne() {
       setconfirmEmailError("Emails Do Not Match");
       return;
     }
-    if (firstName === "") {
-      setfirstNameError("Please Enter Your Name");
+    setLoading(true);
+
+    // Check if the uniTag already exists
+    const tagExists = await checkUniTagExists(uniTag.toLowerCase());
+
+    if (tagExists) {
+      setuniTagError("Uni-Tag already exists. Please choose a different one.");
+      setLoading(false);
       return;
     }
-    setLoading(true);
-    setconfirmPasswordError("");
-    setemailError("");
-    setpasswordError("");
-    setfirstNameError("");
-    setconfirmEmailError("");
+
     const auth = getAuth();
 
     try {
@@ -121,7 +167,7 @@ function SignUpOne() {
     <div
       className={`${
         window.innerWidth < 1780 ? "w-[100vw]" : "w-[1780px]"
-      } textFont flex flex-col items-center justify-center h-[100vh] `}
+      } textFont flex flex-col items-center pt-[68px]`}
     >
       <div className="relative flex flex-col items-center mt-[32px]">
         <h1
@@ -153,76 +199,56 @@ function SignUpOne() {
         >
           Lets get you started, input your details below.
         </p>
-        <input
-          onChange={(e) => setfirstName(e.target.value)}
+
+        <Input
+          onChangeText={(e) => setfirstName(e.target.value)}
           type="text"
+          error={firstNameError}
           placeholder="Name"
-          className={`${
-            window.innerWidth < 1780
-              ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-              : "w-[1000px] text-[40px]"
-          } input bg-transparent rounded-[10px] text-black p-[8px] my-[8px] border border-[#00cc00]`}
         />
-        {firstNameError && <p className="text-red-500">{firstNameError}</p>}
 
-        <input
-          onChange={(e) => setEmail(e.target.value)}
+        <Input
+          onChangeText={(e) => setEmail(e.target.value)}
           type="text"
+          error={emailError}
           placeholder="Email"
-          className={`${
-            window.innerWidth < 1780
-              ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-              : "w-[1000px] text-[40px]"
-          } input bg-transparent rounded-[10px] text-black p-[8px] my-[8px] border border-[#00cc00]`}
         />
-        {emailError && <p className="text-red-500">{emailError}</p>}
 
-        <input
-          onChange={(e) => setconfirmEmail(e.target.value)}
+        <Input
+          onChangeText={(e) => setconfirmEmail(e.target.value)}
           type="text"
+          error={confirmEmailError}
           placeholder="Retype Email"
-          className={`${
-            window.innerWidth < 1780
-              ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-              : "w-[1000px] text-[40px]"
-          } input bg-transparent rounded-[10px] text-black p-[8px] my-[8px] border border-[#00cc00]`}
         />
-        {confirmEmailError && (
-          <p className="text-red-500">{confirmEmailError}</p>
-        )}
 
-        <input
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
+        <Input
+          onChangeText={(e) => setuniTag(e.target.value)}
+          type="text"
+          error={uniTagError}
+          placeholder="Choose a username (Uni-Tag)"
+        />
+
+        <Input
+          onChangeText={(e) => setPassword(e.target.value)}
+          type="text"
+          error={passwordError}
           placeholder="Password"
-          className={`${
-            window.innerWidth < 1780
-              ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-              : "w-[1000px] text-[40px]"
-          } input bg-transparent rounded-[10px] text-black p-[8px] my-[8px] border border-[#00cc00]`}
         />
-        {passwordError && <p className="text-red-500">{passwordError}</p>}
 
-        <input
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          type="password"
+        <Input
+          onChangeText={(e) => setConfirmPassword(e.target.value)}
+          type="text"
+          error={confirmPasswordError}
           placeholder="Confirm Password"
-          className={`${
-            window.innerWidth < 1780
-              ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
-              : "w-[1000px] text-[40px]"
-          } input bg-transparent rounded-[10px] text-black p-[8px] my-[8px] border border-[#00cc00]`}
         />
-        {confirmPasswordError && (
-          <p className="text-red-500">{confirmPasswordError}</p>
-        )}
+
         <button
           onClick={handleSignUp}
           className={`${
             window.innerWidth < 1780 ? "w-[33vw] md:w-[13vw]" : "w-[200px]"
           } bg-[#013a19] text-white mt-[16px] rounded-[20px] py-[8px] flex-col items-center justify-center`}
         >
-          {loading ? <LoadingSpinner /> : "          Continue"}
+          {loading ? <LoadingSpinner /> : "Continue"}
         </button>
 
         <p

@@ -13,7 +13,7 @@ function Footer() {
     <div
       className={`  ${
         window.innerWidth > 1780 && "w-[1700px]"
-      } textFont text-white bg-[#013a19] mt-[40px] rounded-t-[50px] px-[16px] md:flex md:flex-row md:justify-center`}
+      } textFont text-white bg-[#013a19] mt-[40px] px-[16px] md:flex md:flex-row md:justify-center`}
     >
       <div>
         <img
@@ -285,15 +285,15 @@ function Footer() {
             Company
           </h3>
           <Link to={"/"}>
-            <p className="text-[#292929]">Home</p>
+            <p className="text-[#292929] text-[12px]">Home</p>
           </Link>
           <Link to={"/Contact"}>
-            <p className="text-[#292929]">Contact Us</p>
+            <p className="text-[#292929] text-[12px]">Contact Us</p>
           </Link>
           <Link to={"/SignUpOne"}>
-            <p className="text-[#292929]">Sign Up</p>
+            <p className="text-[#292929] text-[12px]">Sign Up</p>
           </Link>
-          <p className="text-[#292929]">Download</p>
+          <p className="text-[#292929] text-[12px]">Download</p>
         </div>
 
         <div
@@ -313,9 +313,9 @@ function Footer() {
             Legal
           </h3>
           <Link to={"/TermsAndConditions"}>
-            <p className="text-[#292929]">Terms & Conditions</p>
+            <p className="text-[#292929] text-[12px]">Terms & Conditions</p>
           </Link>
-          <p className="text-[#292929]">Privacy Policy</p>
+          <p className="text-[#292929] text-[12px]">Privacy Policy</p>
         </div>
       </div>
     </div>

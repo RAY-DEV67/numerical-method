@@ -13,7 +13,7 @@ export default function Navbar() {
   const setUserId = useContext(SetUserId);
 
   const [showMobile, setshowMobile] = useState(false);
-  const [scrolled, setscrolled] = useState();
+  const [isScrolled, setIsScrolled] = useState(false);
   const [user, setUser] = useState(null); // Track the user object
   const [userId, setuserId] = useState();
   const [userName, setuserName] = useState("");
@@ -29,21 +29,6 @@ export default function Navbar() {
       setuserId(user.uid);
       setUserId(user.uid);
     });
-
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setscrolled(true);
-      } else {
-        setscrolled(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      unsubscribe();
-    };
   }, []);
 
   const fetchUserDetails = async () => {
@@ -74,6 +59,24 @@ export default function Navbar() {
     fetchUserDetails();
   }, [user]);
 
+  useEffect(() => {
+    // Add a scroll event listener
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Remove the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div
       className={`flex flex-col md:items-center textFont ${
@@ -81,7 +84,9 @@ export default function Navbar() {
       }`}
     >
       <div
-        className={`flex justify-between p-[1rem]  nav glass-background fixed items-center w-[100vw] pt-[3vh] ${
+        className={`flex justify-between p-[1rem]  nav ${
+          isScrolled ? "glass-background" : "bg-transparent"
+        } fixed items-center w-[100vw] pt-[3vh] ${
           window.innerWidth < 1780 ? "w-[100vw]" : "w-[1780px]"
         } `}
       >
@@ -109,7 +114,7 @@ export default function Navbar() {
             xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink"
             xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
-            fill="#00cc00"
+            fill={isScrolled ? "#00cc00" : "#ffffff"}
           >
             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
             <g
@@ -134,7 +139,7 @@ export default function Navbar() {
                   id="Icon-Set-Filled"
                   sketch:type="MSLayerGroup"
                   transform="translate(-310.000000, -1039.000000)"
-                  fill="#00cc00"
+                  fill={isScrolled ? "#00cc00" : "#ffffff"}
                 >
                   {" "}
                   <path
@@ -157,7 +162,7 @@ export default function Navbar() {
             <p
               className={`${
                 window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
-              } font-bold text-[#00cc00]`}
+              } font-bold ${isScrolled ? "text-[#00cc00]" : "text-[#ffffff]"}`}
             >
               Home
             </p>
@@ -166,17 +171,20 @@ export default function Navbar() {
             <p
               className={`${
                 window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
-              } font-bold text-[#00cc00]`}
+              } font-bold ${isScrolled ? "text-[#00cc00]" : "text-[#ffffff]"}`}
             >
               Sell Products
             </p>
           </Link>
 
-          <Link className="nav" to={user ? `/SellServices/${user.uid}/${userName}` : "/Login"}>
+          <Link
+            className="nav"
+            to={user ? `/SellServices/${user.uid}/${userName}` : "/Login"}
+          >
             <p
               className={`${
                 window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
-              } font-bold text-[#00cc00]`}
+              } font-bold ${isScrolled ? "text-[#00cc00]" : "text-[#ffffff]"}`}
             >
               Sell Services
             </p>
@@ -185,17 +193,20 @@ export default function Navbar() {
             <p
               className={`${
                 window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
-              } font-bold text-[#00cc00]`}
+              } font-bold ${isScrolled ? "text-[#00cc00]" : "text-[#ffffff]"}`}
             >
               Events
             </p>
           </Link>
 
-          <Link className="nav" to={user ? `/Shop/${userId}/${userName}/${email}` : "/Login"}>
+          <Link
+            className="nav"
+            to={user ? `/Shop/${userId}/${userName}/${email}` : "/Login"}
+          >
             <p
               className={`${
                 window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
-              } font-bold text-[#00cc00]`}
+              } font-bold ${isScrolled ? "text-[#00cc00]" : "text-[#ffffff]"}`}
             >
               Premium Shop
             </p>
@@ -207,17 +218,19 @@ export default function Navbar() {
                   window.innerWidth < 1780
                     ? "lg:text-[1.2vw]"
                     : "lg:text-[20px]"
-                } font-bold text-[#00cc00]`}
+                } font-bold ${
+                  isScrolled ? "text-[#00cc00]" : "text-[#ffffff]"
+                }`}
               >
                 Login
               </p>
             </Link>
           )}
-          <Link className="nav" to="/SignUpOne" >
+          <Link className="nav" to="/SignUpOne">
             <p
               className={`${
                 window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
-              } font-bold text-[#00cc00]`}
+              } font-bold ${isScrolled ? "text-[#00cc00]" : "text-[#ffffff]"}`}
             >
               Sign Up
             </p>
