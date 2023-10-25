@@ -11,6 +11,7 @@ import {
   query,
   updateDoc,
 } from "firebase/firestore";
+import GenerateTransactionRef from "../helper/generateTransactionRef";
 
 function Shop() {
   const { userId } = useParams();
@@ -62,52 +63,25 @@ function Shop() {
     }
   };
 
-  const publicKey = "pk_test_1ab31e0238e828c92d25ba346af15aa620d4251e";
+  function makePayment(num, amount) {
+    // Generate a new tx_ref
+    const tx_ref = GenerateTransactionRef();
 
-  const component15Props = {
-    email,
-    amount: 30000,
-    metadata: {
-      userName,
-    },
-    publicKey,
-    text: <p className="text-center text-white">Buy 15 Plugs for #300.00 </p>,
-    onSuccess: () => {
-      buyPlugs(15);
-      alert("Thanks for doing business with us! Come back soon!!");
-    },
-    onClose: () => alert("Wait!!!, don't go!!!!😢"),
-  };
-
-  const component30Props = {
-    email,
-    amount: 50000,
-    metadata: {
-      userName,
-    },
-    publicKey,
-    text: <p className="text-center text-white">Buy 30 Plugs for #500.00 </p>,
-    onSuccess: () => {
-      buyPlugs(30);
-      alert("Thanks for doing business with us! Come back soon!!");
-    },
-    onClose: () => alert("Wait!!!, don't go!!!!😢"),
-  };
-
-  const component50Props = {
-    email,
-    amount: 70000,
-    metadata: {
-      userName,
-    },
-    publicKey,
-    text: <p className="text-center text-white">Buy 50 Plugs for #700.00 </p>,
-    onSuccess: () => {
-      buyPlugs(50);
-      alert("Thanks for doing business with us! Come back soon!!");
-    },
-    onClose: () => alert("Wait!!!, don't go!!!!😢"),
-  };
+    FlutterwaveCheckout({
+      public_key: "FLWPUBK_TEST-cebf85e05f6ff0c8d7d41d8cb00bc8c7-X",
+      tx_ref: tx_ref,
+      amount: amount,
+      currency: "NGN",
+      payment_options: "card, mobilemoneyghana, ussd",
+      customer: {
+        email: email,
+        name: userName,
+      },
+      callback: function (payment) {
+        buyPlugs(num);
+      },
+    });
+  }
 
   return (
     <div className="bg-white textFont">
@@ -133,37 +107,52 @@ function Shop() {
       >
         Buy Plugs:
       </h2>
+      <p className="mx-[16px]">
+        Buy plugs to chat and connect with users on UniPlug
+      </p>
       <div
         className={`${
           window.innerWidth < 1780 ? "w-[100vw]" : "w-[1780px]"
         } mb-[16px] flex flex-col items-center `}
       >
-        <PaystackButton
+        <div
+          onClick={() => {
+            makePayment(15, 300);
+          }}
           className={`${
             window.innerWidth < 1780
               ? "w-[90vw] md:w-[80vw] lg:w-[60vw]"
               : "w-[1000px]"
-          } bg-[#013a19] cursor-pointer lg:py-[60px] md:py-[48px] py-[40px] mt-[16px] rounded-[20px]`}
-          {...component15Props}
-        />
+          } bg-[#013a19] cursor-pointer lg:py-[60px] text-white text-center md:py-[48px] py-[40px] mt-[16px] rounded-[20px]`}
+        >
+          Buy 15 Plugs for #300.00
+        </div>
 
-        <PaystackButton
+        <div
+          onClick={() => {
+            makePayment(30, 500);
+          }}
           className={`${
             window.innerWidth < 1780
               ? "w-[90vw] md:w-[80vw] lg:w-[60vw]"
               : "w-[1000px]"
-          } bg-[#013a19] cursor-pointer lg:py-[60px] md:py-[48px] py-[40px] mt-[16px] rounded-[20px]`}
-          {...component30Props}
-        />
+          } bg-[#013a19] cursor-pointer lg:py-[60px] text-white text-center md:py-[48px] py-[40px] mt-[16px] rounded-[20px]`}
+        >
+          Buy 30 Plugs for #500.00
+        </div>
 
-        <PaystackButton
+        <div
+          onClick={() => {
+            makePayment(50, 700);
+          }}
           className={`${
             window.innerWidth < 1780
               ? "w-[90vw] md:w-[80vw] lg:w-[60vw]"
               : "w-[1000px]"
-          } bg-[#013a19] cursor-pointer lg:py-[60px] md:py-[48px] py-[40px] mt-[16px] rounded-[20px]`}
-          {...component50Props}
-        />
+          } bg-[#013a19] cursor-pointer lg:py-[60px] text-white text-center md:py-[48px] py-[40px] mt-[16px] rounded-[20px]`}
+        >
+          Buy 50 Plugs for #700.00
+        </div>
       </div>
 
       <div className="mb-[16px] mt-[40px] mx-[16px]">
@@ -172,10 +161,14 @@ function Shop() {
             window.innerWidth < 1780
               ? "text-[4vw] md:text-[3vw] lg:text-[2vw]"
               : "text-[50px]"
-          } mx-[16px] lg:mx-[40px] font-semibold`}
+          } lg:mx-[40px] font-semibold`}
         >
           Boost Your Ads:
         </h2>
+        <p>
+          Boost your ads and get your products in front of more users with
+          guaranteed sales for just #3,000 Monthly
+        </p>
       </div>
 
       {loading ? (
@@ -192,7 +185,12 @@ function Shop() {
 
       {products.map((post, index) => (
         <div key={index} className="w-[100vw] flex flex-row  items-center">
-          <ProductsCard product={post} userId={userId} />
+          <ProductsCard
+            product={post}
+            userId={userId}
+            email={email}
+            userName={userName}
+          />
         </div>
       ))}
     </div>

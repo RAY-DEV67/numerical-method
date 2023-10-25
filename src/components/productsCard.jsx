@@ -1,6 +1,7 @@
 import db from "../../firebase";
+import GenerateTransactionRef from "../helper/generateTransactionRef";
 
-export default function ProductsCard({ product, userId }) {
+export default function ProductsCard({ product, email, userName }) {
   const updateSubscriptionEndDate = () => {
     // Get the current date
     const currentDate = new Date();
@@ -15,8 +16,6 @@ export default function ProductsCard({ product, userId }) {
       newDate.setDate(0);
     }
 
-    console.log(newDate);
-
     db.collection("Products")
       .doc(product.id) // Use the appropriate document ID
       .update({ subscriptionEndDate: newDate, notTop: false })
@@ -27,6 +26,26 @@ export default function ProductsCard({ product, userId }) {
         console.error("Error updating subscription end date:", error);
       });
   };
+
+  function makePayment() {
+    // Generate a new tx_ref
+    const tx_ref = GenerateTransactionRef();
+
+    FlutterwaveCheckout({
+      public_key: "FLWPUBK_TEST-cebf85e05f6ff0c8d7d41d8cb00bc8c7-X",
+      tx_ref: tx_ref,
+      amount: 3000,
+      currency: "NGN",
+      payment_options: "card, mobilemoneyghana, ussd",
+      customer: {
+        email: email,
+        name: userName,
+      },
+      callback: function (payment) {
+        updateSubscriptionEndDate();
+      },
+    });
+  }
 
   const limitedTitle =
     product.title.length > 50
@@ -93,7 +112,7 @@ export default function ProductsCard({ product, userId }) {
           </p>
 
           <div
-            onClick={updateSubscriptionEndDate}
+            onClick={makePayment}
             className="bg-[#013a19] w-[150px] py-[4px] rounded-[20px]"
           >
             <p className="text-center text-white">Boost Ad ⚡</p>

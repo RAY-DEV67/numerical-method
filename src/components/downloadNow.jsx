@@ -33,7 +33,11 @@ function DownloadNow() {
                 />
               </div>
             </div>
-            <img src={phone} alt="Uniplug" className="w-[80vw] md:left-[50vw] md:absolute md:w-[15vw]  mt-[-100px]" />
+            <img
+              src={phone}
+              alt="Uniplug"
+              className="w-[80vw] md:left-[50vw] md:absolute md:w-[15vw]  mt-[-100px]"
+            />
           </div>
         </AnimatedDiv>
       </div>

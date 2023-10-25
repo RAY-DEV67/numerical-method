@@ -2,12 +2,12 @@ import Footer from "../components/footer";
 
 function TermsAndConditions() {
   return (
-    <div className="pt-[100px] mx-[16px]">
-      <div>
+    <div className="pt-[100px]">
+      <div className="mx-[16px]">
         <h1
           className={`${
             window.innerWidth < 1780
-              ? "text-[10vw] md:text-[7vw] lg:text-[5vw] leading-[7vw] md:leading-[3vw]  w-[80vw] md:w-[40vw"
+              ? "text-[6vw] md:text-[2vw] leading-[7vw] md:leading-[3vw]  w-[80vw] md:w-[40vw"
               : "text-[70px] w-[1500px]"
           } text-[#00cc00] font-bold headingFont my-[32px]`}
         >
@@ -56,11 +56,11 @@ function TermsAndConditions() {
         <p>These Terms of Service were last updated on 30th june 2023.</p>
       </div>
 
-      <div>
+      <div className="mx-[16px]">
         <h1
           className={`${
             window.innerWidth < 1780
-              ? "text-[10vw] md:text-[7vw] lg:text-[5vw] leading-[7vw] md:leading-[3vw]  w-[80vw] md:w-[40vw"
+              ? "text-[6vw] md:text-[2vw] leading-[7vw] md:leading-[3vw]  w-[80vw] md:w-[40vw"
               : "text-[70px] w-[1500px]"
           } text-[#00cc00] font-bold headingFont my-[32px]`}
         >
@@ -129,11 +129,11 @@ function TermsAndConditions() {
         </p>
       </div>
 
-      <div>
+      <div className="mx-[16px]">
         <h1
           className={`${
             window.innerWidth < 1780
-              ? "text-[10vw] md:text-[7vw] lg:text-[5vw] leading-[7vw] md:leading-[3vw]  w-[80vw] md:w-[40vw"
+              ? "text-[6vw] md:text-[2vw] leading-[7vw] md:leading-[3vw]  w-[80vw] md:w-[40vw"
               : "text-[70px] w-[1500px]"
           } text-[#00cc00] font-bold headingFont my-[32px]`}
         >
@@ -157,11 +157,11 @@ function TermsAndConditions() {
         </p>
       </div>
 
-      <div>
+      <div className="mx-[16px]">
         <h1
           className={`${
             window.innerWidth < 1780
-              ? "text-[10vw] md:text-[7vw] lg:text-[5vw] leading-[7vw] md:leading-[3vw]  w-[80vw] md:w-[40vw"
+              ? "text-[6vw] md:text-[2vw] leading-[7vw] md:leading-[3vw]  w-[80vw] md:w-[40vw"
               : "text-[70px] w-[1500px]"
           } text-[#00cc00] font-bold headingFont my-[32px]`}
         >
@@ -213,11 +213,11 @@ function TermsAndConditions() {
         </p>
       </div>
 
-      <div>
+      <div className="mx-[16px]">
         <h1
           className={`${
             window.innerWidth < 1780
-              ? "text-[10vw] md:text-[7vw] lg:text-[5vw] leading-[7vw] md:leading-[3vw]  w-[80vw] md:w-[40vw"
+              ? "text-[6vw] md:text-[2vw] leading-[7vw] md:leading-[3vw]  w-[80vw] md:w-[40vw"
               : "text-[70px] w-[1500px]"
           } text-[#00cc00] font-bold headingFont my-[32px]`}
         >
@@ -241,11 +241,11 @@ function TermsAndConditions() {
         </p>
       </div>
 
-      <div>
+      <div className="mx-[16px]">
         <h1
           className={`${
             window.innerWidth < 1780
-              ? "text-[10vw] md:text-[7vw] lg:text-[5vw] leading-[7vw] md:leading-[3vw]  w-[80vw] md:w-[40vw"
+              ? "text-[6vw] md:text-[2vw] leading-[7vw] md:leading-[3vw]  w-[80vw] md:w-[40vw"
               : "text-[70px] w-[1500px]"
           } text-[#00cc00] font-bold headingFont my-[32px]`}
         >
@@ -267,11 +267,11 @@ function TermsAndConditions() {
         </p>
       </div>
 
-      <div>
+      <div className="mx-[16px]">
         <h1
           className={`${
             window.innerWidth < 1780
-              ? "text-[10vw] md:text-[7vw] lg:text-[5vw] leading-[7vw] md:leading-[3vw]  w-[80vw] md:w-[40vw"
+              ? "text-[6vw] md:text-[2vw] leading-[7vw] md:leading-[3vw]  w-[80vw] md:w-[40vw"
               : "text-[70px] w-[1500px]"
           } text-[#00cc00] font-bold headingFont my-[32px]`}
         >
