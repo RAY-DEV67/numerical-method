@@ -17,6 +17,7 @@ import Input from "../components/input";
 import { nigerianUniversities } from "../json/nigerianUniversities";
 import { nigerianStates } from "../json/nigerianStates";
 import { generateRandomString } from "../helper/generateRandomString";
+import { useUserDetailsContext } from "../context/userDetails";
 
 const Categories = [
   "Clothes",
@@ -36,10 +37,21 @@ const HairOrigin = ["Any", "Human Hair", "Synthetic"];
 
 function SellProducts() {
   const userUid = useContext(UserId);
+  const {
+    state,
+    university,
+    vendorName,
+    accountNumber,
+    bankName,
+    accountName,
+    phoneNumber,
+    instagram,
+    twitter,
+  } = useUserDetailsContext();
 
   const [selectedCategory, setselectedCategory] = useState("");
-  const [selectedState, setSelectedState] = useState("");
-  const [selectedUniversity, setSelectedUniversity] = useState("");
+  const [selectedState, setSelectedState] = useState(state);
+  const [selectedUniversity, setSelectedUniversity] = useState(university);
   const [selectedGender, setSelectedGender] = useState("");
   const [selectedCondition, setSelectedCondition] = useState("");
   const [loadingSubmit, setloadingSubmit] = useState(false);
@@ -57,18 +69,18 @@ function SellProducts() {
   const [brand, setbrand] = useState("");
   const [color, setcolor] = useState("");
   const [description, setdescription] = useState("");
-  const [phoneNumber, setphoneNumber] = useState("");
+  const [phoneNumberForm, setphoneNumberForm] = useState(phoneNumber);
   const [phoneNumberError, setphoneNumberError] = useState("");
-  const [accountNumber, setaccountNumber] = useState("");
+  const [accountNumberForm, setaccountNumberForm] = useState(accountNumber);
   const [accountNumberError, setaccountNumberError] = useState("");
-  const [bankName, setbankName] = useState("");
+  const [bankNameForm, setbankNameForm] = useState(bankName);
   const [bankNameError, setbankNameError] = useState("");
-  const [accountHolderName, setaccountHolderName] = useState("");
+  const [accountHolderName, setaccountHolderName] = useState(accountName);
   const [accountHolderNameError, setaccountHolderNameError] = useState("");
-  const [instagram, setinstagram] = useState("");
-  const [twitter, settwitter] = useState("");
+  const [instagramForm, setinstagramForm] = useState(instagram);
+  const [twitterForm, settwitterForm] = useState(twitter);
   const [size, setsize] = useState("");
-  const [vendorName, setvendorName] = useState("");
+  const [vendorNameForm, setvendorNameForm] = useState(vendorName);
   const [vendorLogo, setvendorLogo] = useState("");
   const [vendorNameError, setvendorNameError] = useState("");
   const [deliveryTime, setdeliveryTime] = useState("");
@@ -122,12 +134,12 @@ function SellProducts() {
       setsubmitError("Unsuccessful!! Check form for errors!");
       return;
     }
-    if (accountNumber === "") {
+    if (accountNumberForm === "") {
       setaccountNumberError("Please Enter Your Account Number");
       setsubmitError("Unsuccessful!! Check form for errors!");
       return;
     }
-    if (bankName === "") {
+    if (bankNameForm === "") {
       setbankNameError("Please Enter Your Bank Name");
       setsubmitError("Unsuccessful!! Check form for errors!");
       return;
@@ -163,7 +175,7 @@ function SellProducts() {
       setsubmitError("Unsuccessful!! Check form for errors!");
       return;
     }
-    if (vendorName === "") {
+    if (vendorNameForm === "") {
       setvendorNameError("Please Enter Your Brand Name");
       setsubmitError("Unsuccessful!! Check form for errors!");
       return;
@@ -197,7 +209,7 @@ function SellProducts() {
       setsubmitError("Unsuccessful!! Check form for errors!");
       return;
     }
-    if (phoneNumber === "") {
+    if (phoneNumberForm === "") {
       setphoneNumberError("Please Enter Your Phone Number");
       setsubmitError("Unsuccessful!! Check form for errors!");
       return;
@@ -215,10 +227,10 @@ function SellProducts() {
       condition: selectedCondition,
       gender: selectedGender,
       size: size.split(","),
-      vendor: vendorName,
-      phoneNumber: phoneNumber,
-      instagram: instagram,
-      twitter: twitter,
+      vendor: vendorNameForm,
+      phoneNumber: phoneNumberForm,
+      instagram: instagramForm,
+      twitter: twitterForm,
       price: calculatedPrice,
       notTop: true,
       image1: "",
@@ -232,9 +244,9 @@ function SellProducts() {
       productId: generateRandomString(20),
       timestamp: serverTimestamp(),
       blocked: false,
-      vendorAccountNumber: accountNumber,
+      vendorAccountNumber: accountNumberForm,
       vendorAccountName: accountHolderName,
-      vendorBankName: bankName,
+      vendorBankName: bankNameForm,
       deliveryOffCampus: Number(deliveryOffCampus),
       deliveryOnCampus: Number(deliveryOnCampus),
       deliveryTime: deliveryTime,
@@ -246,7 +258,7 @@ function SellProducts() {
           : selectedGender === "Female"
           ? "Women"
           : null
-      } ${description.toLowerCase()} ${brand.toLowerCase()} ${vendorName?.toLowerCase()} ${selectedCategory?.toLowerCase()}`.split(
+      } ${description.toLowerCase()} ${brand.toLowerCase()} ${vendorNameForm?.toLowerCase()} ${selectedCategory?.toLowerCase()}`.split(
         " "
       ),
     });
@@ -359,7 +371,7 @@ function SellProducts() {
   };
 
   const updateUserInfo = async () => {
-    if (phoneNumber === "") {
+    if (phoneNumberForm === "") {
       setphoneNumberError("Please Enter Your Phone Number");
       return;
     }
@@ -371,11 +383,11 @@ function SellProducts() {
         const userDoc = querySnapshot.docs[0];
         const userRef = doc(db, "Users", userDoc.id);
         await updateDoc(userRef, {
-          instagram: instagram,
-          twitter: twitter,
-          phoneNumber: phoneNumber,
-          accountNumber: accountNumber,
-          bankName: bankName,
+          instagram: instagramForm,
+          twitter: twitterForm,
+          phoneNumber: phoneNumberForm,
+          accountNumber: accountNumberForm,
+          bankName: bankNameForm,
           accountName: accountHolderName,
         });
 
@@ -430,9 +442,7 @@ function SellProducts() {
       <div className="flex flex-col items-center textFont">
         <h1 className="lg:hidden headingFont text-[5vw] mt-[18vw] md:mt-[10vw]">
           <span class="magic">
-            <span class="magic-text z-1 relative">
-              Upload Products
-            </span>
+            <span class="magic-text z-1 relative">Upload Products</span>
           </span>
         </h1>
         <form
@@ -817,10 +827,11 @@ function SellProducts() {
           />
 
           <Input
-            onChangeText={(e) => setvendorName(e.target.value)}
+            onChangeText={(e) => setvendorNameForm(e.target.value)}
             type="text"
             placeholder="Name Of Vendor"
             error={vendorNameError}
+            value={vendorNameForm}
           />
 
           <p
@@ -914,19 +925,21 @@ function SellProducts() {
             YOUR ACCOUNT DETAILS
           </h2>
           <Input
-            onChangeText={(e) => setaccountNumber(e.target.value)}
+            onChangeText={(e) => setaccountNumberForm(e.target.value)}
             type="text"
             placeholder="Account Number"
             error={accountNumberError}
+            value={accountNumberForm}
           />
 
           <Input
             onChangeText={(e) => {
-              setbankName(e.target.value);
+              setbankNameForm(e.target.value);
             }}
             type="text"
             placeholder="Bank Name"
             error={bankNameError}
+            value={bankNameForm}
           />
 
           <Input
@@ -934,6 +947,7 @@ function SellProducts() {
             type="text"
             placeholder="Account Name"
             error={accountHolderNameError}
+            value={accountHolderName}
           />
 
           <h2
@@ -947,22 +961,25 @@ function SellProducts() {
           </h2>
 
           <Input
-            onChangeText={(e) => setphoneNumber(e.target.value)}
+            onChangeText={(e) => setphoneNumberForm(e.target.value)}
             type="text"
             placeholder="Phone Number"
             error={phoneNumberError}
+            value={phoneNumberForm}
           />
 
           <Input
-            onChangeText={(e) => setinstagram(e.target.value)}
+            onChangeText={(e) => setinstagramForm(e.target.value)}
             type="text"
             placeholder="Instagram Handle"
+            value={instagramForm}
           />
 
           <Input
-            onChangeText={(e) => settwitter(e.target.value)}
+            onChangeText={(e) => settwitterForm(e.target.value)}
             type="text"
             placeholder="Twitter Handle"
+            value={twitterForm}
           />
 
           <button

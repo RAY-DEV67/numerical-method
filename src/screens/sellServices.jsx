@@ -1,6 +1,5 @@
-import { PaystackButton } from "react-paystack";
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import db from "../../firebase";
 import { storage } from "../../firebase";
 import {
@@ -17,6 +16,8 @@ import LoadingSpinner from "../components/spinner";
 import { nigerianStates } from "../json/nigerianStates";
 import { nigerianUniversities } from "../json/nigerianUniversities";
 import Input from "../components/input";
+import { useUserDetailsContext } from "../context/userDetails";
+import GenerateTransactionRef from "../helper/generateTransactionRef";
 
 const Categories = [
   "Assignment & Note Copying",
@@ -37,20 +38,19 @@ const Categories = [
 function SellServices() {
   const { userId } = useParams();
   const { userName } = useParams();
+  const { state, university, phoneNumber } = useUserDetailsContext();
 
   const [selectedCategory, setselectedCategory] = useState("");
-  const [selectedState, setSelectedState] = useState("");
-  const [selectedUniversity, setSelectedUniversity] = useState("");
+  const [selectedState, setSelectedState] = useState(state);
+  const [selectedUniversity, setSelectedUniversity] = useState(university);
   const [loadingSubmit, setloadingSubmit] = useState(false);
   const [submitError, setsubmitError] = useState("");
   const [stateError, setstateError] = useState("");
-  const [name, setname] = useState("");
   const [email, setemail] = useState("");
   const [emailError, setemailError] = useState();
-  const [nameError, setnameError] = useState("");
   const [description, setdescription] = useState("");
   const [descriptionError, setdescriptionError] = useState("");
-  const [phoneNumber, setphoneNumber] = useState("");
+  const [phoneNumberForm, setphoneNumberForm] = useState(phoneNumber);
   const [phoneNumberError, setphoneNumberError] = useState("");
   const [instagram, setinstagram] = useState("");
   const [twitter, settwitter] = useState("");
@@ -63,42 +63,8 @@ function SellServices() {
   const [file4, setfile4] = useState("");
   const [file5, setfile5] = useState("");
   const [url, seturl] = useState("");
-  const publicKey = "pk_test_1ab31e0238e828c92d25ba346af15aa620d4251e";
 
-  const fivecomponentProps = {
-    email,
-    amount: "50000",
-    metadata: {
-      name,
-      phoneNumber,
-    },
-    publicKey,
-    text: "Plug Me (#500)",
-    onSuccess: () => {
-      handleSubmit();
-      alert("Thanks for doing business with us! Come back soon!!");
-    },
-    onClose: () => alert("Wait!!!, don't go!!!!😢"),
-  };
-
-  const OnecomponentProps = {
-    email,
-    amount: "100000",
-    metadata: {
-      name,
-      phoneNumber,
-    },
-    publicKey,
-    text: "Plug Me (#1000)",
-    onSuccess: () => {
-      handleSubmit();
-      alert("Thanks for doing business with us! Come back soon!!");
-    },
-    onClose: () => alert("Wait!!!, don't go!!!!😢"),
-  };
-
-  const upload = async () => {
-    setnameError("");
+  function makePayment(amount) {
     setcategoryError("");
     setimage1Error("");
     setstateError("");
@@ -106,18 +72,11 @@ function SellServices() {
     setdescriptionError("");
     setsubmitError("");
     setemailError("");
-
-    if (name === "") {
-      setnameError("Please Enter Your Name");
-      setsubmitError("Unsuccessful!! Check form for errors!");
-      return;
-    }
     if (email === "") {
       setemailError("Please Enter Your Email");
       setsubmitError("Unsuccessful!! Check form for errors!");
       return;
     }
-
     if (selectedCategory === "") {
       setcategoryError("Please Select A Category");
       setsubmitError("Unsuccessful!! Check form for errors!");
@@ -133,8 +92,8 @@ function SellServices() {
       setsubmitError("Unsuccessful!! Check form for errors!");
       return;
     }
-    if (phoneNumber === "") {
-      setphoneNumberError("Please Enter Your Phone Number");
+    if (selectedUniversity === "") {
+      setuniversityError("Please Select A University");
       setsubmitError("Unsuccessful!! Check form for errors!");
       return;
     }
@@ -143,12 +102,33 @@ function SellServices() {
       setsubmitError("Unsuccessful!! Check form for errors!");
       return;
     }
-    if (selectedUniversity === "") {
-      setuniversityError("Please Select A University");
+    if (phoneNumberForm === "") {
+      setphoneNumberError("Please Enter Your Phone Number");
       setsubmitError("Unsuccessful!! Check form for errors!");
       return;
     }
 
+    // Generate a new tx_ref
+    const tx_ref = GenerateTransactionRef();
+
+    FlutterwaveCheckout({
+      public_key: "FLWPUBK_TEST-cebf85e05f6ff0c8d7d41d8cb00bc8c7-X",
+      tx_ref: tx_ref,
+      amount: amount,
+      currency: "NGN",
+      payment_options: "card, mobilemoneyghana, ussd",
+      customer: {
+        email: email,
+        name: userName,
+      },
+      callback: function () {
+        upload();
+        updateUserInfo();
+      },
+    });
+  }
+
+  const upload = async () => {
     setloadingSubmit(true);
 
     // Get the current date
@@ -168,12 +148,17 @@ function SellServices() {
       category: selectedCategory,
       state: selectedState,
       university: selectedUniversity,
-      nameOfVendor: name,
+      nameOfVendor: userName,
       description: description,
-      phoneNumber: phoneNumber,
+      phoneNumber: phoneNumberForm,
       instagram: instagram,
       twitter: twitter,
       price: "Contact for price",
+      image1: "",
+      image2: "",
+      image3: "",
+      image4: "",
+      image5: "",
       notTop: true,
       userId: userId,
       timestamp: serverTimestamp(),
@@ -273,10 +258,6 @@ function SellServices() {
   };
 
   const updateUserInfo = async () => {
-    if (phoneNumber === "") {
-      setphoneNumberError("Please Enter Your Phone Number");
-      return;
-    }
     try {
       const querySnapshot = await getDocs(
         query(collection(db, "Users"), where("userId", "==", userId))
@@ -287,7 +268,7 @@ function SellServices() {
         await updateDoc(userRef, {
           instagram: instagram,
           twitter: twitter,
-          phoneNumber: phoneNumber,
+          phoneNumber: phoneNumberForm,
         });
 
         console.log("Document updated successfully");
@@ -298,11 +279,6 @@ function SellServices() {
     } catch (err) {
       console.error("Error updating document:", err);
     }
-  };
-
-  const handleSubmit = async (event) => {
-    upload();
-    updateUserInfo();
   };
 
   const handleCategoryChange = (e) => {
@@ -317,75 +293,12 @@ function SellServices() {
     setSelectedUniversity(e.target.value);
   };
 
-  useEffect(() => {
-    setnameError("");
-    setcategoryError("");
-    setimage1Error("");
-    setstateError("");
-    setphoneNumberError("");
-    setdescriptionError("");
-    setsubmitError("");
-    setemailError("");
-
-    if (name === "") {
-      setnameError("Please Enter Your Name");
-      setsubmitError("Unsuccessful!! Please Enter Your Name!");
-      return;
-    }
-    if (email === "") {
-      setemailError("Please Enter Your Email");
-      setsubmitError("Unsuccessful!! Please Enter Your Email");
-      return;
-    }
-    if (selectedCategory === "") {
-      setcategoryError("Please Select A Category");
-      setsubmitError("Unsuccessful!! Please Select A Category");
-      return;
-    }
-    if (isfile === "") {
-      setimage1Error("Please Select An Image");
-      setsubmitError("Unsuccessful!! Please Select An Image");
-      return;
-    }
-    if (selectedState === "") {
-      setstateError("Please Select A State");
-      setsubmitError("Unsuccessful!! Please Select A State");
-      return;
-    }
-    if (selectedUniversity === "") {
-      setstateError("Please Select A State");
-      setsubmitError("Unsuccessful!! Please Select A University");
-      return;
-    }
-    if (phoneNumber === "") {
-      setphoneNumberError("Please Enter Your Phone Number");
-      setsubmitError("Unsuccessful!! Please Enter Your Phone Number");
-      return;
-    }
-    if (description === "") {
-      setdescriptionError("Please Enter Your Service Description");
-      setsubmitError("Unsuccessful!! Please Enter Your Service Description");
-      return;
-    }
-  }, [
-    phoneNumber,
-    description,
-    name,
-    email,
-    selectedCategory,
-    isfile,
-    selectedState,
-    selectedUniversity,
-  ]);
-
   return (
     <div>
       <div className="flex flex-col items-center textFont">
         <h1 className="lg:hidden headingFont text-[5vw] mt-[18vw] md:mt-[10vw]">
           <span class="magic">
-            <span class="magic-text z-1 relative">
-              Upload Services
-            </span>
+            <span class="magic-text z-1 relative">Upload Services</span>
           </span>
         </h1>
         <div
@@ -395,13 +308,6 @@ function SellServices() {
               : "w-[1500px] mt-[150px]"
           } items-center justify-center flex flex-col px-[1rem] pb-[2.5rem]`}
         >
-          <Input
-            onChangeText={(e) => setname(e.target.value)}
-            type="text"
-            error={nameError}
-            placeholder="Your Name"
-          />
-
           <Input
             onChangeText={(e) => setemail(e.target.value)}
             type="text"
@@ -646,10 +552,11 @@ function SellServices() {
           </h2>
 
           <Input
-            onChangeText={(e) => setphoneNumber(e.target.value)}
+            onChangeText={(e) => setphoneNumberForm(e.target.value)}
             type="text"
             error={phoneNumberError}
             placeholder="Phone Number"
+            value={phoneNumberForm}
           />
 
           <Input
@@ -669,8 +576,51 @@ function SellServices() {
           selectedCategory == "Assignment & Note Copying" ||
           selectedCategory == "Personal Shopper" ? (
             <button
-              onClick={(e) => {
-                handleSubmit(e);
+              onClick={() => {
+                setcategoryError("");
+                setimage1Error("");
+                setstateError("");
+                setphoneNumberError("");
+                setdescriptionError("");
+                setsubmitError("");
+                setemailError("");
+                if (email === "") {
+                  setemailError("Please Enter Your Email");
+                  setsubmitError("Unsuccessful!! Check form for errors!");
+                  return;
+                }
+                if (selectedCategory === "") {
+                  setcategoryError("Please Select A Category");
+                  setsubmitError("Unsuccessful!! Check form for errors!");
+                  return;
+                }
+                if (isfile === "") {
+                  setimage1Error("Please Select An Image");
+                  setsubmitError("Unsuccessful!! Check form for errors!");
+                  return;
+                }
+                if (selectedState === "") {
+                  setstateError("Please Select A State");
+                  setsubmitError("Unsuccessful!! Check form for errors!");
+                  return;
+                }
+                if (selectedUniversity === "") {
+                  setuniversityError("Please Select A University");
+                  setsubmitError("Unsuccessful!! Check form for errors!");
+                  return;
+                }
+                if (description === "") {
+                  setdescriptionError("Please Enter Your Service Description");
+                  setsubmitError("Unsuccessful!! Check form for errors!");
+                  return;
+                }
+                if (phoneNumberForm === "") {
+                  setphoneNumberError("Please Enter Your Phone Number");
+                  setsubmitError("Unsuccessful!! Check form for errors!");
+                  return;
+                }
+
+                upload();
                 updateUserInfo();
               }}
               className={`${
@@ -690,22 +640,30 @@ function SellServices() {
           selectedCategory == "Party, Catering & Event Services" ||
           (selectedCategory == "Photography & Video Services" &&
             !submitError) ? (
-            <PaystackButton
+            <button
+              onClick={() => {
+                makePayment(500);
+              }}
               className={`${
                 window.innerWidth < 1780 ? "w-[50vw] md:w-[13vw]" : "w-[500px]"
               } bg-[#013a19] flex flex-col items-center justify-center text-white  mt-[16px] rounded-[20px] py-[8px]`}
-              {...fivecomponentProps}
-            />
+            >
+              {loadingSubmit ? <LoadingSpinner /> : "Plug Me (#500)"}
+            </button>
           ) : null}
 
           {selectedCategory == "Car Rentals" ||
           (selectedCategory == "Housing Agents" && !submitError) ? (
-            <PaystackButton
+            <button
+              onClick={() => {
+                makePayment(1000);
+              }}
               className={`${
                 window.innerWidth < 1780 ? "w-[50vw] md:w-[13vw]" : "w-[500px]"
               } bg-[#013a19] flex flex-col items-center justify-center text-white  mt-[16px] rounded-[20px] py-[8px]`}
-              {...OnecomponentProps}
-            />
+            >
+              {loadingSubmit ? <LoadingSpinner /> : "Plug Me (#1000)"}
+            </button>
           ) : null}
 
           {submitError && (
@@ -728,7 +686,7 @@ function SellServices() {
           >
             By Clicking on Post Ad, you accept the Terms of Use, Confirm that
             you will abide by the safety tips, and declare that this poisting
-            does not include any prohibited items{" "}
+            does not include any prohibited items
           </p>
         </div>
       </div>

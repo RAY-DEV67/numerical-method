@@ -11,8 +11,9 @@ import {
   updateDoc,
   getDocs,
 } from "firebase/firestore";
-
 import db from "../../firebase";
+import GenerateTransactionRef from "../helper/generateTransactionRef";
+import Input from "../components/input";
 
 function BuyTickets() {
   const location = useLocation();
@@ -22,13 +23,6 @@ function BuyTickets() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [ticketInformation, setTicketInformation] = useState([]);
   const [purchaseError, setpurchaseError] = useState("");
-  const [availableQuantity, setavailableQuantity] = useState(0);
-  const [quantityError, setquantityError] = useState("");
-
-  const [paymentError, setpaymentError] = useState("");
-  const [payWithCard, setpayWithCard] = useState(false);
-  const [payWithCredit, setpayWithCredit] = useState(false);
-  const [finalTotal, setfinalTotal] = useState();
   const [name, setname] = useState("");
   const [nameError, setnameError] = useState("");
   const [email, setemail] = useState("");
@@ -220,23 +214,26 @@ function BuyTickets() {
     }
   }, [ticketInformation, name, email, totalPrice]);
 
-  const publicKey = "pk_test_1ab31e0238e828c92d25ba346af15aa620d4251e";
+  function makePayment(amount) {
+    // Generate a new tx_ref
+    const tx_ref = GenerateTransactionRef();
 
-  const componentProps = {
-    email,
-    amount: `${totalPrice * 100}`,
-    metadata: {
-      name,
-    },
-    publicKey,
-    text: "Buy Ticket",
-    onSuccess: () => {
-      addPurchasedTicket();
-      deductAvailableQuantity();
-      alert("Thanks for doing business with us! Come back soon!!");
-    },
-    onClose: () => alert("Wait!!!, don't go!!!!😢"),
-  };
+    FlutterwaveCheckout({
+      public_key: "FLWPUBK_TEST-cebf85e05f6ff0c8d7d41d8cb00bc8c7-X",
+      tx_ref: tx_ref,
+      amount: totalPrice,
+      currency: "NGN",
+      payment_options: "card, mobilemoneyghana, ussd",
+      customer: {
+        email: email,
+        name: name,
+      },
+      callback: function () {
+        addPurchasedTicket();
+        deductAvailableQuantity();
+      },
+    });
+  }
 
   return (
     <div className="textFont">
@@ -365,57 +362,24 @@ function BuyTickets() {
           );
         })}
         <div className="flex-col items-center flex">
-          <input
-            onChange={(e) => setname(e.target.value)}
+          <Input
+            onChangeText={(e) => setname(e.target.value)}
             type="text"
+            error={nameError}
             placeholder="Your Name"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3vw] lg:text-[1.5vw] md:text-[2vw] w-[80vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] mt-[16px] border border-[#00cc00] `}
           />
-          {nameError && (
-            <p
-              className={`${
-                window.innerWidth < 1780
-                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
-                  : "text-[30px]"
-              } text-red-500  mb-[16px]`}
-            >
-              {nameError}
-            </p>
-          )}
-          <input
-            onChange={(e) => setemail(e.target.value)}
+
+          <Input
+            onChangeText={(e) => setemail(e.target.value)}
             type="text"
+            error={emailError}
             placeholder="Your Email"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3vw] lg:text-[1.5vw] md:text-[2vw] w-[80vw] mt-[16px] md:w-[40vw]"
-                : "w-[1000px] text-[40px] my-[32px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] border border-[#00cc00] `}
           />
-          {emailError && (
-            <p
-              className={`${
-                window.innerWidth < 1780
-                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
-                  : "text-[30px]"
-              } text-red-500  mb-[16px]`}
-            >
-              {emailError}
-            </p>
-          )}
-          <input
-            onChange={(e) => setphoneNumber(e.target.value)}
+
+          <Input
+            onChangeText={(e) => setphoneNumber(e.target.value)}
             type="text"
             placeholder="Your Phone Number"
-            className={`${
-              window.innerWidth < 1780
-                ? "text-[3vw] lg:text-[1.5vw] md:text-[2vw] w-[80vw] md:w-[40vw]"
-                : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] mt-[16px] border border-[#00cc00] `}
           />
         </div>
 
@@ -434,14 +398,16 @@ function BuyTickets() {
 
         <div className="flex-col items-center flex">
           {!purchaseError ? (
-            <PaystackButton
+            <button
+              onClick={makePayment}
               className={`${
                 window.innerWidth < 1780
                   ? "w-[50vw] md:w-[35vw] lg:w-[25vw]"
                   : "w-[400px] h-[50px]"
               } bg-[#013a19] mt-[16px] rounded-[20px] py-[8px] mb-[32px] flex flex-col items-center justify-center text-white `}
-              {...componentProps}
-            />
+            >
+              Buy Ticket
+            </button>
           ) : null}
           <p className="text-center text-red-600 text-[3vw] md:text-[2vw] lg:text-[1.5vw] font-semibold">
             {purchaseError}

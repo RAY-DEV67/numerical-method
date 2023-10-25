@@ -1,4 +1,3 @@
-import { useState, useEffect, useCallback } from "react";
 import apple from "../assets/apple.png";
 import google from "../assets/google.png";
 import image1 from "../assets/image1.png";
@@ -9,6 +8,7 @@ import Sections from "../components/sections";
 import Tick from "../components/tick";
 
 function LandingPage() {
+
   let index = 0,
     interval = 50000;
 

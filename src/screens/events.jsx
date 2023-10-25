@@ -1,29 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import db from "../../firebase";
-import {
-  getDocs,
-  collection,
-  doc,
-  where,
-  query,
-  deleteDoc,
-  updateDoc,
-} from "firebase/firestore";
 import { UserState } from "../App";
 import EventsCard from "../components/eventsCard";
 import LoadingSpinner from "../components/spinner";
 
 function Events() {
-  const state = useContext(UserState);
-  console.log(state);
-
   const [events, setEvents] = useState([]);
   const [loading, setloading] = useState(false);
 
   useEffect(() => {
     setloading(true);
     db.collection("Events")
-      .where("status", "==", "Active")
       .get()
       .then((collections) => {
         const events = collections.docs.map((cloths) => {
@@ -32,7 +19,7 @@ function Events() {
         setEvents(events);
         setloading(false);
       });
-  }, [state]);
+  }, []);
 
   return (
     <div className="bg-white textFont">

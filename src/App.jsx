@@ -12,13 +12,12 @@ import SellProducts from "./screens/sellProducts";
 import SellServices from "./screens/sellServices";
 import Events from "./screens/events";
 import Shop from "./screens/shop";
-import db from "../firebase";
-import { getDocs, query, collection, where } from "firebase/firestore";
 import EventsDetails from "./screens/eventsDetails";
 import BuyTickets from "./screens/buyTickets";
 import Contact from "./screens/contact";
 import TermsAndConditions from "./screens/terms&conditions";
 import { ToastContainer } from "react-toastify";
+import UserDetailsContextProvider from "./context/userDetails";
 
 export const UserId = React.createContext();
 export const SetUserId = React.createContext();
@@ -51,47 +50,49 @@ function App() {
             <SetState.Provider value={setuserState}>
               <UserName.Provider value={userName}>
                 <SetUserName.Provider value={setuserName}>
-                  <Router>
-                    <ScrollToTop>
-                      <Navbar />
-                      <Routes>
-                        <Route path="/" element={<LandingPage />} />
-                        <Route path="/Login" element={<Login />} />
-                        <Route path="/SignUpOne" element={<SignUpOne />} />
-                        <Route
-                          path="/SignUpTwo/:userId"
-                          element={<SignUpTwo />}
-                        />
-                        <Route
-                          path="/SellProducts"
-                          element={<SellProducts />}
-                        />
-                        <Route
-                          path="/SellServices/:userId/:userName"
-                          element={<SellServices />}
-                        />
-                        <Route path="Events" element={<Events />} />
-                        <Route
-                          path="/Shop/:userId/:userName/:email"
-                          element={<Shop />}
-                        />
+                  <UserDetailsContextProvider>
+                    <Router>
+                      <ScrollToTop>
+                        <Navbar />
+                        <Routes>
+                          <Route path="/" element={<LandingPage />} />
+                          <Route path="/Login" element={<Login />} />
+                          <Route path="/SignUpOne" element={<SignUpOne />} />
+                          <Route
+                            path="/SignUpTwo/:userId"
+                            element={<SignUpTwo />}
+                          />
+                          <Route
+                            path="/SellProducts"
+                            element={<SellProducts />}
+                          />
+                          <Route
+                            path="/SellServices/:userId/:userName"
+                            element={<SellServices />}
+                          />
+                          <Route path="Events" element={<Events />} />
+                          <Route
+                            path="/Shop/:userId/:userName/:email"
+                            element={<Shop />}
+                          />
 
-                        <Route
-                          path="/EventsDetails/:eventId"
-                          element={<EventsDetails />}
-                        />
-                        <Route
-                          path="/BuyTickets/:userId"
-                          element={<BuyTickets />}
-                        />
-                        <Route path="/Contact" element={<Contact />} />
-                        <Route
-                          path="/TermsAndConditions"
-                          element={<TermsAndConditions />}
-                        />
-                      </Routes>
-                    </ScrollToTop>
-                  </Router>
+                          <Route
+                            path="/EventsDetails/:eventId"
+                            element={<EventsDetails />}
+                          />
+                          <Route
+                            path="/BuyTickets/:userId"
+                            element={<BuyTickets />}
+                          />
+                          <Route path="/Contact" element={<Contact />} />
+                          <Route
+                            path="/TermsAndConditions"
+                            element={<TermsAndConditions />}
+                          />
+                        </Routes>
+                      </ScrollToTop>
+                    </Router>
+                  </UserDetailsContextProvider>
                 </SetUserName.Provider>
               </UserName.Provider>
             </SetState.Provider>
