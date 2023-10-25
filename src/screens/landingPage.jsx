@@ -96,6 +96,15 @@ function LandingPage() {
 
       <div className="px-[16px]">
         <Sections
+          heading1="Nigeria Ultimate Students"
+          heading2="Market-Place"
+          text=" Whether you need products like clothes and shoes or you are looking for professional service providers,
+          UniPlug has you covered!!"
+          img="https://res.cloudinary.com/dvl38skbc/image/upload/v1698174065/uniplug/study-group-african-people_w6xwce.jpg"
+          className="md:flex md:flex-row md:justify-center md:items-center mt-[50px]"
+        />
+
+        <Sections
           heading1="Never Miss A Beat With"
           heading2="UniPlug Events!!"
           text="Discover the hottest events happening around your campus"

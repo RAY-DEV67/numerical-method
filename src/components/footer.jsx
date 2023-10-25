@@ -33,9 +33,12 @@ function Footer() {
               : "w-[500px]"
           }   mx-[16px] text-[12px] `}
         >
-          UniPlug is a student-centric online marketplace facilitating seamless
-          buying, selling, and social connections within Nigerian higher
-          institutions.
+          Welcome to UniPlug, where your campus experience is just a click away.
+          Our vibrant marketplace of products and services is designed to
+          simplify and enrich your student life. Whether you need essentials
+          like textbooks and stationery or crave exciting experiences like event
+          tickets, local services, or even a connection with like-minded peers,
+          UniPlug has you covered
         </p>
 
         <div
