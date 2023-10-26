@@ -320,9 +320,9 @@ function SellServices() {
             onChange={handleCategoryChange}
             className={`${
               window.innerWidth < 1780
-                ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
                 : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
+            } input bg-transparent rounded-[10px] text-black px-[8px] py-[12px] my-[16px] border border-[#00cc00]`}
           >
             <option value="">Category</option>
             {Categories.map((categories) => (
@@ -483,9 +483,9 @@ function SellServices() {
             onChange={handleStateChange}
             className={`${
               window.innerWidth < 1780
-                ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
                 : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
+            } input bg-transparent rounded-[10px] text-black px-[8px] py-[12px] mt-[16px] border border-[#00cc00]`}
           >
             <option value="">Select State</option>
             {nigerianStates.map((state) => (
@@ -513,7 +513,7 @@ function SellServices() {
               window.innerWidth < 1780
                 ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
                 : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[16px] border-b border-[#00cc00]`}
+            } input bg-transparent rounded-[10px] text-black px-[8px] py-[12px] mt-[16px] border border-[#00cc00]`}
           >
             <option value="">Select University</option>
             {nigerianUniversities.map((university) => (
@@ -546,7 +546,7 @@ function SellServices() {
               window.innerWidth < 1780
                 ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
                 : "text-[40px]"
-            } font-bold mb-[8px]`}
+            } font-bold mb-[8px] mt-[16px]`}
           >
             YOUR CONTACT DETAILS
           </h2>
@@ -625,7 +625,7 @@ function SellServices() {
               }}
               className={`${
                 window.innerWidth < 1780 ? "w-[50vw] md:w-[13vw]" : "w-[500px]"
-              } bg-[#013a19] flex flex-col items-center justify-center text-white  mt-[16px] rounded-[20px] py-[8px]`}
+              } bg-[#013a19] flex flex-col items-center justify-center text-white  mt-[32px] rounded-[20px] py-[8px]`}
             >
               {loadingSubmit ? <LoadingSpinner /> : "Plug Me"}
             </button>
@@ -646,7 +646,7 @@ function SellServices() {
               }}
               className={`${
                 window.innerWidth < 1780 ? "w-[50vw] md:w-[13vw]" : "w-[500px]"
-              } bg-[#013a19] flex flex-col items-center justify-center text-white  mt-[16px] rounded-[20px] py-[8px]`}
+              } bg-[#013a19] flex flex-col items-center justify-center text-white  mt-[32px] rounded-[20px] py-[8px]`}
             >
               {loadingSubmit ? <LoadingSpinner /> : "Plug Me (#500)"}
             </button>
@@ -660,7 +660,7 @@ function SellServices() {
               }}
               className={`${
                 window.innerWidth < 1780 ? "w-[50vw] md:w-[13vw]" : "w-[500px]"
-              } bg-[#013a19] flex flex-col items-center justify-center text-white  mt-[16px] rounded-[20px] py-[8px]`}
+              } bg-[#013a19] flex flex-col items-center justify-center text-white  mt-[32px] rounded-[20px] py-[8px]`}
             >
               {loadingSubmit ? <LoadingSpinner /> : "Plug Me (#1000)"}
             </button>

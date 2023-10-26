@@ -238,7 +238,7 @@ function BuyTickets() {
   return (
     <div className="textFont">
       <div>
-        <h1 className="lg:hidden headingFont text-[4vw] mx-[16px] mt-[20vw] md:mt-[10vw]">
+        <h1 className="lg:hidden headingFont text-[4vw] mx-[16px] pt-[20vw] md:mt-[10vw]">
           <span class="magic">
             <span class="magic-text text-center">Choose Your Ticket</span>
           </span>
@@ -286,7 +286,7 @@ function BuyTickets() {
                 key={index}
                 className={`${
                   window.innerWidth < 1780
-                    ? "w-[80vw] md:w-[70vw] lg:w-[60vw] "
+                    ? "w-[85vw] md:w-[70vw] lg:w-[60vw] "
                     : "width-[1300px]"
                 } flex-row  flex justify-between items-center p-[16px] border border-green-800 rounded-[20px] m-[16px]`}
               >
