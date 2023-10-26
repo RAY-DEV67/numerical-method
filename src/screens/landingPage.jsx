@@ -41,7 +41,7 @@ function LandingPage() {
                 : "text-[60px] w-[700px]"
             } headingFont font-bold mt-[16px] text-white`}
           >
-            Connecting Students Text To
+            Connecting Students To
           </h1>
           <h1
             className={`${
