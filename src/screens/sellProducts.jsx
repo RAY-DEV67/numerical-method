@@ -489,7 +489,7 @@ function SellProducts() {
             <h2
               className={`${
                 window.innerWidth < 1780
-                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  ? "text-[4vw] md:text-[2vw] lg:text-[1.5vw]"
                   : "text-[40px]"
               } font-bold`}
             >
@@ -498,7 +498,7 @@ function SellProducts() {
             <p
               className={`${
                 window.innerWidth < 1780
-                  ? "text-[2.5vw] md:text-[1.5vw] lg:text-[1vw]"
+                  ? "text-[3.5vw] md:text-[1.5vw] lg:text-[1vw]"
                   : "text-[30px]"
               }`}
             >
@@ -509,7 +509,7 @@ function SellProducts() {
                 <input
                   className={`${
                     window.innerWidth < 1780
-                      ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                      ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw]"
                       : "text-[40px]"
                   } mt-[1rem]`}
                   type="file"
@@ -536,7 +536,7 @@ function SellProducts() {
                 <input
                   className={`${
                     window.innerWidth < 1780
-                      ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                      ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw]"
                       : "text-[40px]"
                   } mt-[1rem]`}
                   type="file"
@@ -564,7 +564,7 @@ function SellProducts() {
                 <input
                   className={`${
                     window.innerWidth < 1780
-                      ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                      ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw]"
                       : "text-[40px]"
                   } mt-[1rem]`}
                   type="file"
@@ -580,7 +580,7 @@ function SellProducts() {
                 <input
                   className={`${
                     window.innerWidth < 1780
-                      ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                      ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw]"
                       : "text-[40px]"
                   } mt-[1rem]`}
                   type="file"
@@ -596,7 +596,7 @@ function SellProducts() {
                 <input
                   className={`${
                     window.innerWidth < 1780
-                      ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                      ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw]"
                       : "text-[40px]"
                   } mt-[1rem]`}
                   type="file"
@@ -837,7 +837,7 @@ function SellProducts() {
           <p
             className={`${
               window.innerWidth < 1780
-                ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                ? "text-[4vw] md:text-[2vw] lg:text-[1.5vw]"
                 : "text-[40px]"
             } font-bold mt-[16px]`}
           >
@@ -846,7 +846,7 @@ function SellProducts() {
           <input
             className={`${
               window.innerWidth < 1780
-                ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw] md:w-[40vw]"
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] md:w-[40vw]"
                 : "text-[40px] w-[1000px]"
             } my-[16px]`}
             type="file"
@@ -918,7 +918,7 @@ function SellProducts() {
           <h2
             className={`${
               window.innerWidth < 1780
-                ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                ? "text-[4vw] md:text-[2vw] lg:text-[1.5vw]"
                 : "text-[40px]"
             } font-bold mb-[8px]`}
           >
@@ -953,7 +953,7 @@ function SellProducts() {
           <h2
             className={`${
               window.innerWidth < 1780
-                ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                ? "text-[4vw] md:text-[2vw] lg:text-[1.5vw]"
                 : "text-[40px]"
             } font-bold mb-[8px] mt-[16px]`}
           >

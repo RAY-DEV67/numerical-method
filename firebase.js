@@ -4,7 +4,7 @@ import "firebase/compat/firestore"
 import "firebase/compat/storage"
 
 const firebaseApp = firebase.initializeApp( {
-  apiKey: "AIzaSyBNKp2xR9r2ZXh7lN0OlH9BPotEGjt9-UY",
+  apiKey: import.meta.env.VITE_API_KEY,
   authDomain: "thrifty2.firebaseapp.com",
   projectId: "thrifty2",
   storageBucket: "thrifty2.appspot.com",

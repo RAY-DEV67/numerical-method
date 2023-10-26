@@ -351,7 +351,7 @@ function SellServices() {
             <h2
               className={`${
                 window.innerWidth < 1780
-                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                  ? "text-[4vw] md:text-[2vw] lg:text-[1.5vw]"
                   : "text-[40px]"
               } font-bold`}
             >
@@ -360,7 +360,7 @@ function SellServices() {
             <p
               className={`${
                 window.innerWidth < 1780
-                  ? "text-[2.5vw] md:text-[1.5vw] lg:text-[1vw]"
+                  ? "text-[3.5vw] md:text-[1.5vw] lg:text-[1vw]"
                   : "text-[30px]"
               }`}
             >
@@ -371,7 +371,7 @@ function SellServices() {
                 <input
                   className={`${
                     window.innerWidth < 1780
-                      ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                      ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw]"
                       : "text-[40px]"
                   } mt-[1rem]`}
                   type="file"
@@ -398,7 +398,7 @@ function SellServices() {
                 <input
                   className={`${
                     window.innerWidth < 1780
-                      ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                      ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw]"
                       : "text-[40px]"
                   } mt-[1rem]`}
                   type="file"
@@ -415,7 +415,7 @@ function SellServices() {
                 <input
                   className={`${
                     window.innerWidth < 1780
-                      ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                      ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw]"
                       : "text-[40px]"
                   } mt-[1rem]`}
                   type="file"
@@ -431,7 +431,7 @@ function SellServices() {
                 <input
                   className={`${
                     window.innerWidth < 1780
-                      ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                      ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw]"
                       : "text-[40px]"
                   } mt-[1rem]`}
                   type="file"
@@ -447,7 +447,7 @@ function SellServices() {
                 <input
                   className={`${
                     window.innerWidth < 1780
-                      ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                      ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw]"
                       : "text-[40px]"
                   } mt-[1rem]`}
                   type="file"
@@ -544,7 +544,7 @@ function SellServices() {
           <h2
             className={`${
               window.innerWidth < 1780
-                ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                ? "text-[4vw] md:text-[2vw] lg:text-[1.5vw]"
                 : "text-[40px]"
             } font-bold mb-[8px] mt-[16px]`}
           >

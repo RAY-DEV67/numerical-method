@@ -8,7 +8,6 @@ import Sections from "../components/sections";
 import Tick from "../components/tick";
 
 function LandingPage() {
-
   let index = 0,
     interval = 50000;
 

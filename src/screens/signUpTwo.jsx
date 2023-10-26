@@ -587,7 +587,7 @@ function SignUpTwo() {
           <h1
             className={`${
               window.innerWidth < 1780
-                ? "text-[8vw]  sm:text-[4vw] md:text-[3vw]"
+                ? "text-[6vw]  sm:text-[4vw] md:text-[3vw]"
                 : "text-[70px]"
             } lg:mt-[32px] font-semibold headingFont`}
           >
@@ -598,7 +598,7 @@ function SignUpTwo() {
           <p
             className={`${
               window.innerWidth < 1780
-                ? "text-[3vw] sm:text-[2vw] md:text-[1.5vw]"
+                ? "text-[3.5vw] sm:text-[2vw] md:text-[1.5vw]"
                 : "text-[35px]"
             }`}
           >
@@ -612,7 +612,7 @@ function SignUpTwo() {
               window.innerWidth < 1780
                 ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
                 : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] mt-[24px] mb-[8px] border border-[#00cc00]`}
+            } input bg-transparent rounded-[10px] text-black px-[8px] py-[12px] mt-[24px] mb-[8px] border border-[#00cc00]`}
           >
             <option value="">Select State</option>
             {nigerianStates.map((state) => (
@@ -630,7 +630,7 @@ function SignUpTwo() {
               window.innerWidth < 1780
                 ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
                 : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[8px] border border-[#00cc00]`}
+            } input bg-transparent rounded-[10px] text-black px-[8px] py-[12px] my-[8px] border border-[#00cc00]`}
           >
             <option value="">Select University</option>
             {nigerianUniversities.map((university) => (
@@ -645,7 +645,7 @@ function SignUpTwo() {
             <p
               className={`${
                 window.innerWidth < 1780
-                  ? "w-[80vw] md:w-[40vw] text-[3vw] md:text-[1.5vw] sm:text-[2vw]"
+                  ? "w-[80vw] md:w-[40vw] text-[3.5vw] md:text-[1.5vw] sm:text-[2vw]"
                   : "w-[1000px] text-[40px]"
               }  mb-[8px]`}
             >
@@ -654,7 +654,7 @@ function SignUpTwo() {
             <div
               className={`${
                 window.innerWidth < 1780
-                  ? "w-[80vw] sm:w-[60vw] md:w-[40vw]"
+                  ? "w-[85vw] sm:w-[60vw] md:w-[40vw]"
                   : "w-[1000px]"
               }  mb-[8px]`}
             >
@@ -671,7 +671,7 @@ function SignUpTwo() {
                 for="MIN"
                 className={`${
                   window.innerWidth < 1780
-                    ? "text-[3vw] sm:text-[2vw] md:text-[1.5vw]"
+                    ? "text-[3.5vw] sm:text-[2vw] md:text-[1.5vw]"
                     : "text-[40px]"
                 }  mb-[8px]`}
               >
@@ -681,7 +681,7 @@ function SignUpTwo() {
             <div
               className={`${
                 window.innerWidth < 1780
-                  ? "w-[80vw] sm:w-[60vw] md:w-[40vw]"
+                  ? "w-[85vw] sm:w-[60vw] md:w-[40vw]"
                   : "w-[1000px]"
               }  mb-[8px]`}
             >
@@ -699,7 +699,7 @@ function SignUpTwo() {
                 for="MIN"
                 className={`${
                   window.innerWidth < 1780
-                    ? "text-[3vw] sm:text-[2vw] md:text-[1.5vw]"
+                    ? "text-[3.5vw] sm:text-[2vw] md:text-[1.5vw]"
                     : "text-[40px]"
                 }  mb-[8px]`}
               >
@@ -716,7 +716,7 @@ function SignUpTwo() {
               window.innerWidth < 1780
                 ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
                 : "w-[1000px] text-[40px]"
-            } input bg-transparent rounded-[10px] text-black p-[8px] my-[8px] border border-[#00cc00]`}
+            } input bg-transparent rounded-[10px] text-black px-[8px] py-[12px] border border-[#00cc00]`}
           >
             <option value="">Select Gender</option>
             {Gender.map((gender) => (
