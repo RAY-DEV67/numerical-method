@@ -8,7 +8,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
   const setuserId = useContext(SetUserId);
-
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,8 +26,6 @@ function Login() {
         password
       );
       const user = userCredential.user;
-      console.log("User logged in:", user.email);
-      console.log("UserUid:", user.uid);
       setuserId(user.uid);
 
       // Store user credentials in localStorage
@@ -55,8 +52,6 @@ function Login() {
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log("Login failed:", errorMessage, errorCode);
-
       if (errorCode === "auth/invalid-email") {
         setErrors("Invalid Email Address");
       } else if (errorCode === "auth/user-not-found") {

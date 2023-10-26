@@ -1,8 +1,7 @@
-import { storage } from "../../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { addDoc, collection, updateDoc } from "firebase/firestore";
+import { addDoc, collection} from "firebase/firestore";
 import db from "../../firebase";
 import LoadingSpinner from "../components/spinner";
 import Input from "../components/input";
@@ -11,7 +10,6 @@ function SignUpOne() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  const [userId, setuserId] = useState("");
   const [email, setEmail] = useState("");
   const [emailError, setemailError] = useState("");
   const [confirmEmail, setconfirmEmail] = useState("");
@@ -24,7 +22,6 @@ function SignUpOne() {
   const [firstNameError, setfirstNameError] = useState("");
   const [uniTag, setuniTag] = useState("");
   const [uniTagError, setuniTagError] = useState("");
-  const [image1, setimage1] = useState("");
 
   const docRef = collection(db, "Users");
 
@@ -144,11 +141,9 @@ function SignUpOne() {
       const user = userCredential.user;
       addNewUser(user.uid, user.email);
       navigate(`/SignUpTwo/${user.uid}`);
-      setuserId(user.uid);
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log("Registration failed:", errorMessage, errorCode);
       if (errorCode === "auth/invalid-email") {
         setemailError("Invalid Email Address");
       } else if (errorCode === "auth/email-already-in-use") {

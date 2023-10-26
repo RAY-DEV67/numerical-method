@@ -1,16 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import db from "../../firebase";
-import {
-  getDocs,
-  collection,
-  doc,
-  where,
-  query,
-  deleteDoc,
-  updateDoc,
-} from "firebase/firestore";
-import { UserId, UserState } from "../App";
-import EventsCard from "../components/eventsCard";
+import { UserId} from "../App";
 import LoadingSpinner from "../components/spinner";
 import { useNavigate, useParams } from "react-router-dom";
 

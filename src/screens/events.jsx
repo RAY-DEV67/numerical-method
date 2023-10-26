@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import db from "../../firebase";
-import { UserState } from "../App";
 import EventsCard from "../components/eventsCard";
 import LoadingSpinner from "../components/spinner";
 

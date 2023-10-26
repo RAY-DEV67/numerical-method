@@ -1,4 +1,3 @@
-import { PaystackButton } from "react-paystack";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import db from "../../firebase";
@@ -20,7 +19,6 @@ function Shop() {
 
   const [products, setProducts] = useState([]); // Initialize with an empty array
   const [loading, setLoading] = useState(false);
-  const [amount, setamount] = useState(0);
 
   useEffect(() => {
     setLoading(true);
@@ -77,7 +75,7 @@ function Shop() {
         email: email,
         name: userName,
       },
-      callback: function (payment) {
+      callback: function () {
         buyPlugs(num);
       },
     });

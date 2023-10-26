@@ -31,7 +31,7 @@ const Categories = [
   "Others",
 ];
 
-const Gender = ["Male", "Female"];
+const Gender = ["Male", "Female", "Unisex"];
 const Condition = ["Brand New", "Used"];
 const HairOrigin = ["Any", "Human Hair", "Synthetic"];
 
@@ -101,8 +101,6 @@ function SellProducts() {
 
   const originalPrice = Number(price);
   const calculatedPrice = originalPrice + originalPrice * 0.05; // Calculate 5% of the original price
-
-  console.log("Size", color);
 
   const upload = async () => {
     setcategoryError("");

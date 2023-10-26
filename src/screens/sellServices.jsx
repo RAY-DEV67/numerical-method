@@ -62,7 +62,6 @@ function SellServices() {
   const [file3, setfile3] = useState("");
   const [file4, setfile4] = useState("");
   const [file5, setfile5] = useState("");
-  const [url, seturl] = useState("");
 
   function makePayment(amount) {
     setcategoryError("");
@@ -172,7 +171,6 @@ function SellServices() {
     setloadingSubmit(false);
 
     if (isfile == null) return;
-    seturl("getting link");
     storage
       .ref("/images/" + isfile.name)
       .put(isfile)
@@ -189,7 +187,6 @@ function SellServices() {
       });
 
     if (file2 == null) return;
-    seturl("getting link");
     storage
       .ref("/images/" + file2.name)
       .put(file2)
@@ -206,7 +203,6 @@ function SellServices() {
       });
 
     if (file3 == null) return;
-    seturl("getting link");
     storage
       .ref("/images/" + file3.name)
       .put(file3)
@@ -223,7 +219,6 @@ function SellServices() {
       });
 
     if (file4 == null) return;
-    seturl("getting link");
     storage
       .ref("/images/" + file4.name)
       .put(file4)
@@ -240,7 +235,6 @@ function SellServices() {
       });
 
     if (file5 == null) return;
-    seturl("getting link");
     storage
       .ref("/images/" + file5.name)
       .put(file5)

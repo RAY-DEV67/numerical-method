@@ -8,28 +8,6 @@ import Sections from "../components/sections";
 import Tick from "../components/tick";
 
 function LandingPage() {
-  let index = 0,
-    interval = 50000;
-
-  const rand = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-
-  const animate = (star) => {
-    star.style.setProperty("--star-left", `${rand(-10, 100)}%`);
-    star.style.setProperty("--star-top", `${rand(-40, 80)}%`);
-
-    star.style.animation = "none";
-    star.offsetHeight;
-    star.style.animation = "";
-  };
-
-  for (const star of document.getElementsByClassName("magic-star")) {
-    setTimeout(() => {
-      animate(star);
-
-      setInterval(() => animate(star), 8000);
-    }, index++ * (interval / 3));
-  }
-
   return (
     <>
       <div className="bg-gradient-to-r from-green-500 to-green-900 pt-[68px] md:flex md:flex-row-reverse md:justify-between md:items-center">
@@ -37,7 +15,7 @@ function LandingPage() {
           <h1
             className={`${
               window.innerWidth < 1780
-                ? "text-[6vw] md:text-[3vw] w-[80vw] md:w-[40vw]"
+                ? "text-[6vw] md:text-[2.5vw] w-[80vw] md:w-[40vw]"
                 : "text-[60px] w-[700px]"
             } headingFont font-bold mt-[16px] text-white`}
           >
@@ -46,7 +24,7 @@ function LandingPage() {
           <h1
             className={`${
               window.innerWidth < 1780
-                ? "text-[6vw] md:text-[3vw] w-[80vw] md:w-[40vw]"
+                ? "text-[6vw] md:text-[2.5vw] w-[80vw] md:w-[40vw]"
                 : "text-[60px] w-[700px]"
             } headingFont font-bold mt-[-8px] h-[10vh] text-white`}
           >

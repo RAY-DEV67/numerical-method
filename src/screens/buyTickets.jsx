@@ -1,4 +1,3 @@
-import { PaystackButton } from "react-paystack";
 import { useState, useEffect, useContext } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import {
@@ -19,14 +18,11 @@ function BuyTickets() {
   const location = useLocation();
   const { userId } = useParams();
 
-  const [totalQuantity, settotalQuantity] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [ticketInformation, setTicketInformation] = useState([]);
   const [purchaseError, setpurchaseError] = useState("");
   const [name, setname] = useState("");
-  const [nameError, setnameError] = useState("");
   const [email, setemail] = useState("");
-  const [emailError, setemailError] = useState("");
   const [phoneNumber, setphoneNumber] = useState("");
 
   // Access the props passed through the navigate function
@@ -60,14 +56,13 @@ function BuyTickets() {
 
   useEffect(() => {
     let total = 0;
-    console.log("Ticketx", ticketInformation);
     ticketInformation.forEach((ticket) => {
       const ticketAvailableQuantity = ticketProps.tickets.find(
         (t) => t.name === ticket.name
       ).quantity;
       total += ticketAvailableQuantity - ticket.quantity;
     });
-    settotalQuantity(total);
+    // settotalQuantity(total);
   }, [ticketInformation, ticketProps.tickets]);
 
   const formatCur = function (value, locale, currency) {
@@ -108,8 +103,6 @@ function BuyTickets() {
     }
   };
 
-  console.log(ticketProps.id);
-
   const deductAvailableQuantity = async () => {
     try {
       // Fetch the document from the Events collection
@@ -120,7 +113,6 @@ function BuyTickets() {
         const eventDocData = eventDocSnapshot.data();
         const eventTickets = eventDocData.tickets;
 
-        console.log("eventTickets:", eventTickets); // Log eventTickets to check its content
 
         // Update the availableQuantity for each ticket based on the ordered quantity
         ticketInformation.forEach((ticket) => {
@@ -140,7 +132,6 @@ function BuyTickets() {
           }
         });
 
-        console.log("Updated eventTickets:", eventTickets); // Log updated eventTickets
         // Update the Events document with the modified tickets
         await updateDoc(eventDocRef, {
           tickets: eventTickets,
@@ -189,9 +180,6 @@ function BuyTickets() {
 
   useEffect(() => {
     setpurchaseError("");
-    console.log(hasQuantityGreaterThan);
-    console.log(hasQuantityGreaterThan5);
-
     if (hasQuantityGreaterThan5) {
       setpurchaseError("Please Select a valid quantity");
       return;
@@ -214,7 +202,7 @@ function BuyTickets() {
     }
   }, [ticketInformation, name, email, totalPrice]);
 
-  function makePayment(amount) {
+  function makePayment() {
     // Generate a new tx_ref
     const tx_ref = GenerateTransactionRef();
 
@@ -365,14 +353,12 @@ function BuyTickets() {
           <Input
             onChangeText={(e) => setname(e.target.value)}
             type="text"
-            error={nameError}
             placeholder="Your Name"
           />
 
           <Input
             onChangeText={(e) => setemail(e.target.value)}
             type="text"
-            error={emailError}
             placeholder="Your Email"
           />
 
