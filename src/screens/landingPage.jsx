@@ -6,6 +6,7 @@ import AnimatedDiv from "../components/Animation";
 import DownloadNow from "../components/downloadNow";
 import Sections from "../components/sections";
 import Tick from "../components/tick";
+import Modal from "../components/modal";
 
 function LandingPage() {
   return (
@@ -109,6 +110,7 @@ function LandingPage() {
         <DownloadNow />
       </div>
       <Footer />
+      {/* <Modal /> */}
     </>
   );
 }

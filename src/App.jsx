@@ -1,5 +1,3 @@
-import dotenv from 'dotenv';
-// dotenv.config();
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -20,6 +18,10 @@ import Contact from "./screens/contact";
 import TermsAndConditions from "./screens/terms&conditions";
 import { ToastContainer } from "react-toastify";
 import UserDetailsContextProvider from "./context/userDetails";
+import ShareGist from "./screens/shareGist";
+import Profile from "./screens/profile";
+import YourProducts from "./screens/yourProducts";
+import YourServices from "./screens/yourServices";
 
 export const UserId = React.createContext();
 export const SetUserId = React.createContext();
@@ -90,6 +92,16 @@ function App() {
                           <Route
                             path="/TermsAndConditions"
                             element={<TermsAndConditions />}
+                          />
+                          <Route path="/ShareGist" element={<ShareGist />} />
+                          <Route path="/Profile" element={<Profile />} />
+                          <Route
+                            path="/YourProducts/:userId"
+                            element={<YourProducts />}
+                          />
+                          <Route
+                            path="/YourServices/:userId"
+                            element={<YourServices />}
                           />
                         </Routes>
                       </ScrollToTop>

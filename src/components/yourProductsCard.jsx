@@ -1,51 +1,34 @@
 import db from "../../firebase";
-import GenerateTransactionRef from "../helper/generateTransactionRef";
+import { doc, deleteDoc } from "firebase/firestore";
+import { useState } from "react";
+import ConfirmationModal from "./confirmationModal";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-export default function ProductsCard({ product, email, userName }) {
-  const updateSubscriptionEndDate = () => {
-    // Get the current date
-    const currentDate = new Date();
+export default function YourProductsCard({ product }) {
+  const [showModal, setshowModal] = useState(false);
 
-    // Calculate the new subscription end date by adding 1 month
-    const newDate = new Date(currentDate);
-    newDate.setMonth(currentDate.getMonth() + 1);
+  const deleteProduct = async () => {
+    setshowModal(false);
+    try {
+      const userRef = doc(db, "Products", product.id);
+      await deleteDoc(userRef);
 
-    // Handle cases where the new date doesn't exist (e.g., February 30th)
-    if (currentDate.getDate() !== newDate.getDate()) {
-      // Adjust to the last day of the previous month
-      newDate.setDate(0);
-    }
-
-    db.collection("Products")
-      .doc(product.id) // Use the appropriate document ID
-      .update({ subscriptionEndDate: newDate, notTop: false })
-      .then(() => {
-        console.log("Subscription end date updated successfully");
-      })
-      .catch((error) => {
-        console.error("Error updating subscription end date:", error);
+      toast("Deleted Successfully🙌🙌", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
       });
+
+    } catch (err) {
+      console.log(err);
+    }
   };
-
-  function makePayment() {
-    // Generate a new tx_ref
-    const tx_ref = GenerateTransactionRef();
-
-    FlutterwaveCheckout({
-      public_key: "FLWPUBK_TEST-cebf85e05f6ff0c8d7d41d8cb00bc8c7-X",
-      tx_ref: tx_ref,
-      amount: 3000,
-      currency: "NGN",
-      payment_options: "card, mobilemoneyghana, ussd",
-      customer: {
-        email: email,
-        name: userName,
-      },
-      callback: function (payment) {
-        updateSubscriptionEndDate();
-      },
-    });
-  }
 
   const limitedTitle =
     product.title.length > 50
@@ -112,15 +95,23 @@ export default function ProductsCard({ product, email, userName }) {
           </p>
 
           <div
-            onClick={makePayment}
-            className="bg-[#013a19] w-[150px] py-[4px] rounded-[20px]"
+            onClick={() => {
+              setshowModal(true);
+            }}
+            className="bg-red-800 w-[130px] py-[4px] rounded-[20px]"
           >
             <p className="text-center text-white text-[3vw] md:text-[2vw]">
-              Boost Ad ⚡
+              Delete Product
             </p>
           </div>
         </div>
       </div>
+      <ConfirmationModal
+        showModal={showModal}
+        setShowModal={setshowModal}
+        type="Product"
+        deleteProduct={deleteProduct}
+      />
     </div>
   );
 }

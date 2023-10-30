@@ -271,7 +271,7 @@ function SignUpTwo() {
               window.innerWidth < 1780 ? "w-[33vw] md:w-[13vw]" : "w-[200px]"
             } bg-[#013a19] text-white  mt-[32px] rounded-[20px] py-[8px] flex-col items-center justify-center`}
           >
-            {loading ? <LoadingSpinner/> : "Sign Up"}
+            {loading ? <LoadingSpinner /> : "Sign Up"}
           </button>
         </div>
       </div>

@@ -1,21 +1,20 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import logo from "../assets/uniPlugLogo.png";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { SetUserId } from "../App";
+import { SetUserId, UserId } from "../App";
 import { useUserDetailsContext } from "../context/userDetails";
 
 export default function Navbar() {
   const setUserId = useContext(SetUserId);
+  const userId = useContext(UserId);
   const location = useLocation();
   const { Name, email } = useUserDetailsContext();
 
   const [showMobile, setshowMobile] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [user, setUser] = useState(null); // Track the user object
-  const [userId, setuserId] = useState();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const auth = getAuth();
@@ -308,6 +307,17 @@ export default function Navbar() {
             onClick={() => {
               setshowMobile(false);
             }}
+            to={user ? `/ShareGist` : "/Login"}
+          >
+            <p className="text-[4vw] md:text-[2vw] text-white mb-[1rem] headingfont font-bold">
+              Share Campus Gist
+            </p>
+          </Link>
+          <Link
+            className="nav"
+            onClick={() => {
+              setshowMobile(false);
+            }}
             to={user ? "/Events" : "/Login"}
           >
             <p className="text-[4vw] md:text-[2vw] text-white mb-[1rem] headingfont font-bold">
@@ -323,6 +333,17 @@ export default function Navbar() {
           >
             <p className="text-[4vw] md:text-[2vw] text-white mb-[1rem] headingfont font-bold">
               Premium Shop
+            </p>
+          </Link>
+          <Link
+            className="nav"
+            onClick={() => {
+              setshowMobile(false);
+            }}
+            to={user ? `/Profile` : "/Login"}
+          >
+            <p className="text-[4vw] md:text-[2vw] text-white mb-[1rem] headingfont font-bold">
+              Profile
             </p>
           </Link>
           {!Name && (

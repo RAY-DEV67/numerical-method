@@ -48,7 +48,7 @@ function Login() {
         progress: undefined,
         theme: "light",
       });
-      navigate("/");
+      navigate("/ShareGist");
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;

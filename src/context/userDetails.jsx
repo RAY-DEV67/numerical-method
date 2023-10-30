@@ -15,8 +15,8 @@ const UserDetailsContextProvider = ({ children }) => {
   const userId = useContext(UserId);
 
   const [userDetails, setUserDetails] = useState({
-    userEmail: "",
-    name: "",
+    email: "",
+    Name: "",
     address: "",
     state: "",
     university: "",
@@ -98,7 +98,6 @@ const UserDetailsContextProvider = ({ children }) => {
     };
   }, [userId]);
 
-  console.log(userId);
 
   return (
     <UserDetailsContext.Provider value={userDetails}>
