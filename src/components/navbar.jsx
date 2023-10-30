@@ -3,12 +3,13 @@ import logo from "../assets/uniPlugLogo.png";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { SetUserId, UserId } from "../App";
+import { NavigateTo, SetUserId, UserId } from "../App";
 import { useUserDetailsContext } from "../context/userDetails";
 
 export default function Navbar() {
   const setUserId = useContext(SetUserId);
   const userId = useContext(UserId);
+  const { setnavigateTo } = useContext(NavigateTo);
   const location = useLocation();
   const { Name, email } = useUserDetailsContext();
 
@@ -130,7 +131,13 @@ export default function Navbar() {
             window.innerWidth < 1780 ? "w-[55vw]" : "w-[1000px]"
           }`}
         >
-          <Link to="/" className="nav">
+          <Link
+            onClick={() => {
+              setnavigateTo("/");
+            }}
+            to="/"
+            className="nav"
+          >
             <p
               className={`${
                 window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
@@ -143,7 +150,13 @@ export default function Navbar() {
               Home
             </p>
           </Link>
-          <Link className="nav" to={user ? "/SellProducts" : "/Login"}>
+          <Link
+            onClick={() => {
+              setnavigateTo("/SellProducts");
+            }}
+            className="nav"
+            to={user ? "/SellProducts" : "/Login"}
+          >
             <p
               className={`${
                 window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
@@ -173,7 +186,7 @@ export default function Navbar() {
               Sell Services
             </p>
           </Link>
-          <Link className="nav" to={user ? "/Events" : "/Login"}>
+          {/* <Link className="nav" to={user ? "/Events" : "/Login"}>
             <p
               className={`${
                 window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
@@ -185,7 +198,7 @@ export default function Navbar() {
             >
               Events
             </p>
-          </Link>
+          </Link> */}
 
           <Link
             className="nav"
@@ -273,6 +286,7 @@ export default function Navbar() {
             className="nav"
             onClick={() => {
               setshowMobile(false);
+              setnavigateTo("/");
             }}
           >
             <p className="text-[4vw] md:text-[2vw] text-white headingfont font-bold">
@@ -283,6 +297,7 @@ export default function Navbar() {
             className="nav"
             onClick={() => {
               setshowMobile(false);
+              setnavigateTo("/SellProducts");
             }}
             to={user ? "/SellProducts" : "/Login"}
           >
@@ -306,6 +321,7 @@ export default function Navbar() {
             className="nav"
             onClick={() => {
               setshowMobile(false);
+              setnavigateTo("/ShareGist");
             }}
             to={user ? `/ShareGist` : "/Login"}
           >
@@ -313,7 +329,7 @@ export default function Navbar() {
               Share Campus Gist
             </p>
           </Link>
-          <Link
+          {/* <Link
             className="nav"
             onClick={() => {
               setshowMobile(false);
@@ -323,7 +339,7 @@ export default function Navbar() {
             <p className="text-[4vw] md:text-[2vw] text-white mb-[1rem] headingfont font-bold">
               Events
             </p>
-          </Link>
+          </Link> */}
           <Link
             className="nav"
             onClick={() => {
@@ -339,6 +355,7 @@ export default function Navbar() {
             className="nav"
             onClick={() => {
               setshowMobile(false);
+              setnavigateTo("/Profile");
             }}
             to={user ? `/Profile` : "/Login"}
           >

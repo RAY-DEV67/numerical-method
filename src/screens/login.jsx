@@ -1,13 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
 import React, { useContext, useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { SetUserId } from "../App";
+import { NavigateTo, SetUserId } from "../App";
 import LoadingSpinner from "../components/spinner";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
   const setuserId = useContext(SetUserId);
+  const { navigateTo } = useContext(NavigateTo);
+
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -48,10 +50,9 @@ function Login() {
         progress: undefined,
         theme: "light",
       });
-      navigate("/ShareGist");
+      navigate(navigateTo);
     } catch (error) {
       const errorCode = error.code;
-      const errorMessage = error.message;
       if (errorCode === "auth/invalid-email") {
         setErrors("Invalid Email Address");
       } else if (errorCode === "auth/user-not-found") {

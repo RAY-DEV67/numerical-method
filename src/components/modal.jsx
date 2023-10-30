@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-import { UserId } from "../App";
+import { NavigateTo, UserId } from "../App";
 import { Link } from "react-router-dom";
 
 const Modal = () => {
   const userId = useContext(UserId);
+  const { setnavigateTo } = useContext(NavigateTo);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -38,7 +39,10 @@ const Modal = () => {
                   chance of winning #5,000 weekly!!! 🎉🥳
                 </h2>
                 <Link
-                  to={userId == "" ? "/Login" : "ShareGist"}
+                  onClick={() => {
+                    setnavigateTo("/ShareGist");
+                  }}
+                  to={userId == "" ? "/Login" : "/ShareGist"}
                   className={`${
                     window.innerWidth < 1780
                       ? "w-[50vw] md:w-[13vw]"

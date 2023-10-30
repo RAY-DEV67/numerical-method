@@ -221,10 +221,10 @@ function SellProducts() {
       title: title,
       description: description,
       nameOfBrand: brand,
-      color: color.split(","),
+      color: color ? color.split(",") : [],
       condition: selectedCondition,
       gender: selectedGender,
-      size: size.split(","),
+      size: size ? size.split(",") : [],
       vendor: vendorNameForm,
       phoneNumber: phoneNumberForm,
       instagram: instagramForm,
@@ -249,7 +249,7 @@ function SellProducts() {
       deliveryOnCampus: Number(deliveryOnCampus),
       deliveryTime: deliveryTime,
       hairOrigin: selectedHairOrigin,
-      hairLength: hairLength.split(","),
+      hairLength: hairLength ? hairLength.split(",") : [],
       searchKeywords: `${title.toLowerCase()} ${selectedGender.toLowerCase()} ${
         selectedGender === "Male"
           ? "Men"

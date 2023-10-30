@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
 import LandingPage from "./screens/landingPage";
 import Navbar from "./components/navbar";
@@ -25,15 +25,11 @@ import YourServices from "./screens/yourServices";
 
 export const UserId = React.createContext();
 export const SetUserId = React.createContext();
-export const UserState = React.createContext();
-export const SetState = React.createContext();
-export const UserName = React.createContext();
-export const SetUserName = React.createContext();
+export const NavigateTo = React.createContext();
 
 function App() {
   const [userId, setuserId] = useState("");
-  const [userState, setuserState] = useState("");
-  const [userName, setuserName] = useState("");
+  const [navigateTo, setnavigateTo] = useState("/");
 
   return (
     <div className="textFont max-w-[1780px]">
@@ -50,67 +46,55 @@ function App() {
 
       <UserId.Provider value={userId}>
         <SetUserId.Provider value={setuserId}>
-          <UserState.Provider value={userState}>
-            <SetState.Provider value={setuserState}>
-              <UserName.Provider value={userName}>
-                <SetUserName.Provider value={setuserName}>
-                  <UserDetailsContextProvider>
-                    <Router>
-                      <ScrollToTop>
-                        <Navbar />
-                        <Routes>
-                          <Route path="/" element={<LandingPage />} />
-                          <Route path="/Login" element={<Login />} />
-                          <Route path="/SignUpOne" element={<SignUpOne />} />
-                          <Route
-                            path="/SignUpTwo/:userId"
-                            element={<SignUpTwo />}
-                          />
-                          <Route
-                            path="/SellProducts"
-                            element={<SellProducts />}
-                          />
-                          <Route
-                            path="/SellServices/:userId/:userName"
-                            element={<SellServices />}
-                          />
-                          <Route path="Events" element={<Events />} />
-                          <Route
-                            path="/Shop/:userId/:userName/:email"
-                            element={<Shop />}
-                          />
+          <NavigateTo.Provider value={{ navigateTo, setnavigateTo }}>
+            <UserDetailsContextProvider>
+              <Router>
+                <ScrollToTop>
+                  <Navbar />
+                  <Routes>
+                    <Route path="/" element={<LandingPage />} />
+                    <Route path="/Login" element={<Login />} />
+                    <Route path="/SignUpOne" element={<SignUpOne />} />
+                    <Route path="/SignUpTwo/:userId" element={<SignUpTwo />} />
+                    <Route path="/SellProducts" element={<SellProducts />} />
+                    <Route
+                      path="/SellServices/:userId/:userName"
+                      element={<SellServices />}
+                    />
+                    <Route path="Events" element={<Events />} />
+                    <Route
+                      path="/Shop/:userId/:userName/:email"
+                      element={<Shop />}
+                    />
 
-                          <Route
-                            path="/EventsDetails/:eventId"
-                            element={<EventsDetails />}
-                          />
-                          <Route
-                            path="/BuyTickets/:userId"
-                            element={<BuyTickets />}
-                          />
-                          <Route path="/Contact" element={<Contact />} />
-                          <Route
-                            path="/TermsAndConditions"
-                            element={<TermsAndConditions />}
-                          />
-                          <Route path="/ShareGist" element={<ShareGist />} />
-                          <Route path="/Profile" element={<Profile />} />
-                          <Route
-                            path="/YourProducts/:userId"
-                            element={<YourProducts />}
-                          />
-                          <Route
-                            path="/YourServices/:userId"
-                            element={<YourServices />}
-                          />
-                        </Routes>
-                      </ScrollToTop>
-                    </Router>
-                  </UserDetailsContextProvider>
-                </SetUserName.Provider>
-              </UserName.Provider>
-            </SetState.Provider>
-          </UserState.Provider>
+                    <Route
+                      path="/EventsDetails/:eventId"
+                      element={<EventsDetails />}
+                    />
+                    <Route
+                      path="/BuyTickets/:userId"
+                      element={<BuyTickets />}
+                    />
+                    <Route path="/Contact" element={<Contact />} />
+                    <Route
+                      path="/TermsAndConditions"
+                      element={<TermsAndConditions />}
+                    />
+                    <Route path="/ShareGist" element={<ShareGist />} />
+                    <Route path="/Profile" element={<Profile />} />
+                    <Route
+                      path="/YourProducts/:userId"
+                      element={<YourProducts />}
+                    />
+                    <Route
+                      path="/YourServices/:userId"
+                      element={<YourServices />}
+                    />
+                  </Routes>
+                </ScrollToTop>
+              </Router>
+            </UserDetailsContextProvider>
+          </NavigateTo.Provider>
         </SetUserId.Provider>
       </UserId.Provider>
     </div>

@@ -23,12 +23,12 @@ function DownloadNow() {
               <img
                 src={apple}
                 alt="Download On Apple"
-                className="mt-[16px] w-[100px] relative z-10"
+                className="mt-[16px] w-[100px]"
               />
               <img
                 src={google}
                 alt="Download On Google"
-                className="mt-[16px] w-[100px] relative z-10"
+                className="mt-[16px] w-[100px]"
               />
             </div>
           </div>
