@@ -7,7 +7,7 @@ function Tick() {
   const [isDeleting, setisDeleting] = useState(false);
   const [text, settext] = useState(" ");
   const period = 500;
-  const toChange = ["Services", "Products", "Events", "Many More"];
+  const toChange = ["Services", "Products", "Events", "Easy Life"];
 
   let i = loopNumber % toChange.length;
   let fulltext = toChange[i];
