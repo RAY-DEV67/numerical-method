@@ -25,7 +25,9 @@ const Categories = [
   "Cleaning & Household Services",
   "Computer & I.T Services",
   "Dj & Entertainment",
-  "Fashion & MakeUp",
+  "Fashion Designer",
+  "Make-Up Artiste",
+  "Hair Services",
   "Housing Agents",
   "Logistics & Delivery Services",
   "Party, Catering & Event Services",
@@ -630,7 +632,9 @@ function SellServices() {
           selectedCategory == "Logistics & Delivery Services" ||
           selectedCategory == "Printing" ||
           selectedCategory == "Dj & Entertainment" ||
-          selectedCategory == "Fashion & MakeUp" ||
+          selectedCategory == "Fashion Designer" ||
+          selectedCategory == "Make-Up Artiste" ||
+          selectedCategory == "Hair Services" ||
           selectedCategory == "Party, Catering & Event Services" ||
           (selectedCategory == "Photography & Video Services" &&
             !submitError) ? (
