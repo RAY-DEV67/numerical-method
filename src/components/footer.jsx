@@ -49,7 +49,7 @@ function Footer() {
           }   my-[16px] flex flex-row justify-between mx-[16px] `}
         >
           <a
-            href="https://twitter.com/Enrayy11?t=WhVjQ_3kBVdJrVPYlFGKkQ&s=09 "
+            href="https://twitter.com/uniplugapp?t=WhVjQ_3kBVdJrVPYlFGKkQ&s=09 "
             target="_blank"
             rel="noopener noreferrer"
           >
