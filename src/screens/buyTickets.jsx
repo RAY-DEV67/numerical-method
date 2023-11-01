@@ -37,7 +37,6 @@ function BuyTickets() {
         quantity: parseInt(quantity) || 0,
         availableQuantity: ticketProps.tickets[ticketIndex].quantity,
       };
-      console.log(ticketInformation);
       return newInformation;
     });
   };
@@ -96,10 +95,8 @@ function BuyTickets() {
         timestamp: new Date(),
         searchKeywords: `${name.toLowerCase()}`.split(" "),
       });
-
-      console.log("order Added");
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -136,10 +133,10 @@ function BuyTickets() {
           tickets: eventTickets,
         });
       } else {
-        console.log("No matching document found for the clicked item");
+        // console.log("No matching document found for the clicked item");
       }
     } catch (err) {
-      console.error("Error updating document:", err);
+      // console.error("Error updating document:", err);
     }
 
     const querySnapshot = await getDocs(
@@ -160,12 +157,11 @@ function BuyTickets() {
             totalTicketsRevenue: newTicketsRevenue,
           });
         });
-        console.log("Update Successful");
       } else {
-        console.log("No matching document found");
+        // console.log("No matching document found");
       }
     } else {
-      console.log("No matching document found for the clicked item");
+      // console.log("No matching document found for the clicked item");
     }
   };
 

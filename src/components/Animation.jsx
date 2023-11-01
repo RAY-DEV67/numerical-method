@@ -1,6 +1,4 @@
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
 
 export default function AnimatedDiv({ children, type, showType }) {
   const [isVisible, setIsVisible] = useState(false);

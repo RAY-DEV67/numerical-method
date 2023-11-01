@@ -20,10 +20,10 @@ export default function ProductsCard({ product, email, userName }) {
       .doc(product.id) // Use the appropriate document ID
       .update({ subscriptionEndDate: newDate, notTop: false })
       .then(() => {
-        console.log("Subscription end date updated successfully");
+        // console.log("Subscription end date updated successfully");
       })
       .catch((error) => {
-        console.error("Error updating subscription end date:", error);
+        // console.error("Error updating subscription end date:", error);
       });
   };
 

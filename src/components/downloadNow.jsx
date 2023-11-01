@@ -1,4 +1,3 @@
-import AnimatedDiv from "./Animation";
 import phone from "../assets/newMock.png";
 import apple from "../assets/apple.png";
 import google from "../assets/google.png";
@@ -16,7 +15,7 @@ function DownloadNow() {
             <h1 className="text-[5vw] headingFont text-center w-[80%] mb-[32px] text-white md:text-[2vw] leading-[7vw] md:leading-[3vw] font-bold md:w-[40vw text-[#00cc00]">
               Where Campus Dreams Comes True
             </h1>
-            <h1 className="text-[5vw] caligraphy text-white md:text-[3vw] leading-[7vw] md:leading-[3vw] font-bold md:w-[40vw text-[#00cc00]">
+            <h1 className="text-[5vw] caligraphy text-white md:text-[2vw] leading-[7vw] md:leading-[3vw] font-bold md:w-[40vw text-[#00cc00]">
               Download The App Now
             </h1>
             <div>
@@ -35,7 +34,7 @@ function DownloadNow() {
           <img
             src={phone}
             alt="Uniplug"
-            className="w-[80vw] md:left-[50vw] md:absolute md:w-[15vw]  mt-[-100px]"
+            className="w-[80vw] md:left-[60vw] md:absolute md:w-[15vw] mt-[-100px]"
           />
         </div>
       </div>

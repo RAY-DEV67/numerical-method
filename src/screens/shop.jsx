@@ -53,10 +53,8 @@ function Shop() {
             availablePlugs: newAvailablePlugs,
           });
         });
-
-        console.log(`SuccessFul ${amountOfPlugs}`);
       } else {
-        console.log("No matching document found");
+        // console.log("No matching document found");
       }
     }
   };

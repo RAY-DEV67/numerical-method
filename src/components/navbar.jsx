@@ -1,6 +1,6 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import logo from "../assets/uniPlugLogo.png";
-import { useLocation, useNavigation } from "react-router-dom";
+import { useLocation} from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { NavigateTo, SetUserId, UserId } from "../App";

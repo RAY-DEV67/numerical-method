@@ -25,7 +25,7 @@ export default function YourProductsCard({ product }) {
         theme: "light",
       });
     } catch (err) {
-      console.log(err);
+    //   console.log(err);
     }
   };
 

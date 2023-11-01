@@ -65,10 +65,9 @@ const UserDetailsContextProvider = ({ children }) => {
           loadingUserDetails: false,
           fetched: true,
         });
-        console.log("update New User Doc");
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -84,7 +83,6 @@ const UserDetailsContextProvider = ({ children }) => {
       querySnapshot.forEach((doc) => {
         // Handle updates to the user's document here
         const userDoc = doc.data();
-        console.log("updateDoc");
         setUserDetails({
           ...userDoc,
           fetched: true,

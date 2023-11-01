@@ -1,10 +1,7 @@
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserId } from "../App";
 
 export default function EventsCard({ product }) {
   const navigate = useNavigate();
-  const userId = useContext(UserId);
 
   const limitedTitle =
     product.eventName.length > 20
@@ -44,7 +41,6 @@ export default function EventsCard({ product }) {
   const formattedDate = formatDate(originalDateStr);
   const timePart = originalDateStr.substring(11);
 
-  console.log(product.eventName);
 
   return (
     <div

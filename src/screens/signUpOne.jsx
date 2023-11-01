@@ -75,11 +75,9 @@ function SignUpOne() {
         referredBy: "",
         searchKeywords: `${firstName.toLowerCase()}`.split(" "),
       });
-
-      console.log("Added new User");
       setLoading(false);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -103,6 +101,10 @@ function SignUpOne() {
       setconfirmEmailError("Please Retype Your Email");
       return;
     }
+    if (email !== confirmEmail) {
+      setconfirmEmailError("Emails Do Not Match");
+      return;
+    }
     if (uniTag === "") {
       setuniTagError("Please Enter A UserName");
       return;
@@ -113,10 +115,6 @@ function SignUpOne() {
     }
     if (password !== confirmPassword) {
       setconfirmPasswordError("Passwords do not match");
-      return;
-    }
-    if (email !== confirmEmail) {
-      setconfirmEmailError("Emails Do Not Match");
       return;
     }
     setLoading(true);

@@ -223,7 +223,6 @@ function SellServices() {
     });
     // Upload and update images
     await uploadImages(docRef);
-    console.log("Uploaded Successfully");
     setloadingSubmit(false);
   };
 
@@ -240,14 +239,12 @@ function SellServices() {
           twitter: twitter,
           phoneNumber: phoneNumberForm,
         });
-
-        console.log("Document updated successfully");
         setloadingSubmit(false);
       } else {
-        console.log("No matching document found");
+        // console.log("No matching document found");
       }
     } catch (err) {
-      console.error("Error updating document:", err);
+      // console.error("Error updating document:", err);
     }
   };
 
@@ -305,7 +302,7 @@ function SellServices() {
             <p
               className={`${
                 window.innerWidth < 1780
-                  ? "text-[2vw] md:text-[2vw] lg:text-[1.5vw]"
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
                   : "text-[30px]"
               } text-red-500 mb-[16px]`}
             >
@@ -376,7 +373,6 @@ function SellServices() {
                   name="photos2"
                   onChange={(event) => {
                     setfile2(event.target.files[0]);
-                    console.log(event.target.files[0]);
                   }}
                 />
               </div>
@@ -453,7 +449,7 @@ function SellServices() {
             onChange={handleStateChange}
             className={`${
               window.innerWidth < 1780
-                ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
                 : "w-[1000px] text-[40px]"
             } input bg-transparent rounded-[10px] text-black px-[8px] py-[12px] mt-[16px] border border-[#00cc00]`}
           >
@@ -468,7 +464,7 @@ function SellServices() {
             <p
               className={`${
                 window.innerWidth < 1780
-                  ? "text-[2vw] md:text-[2vw] lg:text-[1.5vw]"
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
                   : "text-[30px]"
               } text-red-500 mb-[16px]`}
             >
@@ -481,7 +477,7 @@ function SellServices() {
             onChange={handleUniversityChange}
             className={`${
               window.innerWidth < 1780
-                ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
                 : "w-[1000px] text-[40px]"
             } input bg-transparent rounded-[10px] text-black px-[8px] py-[12px] mt-[16px] border border-[#00cc00]`}
           >
@@ -496,7 +492,7 @@ function SellServices() {
             <p
               className={`${
                 window.innerWidth < 1780
-                  ? "text-[2vw] md:text-[2vw] lg:text-[1.5vw]"
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
                   : "text-[30px]"
               } text-red-500 mb-[16px]`}
             >

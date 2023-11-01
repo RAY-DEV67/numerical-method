@@ -173,29 +173,8 @@ function SellProducts() {
     setdeliveryOffCampusError("");
     setdeliveryOnCampusError("");
 
-    if (title === "") {
-      settitleError("Please Enter Product Title");
-      setsubmitError("Unsuccessful!! Check form for errors!");
-      return;
-    }
-
     if (selectedCategory === "") {
       setcategoryError("Please Select A Category");
-      setsubmitError("Unsuccessful!! Check form for errors!");
-      return;
-    }
-    if (accountNumberForm === "") {
-      setaccountNumberError("Please Enter Your Account Number");
-      setsubmitError("Unsuccessful!! Check form for errors!");
-      return;
-    }
-    if (bankNameForm === "") {
-      setbankNameError("Please Enter Your Bank Name");
-      setsubmitError("Unsuccessful!! Check form for errors!");
-      return;
-    }
-    if (accountHolderName === "") {
-      setaccountHolderNameError("Please Enter The Name On This Bank Account ");
       setsubmitError("Unsuccessful!! Check form for errors!");
       return;
     }
@@ -217,6 +196,11 @@ function SellProducts() {
     }
     if (selectedUniversity === "") {
       setuniversityError("Please Select Your University");
+      setsubmitError("Unsuccessful!! Check form for errors!");
+      return;
+    }
+    if (title === "") {
+      settitleError("Please Enter Product Title");
       setsubmitError("Unsuccessful!! Check form for errors!");
       return;
     }
@@ -256,6 +240,21 @@ function SellProducts() {
     }
     if (deliveryTime == "") {
       setdeliveryTimeError("Please enter a delivery time");
+      setsubmitError("Unsuccessful!! Check form for errors!");
+      return;
+    }
+    if (accountNumberForm === "") {
+      setaccountNumberError("Please Enter Your Account Number");
+      setsubmitError("Unsuccessful!! Check form for errors!");
+      return;
+    }
+    if (bankNameForm === "") {
+      setbankNameError("Please Enter Your Bank Name");
+      setsubmitError("Unsuccessful!! Check form for errors!");
+      return;
+    }
+    if (accountHolderName === "") {
+      setaccountHolderNameError("Please Enter The Name On This Bank Account ");
       setsubmitError("Unsuccessful!! Check form for errors!");
       return;
     }
@@ -357,14 +356,12 @@ function SellProducts() {
           accountName: accountHolderName,
           vendorName: vendorNameForm,
         });
-
-        console.log("Document updated successfully");
         setloadingSubmit(false);
       } else {
-        console.log("No matching document found");
+        // console.log("No matching document found");
       }
     } catch (err) {
-      console.error("Error updating document:", err);
+      // console.error("Error updating document:", err);
     }
   };
 
@@ -520,7 +517,6 @@ function SellProducts() {
                   name="photos2"
                   onChange={(event) => {
                     setfile2(event.target.files[0]);
-                    console.log(event.target.files[0]);
                   }}
                 />
                 {image2Error && (

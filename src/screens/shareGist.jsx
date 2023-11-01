@@ -60,14 +60,12 @@ function ShareGist() {
         searchKeywords:
           `${description.toLowerCase()} ${Name.toLowerCase()}`.split(" "),
       });
-
-      console.log("Uploaded Successfully");
       updateUserInfo();
       setShowModal(true);
       // Clear the input field and selected images
       setdescription("");
     } catch (error) {
-      console.error("Error posting gist:", error);
+      // console.error("Error posting gist:", error);
     }
   };
 
@@ -84,14 +82,12 @@ function ShareGist() {
           twitter: twitter,
           phoneNumber: phoneNumber,
         });
-
-        console.log("Document updated successfully");
         setloadingSubmit(false);
       } else {
-        console.log("No matching document found");
+        // console.log("No matching document found");
       }
     } catch (err) {
-      console.error("Error updating document:", err);
+      // console.error("Error updating document:", err);
     }
   };
 
@@ -127,7 +123,7 @@ function ShareGist() {
             <p
               className={`${
                 window.innerWidth < 1780
-                  ? "text-[2vw] md:text-[2vw] lg:text-[1.5vw]"
+                  ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
                   : "text-[30px]"
               } text-red-500  mb-[16px] textFont`}
             >
@@ -167,8 +163,8 @@ function ShareGist() {
             onClick={() => {
               setdescriptionError("");
               if (description === "") {
-                setdescriptionError("Please Enter Your Service Description");
-                setsubmitError("Unsuccessful!! Check form for errors!");
+                setdescriptionError("Please Enter Your Story");
+                setsubmitError("Unsuccessful!! Check for errors!");
                 return;
               }
               postGist();

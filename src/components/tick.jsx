@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback } from "react";
 
 function Tick() {
   const [delta, setdelta] = useState(20 - Math.random() * 100);
-  const [loading, setloading] = useState(false);
   const [loopNumber, setloopNumber] = useState(0);
   const [isDeleting, setisDeleting] = useState(false);
   const [text, settext] = useState(" ");
@@ -39,13 +38,6 @@ function Tick() {
 
     return () => clearInterval(ticker);
   }, [text, delta, tick]);
-
-  useEffect(() => {
-    setloading(true);
-    setTimeout(() => {
-      setloading(false);
-    }, 2000);
-  }, []);
 
   return text;
 }

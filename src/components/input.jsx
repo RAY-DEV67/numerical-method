@@ -20,7 +20,7 @@ const Input = ({ onChangeText, placeholder, error, type, value }) => {
         <p
           className={`${
             window.innerWidth < 1780
-              ? "text-[2vw] md:text-[2vw] lg:text-[1.5vw]"
+              ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
               : "text-[30px]"
           } text-red-500  mb-[16px] textFont`}
         >

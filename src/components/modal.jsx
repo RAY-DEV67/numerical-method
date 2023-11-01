@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { NavigateTo } from "../App";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useUserDetailsContext } from "../context/userDetails";
 
 const Modal = ({ showModal, setShowModal, image, text, ctaText }) => {
   const { university } = useUserDetailsContext();
   const { setnavigateTo } = useContext(NavigateTo);
-  const navigate = useNavigate();
 
   return (
     <div>
