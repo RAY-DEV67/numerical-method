@@ -479,7 +479,7 @@ function SellServices() {
             onChange={handleStateChange}
             className={`${
               window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+                ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
                 : "w-[1000px] text-[40px]"
             } input bg-transparent rounded-[10px] text-black px-[8px] py-[12px] mt-[16px] border border-[#00cc00]`}
           >

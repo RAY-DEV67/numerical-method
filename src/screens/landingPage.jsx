@@ -7,8 +7,27 @@ import DownloadNow from "../components/downloadNow";
 import Sections from "../components/sections";
 import Tick from "../components/tick";
 import Modal from "../components/modal";
+import { useState, useEffect } from "react";
+import image from "../assets/cce.jpg";
+import { useUserDetailsContext } from "../context/userDetails";
+import { useNavigate } from "react-router-dom";
 
 function LandingPage() {
+  const { university } = useUserDetailsContext();
+  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    // Show the modal after 3 seconds
+    const timeout = setTimeout(() => {
+      setShowModal(true);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, []);
+
   return (
     <>
       <div className="bg-gradient-to-r from-green-500 to-green-900 pt-[68px] md:flex md:flex-row-reverse md:justify-between md:items-center">
@@ -110,7 +129,13 @@ function LandingPage() {
         <DownloadNow />
       </div>
       <Footer />
-      {/* <Modal /> */}
+      <Modal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        image={image}
+        ctaText="Share Gist"
+        text="Share your funniest/craziest campus experience and stand a chance of winning #5,000 weekly!!! 🎉🥳"
+      />
     </>
   );
 }

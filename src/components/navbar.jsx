@@ -1,6 +1,6 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import logo from "../assets/uniPlugLogo.png";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigation } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { NavigateTo, SetUserId, UserId } from "../App";
@@ -11,7 +11,7 @@ export default function Navbar() {
   const userId = useContext(UserId);
   const { setnavigateTo } = useContext(NavigateTo);
   const location = useLocation();
-  const { Name, email } = useUserDetailsContext();
+  const { Name, email, university } = useUserDetailsContext();
 
   const [showMobile, setshowMobile] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -58,15 +58,22 @@ export default function Navbar() {
           window.innerWidth < 1780 ? "w-[100vw]" : "w-[1780px]"
         } `}
       >
-        <img
-          src={logo}
-          alt="logo"
-          className={`${
-            window.innerWidth < 1780
-              ? "w-[20vw] lg:w-[7vw] md:w-[11vw] "
-              : "w-[100px]"
-          }   my-[-4vh] md:my-[-4vh] relative z-10`}
-        />
+        <Link
+          onClick={() => {
+            setnavigateTo("/");
+          }}
+          to="/"
+        >
+          <img
+            src={logo}
+            alt="logo"
+            className={`${
+              window.innerWidth < 1780
+                ? "w-[20vw] lg:w-[7vw] md:w-[11vw] "
+                : "w-[100px]"
+            }   my-[-4vh] md:my-[-4vh] relative z-10`}
+          />
+        </Link>
 
         <div
           onClick={() => {
@@ -128,7 +135,7 @@ export default function Navbar() {
 
         <div
           className={`hidden lg:flex justify-between md:items-center md:mr-[1rem] ${
-            window.innerWidth < 1780 ? "w-[55vw]" : "w-[1000px]"
+            window.innerWidth < 1780 ? "w-[45vw]" : "w-[1000px]"
           }`}
         >
           <Link
@@ -323,7 +330,7 @@ export default function Navbar() {
               setshowMobile(false);
               setnavigateTo("/ShareGist");
             }}
-            to={user ? `/ShareGist` : "/Login"}
+            to={university ? `/ShareGist` : `/SignUpTwo/${userId}`}
           >
             <p className="text-[4vw] md:text-[2vw] text-white mb-[1rem] headingfont font-bold">
               Share Campus Gist

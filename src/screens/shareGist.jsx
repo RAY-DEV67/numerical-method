@@ -1,3 +1,4 @@
+import image from "../assets/check.png";
 import { useState, useContext } from "react";
 import db from "../../firebase";
 import {
@@ -15,12 +16,13 @@ import Input from "../components/input";
 import { useUserDetailsContext } from "../context/userDetails";
 import { generateRandomString } from "../helper/generateRandomString";
 import { UserId } from "../App";
+import Modal from "../components/modal";
 
 function ShareGist() {
   const userId = useContext(UserId);
   const { university, phoneNumber, profilePicture, Name, uniTag } =
     useUserDetailsContext();
-
+  const [showModal, setShowModal] = useState(false);
   const [loadingSubmit, setloadingSubmit] = useState(false);
   const [submitError, setsubmitError] = useState("");
   const [description, setdescription] = useState("");
@@ -28,14 +30,13 @@ function ShareGist() {
   const [phoneNumberForm, setphoneNumberForm] = useState(phoneNumber);
   const [instagram, setinstagram] = useState("");
   const [twitter, settwitter] = useState("");
-  const [selectedImages, setSelectedImages] = useState([]);
 
   const postGist = async () => {
     setloadingSubmit(true);
     try {
       const docRef = await addDoc(collection(db, "Campus Gist"), {
         gist: description,
-        images: selectedImages,
+        images: [],
         timestamp: serverTimestamp(),
         gistId: generateRandomString(20),
         authorProfilePicture: profilePicture,
@@ -56,7 +57,7 @@ function ShareGist() {
 
       console.log("Uploaded Successfully");
       updateUserInfo();
-
+      setShowModal(true);
       // Clear the input field and selected images
       setdescription("");
     } catch (error) {
@@ -196,6 +197,12 @@ function ShareGist() {
           </p>
         </div>
       </div>
+      <Modal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        image={image}
+        text="Your Campus Story Was Sent Successfully🥳🎉, We Would Get In Touch With You💚"
+      />
     </div>
   );
 }

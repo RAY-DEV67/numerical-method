@@ -10,7 +10,7 @@ import SignUpOne from "./screens/signUpOne";
 import SignUpTwo from "./screens/signUpTwo";
 import SellProducts from "./screens/sellProducts";
 import SellServices from "./screens/sellServices";
-import Events from "./screens/events";
+// import Events from "./screens/events";
 import Shop from "./screens/shop";
 import EventsDetails from "./screens/eventsDetails";
 import BuyTickets from "./screens/buyTickets";
@@ -61,7 +61,7 @@ function App() {
                       path="/SellServices/:userId/:userName"
                       element={<SellServices />}
                     />
-                    <Route path="Events" element={<Events />} />
+                    {/* <Route path="Events" element={<Events />} /> */}
                     <Route
                       path="/Shop/:userId/:userName/:email"
                       element={<Shop />}

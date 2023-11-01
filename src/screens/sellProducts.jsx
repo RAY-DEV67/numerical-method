@@ -387,6 +387,7 @@ function SellProducts() {
           accountNumber: accountNumberForm,
           bankName: bankNameForm,
           accountName: accountHolderName,
+          vendorName: vendorNameForm,
         });
 
         console.log("Document updated successfully");

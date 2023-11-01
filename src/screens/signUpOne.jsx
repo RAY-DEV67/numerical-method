@@ -143,7 +143,6 @@ function SignUpOne() {
       navigate(`/SignUpTwo/${user.uid}`);
     } catch (error) {
       const errorCode = error.code;
-      const errorMessage = error.message;
       if (errorCode === "auth/invalid-email") {
         setemailError("Invalid Email Address");
       } else if (errorCode === "auth/email-already-in-use") {
