@@ -270,7 +270,7 @@ function SellProducts() {
     storage
       .ref("/images/" + isfile.name)
       .put(isfile)
-      .on("state_changed", alert("success"), alert, () => {
+      .on("state_changed", alert("Product Uploaded Successfully"), alert, () => {
         storage
           .ref("images")
           .child(isfile.name)
@@ -497,11 +497,20 @@ function SellProducts() {
             <p
               className={`${
                 window.innerWidth < 1780
-                  ? "text-[3.5vw] md:text-[1.5vw] lg:text-[1vw]"
+                  ? "text-[3vw] md:text-[1.5vw] lg:text-[1vw]"
                   : "text-[30px]"
               }`}
             >
               First picture is the title picture
+            </p>
+            <p
+              className={`${
+                window.innerWidth < 1780
+                  ? "text-[2.5vw] md:text-[1.5vw] lg:text-[1vw] text-red-600"
+                  : "text-[30px]"
+              }`}
+            >
+              Select at least 2 images
             </p>
             <div className="flex flex-col">
               <div>
@@ -718,7 +727,7 @@ function SellProducts() {
             selectedCategory !== "Fragrances" && (
               <select
                 value={selectedCondition}
-                onChangeText={handleConditionChange}
+                onChange={handleConditionChange}
                 className={`${
                   window.innerWidth < 1780
                     ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
@@ -802,7 +811,7 @@ function SellProducts() {
 
               <select
                 value={selectedHairOrigin}
-                onChangeText={handleHairOriginChange}
+                onChange={handleHairOriginChange}
                 className={`${
                   window.innerWidth < 1780
                     ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"

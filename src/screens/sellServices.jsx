@@ -129,6 +129,58 @@ function SellServices() {
     });
   }
 
+  const uploadImages = async (docRef) => {
+    // Create an array of promises for each image upload
+    const imageUploadPromises = [];
+
+    // Define your image file variables (file1, file2, file3, file4, file5)
+
+    // Helper function to upload an image and get the download URL
+    const uploadImageAndGetUrl = async (file) => {
+      if (!file) return null;
+
+      return new Promise((resolve, reject) => {
+        const storageRef = storage.ref(`/images/${file.name}`);
+        const imageRef = storageRef.child(file.name);
+
+        imageRef
+          .put(file)
+          .then((snapshot) => {
+            // Image uploaded successfully, get the download URL
+            imageRef.getDownloadURL().then((downloadURL) => {
+              resolve(downloadURL);
+            });
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      });
+    };
+
+    // Push image upload promises to the array
+    imageUploadPromises.push(uploadImageAndGetUrl(isfile));
+    imageUploadPromises.push(uploadImageAndGetUrl(file2));
+    imageUploadPromises.push(uploadImageAndGetUrl(file3));
+    imageUploadPromises.push(uploadImageAndGetUrl(file4));
+    imageUploadPromises.push(uploadImageAndGetUrl(file5));
+
+    // Use Promise.all to wait for all uploads to complete
+    const imageUrls = await Promise.all(imageUploadPromises);
+
+    // Create an object to store the updated image URLs
+    const updatedImages = {
+      image1: imageUrls[0] || "",
+      image2: imageUrls[1] || "",
+      image3: imageUrls[2] || "",
+      image4: imageUrls[3] || "",
+      image5: imageUrls[4] || "",
+    };
+
+    // Update the Firestore document with the image links
+    await updateDoc(docRef, updatedImages);
+    alert("Service Uploaded Successfully");
+  };
+
   const upload = async () => {
     setloadingSubmit(true);
 
@@ -169,88 +221,10 @@ function SellServices() {
           " "
         ),
     });
+    // Upload and update images
+    await uploadImages(docRef);
     console.log("Uploaded Successfully");
     setloadingSubmit(false);
-
-    if (isfile == null) return;
-    storage
-      .ref("/images/" + isfile.name)
-      .put(isfile)
-      .on("state_changed", alert("success"), alert, () => {
-        storage
-          .ref("images")
-          .child(isfile.name)
-          .getDownloadURL()
-          .then((imgUrl) => {
-            updateDoc(docRef, {
-              image1: imgUrl,
-            });
-          });
-      });
-
-    if (file2 == null) return;
-    storage
-      .ref("/images/" + file2.name)
-      .put(file2)
-      .on("state_changed", () => {
-        storage
-          .ref("images")
-          .child(file2.name)
-          .getDownloadURL()
-          .then((imgUrl) => {
-            updateDoc(docRef, {
-              image2: imgUrl,
-            });
-          });
-      });
-
-    if (file3 == null) return;
-    storage
-      .ref("/images/" + file3.name)
-      .put(file3)
-      .on("state_changed", () => {
-        storage
-          .ref("images")
-          .child(file3.name)
-          .getDownloadURL()
-          .then((imgUrl) => {
-            updateDoc(docRef, {
-              image3: imgUrl,
-            });
-          });
-      });
-
-    if (file4 == null) return;
-    storage
-      .ref("/images/" + file4.name)
-      .put(file4)
-      .on("state_changed", () => {
-        storage
-          .ref("images")
-          .child(file4.name)
-          .getDownloadURL()
-          .then((imgUrl) => {
-            updateDoc(docRef, {
-              image4: imgUrl,
-            });
-          });
-      });
-
-    if (file5 == null) return;
-    storage
-      .ref("/images/" + file5.name)
-      .put(file5)
-      .on("state_changed", () => {
-        storage
-          .ref("images")
-          .child(file5.name)
-          .getDownloadURL()
-          .then((imgUrl) => {
-            updateDoc(docRef, {
-              image5: imgUrl,
-            });
-          });
-      });
   };
 
   const updateUserInfo = async () => {
