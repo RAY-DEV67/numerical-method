@@ -1,15 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import db from "../../firebase";
+import { db } from "../../firebase";
 import LoadingSpinner from "../components/spinner";
-import ProductsCard from "../components/productsCard";
-import {
-  getDocs,
-  collection,
-  where,
-  query,
-  updateDoc,
-} from "firebase/firestore";
 import YourProductsCard from "../components/yourProductsCard";
 
 function YourProducts() {

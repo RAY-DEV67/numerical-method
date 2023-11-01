@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import db from "../../firebase";
+import { db } from "../../firebase";
 import { storage } from "../../firebase";
 import {
   addDoc,

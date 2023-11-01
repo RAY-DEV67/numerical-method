@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import db from "../../firebase";
+import { db } from "../../firebase";
 import { storage } from "../../firebase";
 import {
   addDoc,

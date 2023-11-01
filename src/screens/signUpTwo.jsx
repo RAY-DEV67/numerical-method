@@ -9,7 +9,7 @@ import {
   doc,
   updateDoc,
 } from "firebase/firestore";
-import db from "../../firebase";
+import { db } from "../../firebase";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingSpinner from "../components/spinner";
@@ -178,8 +178,8 @@ function SignUpTwo() {
             ))}
           </select>
           <p className="w-[85vw] md:w-[40vw] px-[16px] text-[2.5vw] text-red-600 sm:text-[2vw] md:text-[1.5vw]">
-            Note: If you are currently not in any higher institution, no worries ,
-            just select a campus closest to you 😉.
+            Note: If you are currently not in any higher institution, no worries
+            , just select a campus closest to you 😉.
           </p>
           {universityError && <p className="text-red-500">{universityError}</p>}
 

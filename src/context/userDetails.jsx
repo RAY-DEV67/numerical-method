@@ -6,7 +6,7 @@ import {
   onSnapshot,
   getDocs,
 } from "firebase/firestore";
-import db from "../../firebase";
+import { db } from "../../firebase";
 import { UserId } from "../App";
 
 export const UserDetailsContext = createContext({});
@@ -97,7 +97,6 @@ const UserDetailsContextProvider = ({ children }) => {
       unsubscribe();
     };
   }, [userId]);
-
 
   return (
     <UserDetailsContext.Provider value={userDetails}>

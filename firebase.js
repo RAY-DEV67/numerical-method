@@ -1,9 +1,13 @@
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
-import firebase from "firebase/compat/app"
-import "firebase/compat/firestore"
-import "firebase/compat/storage"
+import { getAnalytics } from "firebase/analytics";
+import firebase from "firebase/compat/app";
+import "firebase/compat/firestore";
+import "firebase/compat/storage";
 
-const firebaseApp = firebase.initializeApp( {
+// Import Firebase Analytics
+import 'firebase/compat/analytics';
+
+const firebaseApp = firebase.initializeApp({
   apiKey: import.meta.env.VITE_API_KEY,
   authDomain: "thrifty2.firebaseapp.com",
   projectId: "thrifty2",
@@ -15,9 +19,12 @@ const firebaseApp = firebase.initializeApp( {
 
 // Initialize Firebase
 const app = firebaseApp;
-const db = firebaseApp.firestore()
+const db = firebaseApp.firestore();
+
+// Initialize Firebase Analytics
+const analytics = firebaseApp.analytics();
 
 export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
-export const storage = firebase.storage()
-export default db
+export const storage = firebase.storage();
+export { db, analytics, firebase };

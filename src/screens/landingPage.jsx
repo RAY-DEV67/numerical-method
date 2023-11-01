@@ -9,15 +9,15 @@ import Tick from "../components/tick";
 import Modal from "../components/modal";
 import { useState, useEffect } from "react";
 import image from "../assets/cce.jpg";
-import { useUserDetailsContext } from "../context/userDetails";
-import { useNavigate } from "react-router-dom";
+import { analytics } from "../../firebase";
 
 function LandingPage() {
-  const { university } = useUserDetailsContext();
-  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
+    // Track a page view event using the exported analytics object
+    analytics.logEvent("page_view", { page_name: "Landing Page" });
+
     // Show the modal after 3 seconds
     const timeout = setTimeout(() => {
       setShowModal(true);

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import db from "../../firebase";
-import { UserId} from "../App";
+import { db } from "../../firebase";
+import { UserId } from "../App";
 import LoadingSpinner from "../components/spinner";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -104,21 +104,17 @@ function EventsDetails() {
           >
             Description:
           </h3>
-          <p
-           className={`${
-            window.innerWidth > 1780 && "text-[40px]"
-          } `}
-          >{event.eventDescription}</p>
+          <p className={`${window.innerWidth > 1780 && "text-[40px]"} `}>
+            {event.eventDescription}
+          </p>
 
           <button
             onClick={handleBuyTicketClick}
-            
             className={`${
               window.innerWidth < 1780
                 ? " w-[50vw] md:w-[30vw] lg:w-[20vw] "
                 : "w-[400px] h-[50px]"
             } bg-[#013a19] mt-[16px] rounded-[20px] py-[8px] flex flex-col items-center justify-center text-white `}
-
           >
             Buy Ticket
           </button>

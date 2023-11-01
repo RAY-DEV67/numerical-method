@@ -1,6 +1,6 @@
 import image from "../assets/check.png";
 import { useState, useContext } from "react";
-import db from "../../firebase";
+import { db } from "../../firebase";
 import {
   addDoc,
   collection,
@@ -17,6 +17,7 @@ import { useUserDetailsContext } from "../context/userDetails";
 import { generateRandomString } from "../helper/generateRandomString";
 import { UserId } from "../App";
 import Modal from "../components/modal";
+import { analytics } from "../../firebase";
 
 function ShareGist() {
   const userId = useContext(UserId);
@@ -30,6 +31,11 @@ function ShareGist() {
   const [phoneNumberForm, setphoneNumberForm] = useState(phoneNumber);
   const [instagram, setinstagram] = useState("");
   const [twitter, settwitter] = useState("");
+
+  useEffect(() => {
+    // Track a page view event using the exported analytics object
+    analytics.logEvent("page_view", { page_name: "Share Gist" });
+  }, []);
 
   const postGist = async () => {
     setloadingSubmit(true);

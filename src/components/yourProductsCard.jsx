@@ -1,4 +1,4 @@
-import db from "../../firebase";
+import { db } from "../../firebase";
 import { doc, deleteDoc } from "firebase/firestore";
 import { useState } from "react";
 import ConfirmationModal from "./confirmationModal";
@@ -24,7 +24,6 @@ export default function YourProductsCard({ product }) {
         progress: undefined,
         theme: "light",
       });
-
     } catch (err) {
       console.log(err);
     }

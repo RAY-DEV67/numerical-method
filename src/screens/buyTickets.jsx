@@ -10,7 +10,7 @@ import {
   updateDoc,
   getDocs,
 } from "firebase/firestore";
-import db from "../../firebase";
+import { db } from "../../firebase";
 import GenerateTransactionRef from "../helper/generateTransactionRef";
 import Input from "../components/input";
 
@@ -112,7 +112,6 @@ function BuyTickets() {
       if (eventDocSnapshot.exists()) {
         const eventDocData = eventDocSnapshot.data();
         const eventTickets = eventDocData.tickets;
-
 
         // Update the availableQuantity for each ticket based on the ordered quantity
         ticketInformation.forEach((ticket) => {

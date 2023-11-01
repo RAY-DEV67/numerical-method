@@ -1,4 +1,4 @@
-import db from "../../firebase";
+import { db } from "../../firebase";
 import GenerateTransactionRef from "../helper/generateTransactionRef";
 
 export default function ProductsCard({ product, email, userName }) {
