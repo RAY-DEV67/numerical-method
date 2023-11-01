@@ -206,7 +206,7 @@ function BuyTickets() {
     const tx_ref = GenerateTransactionRef();
 
     FlutterwaveCheckout({
-      public_key: "FLWPUBK_TEST-cebf85e05f6ff0c8d7d41d8cb00bc8c7-X",
+      public_key: "FLWPUBK-7e5a1a39e720ebaf3aed7425ead32e6f-X",
       tx_ref: tx_ref,
       amount: totalPrice,
       currency: "NGN",

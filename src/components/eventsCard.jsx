@@ -88,7 +88,7 @@ export default function EventsCard({ product }) {
               window.innerWidth < 1780
                 ? " text-[4vw] md:text-[2vw] lg:text-[1.5vw] w-[58vw]"
                 : "text-[50px] w-[800px]"
-            } mb-[8px] mb-[8px] font-semibold`}
+            } mb-[8px] font-semibold`}
           >
             {limitedTitle}
           </p>

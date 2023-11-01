@@ -19,10 +19,8 @@ exports.updateCredits = functions.pubsub
         });
 
         await batch.commit();
-        console.log("Credits updated successfully.");
         return null;
       } catch (error) {
-        console.error("Error updating credits:", error);
         return null;
       }
     });
@@ -50,6 +48,32 @@ exports.checkSubscriptionStatus = functions.pubsub
         batch.update(productDoc, {notTop: true});
       });
       // Commit the batch update
+      await batch.commit();
+      return null;
+    });
+
+exports.checkServiceSubscriptionStatus = functions.pubsub
+    .schedule("0 0 * * *") // Schedule to run daily at midnight
+    .timeZone("Africa/Lagos") // Set your desired timezone
+    .onRun(async (context) => {
+      const db = admin.firestore();
+
+      // Query the "Services" collection for users with expired subscriptions
+      const now = new Date();
+      const serviceRef = db.collection("Services");
+      const expiredUsers = await serviceRef.where("expiryDate", "<", now).get();
+
+      const batch = db.batch();
+
+      expiredUsers.forEach((userDoc) => {
+        const userId = userDoc.id;
+        const serviceDoc = serviceRef.doc(userId);
+
+        // Delete the document
+        batch.delete(serviceDoc);
+      });
+
+      // Commit the batch delete
       await batch.commit();
       return null;
     });

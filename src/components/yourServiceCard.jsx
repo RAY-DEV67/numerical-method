@@ -6,7 +6,6 @@ import { doc, deleteDoc } from "firebase/firestore";
 import ConfirmationModal from "./confirmationModal";
 
 export default function YourServicesCard({ product }) {
-  const [loading, setloading] = useState();
   const [showModal, setshowModal] = useState(false);
 
   const deleteService = async () => {
@@ -28,7 +27,6 @@ export default function YourServicesCard({ product }) {
     } catch (err) {
       console.log(err);
     }
-    setloading(false);
   };
 
   const limitedTitle =

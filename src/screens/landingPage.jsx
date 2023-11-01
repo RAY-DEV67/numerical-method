@@ -129,13 +129,13 @@ function LandingPage() {
         <DownloadNow />
       </div>
       <Footer />
-      <Modal
+      {/* <Modal
         showModal={showModal}
         setShowModal={setShowModal}
         image={image}
         ctaText="Share Gist"
         text="Share your funniest/craziest campus experience and stand a chance of winning #5,000 weekly!!! 🎉🥳"
-      />
+      /> */}
     </>
   );
 }

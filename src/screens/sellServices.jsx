@@ -113,7 +113,7 @@ function SellServices() {
     const tx_ref = GenerateTransactionRef();
 
     FlutterwaveCheckout({
-      public_key: "FLWPUBK_TEST-cebf85e05f6ff0c8d7d41d8cb00bc8c7-X",
+      public_key: "FLWPUBK-7e5a1a39e720ebaf3aed7425ead32e6f-X",
       tx_ref: tx_ref,
       amount: amount,
       currency: "NGN",
@@ -187,9 +187,9 @@ function SellServices() {
     // Get the current date
     const currentDate = new Date();
 
-    // Calculate the new subscription end date by adding 1 month
+    // Calculate the new subscription end date by adding 2 months
     const newDate = new Date(currentDate);
-    newDate.setMonth(currentDate.getMonth() + 1);
+    newDate.setMonth(currentDate.getMonth() + 2);
 
     // Handle cases where the new date doesn't exist (e.g., February 30th)
     if (currentDate.getDate() !== newDate.getDate()) {
