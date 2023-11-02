@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { NavigateTo } from "../App";
+import { NavigateTo, UserId } from "../App";
 import { Link } from "react-router-dom";
 import { useUserDetailsContext } from "../context/userDetails";
 
 const Modal = ({ showModal, setShowModal, image, text, ctaText }) => {
+  const userId = useContext(UserId);
   const { university } = useUserDetailsContext();
   const { setnavigateTo } = useContext(NavigateTo);
 
@@ -25,7 +26,11 @@ const Modal = ({ showModal, setShowModal, image, text, ctaText }) => {
                 &times;
               </span>
               <div className="flex flex-col items-center">
-                <img src={image} alt="Image" />
+                <img
+                  src={image}
+                  alt="Image"
+                  className="w-[75vw] md:w-[400px]"
+                />
 
                 <h2 className="mb-4 mt-[16px] text-center">{text}</h2>
                 {ctaText === "Share Gist" && (
@@ -33,7 +38,15 @@ const Modal = ({ showModal, setShowModal, image, text, ctaText }) => {
                     onClick={() => {
                       setnavigateTo("/ShareGist");
                     }}
-                    to={university == "" ? "/Login" : "/ShareGist"}
+                    to={
+                      university
+                        ? `/ShareGist`
+                        : !userId
+                        ? "/Login"
+                        : userId && !university
+                        ? `/SignUpTwo/${userId}`
+                        : null
+                    }
                     className={`${
                       window.innerWidth < 1780
                         ? "w-[50vw] md:w-[13vw]"

@@ -8,7 +8,7 @@ import Sections from "../components/sections";
 import Tick from "../components/tick";
 import Modal from "../components/modal";
 import { useState, useEffect } from "react";
-import image from "../assets/cce.jpg";
+import image from "../assets/cce.jpeg";
 import { analytics } from "../../firebase";
 
 function LandingPage() {
@@ -129,13 +129,13 @@ function LandingPage() {
         <DownloadNow />
       </div>
       <Footer />
-      {/* <Modal
+      <Modal
         showModal={showModal}
         setShowModal={setShowModal}
         image={image}
         ctaText="Share Gist"
         text="Share your funniest/craziest campus experience and stand a chance of winning #5,000 weekly!!! 🎉🥳"
-      /> */}
+      />
     </>
   );
 }

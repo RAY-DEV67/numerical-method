@@ -3,10 +3,10 @@ import DownloadNow from "../components/downloadNow";
 import Footer from "../components/footer";
 
 function Contact() {
-  const whatsappNumber = "07040653485"; // Replace with the desired WhatsApp number
-  const recipientEmail = "henryekene8@gmail.com"; // Replace with the recipient's email address
-  const subject = "Hello from React"; // Replace with the desired email subject
-  const body = "This is the email body."; // Replace with the desired email body
+  const whatsappNumber = "+2347040653485"; // Replace with the desired WhatsApp number
+  const recipientEmail = "support@uniplug.ng"; // Replace with the recipient's email address
+  const subject = ""; // Replace with the desired email subject
+  const body = ""; // Replace with the desired email body
 
   const handleMailClick = () => {
     const mailtoUrl = `mailto:${recipientEmail}?subject=${encodeURIComponent(

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import logo from "../assets/uniPlugLogo.png";
 
 function Footer() {
-  const whatsappNumber = "07040653485";
+  const whatsappNumber = "+2347040653485";
 
   const handleWhatsAppClick = () => {
     const url = `https://wa.me/${whatsappNumber}`;
