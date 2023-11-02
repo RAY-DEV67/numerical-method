@@ -49,7 +49,7 @@ function SignUpOne() {
         twitter: "",
         TypeOfAccount: "",
         address: "",
-        availablePlugs: 5,
+        availablePlugs: 10,
         credit: 0,
         hasgottencredit: false,
         accountNumber: "",
