@@ -1,6 +1,6 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import logo from "../assets/uniPlugLogo.png";
-import { useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { NavigateTo, SetUserId, UserId } from "../App";
@@ -330,7 +330,15 @@ export default function Navbar() {
               setshowMobile(false);
               setnavigateTo("/ShareGist");
             }}
-            to={university ? `/ShareGist` : `/SignUpTwo/${userId}`}
+            to={
+              university
+                ? `/ShareGist`
+                : !userId
+                ? "/Login"
+                : userId && !university
+                ? `/SignUpTwo/${userId}`
+                : null
+            }
           >
             <p className="text-[4vw] md:text-[2vw] text-white mb-[1rem] headingfont font-bold">
               Share Campus Gist
