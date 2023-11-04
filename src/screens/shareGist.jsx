@@ -1,5 +1,5 @@
 import image from "../assets/check.png";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext} from "react";
 import { db } from "../../firebase";
 import {
   addDoc,
