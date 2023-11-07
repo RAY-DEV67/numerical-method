@@ -318,7 +318,9 @@ function Footer() {
           <Link to={"/TermsAndConditions"}>
             <p className="text-[#292929] text-[12px]">Terms & Conditions</p>
           </Link>
-          <p className="text-[#292929] text-[12px]">Privacy Policy</p>
+          <Link to={"/PrivacyPolicy"}>
+            <p className="text-[#292929] text-[12px]">Privacy Policy</p>
+          </Link>
         </div>
       </div>
     </div>

@@ -22,6 +22,7 @@ import ShareGist from "./screens/shareGist";
 import Profile from "./screens/profile";
 import YourProducts from "./screens/yourProducts";
 import YourServices from "./screens/yourServices";
+import PrivacyPolicy from "./screens/privacyPolicy";
 
 export const UserId = React.createContext();
 export const SetUserId = React.createContext();
@@ -79,6 +80,10 @@ function App() {
                     <Route
                       path="/TermsAndConditions"
                       element={<TermsAndConditions />}
+                    />
+                    <Route
+                      path="/PrivacyPolicy"
+                      element={<PrivacyPolicy />}
                     />
                     <Route path="/ShareGist" element={<ShareGist />} />
                     <Route path="/Profile" element={<Profile />} />
