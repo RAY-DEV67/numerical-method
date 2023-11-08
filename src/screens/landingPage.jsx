@@ -57,7 +57,7 @@ function LandingPage() {
                 window.innerWidth < 1780 ? "w-[90vw] md:w-[20vw]" : "w-[700px]"
               } text-white rounded-[20px] font-semibold`}
             >
-              Connecting Naija Campuses,
+              Connecting Campuses,
             </p>
             <p
               className={`${
@@ -93,7 +93,7 @@ function LandingPage() {
 
       <div className="px-[16px]">
         <Sections
-          heading1="Nigeria Ultimate Students"
+          heading1="The Ultimate Students"
           heading2="Market-Place"
           text=" Whether you need products like clothes and shoes or you are looking for professional service providers,
           UniPlug has you covered!!"
