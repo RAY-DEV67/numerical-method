@@ -53,7 +53,7 @@ function Login() {
       navigate(navigateTo);
     } catch (error) {
       const errorCode = error.code;
-      if (errorCode === "auth/invalid-email") {
+      if (errorCode === "auth/invalid-login-credentials") {
         setErrors("Invalid Email Address");
       } else if (errorCode === "auth/user-not-found") {
         setErrors("Incorrect Email Address");

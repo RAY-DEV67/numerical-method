@@ -157,25 +157,6 @@ export default function Navbar() {
               Home
             </p>
           </Link>
-          <Link
-            onClick={() => {
-              setnavigateTo("/SellProducts");
-            }}
-            className="nav"
-            to={user ? "/SellProducts" : "/Login"}
-          >
-            <p
-              className={`${
-                window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
-              } font-bold ${
-                isScrolled || location.pathname !== "/"
-                  ? "text-[#00cc00]"
-                  : "text-[#ffffff]"
-              }`}
-            >
-              Sell Products
-            </p>
-          </Link>
 
           <Link
             className="nav"
@@ -300,18 +281,6 @@ export default function Navbar() {
               Home
             </p>
           </Link>
-          <Link
-            className="nav"
-            onClick={() => {
-              setshowMobile(false);
-              setnavigateTo("/SellProducts");
-            }}
-            to={user ? "/SellProducts" : "/Login"}
-          >
-            <p className="text-[4vw] md:text-[2vw] text-white my-[1rem] headingfont font-bold">
-              Sell Products
-            </p>
-          </Link>
 
           <Link
             className="nav"
@@ -322,26 +291,6 @@ export default function Navbar() {
           >
             <p className="text-[4vw] md:text-[2vw] text-white mb-[1rem] headingfont font-bold">
               Sell Services
-            </p>
-          </Link>
-          <Link
-            className="nav"
-            onClick={() => {
-              setshowMobile(false);
-              setnavigateTo("/ShareGist");
-            }}
-            to={
-              university
-                ? `/ShareGist`
-                : !userId
-                ? "/Login"
-                : userId && !university
-                ? `/SignUpTwo/${userId}`
-                : null
-            }
-          >
-            <p className="text-[4vw] md:text-[2vw] text-white mb-[1rem] headingfont font-bold">
-              Share Campus Gist
             </p>
           </Link>
           {/* <Link

@@ -77,3 +77,4 @@ exports.checkServiceSubscriptionStatus = functions.pubsub
       await batch.commit();
       return null;
     });
+

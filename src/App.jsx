@@ -8,7 +8,6 @@ import { ScrollToTop } from "./components/scrollToTop";
 import Login from "./screens/login";
 import SignUpOne from "./screens/signUpOne";
 import SignUpTwo from "./screens/signUpTwo";
-import SellProducts from "./screens/sellProducts";
 import SellServices from "./screens/sellServices";
 // import Events from "./screens/events";
 import Shop from "./screens/shop";
@@ -18,7 +17,6 @@ import Contact from "./screens/contact";
 import TermsAndConditions from "./screens/terms&conditions";
 import { ToastContainer } from "react-toastify";
 import UserDetailsContextProvider from "./context/userDetails";
-import ShareGist from "./screens/shareGist";
 import Profile from "./screens/profile";
 import YourProducts from "./screens/yourProducts";
 import YourServices from "./screens/yourServices";
@@ -57,7 +55,6 @@ function App() {
                     <Route path="/Login" element={<Login />} />
                     <Route path="/SignUpOne" element={<SignUpOne />} />
                     <Route path="/SignUpTwo/:userId" element={<SignUpTwo />} />
-                    <Route path="/SellProducts" element={<SellProducts />} />
                     <Route
                       path="/SellServices/:userId/:userName"
                       element={<SellServices />}
@@ -81,11 +78,7 @@ function App() {
                       path="/TermsAndConditions"
                       element={<TermsAndConditions />}
                     />
-                    <Route
-                      path="/PrivacyPolicy"
-                      element={<PrivacyPolicy />}
-                    />
-                    <Route path="/ShareGist" element={<ShareGist />} />
+                    <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
                     <Route path="/Profile" element={<Profile />} />
                     <Route
                       path="/YourProducts/:userId"
