@@ -76,13 +76,18 @@ function LandingPage() {
                 window.innerWidth < 1780 ? "w-[100px] " : "w-[400px]"
               }`}
             />
-            <img
-              src={google}
-              alt="Download On Google"
-              className={`mt-[16px] ${
-                window.innerWidth < 1780 ? "w-[100px] " : "w-[400px]"
-              }`}
-            />
+            <a
+              href="https://play.google.com/store/apps/details?id=com.henryekene.UniPlug"
+              target="_blank"
+            >
+              <img
+                src={google}
+                alt="Download On Google"
+                className={`mt-[16px] ${
+                  window.innerWidth < 1780 ? "w-[100px] " : "w-[400px]"
+                }`}
+              />
+            </a>
           </div>
         </div>
 

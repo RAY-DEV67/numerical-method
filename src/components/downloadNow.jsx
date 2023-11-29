@@ -19,16 +19,24 @@ function DownloadNow() {
               Download The App Now
             </h1>
             <div>
-              <img
-                src={apple}
-                alt="Download On Apple"
-                className="mt-[16px] w-[100px]"
-              />
-              <img
-                src={google}
-                alt="Download On Google"
-                className="mt-[16px] w-[100px]"
-              />
+              <a className="relative z-[10]">
+                <img
+                  src={apple}
+                  alt="Download On Apple"
+                  className="mt-[16px] w-[100px]"
+                />
+              </a>
+              <a
+                href="https://play.google.com/store/apps/details?id=com.henryekene.UniPlug"
+                target="_blank"
+                className="relative z-[10]"
+              >
+                <img
+                  src={google}
+                  alt="Download On Google"
+                  className="mt-[16px] w-[100px]"
+                />
+              </a>
             </div>
           </div>
           <img
