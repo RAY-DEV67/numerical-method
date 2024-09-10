@@ -61,7 +61,10 @@ function App() {
                   element={<TermsAndConditions />}
                 />
                 <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
-
+                <Route
+                  path="/upload-event/:userId"
+                  element={<UploadEvents />}
+                />
                 <Route element={<RequireAuth />}>
                   <Route path="/SignUpTwo/:userId" element={<SignUpTwo />} />
                   <Route
@@ -74,14 +77,8 @@ function App() {
                     element={<Shop />}
                   />
 
-                  <Route
-                    path="/EventsDetails"
-                    element={<EventsDetails />}
-                  />
-                  <Route
-                    path="/upload-event/:userId"
-                    element={<UploadEvents />}
-                  />
+                  <Route path="/EventsDetails" element={<EventsDetails />} />
+
                   <Route path="/BuyTickets/:userId" element={<BuyTickets />} />
                   <Route path="/Profile" element={<Profile />} />
                   <Route
