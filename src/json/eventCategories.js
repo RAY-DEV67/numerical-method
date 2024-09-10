@@ -1,0 +1,20 @@
+export const eventCategories = [
+    "arts & culture",
+    "business",
+    "career",
+    "charity & aid",
+    "children & youth",
+    "community",
+    "fashion & design",
+    "food & drink",
+    "government",
+    "investments",
+    "media & film",
+    "music & performances",
+    "schools & education",
+    "spirituality & religion",
+    "sport & fitness",
+    "startups & small business",
+    "technology & science",
+  ];
+  

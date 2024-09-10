@@ -1,31 +1,18 @@
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 import logo from "../assets/uniPlugLogo.png";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { NavigateTo, SetUserId, UserId } from "../App";
+import { NavigateTo } from "../App";
 import { useUserDetailsContext } from "../context/userDetails";
 
 export default function Navbar() {
-  const setUserId = useContext(SetUserId);
-  const userId = useContext(UserId);
+  const userId = sessionStorage.getItem("userId");
   const { setnavigateTo } = useContext(NavigateTo);
   const location = useLocation();
-  const { Name, email, university } = useUserDetailsContext();
+  const { Name, email } = useUserDetailsContext();
 
   const [showMobile, setshowMobile] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [user, setUser] = useState(null); // Track the user object
-
-  useEffect(() => {
-    const auth = getAuth();
-
-    // Listen for changes in authentication state
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
-      setUserId(user.uid);
-    });
-  }, []);
 
   useEffect(() => {
     // Add a scroll event listener
@@ -158,10 +145,7 @@ export default function Navbar() {
             </p>
           </Link>
 
-          <Link
-            className="nav"
-            to={user ? `/SellServices/${user.uid}/${Name}` : "/Login"}
-          >
+          <Link className="nav" to={`/SellServices/${userId}/${Name}`}>
             <p
               className={`${
                 window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
@@ -174,7 +158,7 @@ export default function Navbar() {
               Sell Services
             </p>
           </Link>
-          {/* <Link className="nav" to={user ? "/Events" : "/Login"}>
+          <Link className="nav" to="/Events">
             <p
               className={`${
                 window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
@@ -186,12 +170,22 @@ export default function Navbar() {
             >
               Events
             </p>
-          </Link> */}
+          </Link>
+          <Link className="nav" to="/Events">
+            <p
+              className={`${
+                window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
+              } font-bold ${
+                isScrolled || location.pathname !== "/"
+                  ? "text-[#00cc00]"
+                  : "text-[#ffffff]"
+              }`}
+            >
+              Upload Events
+            </p>
+          </Link>
 
-          <Link
-            className="nav"
-            to={user ? `/Shop/${userId}/${Name}/${email}` : "/Login"}
-          >
+          <Link className="nav" to={`/Shop/${userId}/${Name}/${email}`}>
             <p
               className={`${
                 window.innerWidth < 1780 ? "lg:text-[1.2vw]" : "lg:text-[20px]"
@@ -277,39 +271,50 @@ export default function Navbar() {
               setnavigateTo("/");
             }}
           >
-            <p className="text-[4vw] md:text-[2vw] text-white headingfont font-bold">
+            <p className="text-[4vw] mb-[1rem] md:text-[2vw] text-white headingfont font-bold">
               Home
             </p>
           </Link>
 
           <Link
-            className="nav"
             onClick={() => {
               setshowMobile(false);
             }}
-            to={user ? `/SellServices/${user.uid}/${Name}` : "/Login"}
+            className="nav"
+            to={`/SellServices/${userId}/${Name}`}
           >
             <p className="text-[4vw] md:text-[2vw] text-white mb-[1rem] headingfont font-bold">
               Sell Services
             </p>
           </Link>
-          {/* <Link
-            className="nav"
-            onClick={() => {
-              setshowMobile(false);
-            }}
-            to={user ? "/Events" : "/Login"}
-          >
-            <p className="text-[4vw] md:text-[2vw] text-white mb-[1rem] headingfont font-bold">
-              Events
-            </p>
-          </Link> */}
           <Link
             className="nav"
             onClick={() => {
               setshowMobile(false);
             }}
-            to={user ? `/Shop/${userId}/${Name}/${email}` : "/Login"}
+            to="/Events"
+          >
+            <p className="text-[4vw] md:text-[2vw] text-white mb-[1rem] headingfont font-bold">
+              Events
+            </p>
+          </Link>
+          <Link
+            onClick={() => {
+              setshowMobile(false);
+            }}
+            className="nav"
+            to={`/upload-event/${userId}`}
+          >
+            <p className="text-[4vw] md:text-[2vw] text-white mb-[1rem] headingfont font-bold">
+              Upload Events
+            </p>
+          </Link>
+          <Link
+            className="nav"
+            onClick={() => {
+              setshowMobile(false);
+            }}
+            to={`/Shop/${userId}/${Name}/${email}`}
           >
             <p className="text-[4vw] md:text-[2vw] text-white mb-[1rem] headingfont font-bold">
               Premium Shop
@@ -321,7 +326,7 @@ export default function Navbar() {
               setshowMobile(false);
               setnavigateTo("/Profile");
             }}
-            to={user ? `/Profile` : "/Login"}
+            to={`/Profile`}
           >
             <p className="text-[4vw] md:text-[2vw] text-white mb-[1rem] headingfont font-bold">
               Profile

@@ -1,30 +1,13 @@
-import { useContext, useEffect, useState } from "react";
-import { db } from "../../firebase";
-import { UserId } from "../App";
 import LoadingSpinner from "../components/spinner";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function EventsDetails() {
-  const { eventId } = useParams();
-  const userId = useContext(UserId);
+  const location = useLocation();
+  const { product } = location.state || {}; // Retrieve the product from the passed state
+
+  const userId = sessionStorage.getItem("userId");
   const navigate = useNavigate();
-
-  const [event, setEvent] = useState([]);
-  const [loading, setloading] = useState(false);
-
-  useEffect(() => {
-    setloading(true);
-    db.collection("Events")
-      .where("eventId", "==", eventId)
-      .get()
-      .then((collections) => {
-        const events = collections.docs.map((cloths) => {
-          return { ...cloths.data(), id: cloths.id };
-        });
-        setEvent(events[0]);
-        setloading(false);
-      });
-  }, [eventId]);
+  const event = product;
 
   const handleBuyTicketClick = () => {
     const ticketProps = event;

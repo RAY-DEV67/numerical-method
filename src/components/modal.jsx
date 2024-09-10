@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { NavigateTo, UserId } from "../App";
+import { NavigateTo } from "../App";
 import { Link } from "react-router-dom";
 import { useUserDetailsContext } from "../context/userDetails";
 
 const Modal = ({ showModal, setShowModal, image, text, ctaText }) => {
-  const userId = useContext(UserId);
+  const userId = sessionStorage.getItem("userId");
   const { university } = useUserDetailsContext();
   const { setnavigateTo } = useContext(NavigateTo);
 

@@ -7,13 +7,11 @@ import {
   getDocs,
 } from "firebase/firestore";
 import { db } from "../../firebase";
-import { UserId } from "../App";
 
 export const UserDetailsContext = createContext({});
 
 const UserDetailsContextProvider = ({ children }) => {
-  const userId = useContext(UserId);
-
+  const userId = sessionStorage.getItem("userId");
   const [userDetails, setUserDetails] = useState({
     email: "",
     Name: "",

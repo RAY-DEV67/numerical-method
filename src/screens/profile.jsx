@@ -1,10 +1,8 @@
-import { useContext } from "react";
-import { UserId } from "../App";
 import { useUserDetailsContext } from "../context/userDetails";
 import { Link } from "react-router-dom";
 
 function Profile() {
-  const userId = useContext(UserId);
+  const userId = sessionStorage.getItem("userId");
   const { Name } = useUserDetailsContext();
 
   return (

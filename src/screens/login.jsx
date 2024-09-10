@@ -1,13 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import React, { useContext, useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { NavigateTo, SetUserId } from "../App";
+import { NavigateTo } from "../App";
 import LoadingSpinner from "../components/spinner";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
-  const setuserId = useContext(SetUserId);
   const { navigateTo } = useContext(NavigateTo);
 
   const [loading, setLoading] = useState(false);
@@ -28,7 +27,6 @@ function Login() {
         password
       );
       const user = userCredential.user;
-      setuserId(user.uid);
 
       // Store user credentials in localStorage
       localStorage.setItem(
@@ -40,6 +38,9 @@ function Login() {
         })
       );
 
+      // Save token in session storage
+      sessionStorage.setItem("userId", user.uid);
+
       toast("Welcome Back Odogwu🙌🙌", {
         position: "top-right",
         autoClose: 5000,
@@ -50,6 +51,7 @@ function Login() {
         progress: undefined,
         theme: "light",
       });
+
       navigate(navigateTo);
     } catch (error) {
       const errorCode = error.code;
@@ -123,7 +125,7 @@ function Login() {
           onClick={handleLogin}
           className={`${
             window.innerWidth < 1780 ? "w-[33vw] md:w-[13vw]" : "w-[200px]"
-          } bg-[#013a19] text-white  mt-[32px] rounded-[20px] py-[8px] flex-col items-center justify-center`}
+          } bg-[#013a19] text-white  mt-[32px] rounded-[20px] py-[8px] flex flex-col items-center justify-center`}
         >
           {loading ? <LoadingSpinner /> : "Log In"}
         </button>

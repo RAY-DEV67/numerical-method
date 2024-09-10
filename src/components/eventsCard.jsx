@@ -32,24 +32,28 @@ export default function EventsCard({ product }) {
       "December",
     ];
 
-    const [day, month, year] = dateStr.split("/").map(Number);
+    const [month, day] = dateStr.split("/").map(Number);
     const formattedDate = `${day} ${months[month - 1]}`;
     return formattedDate;
   }
 
   // Call the function with the original date string
   const formattedDate = formatDate(originalDateStr);
-  const timePart = originalDateStr.substring(11);
 
+  const timePart = originalDateStr.substring(11);
 
   return (
     <div
-      onClick={() => navigate(`/EventsDetails/${product.eventId}`)}
+      onClick={() =>
+        navigate(`/EventsDetails`, { state: { product } })
+      }
       className="flex flex-col textFont items-center justify-center mb-[16px] "
     >
       <div
         className={`${
-          window.innerWidth < 1780 ? "w-[85vw] md:w-[60vw]" : "w-[1300px] py-[32px] mb-[16px]"
+          window.innerWidth < 1780
+            ? "w-[85vw] md:w-[60vw]"
+            : "w-[1300px] py-[32px] mb-[16px]"
         } bg-white border border-[#00cc00] eventCard px-[8px] shadow-lg rounded-[10px] flex flex-row justify-center items-center `}
       >
         <img

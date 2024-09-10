@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { db } from "../../firebase";
 import { storage } from "../../firebase";
@@ -40,6 +40,7 @@ const Categories = [
 function SellServices() {
   const { userId } = useParams();
   const { userName } = useParams();
+
   const { state, university, phoneNumber } = useUserDetailsContext();
 
   const [selectedCategory, setselectedCategory] = useState("");

@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
-import { UserId } from "../App";
+import React from "react";
 
 const ConfirmationModal = ({
   showModal,
@@ -7,8 +6,6 @@ const ConfirmationModal = ({
   type,
   deleteProduct,
 }) => {
-  const userId = useContext(UserId);
-
   return (
     <div>
       {showModal && (
