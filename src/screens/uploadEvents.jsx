@@ -17,9 +17,10 @@ import { eventCategories } from "../json/eventCategories";
 import { useUserDetailsContext } from "../context/userDetails";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"; // Import the styles
+import { useParams } from "react-router-dom";
 
 function UploadEvents() {
-  const userUid = sessionStorage.getItem("userId");
+  const { userUid } = useParams();
   const { accountNumber, accountName, bankName } = useUserDetailsContext();
 
   const [loadingSubmit, setloadingSubmit] = useState(false);
@@ -99,7 +100,7 @@ function UploadEvents() {
           // Handle successful uploads
           const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
           await updateDoc(docRef, { image1: downloadURL });
-          alert("Service Uploaded Successfully");
+          alert("Event Uploaded Successfully");
         }
       );
     } catch (error) {

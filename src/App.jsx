@@ -62,7 +62,7 @@ function App() {
                 />
                 <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
                 <Route
-                  path="/upload-event/:userId"
+                  path="/upload-event/:userUid"
                   element={<UploadEvents />}
                 />
                 <Route element={<RequireAuth />}>
