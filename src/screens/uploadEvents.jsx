@@ -147,7 +147,6 @@ function UploadEvents() {
             " "
           ),
       });
-
       await uploadImage(docRef);
     } catch (error) {
       console.error("Failed to upload event: ", error);
@@ -416,7 +415,7 @@ function UploadEvents() {
           ""
         )}
 
-        <p className="textFont mx-[24px]">
+        <p className="textFont mx-[24px] text-[10px]">
           By clicking on Post Ad, you accept the Terms of Use, Confirm that you
           will be able to abide by the safety tips.
         </p>
