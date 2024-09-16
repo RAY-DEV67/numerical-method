@@ -69,12 +69,13 @@ function App() {
                   path="/Shop/:userId/:userName/:email"
                   element={<Shop />}
                 />
+                <Route
+                  path="/SellServices/:userId/:userName"
+                  element={<SellServices />}
+                />
                 <Route element={<RequireAuth />}>
                   <Route path="/SignUpTwo/:userId" element={<SignUpTwo />} />
-                  <Route
-                    path="/SellServices/:userId/:userName"
-                    element={<SellServices />}
-                  />
+
                   <Route path="Events" element={<Events />} />
 
                   <Route path="/EventsDetails" element={<EventsDetails />} />
