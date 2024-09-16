@@ -34,7 +34,7 @@ function Shop() {
       });
   }, [userId]);
 
-  const buyPlugs = async (amountOfPlugs) => {
+  const buyStudyCards = async (amountOfCards) => {
     const querySnapshot = await getDocs(
       query(collection(db, "Users"), where("userId", "==", userId))
     );
@@ -44,13 +44,13 @@ function Shop() {
       );
 
       if (plugMeDoc) {
-        const oldAvailablePlugs = plugMeDoc.data().availablePlugs;
-        const newAvailablePlugs = oldAvailablePlugs + amountOfPlugs;
+        const oldStudyCards = plugMeDoc.data().studyCard;
+        const newAvailableCards = oldStudyCards + amountOfCards;
 
         querySnapshot.forEach((doc) => {
           const userRef = doc.ref;
           updateDoc(userRef, {
-            availablePlugs: newAvailablePlugs,
+            studyCard: newAvailableCards,
           });
         });
       } else {
@@ -64,7 +64,7 @@ function Shop() {
     const tx_ref = GenerateTransactionRef();
 
     FlutterwaveCheckout({
-      public_key: "FLWPUBK-7e5a1a39e720ebaf3aed7425ead32e6f-X",
+      public_key: "FLWPUBK_TEST-cebf85e05f6ff0c8d7d41d8cb00bc8c7-X",
       tx_ref: tx_ref,
       amount: amount,
       currency: "NGN",
@@ -74,7 +74,7 @@ function Shop() {
         name: userName,
       },
       callback: function () {
-        buyPlugs(num);
+        buyStudyCards(num);
       },
     });
   }
@@ -101,10 +101,11 @@ function Shop() {
             : "text-[50px]"
         } mx-[16px] lg:mx-[40px] font-semibold`}
       >
-        Buy Plugs:
+        Buy Study-Cards:
       </h2>
       <p className="mx-[16px]">
-        Buy plugs to chat and connect with users on UniPlug
+        Buy Study-Cards to create more AI generated Flashcards and multiple
+        questions.
       </p>
       <div
         className={`${
@@ -113,7 +114,7 @@ function Shop() {
       >
         <div
           onClick={() => {
-            makePayment(15, 300);
+            makePayment(5, 300);
           }}
           className={`${
             window.innerWidth < 1780
@@ -121,12 +122,12 @@ function Shop() {
               : "w-[1000px]"
           } bg-[#013a19] cursor-pointer lg:py-[60px] text-white text-center md:py-[48px] py-[40px] mt-[16px] rounded-[20px]`}
         >
-          Buy 15 Plugs for #300.00
+          Buy 5 Study-Cards for #300.00
         </div>
 
         <div
           onClick={() => {
-            makePayment(30, 500);
+            makePayment(10, 500);
           }}
           className={`${
             window.innerWidth < 1780
@@ -134,12 +135,12 @@ function Shop() {
               : "w-[1000px]"
           } bg-[#013a19] cursor-pointer lg:py-[60px] text-white text-center md:py-[48px] py-[40px] mt-[16px] rounded-[20px]`}
         >
-          Buy 30 Plugs for #500.00
+          Buy 10 Study-Cards for #500.00
         </div>
 
         <div
           onClick={() => {
-            makePayment(50, 700);
+            makePayment(15, 700);
           }}
           className={`${
             window.innerWidth < 1780
@@ -147,7 +148,7 @@ function Shop() {
               : "w-[1000px]"
           } bg-[#013a19] cursor-pointer lg:py-[60px] text-white text-center md:py-[48px] py-[40px] mt-[16px] rounded-[20px]`}
         >
-          Buy 50 Plugs for #700.00
+          Buy 15 Study-Cards for #700.00
         </div>
       </div>
 

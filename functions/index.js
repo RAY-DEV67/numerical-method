@@ -157,3 +157,54 @@ exports.extractTextFromPDF = functions.storage
       }
       return null;
     });
+
+exports.generateExamQuestionsFlashCardFromText = functions.firestore
+    .document("textUploads/{docId}")
+    .onCreate(async (snap, context) => {
+      const data = snap.data();
+      const text = data.text; // The text field from the document
+      const numOfQuestions = data.numOfQuestions;
+      const textId = data.textId;
+      if (!text) {
+        console.log("No text found in the document.");
+        return null;
+      }
+      try {
+        // Set up the Gemini API model
+        const model = genAI.getGenerativeModel({model: "gemini-1.5-flash"});
+        // Generate summary
+        const prompt =`
+        Generate ${numOfQuestions} exam questions based on this topic: ${text}
+        Format the response as follows:
+        [
+        {"question": "Question Text",
+        "answer": "Answer Text"},
+        {"question": "Question Text",
+        "answer": "Answer Text"},
+        {"question": "Question Text",
+        "answer": "Answer Text"},
+        {"question": "Question Text",
+        "answer": "Answer Text"},
+        ...]`;
+        const result = await model.generateContent(prompt);
+        const summary = result.response.text();
+        // Store extracted text in Firestore
+        const db = admin.firestore();
+        const productsRef = db.collection("textUploads");
+        // Query for the document with the matching fileName
+        const querySnapshot = await productsRef
+            .where("textId", "==", textId) // Ensure the field name matches
+            .get();
+        querySnapshot.forEach(async (doc) => {
+          await doc.ref.update({
+            flashcard: summary,
+            timestamp: admin.firestore.FieldValue.serverTimestamp(),
+            loadingFlashcard: false,
+          });
+        });
+        console.log("Text extracted and document updated successfully");
+      } catch (error) {
+        console.error("Error generating exam questions: ", error);
+      }
+      return null;
+    });

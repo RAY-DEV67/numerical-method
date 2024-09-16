@@ -65,6 +65,10 @@ function App() {
                   path="/upload-event/:userUid"
                   element={<UploadEvents />}
                 />
+                <Route
+                  path="/Shop/:userId/:userName/:email"
+                  element={<Shop />}
+                />
                 <Route element={<RequireAuth />}>
                   <Route path="/SignUpTwo/:userId" element={<SignUpTwo />} />
                   <Route
@@ -72,10 +76,6 @@ function App() {
                     element={<SellServices />}
                   />
                   <Route path="Events" element={<Events />} />
-                  <Route
-                    path="/Shop/:userId/:userName/:email"
-                    element={<Shop />}
-                  />
 
                   <Route path="/EventsDetails" element={<EventsDetails />} />
 

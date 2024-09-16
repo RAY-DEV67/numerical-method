@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { db } from "../../firebase";
 import { storage } from "../../firebase";
@@ -18,24 +18,8 @@ import { nigerianUniversities } from "../json/nigerianUniversities";
 import Input from "../components/input";
 import { useUserDetailsContext } from "../context/userDetails";
 import GenerateTransactionRef from "../helper/generateTransactionRef";
-
-const Categories = [
-  "Assignment & Note Copying",
-  "Car Rentals",
-  "Cleaning & Household Services",
-  "Computer & I.T Services",
-  "Dj & Entertainment",
-  "Fashion Designer",
-  "Make-Up Artiste",
-  "Hair Services",
-  "Housing Agents",
-  "Logistics & Delivery Services",
-  "Party, Catering & Event Services",
-  "Personal Shopper",
-  "Photography & Video Services",
-  "Printing",
-  "Project Assistance",
-];
+import { serviceCategories } from "../json/serviceCategories";
+import GenerateRandomString from "../helper/generateRandomString";
 
 function SellServices() {
   const { userId } = useParams();
@@ -198,6 +182,8 @@ function SellServices() {
       newDate.setDate(0);
     }
 
+    const serviceId = GenerateRandomString(20);
+
     const docRef = await addDoc(collection(db, "Services"), {
       category: selectedCategory,
       state: selectedState,
@@ -207,6 +193,7 @@ function SellServices() {
       phoneNumber: phoneNumberForm,
       instagram: instagram,
       twitter: twitter,
+      serviceId: serviceId,
       price: "Contact for price",
       image1: "",
       image2: "",
@@ -293,7 +280,7 @@ function SellServices() {
             } input bg-transparent rounded-[10px] text-black px-[8px] py-[12px] my-[16px] border border-[#00cc00]`}
           >
             <option value="">Category</option>
-            {Categories.map((categories) => (
+            {serviceCategories.map((categories) => (
               <option key={categories} value={categories}>
                 {categories}
               </option>
