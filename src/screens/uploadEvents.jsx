@@ -130,6 +130,7 @@ function UploadEvents() {
 
     try {
       const docRef = await addDoc(collection(db, "Events"), {
+        active: false,
         category: selectedCategory,
         state: selectedState,
         eventDescription: eventDescription,

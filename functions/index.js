@@ -15,6 +15,45 @@ const bucket = storage.bucket("gs://thrifty2.appspot.com");
 
 const BATCH_SIZE = 100;
 
+exports.initiateFlutterwavePayment =
+    functions.https.onCall(async (data, context) => {
+      const {email, amount, transactionId} = data;
+      const flutterwaveSecretKey =
+    functions.config().flutterwave.secret_test_key;
+      console.log(flutterwaveSecretKey);
+      try {
+      // Create a Flutterwave payment request
+        const response = await axios.post(
+            "https://api.flutterwave.com/v3/payments",
+            {
+              tx_ref: transactionId,
+              amount: amount,
+              currency: "NGN",
+              redirect_url: "https://uniplug.ng/verify-payment",
+              payment_options: "card, mobilemoneyghana, ussd",
+              customer: {
+                email: email,
+              },
+            },
+            {
+              headers: {
+                "Authorization": `Bearer ${flutterwaveSecretKey}`,
+                "Content-Type": "application/json",
+              },
+            },
+        );
+
+        // Return the payment link to the client
+        return {link: response.data.data.link};
+      } catch (error) {
+        console.error("Error initiating Flutterwave payment:", error);
+        throw new functions.https.HttpsError(
+            "internal",
+            "Failed to initiate payment",
+        );
+      }
+    });
+
 // Schedule the function to run every day at 8 AM Lagos, Nigeria time (UTC+1)
 exports.dailyPushNotification = functions.pubsub
     .schedule("0 8 * * *") // 8 AM UTC
@@ -98,7 +137,7 @@ exports.checkSubscriptionStatus = functions.pubsub
         const productDoc = productsRef.doc(userId);
 
         // Update the "notTop" field to true
-        batch.update(productDoc, {notTop: true});
+        batch.update(productDoc, {topProduct: false});
       });
       // Commit the batch update
       await batch.commit();
@@ -421,5 +460,110 @@ exports.sendEventNotification = functions.firestore
         console.log("Notification sent successfully to user:", userDoc.id);
       } catch (error) {
         console.error("Error sending notification:", error);
+      }
+    });
+
+exports.sendOrderStatusNotification = functions.firestore
+    .document("Orders/{orderId}")
+    .onUpdate(async (change, context) => {
+      const before = change.before.data(); // Data before the update
+      const after = change.after.data(); // Data after the update
+
+      // Check if the status has changed
+      if (before.status === after.status) {
+        return; // Exit if the status hasn't changed
+      }
+
+      const newStatus = after.status; // Get the new status
+      const userId = after.userId; // Assume the order has a userId field
+
+      try {
+        // Fetch the user with the matching userId
+        const userSnapshot = await admin
+            .firestore()
+            .collection("Users")
+            .where("userId", "==", userId)
+            .get();
+
+        if (userSnapshot.empty) {
+          console.log("No matching user found for the userId:", userId);
+          return;
+        }
+
+        // Assume only one user matches and get the pushToken
+        const userDoc = userSnapshot.docs[0];
+        const pushToken = userDoc.data().pushToken;
+
+        if (!pushToken) {
+          console.log("No pushToken found for the user:", userDoc.id);
+          return;
+        }
+
+        // Prepare notification payload based on the new status
+        const message = {
+          to: pushToken,
+          sound: "default",
+          data: {ticketId: "Ticket"}, // Adjust as needed
+        };
+
+        if (newStatus === "Shipped") {
+          message.title = "Your Order has Shipped 🚚";
+          message.body = "Your order is on the way!";
+        } else if (newStatus === "Delivered") {
+          message.title = "Your Order has been Delivered 🎉";
+          message.body = "Your order has arrived! Please confirm delivery";
+        } else if (newStatus === "Cancelled") {
+          message.title = "Your Order has been Cancelled ❌";
+          message.body = "Your refund is being processed.";
+        } else {
+          console.log("Unhandled status change:", newStatus);
+          return; // Exit if the status is not handled
+        }
+
+        // Send notification using Axios to Expo push notification service
+        await axios.post("https://exp.host/--/api/v2/push/send", message, {
+          headers: {
+            "Accept": "application/json",
+            "Accept-Encoding": "gzip, deflate",
+            "Content-Type": "application/json",
+          },
+        });
+
+        console.log("Notification sent successfully to user:", userDoc.id);
+      } catch (error) {
+        console.error("Error sending notification:", error);
+      }
+    });
+
+exports.autoConfirmDeliveredOrders =
+    functions.pubsub.schedule("every 24 hours").onRun(async (context) => {
+      const currentTime = admin.firestore.Timestamp.now();
+
+      try {
+        // Query orders where status is 'delivered'
+        const ordersSnapshot = await admin.firestore()
+            .collection("Orders")
+            .where("status", "==", "Delivered")
+            .where("timestamp", "<=", currentTime
+                .toMillis() - 24 * 60 * 60 * 1000) // 24 hours ago
+            .get();
+
+        if (ordersSnapshot.empty) {
+          console.log("No orders to confirm.");
+          return;
+        }
+
+        // Update each order to set status to 'confirmed'
+        const updates = ordersSnapshot.docs.map((doc) => {
+          return doc.ref.update({status: "Confirmed",
+            confirmedBy: "Automatic",
+            timestamp: admin.firestore.FieldValue.serverTimestamp(),
+          });
+        });
+
+        await Promise.all(updates);
+        console.log(`Updated ${updates.length} orders to 'confirmed'.`);
+      } catch (error) {
+        console.error("Error confirming orders:", error);
       }
     });
