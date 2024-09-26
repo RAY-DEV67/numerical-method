@@ -141,8 +141,8 @@ function UploadEvents() {
         startDate: startDate.toLocaleString(),
         endDate: endDate.toLocaleString(),
         tickets: tickets,
+        status: "Incoming",
         timestamp: serverTimestamp(),
-        status: "Active",
         searchKeywords:
           `${eventDescription.toLowerCase()} ${eventName.toLowerCase()} ${selectedCategory.toLowerCase()}`.split(
             " "
