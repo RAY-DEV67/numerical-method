@@ -1,73 +1,13 @@
-import { Link, useNavigate } from "react-router-dom";
-import React, { useContext, useState } from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { NavigateTo } from "../App";
+import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import LoadingSpinner from "../components/spinner";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
-  const { navigateTo } = useContext(NavigateTo);
-
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState("");
-
-  const navigate = useNavigate();
-
-  const handleLogin = async () => {
-    setLoading(true);
-    const auth = getAuth();
-
-    try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const user = userCredential.user;
-
-      // Store user credentials in localStorage
-      localStorage.setItem(
-        "userCredentials",
-        JSON.stringify({
-          email: user.email,
-          userId: user.uid,
-          hasOnboarded: true,
-        })
-      );
-
-      // Save token in session storage
-      sessionStorage.setItem("userId", user.uid);
-
-      toast("Welcome Back Odogwu🙌🙌", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-
-      navigate(navigateTo);
-    } catch (error) {
-      const errorCode = error.code;
-      if (errorCode === "auth/invalid-login-credentials") {
-        setErrors("Invalid Email Address");
-      } else if (errorCode === "auth/user-not-found") {
-        setErrors("Incorrect Email Address");
-      } else if (errorCode === "auth/wrong-password") {
-        setErrors("Incorrect Password");
-      } else if (errorCode === "auth/network-request-failed") {
-        setErrors("Unable to log in, Check Internet Connection.");
-      }
-    }
-
-    setLoading(false);
-  };
 
   return (
     <div className="flex flex-col items-center justify-center h-[100vh] textFont">
@@ -79,18 +19,7 @@ function Login() {
               : "text-[40px]"
           } font-semibold`}
         >
-          Welcome to
-        </h1>
-        <h1
-          className={`${
-            window.innerWidth < 1780
-              ? "text-[10vw] md:text-[4vw]"
-              : "text-[80px]"
-          } font-semibold headingFont`}
-        >
-          <span class="magic">
-            <span class="magic-text">UniPlug</span>
-          </span>
+          Welcome
         </h1>
         <p
           className={`${
@@ -122,7 +51,7 @@ function Login() {
           } input bg-transparent rounded-[10px] text-black p-[8px] my-[8px] border border-[#00cc00]`}
         />
         <button
-          onClick={handleLogin}
+          // onClick={handleLogin}
           className={`${
             window.innerWidth < 1780 ? "w-[33vw] md:w-[13vw]" : "w-[200px]"
           } bg-[#013a19] text-white  mt-[32px] rounded-[20px] py-[8px] flex flex-col items-center justify-center`}

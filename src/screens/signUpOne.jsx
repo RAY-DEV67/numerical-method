@@ -1,15 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../firebase";
 import LoadingSpinner from "../components/spinner";
 import Input from "../components/input";
+import { nigerianUniversities } from "../json/nigerianUniversities";
 
 function SignUpOne() {
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-
+  const [universityError, setuniversityError] = useState("");
   const [email, setEmail] = useState("");
   const [emailError, setemailError] = useState("");
   const [confirmEmail, setconfirmEmail] = useState("");
@@ -22,137 +19,10 @@ function SignUpOne() {
   const [firstNameError, setfirstNameError] = useState("");
   const [uniTag, setuniTag] = useState("");
   const [uniTagError, setuniTagError] = useState("");
+  const [selectedUniversity, setSelectedUniversity] = useState("");
 
-  const docRef = collection(db, "Users");
-
-  const checkUniTagExists = async (tag) => {
-    const usersRef = db.collection("Users");
-
-    // Query the database to check if the tag already exists
-    const querySnapshot = await usersRef.where("uniTag", "==", tag).get();
-
-    return !querySnapshot.empty; // Return true if the tag exists, otherwise false
-  };
-
-  const addNewUser = async (user, email) => {
-    setLoading(true);
-    try {
-      const newDoc = await addDoc(docRef, {
-        Name: firstName,
-        state: "",
-        university: "",
-        gender: "",
-        userId: user,
-        email: email,
-        phoneNumber: "",
-        instagram: "",
-        twitter: "",
-        TypeOfAccount: "",
-        address: "",
-        availablePlugs: 10,
-        credit: 0,
-        hasgottencredit: false,
-        accountNumber: "",
-        accountName: "",
-        bankName: "",
-        timestamp: new Date(),
-        totalTicketsRevenue: 0,
-        totalProductsRevenue: 0,
-        plugStatus: "",
-        blocked: false,
-        onCampus: false,
-        offCampus: false,
-        homeScreenOnboarded: false,
-        eventsScreenOnboarded: false,
-        plugmeScreenOnboarded: false,
-        vendorOnboarded: false,
-        profilePicture: "",
-        uniTag: uniTag.toLowerCase(),
-        payForFriend: 0,
-        plugMates: [],
-        verified: false,
-        vendorName: "",
-        referredBy: "",
-        searchKeywords: `${firstName.toLowerCase()}`.split(" "),
-      });
-      setLoading(false);
-    } catch (err) {
-      // console.log(err);
-    }
-  };
-
-  const handleSignUp = async () => {
-    setconfirmPasswordError("");
-    setemailError("");
-    setpasswordError("");
-    setfirstNameError("");
-    setconfirmEmailError("");
-    setuniTagError("");
-
-    if (firstName === "") {
-      setfirstNameError("Please Enter Your Name");
-      return;
-    }
-    if (email === "") {
-      setemailError("Please Enter Your Email");
-      return;
-    }
-    if (confirmEmail === "") {
-      setconfirmEmailError("Please Retype Your Email");
-      return;
-    }
-    if (email !== confirmEmail) {
-      setconfirmEmailError("Emails Do Not Match");
-      return;
-    }
-    if (uniTag === "") {
-      setuniTagError("Please Enter A UserName");
-      return;
-    }
-    if (password === "") {
-      setpasswordError("Please Enter Your Password");
-      return;
-    }
-    if (password !== confirmPassword) {
-      setconfirmPasswordError("Passwords do not match");
-      return;
-    }
-    setLoading(true);
-
-    // Check if the uniTag already exists
-    const tagExists = await checkUniTagExists(uniTag.toLowerCase());
-
-    if (tagExists) {
-      setuniTagError("Uni-Tag already exists. Please choose a different one.");
-      setLoading(false);
-      return;
-    }
-
-    const auth = getAuth();
-
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const user = userCredential.user;
-      addNewUser(user.uid, user.email);
-      navigate(`/SignUpTwo/${user.uid}`);
-    } catch (error) {
-      const errorCode = error.code;
-      if (errorCode === "auth/invalid-email") {
-        setemailError("Invalid Email Address");
-      } else if (errorCode === "auth/email-already-in-use") {
-        setemailError("Email is already in use");
-      } else if (errorCode === "auth/missing-password") {
-        setpasswordError("Please set password");
-      } else if (errorCode === "auth/weak-password") {
-        setpasswordError("Password should be at least 6 characters long");
-      }
-    }
-
-    setLoading(false);
+  const handleUniversityChange = (e) => {
+    setSelectedUniversity(e.target.value);
   };
 
   return (
@@ -169,19 +39,9 @@ function SignUpOne() {
               : "text-[50px]"
           } font-semibold`}
         >
-          Welcome to
+          Welcome
         </h1>
-        <h1
-          className={`${
-            window.innerWidth < 1780
-              ? "text-[10vw] md:text-[4vw]"
-              : "text-[70px]"
-          } font-semibold headingFont`}
-        >
-          <span class="magic">
-            <span class="magic-text">UniPlug</span>
-          </span>
-        </h1>
+
         <p
           className={`${
             window.innerWidth < 1780
@@ -196,7 +56,7 @@ function SignUpOne() {
           onChangeText={(e) => setfirstName(e.target.value)}
           type="text"
           error={firstNameError}
-          placeholder="Name"
+          placeholder="Username"
         />
 
         <Input
@@ -207,40 +67,47 @@ function SignUpOne() {
         />
 
         <Input
-          onChangeText={(e) => setconfirmEmail(e.target.value)}
-          type="text"
-          error={confirmEmailError}
-          placeholder="Retype Email"
-        />
-
-        <Input
-          onChangeText={(e) => setuniTag(e.target.value)}
-          type="text"
-          error={uniTagError}
-          placeholder="Choose a username (Uni-Tag)"
-        />
-
-        <Input
           onChangeText={(e) => setPassword(e.target.value)}
           type="text"
           error={passwordError}
           placeholder="Password"
         />
 
-        <Input
-          onChangeText={(e) => setConfirmPassword(e.target.value)}
-          type="text"
-          error={confirmPasswordError}
-          placeholder="Confirm Password"
-        />
+        <select
+          value={selectedUniversity}
+          onChange={handleUniversityChange}
+          className={`${
+            window.innerWidth < 1780
+              ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
+              : "w-[1000px] text-[40px]"
+          } input bg-transparent rounded-[10px] text-black px-[8px] py-[12px] mt-[16px] border border-[#00cc00]`}
+        >
+          <option value="">Select Institution</option>
+          {nigerianUniversities.map((university) => (
+            <option key={university} value={university}>
+              {university}
+            </option>
+          ))}
+        </select>
+
+        {universityError && (
+          <p
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3vw] md:text-[2vw] lg:text-[1.5vw]"
+                : "text-[30px]"
+            } text-red-500  mb-[16px]`}
+          >
+            {universityError}
+          </p>
+        )}
 
         <button
-          onClick={handleSignUp}
           className={`${
             window.innerWidth < 1780 ? "w-[33vw] md:w-[13vw]" : "w-[200px]"
           } bg-[#013a19] text-white mt-[16px] rounded-[20px] py-[8px] flex-col items-center justify-center`}
         >
-          {loading ? <LoadingSpinner /> : "Continue"}
+          {loading ? <LoadingSpinner /> : "Sign Up"}
         </button>
 
         <p

@@ -1,9 +1,7 @@
-import { useUserDetailsContext } from "../context/userDetails";
 import { Link } from "react-router-dom";
 
 function Profile() {
   const userId = sessionStorage.getItem("userId");
-  const { Name } = useUserDetailsContext();
 
   return (
     <div>
@@ -11,9 +9,6 @@ function Profile() {
         <h1 className="text-white headingFont text-[5.5vw] relative">
           Welcome Back 👋
         </h1>
-        <p className=" text-white mb-[32px] mt-[8px] relative text-[4vw]">
-          {Name}
-        </p>
       </div>
 
       <div className="flex flex-col items-center justify-center h-[70vh]">
