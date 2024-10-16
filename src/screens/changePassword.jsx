@@ -1,12 +1,10 @@
-import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import LoadingSpinner from "../components/spinner";
 import "react-toastify/dist/ReactToastify.css";
 
-function Login() {
+function ChangePassword() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState("");
 
   return (
@@ -19,7 +17,7 @@ function Login() {
               : "text-[40px]"
           } font-semibold`}
         >
-          Welcome
+          Create New Password
         </h1>
         <p
           className={`${
@@ -28,12 +26,12 @@ function Login() {
               : "text-[30px]"
           }`}
         >
-          Please Log In To Continue
+          Please enter your details to change your password
         </p>
         <input
           onChange={(e) => setEmail(e.target.value)}
           type="text"
-          placeholder="Email"
+          placeholder="Old Password"
           className={`${
             window.innerWidth < 1780
               ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
@@ -41,26 +39,15 @@ function Login() {
           } input bg-transparent rounded-[10px] text-black p-[8px] mt-[24px] mb-[8px] border border-[#00cc00]`}
         />
         <input
-          onChange={(e) => setPassword(e.target.value)}
-          type="password"
-          placeholder="Password"
+          onChange={(e) => setEmail(e.target.value)}
+          type="text"
+          placeholder="New Password"
           className={`${
             window.innerWidth < 1780
               ? "text-[3.5vw] md:text-[2vw] lg:text-[1.5vw] w-[85vw] md:w-[40vw]"
               : "w-[1000px] text-[40px]"
-          } input bg-transparent rounded-[10px] text-black p-[8px] my-[8px] border border-[#00cc00]`}
+          } input bg-transparent rounded-[10px] text-black p-[8px] mt-[8px] mb-[8px] border border-[#00cc00]`}
         />
-
-        <Link
-          to="/ForgotPassword"
-          className={`${
-            window.innerWidth < 1780
-              ? "text-[3vw] md:text-[1.5vw]"
-              : "text-[30px]"
-          }`}
-        >
-          Forgot Password?
-        </Link>
 
         <button
           // onClick={handleLogin}
@@ -68,25 +55,12 @@ function Login() {
             window.innerWidth < 1780 ? "w-[33vw] md:w-[13vw]" : "w-[200px]"
           } bg-[#013a19] text-white  mt-[32px] rounded-[20px] py-[8px] flex flex-col items-center justify-center`}
         >
-          {loading ? <LoadingSpinner /> : "Log In"}
+          {loading ? <LoadingSpinner /> : "Change Password"}
         </button>
         {errors && <p className="text-red-500">{errors}</p>}
-
-        <p
-          className={`${
-            window.innerWidth < 1780
-              ? "text-[3vw] md:text-[1.5vw]"
-              : "text-[30px]"
-          } mt-[16px]`}
-        >
-          Don't have an account?{" "}
-          <Link to="/SignUpOne" className="text-blue-500">
-            Sign Up
-          </Link>
-        </p>
       </div>
     </div>
   );
 }
 
-export default Login;
+export default ChangePassword;

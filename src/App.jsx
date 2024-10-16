@@ -13,6 +13,8 @@ import SignUpOne from "./screens/signUpOne";
 import { ToastContainer } from "react-toastify";
 import Profile from "./screens/profile";
 import RequireAuth from "./components/requireAuth";
+import ForgotPassword from "./screens/forgotPassword";
+import ChangePassword from "./screens/changePassword";
 
 export const NavigateTo = React.createContext();
 
@@ -36,6 +38,8 @@ function App() {
           <ScrollToTop>
             <Routes>
               <Route path="/" element={<Login />} />
+              <Route path="/ForgotPassword" element={<ForgotPassword />} />
+              <Route path="/ChangePassword" element={<ChangePassword />} />
               <Route path="/SignUpOne" element={<SignUpOne />} />
               <Route element={<RequireAuth />}>
                 <Route path="/Profile" element={<Profile />} />
