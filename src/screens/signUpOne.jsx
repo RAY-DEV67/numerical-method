@@ -4,7 +4,7 @@ import LoadingSpinner from "../components/spinner";
 import Input from "../components/input";
 import { nigerianUniversities } from "../json/nigerianUniversities";
 
-function SignUpOne() {
+function SignUp() {
   const [loading, setLoading] = useState(false);
   const [universityError, setuniversityError] = useState("");
   const [email, setEmail] = useState("");
@@ -127,4 +127,4 @@ function SignUpOne() {
   );
 }
 
-export default SignUpOne;
+export default SignUp;

@@ -15,6 +15,10 @@ import Profile from "./screens/profile";
 import RequireAuth from "./components/requireAuth";
 import ForgotPassword from "./screens/forgotPassword";
 import ChangePassword from "./screens/changePassword";
+import Navbar from "./components/navbar";
+import LandingPage from "./screens/landingPage";
+import SignUp from "./screens/signUpOne";
+import GenerateMethod from "./screens/generateMethod";
 
 export const NavigateTo = React.createContext();
 
@@ -36,11 +40,14 @@ function App() {
       <NavigateTo.Provider value={{ navigateTo, setnavigateTo }}>
         <Router>
           <ScrollToTop>
+            <Navbar />
             <Routes>
-              <Route path="/" element={<Login />} />
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/Login" element={<Login />} />
               <Route path="/ForgotPassword" element={<ForgotPassword />} />
               <Route path="/ChangePassword" element={<ChangePassword />} />
-              <Route path="/SignUpOne" element={<SignUpOne />} />
+              <Route path="/GenerateMethod" element={<GenerateMethod />} />
+              <Route path="/SignUp" element={<SignUp />} />
               <Route element={<RequireAuth />}>
                 <Route path="/Profile" element={<Profile />} />
                 <Route path="*" element={<Navigate to="/Login" />} />
