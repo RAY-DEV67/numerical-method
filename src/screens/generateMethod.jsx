@@ -34,7 +34,7 @@ const GenerateMethod = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen flex flex-col justify-center items-center">
+    <div className="bg-white min-h-[100vh] flex flex-col justify-center items-center">
       <div className="bg-white flex-col">
         <div className="text-center">
           <h2
