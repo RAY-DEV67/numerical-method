@@ -34,16 +34,16 @@ function LandingPage() {
           <Link
             to="/SignUp"
             className={`${
-              window.innerWidth < 1780 ? "w-[33vw] md:w-[13vw]" : "w-[200px]"
-            } border border-[#019a13] text-[#019a13] rounded-[20px] py-[8px] flex flex-col items-center justify-center`}
+              window.innerWidth < 1780 ? "w-[40vw] md:w-[13vw]" : "w-[200px]"
+            } border border-[#019a13] text-[#019a13] rounded-[20px] py-[4px] flex flex-col items-center justify-center`}
           >
             Sign Up
           </Link>
           <Link
             to="/Login"
             className={`${
-              window.innerWidth < 1780 ? "w-[33vw] md:w-[13vw]" : "w-[200px]"
-            } bg-[#013a19] text-white rounded-[20px] py-[8px] flex flex-col items-center justify-center`}
+              window.innerWidth < 1780 ? "w-[40vw] md:w-[13vw]" : "w-[200px]"
+            } bg-[#013a19] text-white rounded-[20px] py-[4px] flex flex-col items-center justify-center`}
           >
             Log In
           </Link>
@@ -51,8 +51,8 @@ function LandingPage() {
         <Link
           to="/GenerateMethod"
           className={`${
-            window.innerWidth < 1780 ? "w-[40vw] md:w-[13vw]" : "w-[200px]"
-          } bg-[#013a19] mt-[16px] text-white rounded-[20px] py-[8px] flex flex-col items-center justify-center`}
+            window.innerWidth < 1780 ? "w-[50vw] md:w-[13vw]" : "w-[200px]"
+          } bg-[#013a19] mt-[16px] text-white rounded-[20px] py-[4px] flex flex-col items-center justify-center`}
         >
           Generate Method
         </Link>

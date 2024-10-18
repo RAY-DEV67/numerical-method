@@ -29,7 +29,7 @@ function SignUp() {
     <div
       className={`${
         window.innerWidth < 1780 ? "w-[100vw]" : "w-[1780px]"
-      } textFont flex flex-col items-center pt-[68px]`}
+      } textFont flex flex-col items-center justify-center min-h-[100vh]`}
     >
       <div className="relative flex flex-col items-center mt-[32px]">
         <h1
