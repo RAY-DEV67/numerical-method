@@ -65,8 +65,8 @@ function Login() {
         <button
           // onClick={handleLogin}
           className={`${
-            window.innerWidth < 1780 ? "w-[33vw] md:w-[13vw]" : "w-[200px]"
-          } bg-[#013a19] text-white  mt-[32px] rounded-[20px] py-[8px] flex flex-col items-center justify-center`}
+            window.innerWidth < 1780 ? "w-[40vw] md:w-[13vw]" : "w-[200px]"
+          } bg-[#013a19] text-white  mt-[32px] rounded-[20px] py-[4px] flex flex-col items-center justify-center`}
         >
           {loading ? <LoadingSpinner /> : "Log In"}
         </button>

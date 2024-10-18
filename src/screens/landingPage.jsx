@@ -52,7 +52,7 @@ function LandingPage() {
           to="/GenerateMethod"
           className={`${
             window.innerWidth < 1780 ? "w-[50vw] md:w-[13vw]" : "w-[200px]"
-          } bg-[#013a19] mt-[16px] text-white rounded-[20px] py-[4px] flex flex-col items-center justify-center`}
+          } bg-[#013a19] mt-[16px] text-white rounded-[20px] py-[8px] flex flex-col items-center justify-center`}
         >
           Generate Method
         </Link>
