@@ -47,7 +47,7 @@ const GenerateMethod = () => {
             Generate Method
           </h2>
 
-          <div className="flex flex-col items-center justify-start w-[90vw] ">
+          <div className="flex flex-col justify-start w-[90vw] ">
             <div className="flex flex-row items-center w-[100%] lg:w-[50%] mt-[24px] gap-x-2">
               <p className="text-left mb-[8px]">How Many Stops: </p>
               <input
@@ -59,9 +59,9 @@ const GenerateMethod = () => {
               />
             </div>
 
-            <div className="flex items-start mt-[16px] md:mt-[24px] w-[100%] lg:w-[620px] ">
+            <div className="flex items-start mt-[16px] md:mt-[24px] lg:w-[620px] ">
               <p className="text-left mb-[8px] md:mb-[0px]">Hybrid Points: </p>
-              <div className="flex justify-start w-[60vw] md:w-[30vw] ml-[4px] gap-y-2 flex-wrap">
+              <div className="flex justify-start w-[65vw] md:w-[30vw] ml-[4px] gap-y-2 flex-wrap">
                 {code.map((digit, index) => (
                   <input
                     key={index}
