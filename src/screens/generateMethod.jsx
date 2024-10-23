@@ -7,7 +7,7 @@ const GenerateMethod = () => {
     first: false,
     second: false,
     third: false,
-  }); // State for the 1st, 2nd, and 3rd derivatives checkboxes
+  }); 
   const inputsRef = useRef([]);
 
   useEffect(() => {

@@ -9,7 +9,6 @@ import { useState } from "react";
 import "./App.css";
 import { ScrollToTop } from "./components/scrollToTop";
 import Login from "./screens/login";
-import SignUpOne from "./screens/signUpOne";
 import { ToastContainer } from "react-toastify";
 import Profile from "./screens/profile";
 import RequireAuth from "./components/requireAuth";
@@ -26,7 +25,7 @@ function App() {
   const [navigateTo, setnavigateTo] = useState("/");
 
   return (
-    <div className="textFont max-w-[1780px]">
+    <div className="textFont max-w-[1780px] backgroundImage">
       <ToastContainer
         position="top-right"
         autoClose={5000}

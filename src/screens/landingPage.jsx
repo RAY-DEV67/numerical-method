@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import React from "react";
 import "react-toastify/dist/ReactToastify.css";
-
 function LandingPage() {
   return (
     <div className="flex flex-col items-center justify-center h-[100vh] textFont">
@@ -20,7 +19,7 @@ function LandingPage() {
             window.innerWidth < 1780
               ? "text-[4vw] md:text-[1.5vw]"
               : "text-[30px]"
-          } px-[16px] mt-[16px]`}
+          } px-[16px] mt-[16px] lg:w-[1000px] text-center`}
         >
           The Numerical Method Generator is a powerful tool designed for
           students, engineers, and professionals working with complex numerical

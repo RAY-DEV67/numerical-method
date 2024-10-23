@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import LoadingSpinner from "../components/spinner";
 import Input from "../components/input";
@@ -9,16 +9,10 @@ function SignUp() {
   const [universityError, setuniversityError] = useState("");
   const [email, setEmail] = useState("");
   const [emailError, setemailError] = useState("");
-  const [confirmEmail, setconfirmEmail] = useState("");
-  const [confirmEmailError, setconfirmEmailError] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setpasswordError] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [confirmPasswordError, setconfirmPasswordError] = useState("");
   const [firstName, setfirstName] = useState("");
   const [firstNameError, setfirstNameError] = useState("");
-  const [uniTag, setuniTag] = useState("");
-  const [uniTagError, setuniTagError] = useState("");
   const [selectedUniversity, setSelectedUniversity] = useState("");
 
   const handleUniversityChange = (e) => {
@@ -45,7 +39,7 @@ function SignUp() {
         <p
           className={`${
             window.innerWidth < 1780
-              ? "text-[4vw] md:text-[1.5vw] lg:text-[1.2vw]"
+              ? "text-[4vw] md:text-[1.5vw]"
               : "text-[30px]"
           }`}
         >

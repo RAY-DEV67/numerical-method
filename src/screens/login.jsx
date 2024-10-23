@@ -55,7 +55,7 @@ function Login() {
           to="/ForgotPassword"
           className={`${
             window.innerWidth < 1780
-              ? "text-[3vw] md:text-[1.5vw]"
+              ? "text-[3vw] md:text-[1.5vw] lg:text-[1.2vw]"
               : "text-[30px]"
           }`}
         >
@@ -75,12 +75,12 @@ function Login() {
         <p
           className={`${
             window.innerWidth < 1780
-              ? "text-[3vw] md:text-[1.5vw]"
+              ? "text-[3vw] md:text-[1.5vw] lg:text-[1.2vw]"
               : "text-[30px]"
           } mt-[16px]`}
         >
           Don't have an account?{" "}
-          <Link to="/SignUpOne" className="text-blue-500">
+          <Link to="/SignUp" className="text-blue-500">
             Sign Up
           </Link>
         </p>
