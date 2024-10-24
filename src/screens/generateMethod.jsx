@@ -7,7 +7,7 @@ const GenerateMethod = () => {
     first: false,
     second: false,
     third: false,
-  }); 
+  });
   const inputsRef = useRef([]);
 
   useEffect(() => {
@@ -34,8 +34,8 @@ const GenerateMethod = () => {
   };
 
   return (
-    <div className="bg-white min-h-[100vh] flex flex-col justify-center items-center">
-      <div className="bg-white flex-col">
+    <div className=" min-h-[100vh] flex flex-col justify-center items-center">
+      <div className=" flex-col">
         <div className="text-center">
           <h2
             className={`${
