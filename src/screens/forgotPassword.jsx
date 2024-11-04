@@ -1,11 +1,34 @@
 import React, { useState } from "react";
 import LoadingSpinner from "../components/spinner";
 import "react-toastify/dist/ReactToastify.css";
+import { post } from "../utils/api";
 
 function ForgotPassword() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setloading] = useState(false);
   const [email, setEmail] = useState("");
   const [errors, setErrors] = useState("");
+
+  const forgotPassword = () => {
+    setloading(true);
+    const data = {
+      email: email,
+    };
+
+    post(
+      "/users/login/forget_password",
+      data,
+      {},
+      (response) => {
+        console.log(response);
+        alert(response.message);
+        setloading(false);
+      },
+      (error) => {
+        console.log("Error", error);
+        setloading(false);
+      }
+    );
+  };
 
   return (
     <div className="flex flex-col items-center justify-center h-[100vh] textFont">
@@ -40,7 +63,7 @@ function ForgotPassword() {
         />
 
         <button
-          // onClick={handleLogin}
+          onClick={forgotPassword}
           className={`${
             window.innerWidth < 1780 ? "w-[33vw] md:w-[13vw]" : "w-[200px]"
           } bg-[#013a19] text-white  mt-[32px] rounded-[20px] py-[8px] flex flex-col items-center justify-center`}

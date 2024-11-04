@@ -18,6 +18,7 @@ import Navbar from "./components/navbar";
 import LandingPage from "./screens/landingPage";
 import SignUp from "./screens/signUpOne";
 import GenerateMethod from "./screens/generateMethod";
+import VerifyEmail from "./screens/verifyEmail";
 
 export const NavigateTo = React.createContext();
 
@@ -47,6 +48,7 @@ function App() {
               <Route path="/ChangePassword" element={<ChangePassword />} />
               <Route path="/GenerateMethod" element={<GenerateMethod />} />
               <Route path="/SignUp" element={<SignUp />} />
+              <Route path="/verify-email" element={<VerifyEmail />} />
               <Route element={<RequireAuth />}>
                 <Route path="/Profile" element={<Profile />} />
                 <Route path="*" element={<Navigate to="/Login" />} />

@@ -2,12 +2,38 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import LoadingSpinner from "../components/spinner";
 import "react-toastify/dist/ReactToastify.css";
+import { post } from "../utils/api";
 
 function Login() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setloading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState("");
+
+  const login = () => {
+    setloading(true);
+    const data = {
+      password: password,
+      email: email,
+    };
+
+    post(
+      "/users/login",
+      data,
+      {},
+      (response) => {
+        console.log(response.access_token);
+        setloading(false);
+        // Save token in session storage
+        sessionStorage.setItem("token", response.access_token);
+        navigation.navigate("GenerateMethod");
+      },
+      (error) => {
+        console.log("Error", error);
+        setloading(false);
+      }
+    );
+  };
 
   return (
     <div className="flex flex-col items-center justify-center h-[100vh] textFont">
@@ -63,7 +89,7 @@ function Login() {
         </Link>
 
         <button
-          // onClick={handleLogin}
+          onClick={login}
           className={`${
             window.innerWidth < 1780 ? "w-[40vw] md:w-[13vw]" : "w-[200px]"
           } bg-[#013a19] text-white  mt-[32px] rounded-[20px] py-[4px] flex flex-col items-center justify-center`}

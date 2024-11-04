@@ -1,8 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { post } from "../utils/api";
+import LoadingSpinner from "../components/spinner";
 
 const GenerateMethod = () => {
+  const token = sessionStorage.getItem("token");
   const [code, setCode] = useState(["", "", "", "", "", "", "", "", "", ""]);
+  const [loading, setloading] = useState(false);
   const [checkedDerivatives, setCheckedDerivatives] = useState({
     first: false,
     second: false,
@@ -31,6 +35,31 @@ const GenerateMethod = () => {
       ...checkedDerivatives,
       [derivative]: !checkedDerivatives[derivative],
     });
+  };
+
+  const generate = () => {
+    setloading(true);
+    const data = {
+      interpolation_points: ["0"],
+      first_derivatives_points:["0","1/6","1/3","1/3","2/3","5/6","2"],
+      second_derivatives_points: [],
+      analysis: true
+    };
+
+    post(
+      "/generate",
+      data,
+      { Authorization: `Bearer ${token}` },
+      (response) => {
+        console.log(response);
+        setloading(false);
+        // navigation.navigate("Login");
+      },
+      (error) => {
+        console.log("Error", error);
+        setloading(false);
+      }
+    );
   };
 
   return (
@@ -108,12 +137,12 @@ const GenerateMethod = () => {
             </div>
 
             <Link
-              to="/GenerateMethod"
+              onClick={generate}
               className={`${
                 window.innerWidth < 1780 ? "w-[50vw] md:w-[13vw]" : "w-[200px]"
               } bg-[#013a19] mt-[24px] text-white rounded-[20px] py-[8px] flex flex-col items-center justify-center`}
             >
-              Generate Method
+              {loading ? <LoadingSpinner /> : "Generate Method"}
             </Link>
           </div>
         </div>

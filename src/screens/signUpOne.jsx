@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import LoadingSpinner from "../components/spinner";
 import Input from "../components/input";
 import { nigerianUniversities } from "../json/nigerianUniversities";
+import { post } from "../utils/api";
 
 function SignUp() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setloading] = useState(false);
   const [universityError, setuniversityError] = useState("");
   const [email, setEmail] = useState("");
   const [emailError, setemailError] = useState("");
@@ -17,6 +18,31 @@ function SignUp() {
 
   const handleUniversityChange = (e) => {
     setSelectedUniversity(e.target.value);
+  };
+
+  const signUp = () => {
+    setloading(true);
+    const data = {
+      username: firstName,
+      password: password,
+      email: email,
+      institution: selectedUniversity,
+    };
+
+    post(
+      "/users/signup",
+      data,
+      {},
+      (response) => {
+        console.log(response);
+        setloading(false);
+        // navigation.navigate("Login");
+      },
+      (error) => {
+        console.log("Error", error);
+        setloading(false);
+      }
+    );
   };
 
   return (
@@ -97,9 +123,10 @@ function SignUp() {
         )}
 
         <button
+          onClick={signUp}
           className={`${
             window.innerWidth < 1780 ? "w-[40vw] md:w-[13vw]" : "w-[200px]"
-          } bg-[#013a19] text-white mt-[16px] rounded-[20px] py-[4px] flex-col items-center justify-center`}
+          } bg-[#013a19] items-center text-white mt-[16px] rounded-[20px] py-[4px] flex flex-col justify-center`}
         >
           {loading ? <LoadingSpinner /> : "Sign Up"}
         </button>
