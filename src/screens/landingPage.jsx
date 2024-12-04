@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import React from "react";
 import "react-toastify/dist/ReactToastify.css";
 function LandingPage() {
+  const token = sessionStorage.getItem("token");
+
   return (
     <div className="flex flex-col items-center justify-center h-[100vh] textFont">
       <div className="relative flex flex-col items-center">
@@ -29,24 +31,26 @@ function LandingPage() {
           create accurate methods for interpolation, extrapolation, and more.
         </p>
 
-        <div className="flex flex-row gap-x-5 mt-[24px]">
-          <Link
-            to="/SignUp"
-            className={`${
-              window.innerWidth < 1780 ? "w-[40vw] md:w-[13vw]" : "w-[200px]"
-            } border border-[#019a13] text-[#019a13] rounded-[20px] py-[4px] flex flex-col items-center justify-center`}
-          >
-            Sign Up
-          </Link>
-          <Link
-            to="/Login"
-            className={`${
-              window.innerWidth < 1780 ? "w-[40vw] md:w-[13vw]" : "w-[200px]"
-            } bg-[#013a19] text-white rounded-[20px] py-[4px] flex flex-col items-center justify-center`}
-          >
-            Log In
-          </Link>
-        </div>
+        {!token && (
+          <div className="flex flex-row gap-x-5 mt-[24px]">
+            <Link
+              to="/SignUp"
+              className={`${
+                window.innerWidth < 1780 ? "w-[40vw] md:w-[13vw]" : "w-[200px]"
+              } border border-[#019a13] text-[#019a13] rounded-[20px] py-[4px] flex flex-col items-center justify-center`}
+            >
+              Sign Up
+            </Link>
+            <Link
+              to="/Login"
+              className={`${
+                window.innerWidth < 1780 ? "w-[40vw] md:w-[13vw]" : "w-[200px]"
+              } bg-[#013a19] text-white rounded-[20px] py-[4px] flex flex-col items-center justify-center`}
+            >
+              Log In
+            </Link>
+          </div>
+        )}
         <Link
           to="/GenerateMethod"
           className={`${

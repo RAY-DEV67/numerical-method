@@ -10,7 +10,6 @@ import "./App.css";
 import { ScrollToTop } from "./components/scrollToTop";
 import Login from "./screens/login";
 import { ToastContainer } from "react-toastify";
-import Profile from "./screens/profile";
 import RequireAuth from "./components/requireAuth";
 import ForgotPassword from "./screens/forgotPassword";
 import ChangePassword from "./screens/changePassword";
@@ -50,7 +49,7 @@ function App() {
               <Route path="/SignUp" element={<SignUp />} />
               <Route path="/verify-email" element={<VerifyEmail />} />
               <Route element={<RequireAuth />}>
-                <Route path="/Profile" element={<Profile />} />
+                <Route path="/GenerateMethod" element={<GenerateMethod />} />
                 <Route path="*" element={<Navigate to="/Login" />} />
               </Route>
             </Routes>
