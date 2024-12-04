@@ -122,6 +122,7 @@ const GenerateMethod = () => {
       (error) => {
         console.log("Error", error);
         setloading(false);
+        alert(error.detail);
       }
     );
   };
