@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { post } from "../utils/api";
 import LoadingSpinner from "../components/spinner";
-import ImageModal from "../components/ImageModal"; // Import the modal component
+import ImageModal from "../components/imageModal"; // Import the modal component
 
 const GenerateMethod = () => {
   const token = sessionStorage.getItem("token");
