@@ -30,6 +30,7 @@ function Login() {
       },
       (error) => {
         console.log("Error", error);
+        alert(error.detail);
         setloading(false);
       }
     );
@@ -68,7 +69,7 @@ function Login() {
         />
         <input
           onChange={(e) => setPassword(e.target.value)}
-          type="password"
+          // type="password"
           placeholder="Password"
           className={`${
             window.innerWidth < 1780
