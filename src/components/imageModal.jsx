@@ -22,7 +22,7 @@ const ImageModal = ({ isOpen, imageUrl, onClose }) => (
       <img
         src={imageUrl}
         alt="Generated"
-        className="max-w-full max-h-[300px] object-contain"
+        className="max-w-full object-contain"
       />
       <button
         onClick={onClose}

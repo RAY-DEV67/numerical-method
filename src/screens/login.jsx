@@ -24,7 +24,6 @@ function Login() {
       (response) => {
         console.log(response.access_token);
         setloading(false);
-        // Save token in session storage
         sessionStorage.setItem("token", response.access_token);
         navigation.navigate("GenerateMethod");
       },
