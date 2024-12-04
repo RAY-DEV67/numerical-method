@@ -11,7 +11,7 @@ const ImageModal = ({ isOpen, imageUrl, onClose }) => (
     overlayClassName="modal-overlay"
     className="modal-content"
   >
-    <div className="flex flex-col items-center bg-white max-h-[400px] overflow-y-auto p-4 rounded-lg">
+    <div className="flex flex-col items-center bg-white h-[430px] md:h-[450px] overflow-y-auto p-4 rounded-lg">
       <h1
         className={`${
           window.innerWidth < 1780 ? "text-[4vw] md:text-[2vw]" : "text-[40px]"
