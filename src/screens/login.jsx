@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import LoadingSpinner from "../components/spinner";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,6 +9,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState("");
+  const navigate = useNavigate();
 
   const login = () => {
     setloading(true);
@@ -25,7 +26,7 @@ function Login() {
         console.log(response.access_token);
         setloading(false);
         sessionStorage.setItem("token", response.access_token);
-        navigation.navigate("GenerateMethod");
+        navigate("/GenerateMethod");
       },
       (error) => {
         console.log("Error", error);

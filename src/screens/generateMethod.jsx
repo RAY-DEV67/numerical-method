@@ -22,7 +22,7 @@ const GenerateMethod = () => {
   const inputsRef = useRef([]);
 
   const handleChangeFirstDerivativePoints = (index, value) => {
-    const newPoints = [...interpolationPoints];
+    const newPoints = [...firstDerivativePoints];
     newPoints[index] = value;
     setFirstDerivativePoints(newPoints);
 
@@ -32,7 +32,7 @@ const GenerateMethod = () => {
   };
 
   const handleChangeSecondDerivativePoints = (index, value) => {
-    const newPoints = [...interpolationPoints];
+    const newPoints = [...secondDerivativePoints];
     newPoints[index] = value;
     setsecondDerivativePoints(newPoints);
 

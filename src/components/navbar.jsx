@@ -57,7 +57,7 @@ export default function Navbar() {
           }}
           className="lg:hidden mr-[1rem] relative"
         >
-          <svg
+          {/* <svg
             width="30"
             height="30"
             viewBox="0 -2 32 32"
@@ -102,7 +102,7 @@ export default function Navbar() {
                 </g>
               </g>
             </g>
-          </svg>
+          </svg> */}
         </div>
 
         <div
@@ -110,7 +110,7 @@ export default function Navbar() {
             window.innerWidth < 1780 ? "w-[10vw]" : "w-[1000px]"
           }`}
         >
-          <Link
+          {/* <Link
             onClick={() => {
               setnavigateTo("/");
             }}
@@ -134,7 +134,7 @@ export default function Navbar() {
             >
               Profile
             </p>
-          </Link>
+          </Link> */}
         </div>
 
         <div
