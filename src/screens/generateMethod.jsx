@@ -399,7 +399,7 @@ const GenerateMethod = () => {
             {group.fractions.map((fraction, fractionIndex) => (
               <div key={fractionIndex} className="mt-[8px]">
                 <input
-                  className="border border-[#00cc00] text-center h-10 w-20 mx-1 rounded-md"
+                  className="border border-[#00cc00] text-center text-[14px] h-10 w-[20vw] mx-1 rounded-md"
                   value={fraction.numerator}
                   onChange={(e) =>
                     handleGroupChange(
@@ -414,7 +414,7 @@ const GenerateMethod = () => {
                 <span>/ </span>
 
                 <input
-                  className="border border-[#00cc00] text-center h-10 w-20 mx-1 rounded-md"
+                  className="border border-[#00cc00] text-center text-[14px] h-10 w-[20vw] mx-1 rounded-md"
                   placeholder={`Denominator ${fractionIndex + 1}`}
                   value={fraction.denominator}
                   onChange={(e) =>
