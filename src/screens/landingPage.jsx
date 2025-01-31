@@ -65,3 +65,127 @@ function LandingPage() {
 }
 
 export default LandingPage;
+
+// import React, { useState } from "react";
+// import { Link } from "react-router-dom";
+// import LoadingSpinner from "../components/spinner";
+// import { post } from "../utils/api";
+// const FractionInputApp = () => {
+//   const [groupData, setGroupData] = useState([
+//     { numFractions: 0, fractions: [] },
+//     { numFractions: 0, fractions: [] },
+//     { numFractions: 0, fractions: [] },
+//   ]);
+//   const [loading, setloading] = useState(false);
+//   const handleGroupChange = (groupIndex, field, value) => {
+//     const updatedGroups = [...groupData];
+//     if (field === "numFractions") {
+//       updatedGroups[groupIndex].numFractions = value;
+//       updatedGroups[groupIndex].fractions = Array.from(
+//         { length: value },
+//         () => ({ numerator: "", denominator: "" })
+//       );
+//     } else {
+//       const [fractionIndex, fractionField] = field;
+//       updatedGroups[groupIndex].fractions[fractionIndex][fractionField] = value;
+//     }
+//     setGroupData(updatedGroups);
+//   };
+
+//   const handleSubmit = () => {
+//     setloading(true);
+//     const formattedGroups = groupData.map((group) =>
+//       group.fractions.map(
+//         (fraction) => `${fraction.numerator}/${fraction.denominator}`
+//       )
+//     );
+//     const data = {
+//       interpolation_points: formattedGroups[0],
+//       first_derivatives_points: formattedGroups[1],
+//       second_derivatives_points: formattedGroups[2],
+//       analysis: true,
+//     };
+//     post(
+//       "/generate",
+//       data,
+//       {},
+//       (response) => {
+//         console.log(response);
+//         // setImageUrl(response.results.stability_region); // Set the image URL
+//         // setShowModal(true); // Show the modal
+//         setloading(false);
+//       },
+//       (error) => {
+//         console.log("Error", error);
+//         setloading(false);
+//         alert(error.detail);
+//       }
+//     );
+//   };
+
+//   return (
+//     <div>
+//       <h1>Fraction Input App</h1>{" "}
+//       {groupData.map((group, groupIndex) => (
+//         <div key={groupIndex}>
+//           <h2>Group {groupIndex + 1}</h2>{" "}
+//           <div>
+//             <label>How many fractions?</label>{" "}
+//             <input
+//               type="number"
+//               min="0"
+//               value={group.numFractions}
+//               onChange={(e) =>
+//                 handleGroupChange(
+//                   groupIndex,
+//                   "numFractions",
+//                   Number(e.target.value)
+//                 )
+//               }
+//               placeholder="Enter number of fractions"
+//             />
+//           </div>
+//           {group.fractions.map((fraction, fractionIndex) => (
+//             <div key={fractionIndex}>
+//               <input
+//                 type="number"
+//                 placeholder={`Numerator ${fractionIndex + 1}`}
+//                 value={fraction.numerator}
+//                 onChange={(e) =>
+//                   handleGroupChange(
+//                     groupIndex,
+//                     [fractionIndex, "numerator"],
+//                     e.target.value
+//                   )
+//                 }
+//               />
+//               <span>/</span>
+//               <input
+//                 type="number"
+//                 placeholder={`Denominator ${fractionIndex + 1}`}
+//                 value={fraction.denominator}
+//                 onChange={(e) =>
+//                   handleGroupChange(
+//                     groupIndex,
+//                     [fractionIndex, "denominator"],
+//                     e.target.value
+//                   )
+//                 }
+//               />
+//             </div>
+//           ))}
+//         </div>
+//       ))}
+//       <button onClick={handleSubmit}>Submit All Fractions</button>
+//       <Link
+//         onClick={handleSubmit}
+//         className={`${
+//           window.innerWidth < 1780 ? "w-[50vw] md:w-[13vw]" : "w-[200px]"
+//         } bg-[#013a19] mt-[24px] text-white rounded-[20px] py-[8px] flex flex-col items-center justify-center`}
+//       >
+//         {loading ? <LoadingSpinner /> : "Generate Method"}
+//       </Link>
+//     </div>
+//   );
+// };
+// export default FractionInputApp;
