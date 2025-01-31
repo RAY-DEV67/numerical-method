@@ -379,16 +379,8 @@ const GenerateMethod = () => {
           Fraction Input App
         </h1>
         {groupData.map((group, groupIndex) => (
-          <div key={groupIndex} className="w-[80vw] mt-[16px]">
-            <h2
-              className={`${
-                window.innerWidth < 1780
-                  ? "text-[3.5vw] md:text-[2vw]"
-                  : "text-[40px]"
-              } font-medium mb-[8px]`}
-            >
-              {group.name}:
-            </h2>
+          <div key={groupIndex} className="w-[90vw] mt-[24px]">
+            <h2 className="mb-[8px]">{group.name}:</h2>
             <div>
               <label>How many fractions? </label>
               <input
@@ -407,7 +399,7 @@ const GenerateMethod = () => {
             {group.fractions.map((fraction, fractionIndex) => (
               <div key={fractionIndex} className="mt-[8px]">
                 <input
-                  className="border border-[#00cc00] text-center h-10 w-30 mx-1 rounded-md"
+                  className="border border-[#00cc00] text-center h-10 w-20 mx-1 rounded-md"
                   value={fraction.numerator}
                   onChange={(e) =>
                     handleGroupChange(
@@ -422,7 +414,7 @@ const GenerateMethod = () => {
                 <span>/ </span>
 
                 <input
-                  className="border border-[#00cc00] text-center h-10 w-30 mx-1 rounded-md"
+                  className="border border-[#00cc00] text-center h-10 w-20 mx-1 rounded-md"
                   placeholder={`Denominator ${fractionIndex + 1}`}
                   value={fraction.denominator}
                   onChange={(e) =>
