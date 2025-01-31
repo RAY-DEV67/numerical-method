@@ -374,7 +374,7 @@ const GenerateMethod = () => {
             window.innerWidth < 1780
               ? "text-[5vw] md:text-[2vw]"
               : "text-[40px]"
-          } font-semibold`}
+          } font-semibold mt-[16px]`}
         >
           Fraction Input App
         </h1>
