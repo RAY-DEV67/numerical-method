@@ -110,36 +110,39 @@ const GenerateMethod = () => {
             </div>
             <div className="flex flex-row flex-wrap">
               {group.fractions.map((fraction, fractionIndex) => (
-                <div
-                  key={fractionIndex}
-                  className="m-[8px] border border-[#00cc00] h-14 rounded-md w-[6vw] flex flex-col items-center"
-                >
-                  <input
-                    className="text-center text-[14px] w-[5.5vw] h-7 mx-1 rounded-md"
-                    value={fraction.numerator}
-                    onChange={(e) =>
-                      handleGroupChange(
-                        groupIndex,
-                        [fractionIndex, "numerator"],
-                        e.target.value
-                      )
-                    }
-                    type="tel"
-                  />
-                  <span className="bg-black h-[1px] w-[6vw]"> </span>
+                <div className="flex flex-row items-end">
+                  <div
+                    key={fractionIndex}
+                    className="m-[8px] border border-[#00cc00] h-14 rounded-md w-[6vw] flex flex-col items-center"
+                  >
+                    <input
+                      className="text-center text-[14px] w-[5.5vw] h-7 mx-1 rounded-md"
+                      value={fraction.numerator}
+                      onChange={(e) =>
+                        handleGroupChange(
+                          groupIndex,
+                          [fractionIndex, "numerator"],
+                          e.target.value
+                        )
+                      }
+                      type="tel"
+                    />
+                    <span className="bg-black h-[1px] w-[6vw]"> </span>
 
-                  <input
-                    className="text-center text-[14px] w-[5.5vw] h-7 mx-1 rounded-md"
-                    value={fraction.denominator}
-                    onChange={(e) =>
-                      handleGroupChange(
-                        groupIndex,
-                        [fractionIndex, "denominator"],
-                        e.target.value
-                      )
-                    }
-                    type="tel"
-                  />
+                    <input
+                      className="text-center text-[14px] w-[5.5vw] h-7 mx-1 rounded-md"
+                      value={fraction.denominator}
+                      onChange={(e) =>
+                        handleGroupChange(
+                          groupIndex,
+                          [fractionIndex, "denominator"],
+                          e.target.value
+                        )
+                      }
+                      type="tel"
+                    />
+                  </div>
+                  <p>,</p>
                 </div>
               ))}
             </div>
