@@ -126,9 +126,9 @@ const FractionInputApp = () => {
           <h1
             className={`${
               window.innerWidth < 1780
-                ? "text-[5vw] md:text-[2vw]"
+                ? "text-[5.5vw] md:text-[2vw]"
                 : "text-[40px]"
-            } font-semibold my-[16px]`}
+            } font-semibold my-[16px] w-[80vw]`}
           >
             Numerical Method Generator App
           </h1>
