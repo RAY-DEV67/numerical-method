@@ -12,7 +12,11 @@ export default function Footer() {
           setnavigateTo("/");
         }}
         to="/"
-        className="font-bold text-white"
+        className={`font-bold text-white text-[14px] w-[60vw] ${
+          window.innerWidth < 1780
+            ? "text-[4vw] md:text-[1.5vw]"
+            : "text-[30px]"
+        }`}
       >
         Powered by National Open University of Nigeria
       </Link>

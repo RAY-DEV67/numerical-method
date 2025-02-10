@@ -39,7 +39,7 @@ function App() {
       />
       <NavigateTo.Provider value={{ navigateTo, setnavigateTo }}>
         <Router>
-            <Navbar />
+            {/* <Navbar /> */}
             <Routes>
               <Route path="/" element={<LandingPage />} />
               <Route path="/Login" element={<Login />} />

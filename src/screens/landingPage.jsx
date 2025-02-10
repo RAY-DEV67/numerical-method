@@ -9,7 +9,7 @@ function LandingPage() {
         <p
           className={`${
             window.innerWidth < 1780
-              ? "text-[3.5vw] md:text-[1.5vw]"
+              ? "text-[4vw] md:text-[1.5vw]"
               : "text-[30px]"
           } px-[16px] mt-[16px] lg:w-[1000px] text-center`}
         >
