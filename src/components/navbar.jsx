@@ -10,7 +10,7 @@ export default function Navbar() {
       }`}
     >
       <div
-        className={`flex justify-between p-[1rem] shadow-md nav bg-white fixed items-center w-[100vw] pt-[3vh] ${
+        className={`flex justify-between p-[1rem] textFont shadow-md nav bg-white fixed items-center w-[100vw] pt-[3vh] ${
           window.innerWidth < 1780 ? "w-[100vw]" : "w-[1780px]"
         } `}
       >
