@@ -122,7 +122,7 @@ const FractionInputApp = () => {
   return (
     <MathJaxContext>
       <div>
-        <div className=" min-h-[100vh] flex flex-col justify-start pt-[80px] px-[16px] items-start">
+        <div className=" min-h-[100vh] flex flex-col justify-start pt-[20px] px-[16px] items-start">
           <h1
             className={`${
               window.innerWidth < 1780
