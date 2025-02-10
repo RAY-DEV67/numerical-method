@@ -18,6 +18,7 @@ import LandingPage from "./screens/landingPage";
 import SignUp from "./screens/signUpOne";
 import GenerateMethod from "./screens/generateMethod";
 import VerifyEmail from "./screens/verifyEmail";
+import Footer from "./components/footer";
 
 export const NavigateTo = React.createContext();
 
@@ -38,7 +39,6 @@ function App() {
       />
       <NavigateTo.Provider value={{ navigateTo, setnavigateTo }}>
         <Router>
-          <ScrollToTop>
             <Navbar />
             <Routes>
               <Route path="/" element={<LandingPage />} />
@@ -53,7 +53,6 @@ function App() {
                 <Route path="*" element={<Navigate to="/Login" />} />
               </Route>
             </Routes>
-          </ScrollToTop>
         </Router>
       </NavigateTo.Provider>
     </div>

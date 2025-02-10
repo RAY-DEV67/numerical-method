@@ -35,14 +35,6 @@
   }
 }
 
-body {
-  overflow-x: hidden;
-}
-
-.noOverflow {
-  overflow-x: hidden;
-}
-
 .textFont {
   font-family: "Gabarito", sans-serif;
 }
