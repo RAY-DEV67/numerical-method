@@ -136,7 +136,7 @@ const FractionInputApp = () => {
           <p
             className={`${
               window.innerWidth < 1780
-                ? "text-[3.5vw] md:text-[1.5vw]"
+                ? "text-[4vw] md:text-[1.5vw]"
                 : "text-[30px]"
             } mb-[24px] mt-[8px] lg:w-[1000px] text-left`}
           >
