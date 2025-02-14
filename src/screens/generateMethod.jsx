@@ -122,76 +122,92 @@ const FractionInputApp = () => {
   return (
     <MathJaxContext>
       <div>
-        <div className=" min-h-[100vh] flex flex-col justify-start pt-[20px] px-[16px] items-start">
+        <div className=" min-h-[100vh] flex flex-col justify-start pt-[20px] px-[16px] items-start lg:items-center">
           <h1
             className={`${
               window.innerWidth < 1780
                 ? "text-[5.5vw] md:text-[2vw]"
                 : "text-[40px]"
-            } font-semibold my-[16px] w-[80vw]`}
+            } font-semibold my-[16px] w-[90vw] lg:text-center`}
           >
-            Numerical Method Generator App
+            LMM Generator: An Automated Tool for Deriving Linear Multistep
+            Methods
           </h1>
-          {groupData.map((group, groupIndex) => (
-            <div className="mb-[24px]" key={groupIndex}>
-              <h2>{group.name}</h2>
-              <label>HOW MANY POINTS?</label>
-              <input
-                className="border border-[#00cc00] text-center h-10 w-10 mx-1 rounded-md"
-                min="0"
-                value={group.numFractions}
-                onChange={(e) =>
-                  handleGroupChange(
-                    groupIndex,
-                    "numFractions",
-                    Number(e.target.value)
-                  )
-                }
-                type="tel"
-              />
-              <div className="flex flex-row flex-wrap">
-                {group.fractions.map((fraction, fractionIndex) => (
-                  <div className="flex flex-row items-end">
-                    <div
-                      key={fractionIndex}
-                      className="m-[8px] border border-[#00cc00] h-14 rounded-md w-[6vw] md:w-[25px] flex flex-col items-center"
-                    >
-                      <input
-                        className="text-center text-[14px] w-[5.5vw] md:w-[23px] h-7 mx-1 rounded-md"
-                        value={fraction.numerator}
-                        onChange={(e) =>
-                          handleGroupChange(
-                            groupIndex,
-                            [fractionIndex, "numerator"],
-                            e.target.value
-                          )
-                        }
-                        type="tel"
-                      />
-                      <span className="bg-black h-[1px] w-[6vw] md:w-[25px]">
-                        {" "}
-                      </span>
+          <p
+            className={`${
+              window.innerWidth < 1780
+                ? "text-[3.5vw] md:text-[1.5vw]"
+                : "text-[30px]"
+            } mb-[24px] mt-[8px] lg:w-[1000px] text-left`}
+          >
+            The LMM Generator is a web-based application designed to automate
+            the derivation of Linear Multistep Methods (LMMs) for solving
+            ordinary differential equations. By leveraging interpolation and
+            collocation techniques, the tool efficiently generates LMMs of first
+            and second derivative methods, eliminating the need for manual
+            computation.
+          </p>
+          <div className="items-start">
+            {groupData.map((group, groupIndex) => (
+              <div className="mb-[24px]" key={groupIndex}>
+                <h2 className="uppercase">{group.name} Points</h2>
+                <label>How many {group.name} points?</label>
+                <input
+                  className="border border-[#00cc00] text-center h-10 w-10 mx-1 rounded-md"
+                  min="0"
+                  value={group.numFractions}
+                  onChange={(e) =>
+                    handleGroupChange(
+                      groupIndex,
+                      "numFractions",
+                      Number(e.target.value)
+                    )
+                  }
+                  type="tel"
+                />
+                <div className="flex flex-row flex-wrap">
+                  {group.fractions.map((fraction, fractionIndex) => (
+                    <div className="flex flex-row items-end">
+                      <div
+                        key={fractionIndex}
+                        className="m-[8px] border border-[#00cc00] h-14 rounded-md w-[6vw] md:w-[25px] flex flex-col items-center"
+                      >
+                        <input
+                          className="text-center text-[14px] w-[5.5vw] md:w-[23px] h-7 mx-1 rounded-md"
+                          value={fraction.numerator}
+                          onChange={(e) =>
+                            handleGroupChange(
+                              groupIndex,
+                              [fractionIndex, "numerator"],
+                              e.target.value
+                            )
+                          }
+                          type="tel"
+                        />
+                        <span className="bg-black h-[1px] w-[6vw] md:w-[25px]">
+                          {" "}
+                        </span>
 
-                      <input
-                        className="text-center text-[14px] w-[5.5vw] md:w-[23px] h-7 mx-1 rounded-md"
-                        value={fraction.denominator}
-                        onChange={(e) =>
-                          handleGroupChange(
-                            groupIndex,
-                            [fractionIndex, "denominator"],
-                            e.target.value
-                          )
-                        }
-                        type="tel"
-                      />
+                        <input
+                          className="text-center text-[14px] w-[5.5vw] md:w-[23px] h-7 mx-1 rounded-md"
+                          value={fraction.denominator}
+                          onChange={(e) =>
+                            handleGroupChange(
+                              groupIndex,
+                              [fractionIndex, "denominator"],
+                              e.target.value
+                            )
+                          }
+                          type="tel"
+                        />
+                      </div>
+                      <p>,</p>
                     </div>
-                    <p>,</p>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
-
+            ))}
+          </div>
           <Link
             onClick={handleSubmit}
             className={`${
