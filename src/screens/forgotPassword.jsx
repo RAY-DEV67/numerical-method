@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import LoadingSpinner from "../components/spinner";
 import "react-toastify/dist/ReactToastify.css";
 import { post } from "../utils/api";
-import axios from "axios";
+
 
 function ForgotPassword() {
   const [loading, setloading] = useState(false);

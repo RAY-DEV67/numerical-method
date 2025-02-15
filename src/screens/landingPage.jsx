@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import React from "react";
 import "react-toastify/dist/ReactToastify.css";
-import Footer from "../components/footer";
+
 function LandingPage() {
   return (
     <div className="flex flex-col items-center justify-between pt-[80px] h-[100vh] textFont">
